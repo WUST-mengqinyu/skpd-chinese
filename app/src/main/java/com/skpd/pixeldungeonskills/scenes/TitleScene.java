@@ -23,6 +23,7 @@ import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
@@ -35,6 +36,7 @@ import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.PrefsButton;
+import com.skpd.pixeldungeonskills.windows.LanguageButton;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -138,7 +140,7 @@ public class TitleScene extends PixelScene {
 			btnHighscores.setPos( w / 2, btnPlay.top() );
 		}
 
-        BitmapText version = new BitmapText( "v " + Game.version + " (Build " + Game.versionBuild + ")", font1x );
+        BitmapText version = new BitmapText( "forChinese", font1x );
         version.measure();
         version.hardlight( 0xFFFFFF );
         version.x = w - version.width();
@@ -151,7 +153,12 @@ public class TitleScene extends PixelScene {
         versionPD.x = w - versionPD.width();
         versionPD.y = h - versionPD.height();
         add( versionPD );
-		
+
+		LanguageButton btnLang = new LanguageButton();
+		btnLang.setPos(16, 1);
+		add( btnLang );
+
+
 		PrefsButton btnPrefs = new PrefsButton();
 		btnPrefs.setPos( 0, 0 );
 		add( btnPrefs );
@@ -173,54 +180,55 @@ public class TitleScene extends PixelScene {
 		fb.setPos( x, y );
 		add( fb );
 	}
-	
+
 	private static class DashboardItem extends Button {
-		
+
 		public static final float SIZE	= 48;
-		
+
 		private static final int IMAGE_SIZE	= 32;
-		
+
 		private Image image;
-		private BitmapText label;
-		
+		private RenderedText label;
+
 		public DashboardItem( String text, int index ) {
 			super();
-			
+
 			image.frame( image.texture.uvRect( index * IMAGE_SIZE, 0, (index + 1) * IMAGE_SIZE, IMAGE_SIZE ) );
 			this.label.text( text );
-			this.label.measure();
-			
+
 			setSize( SIZE, SIZE );
 		}
-		
+
 		@Override
 		protected void createChildren() {
 			super.createChildren();
-			
+
 			image = new Image( Assets.DASHBOARD );
 			add( image );
-			
-			label = createText( 9 );
+
+			label = renderText( 9 );
 			add( label );
 		}
-		
+
 		@Override
 		protected void layout() {
 			super.layout();
-			
-			image.x = align( x + (width - image.width()) / 2 );
-			image.y = align( y );
-			
-			label.x = align( x + (width - label.width()) / 2 );
-			label.y = align( image.y + image.height() +2 );
+
+			image.x = x + (width - image.width()) / 2;
+			image.y = y;
+			align(image);
+
+			label.x = x + (width - label.width()) / 2;
+			label.y = image.y + image.height() +2;
+			align(label);
 		}
-		
+
 		@Override
 		protected void onTouchDown() {
 			image.brightness( 1.5f );
 			Sample.INSTANCE.play( Assets.SND_CLICK, 1, 1, 0.8f );
 		}
-		
+
 		@Override
 		protected void onTouchUp() {
 			image.resetColor();

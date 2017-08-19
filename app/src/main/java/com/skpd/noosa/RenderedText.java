@@ -1,5 +1,3 @@
-package com.skpd.noosa;
-
 /*
  * Pixel Dungeon
  * Copyright (C) 2012-2015  Oleg Dolya
@@ -21,6 +19,8 @@ package com.skpd.noosa;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+package com.skpd.noosa;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -34,7 +34,6 @@ import com.skpd.glwrap.Texture;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-
 
 public class RenderedText extends Image {
 

@@ -199,6 +199,10 @@ public class PixelDungeon extends Game {
 		}
 	}
 
+	public static void language(Languages lang) {
+		Preferences.INSTANCE.put( Preferences.KEY_LANG, lang.code());
+	}
+
 	public static Languages language() {
 		String code = Preferences.INSTANCE.getString(Preferences.KEY_LANG, null);
 		if (code == null){
@@ -234,10 +238,15 @@ public class PixelDungeon extends Game {
 			updateImmersiveMode();
 		}
 	}
-	
-	public static void switchNoFade( Class<? extends PixelScene> c ) {
+
+	public static void switchNoFade(Class<? extends PixelScene> c) {
 		PixelScene.noFade = true;
-		switchScene( c );
+		switchScene(c);
+	}
+	
+	public static void switchNoFade(Class<? extends PixelScene> c, SceneChangeCallback callback) {
+		PixelScene.noFade = true;
+		switchScene( c,callback );
 	}
 	
 	/*
@@ -254,7 +263,11 @@ public class PixelDungeon extends Game {
 	public static boolean landscape() {
 		return width > height;
 	}
-	
+
+	public static void scale(int value) {
+		Preferences.INSTANCE.put(Preferences.KEY_SCALE, value);
+		switchScene(TitleScene.class);
+	}
 	// *** IMMERSIVE MODE ****
 	
 	private static boolean immersiveModeChanged = false;
@@ -308,7 +321,12 @@ public class PixelDungeon extends Game {
 	}
 	
 	// *****************************
-	
+
+	public static int scale() {
+		return Preferences.INSTANCE.getInt(Preferences.KEY_SCALE, 0);
+	}
+
+
 	public static void scaleUp( boolean value ) {
 		Preferences.INSTANCE.put( Preferences.KEY_SCALE_UP, value );
 		switchScene( TitleScene.class );
@@ -362,7 +380,7 @@ public class PixelDungeon extends Game {
 	public static boolean brightness() {
 		return Preferences.INSTANCE.getBoolean( Preferences.KEY_BRIGHTNESS, false );
 	}
-	
+
 	public static void donated( int value ) {
 		Preferences.INSTANCE.put( Preferences.KEY_DONATED, value );
 	}

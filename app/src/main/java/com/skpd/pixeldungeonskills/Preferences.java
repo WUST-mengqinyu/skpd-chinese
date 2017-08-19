@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills;
 import android.content.SharedPreferences;
 
 import com.skpd.noosa.Game;
+import com.skpd.utils.GameMath;
 
 enum Preferences {
 
@@ -28,6 +29,7 @@ enum Preferences {
 	public static final String KEY_LANDSCAPE	= "landscape";
 	public static final String KEY_IMMERSIVE	= "immersive";
 	public static final String KEY_GOOGLE_PLAY	= "google_play";
+	public static final String KEY_SCALE = "scale";
 	public static final String KEY_SCALE_UP		= "scaleup";
 	public static final String KEY_MUSIC		= "music";
 	public static final String KEY_SOUND_FX		= "soundfx";
@@ -51,28 +53,67 @@ enum Preferences {
 		}
 		return prefs;
 	}
-	
-	int getInt( String key, int defValue  ) {
-		return get().getInt( key, defValue );
+
+	int getInt( String key, int defValue ) {
+		return getInt(key, defValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
-	
-	boolean getBoolean( String key, boolean defValue  ) {
-		return get().getBoolean( key, defValue );
+
+	int getInt( String key, int defValue, int min, int max ) {
+		try {
+			int i = get().getInt( key, defValue );
+			if (i < min || i > max){
+				int val = (int) GameMath.gate(min, i, max);
+				put(key, val);
+				return val;
+			} else {
+				return i;
+			}
+		} catch (ClassCastException e) {
+			PixelDungeon.reportException(e);
+			put(key, defValue);
+			return defValue;
+		}
 	}
-	
-	String getString( String key, String defValue  ) {
-		return get().getString( key, defValue );
+
+	boolean getBoolean( String key, boolean defValue ) {
+		try {
+			return get().getBoolean(key, defValue);
+		} catch (ClassCastException e) {
+			PixelDungeon.reportException(e);
+			put(key, defValue);
+			return defValue;
+		}
 	}
-	
-	void put( String key, int value ) {
-		get().edit().putInt( key, value ).commit();
+
+	String getString( String key, String defValue ) {
+		return getString(key, defValue, Integer.MAX_VALUE);
 	}
-	
-	void put( String key, boolean value ) {
-		get().edit().putBoolean( key, value ).commit();
+
+	String getString( String key, String defValue, int maxLength ) {
+		try {
+			String s = get().getString( key, defValue );
+			if (s != null && s.length() > maxLength) {
+				put(key, defValue);
+				return defValue;
+			} else {
+				return s;
+			}
+		} catch (ClassCastException e) {
+			PixelDungeon.reportException(e);
+			put(key, defValue);
+			return defValue;
+		}
 	}
-	
-	void put( String key, String value ) {
-		get().edit().putString( key, value ).commit();
+
+	void put(String key, int value) {
+		get().edit().putInt(key, value).commit();
+	}
+
+	void put(String key, boolean value) {
+		get().edit().putBoolean(key, value).commit();
+	}
+
+	void put(String key, String value) {
+		get().edit().putString(key, value).commit();
 	}
 }

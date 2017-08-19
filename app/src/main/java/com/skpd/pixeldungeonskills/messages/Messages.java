@@ -39,14 +39,14 @@ public class Messages {
      */
 
     private static String[] prop_files = new String[]{
-            "com.messages.actors.actors",
-            "com.messages.items.items",
-            "com.messages.levels.levels",
-            "com.messages.plants.plants",
-            "com.messages.scenes.scenes",
-            "com.messages.ui.ui",
-            "com.messages.windows.windows",
-            "com.messages.misc.misc"
+            "com.skpd.pixeldungeonskills.messages.actors.actors",
+            "com.skpd.pixeldungeonskills.messages.items.items",
+            "com.skpd.pixeldungeonskills.messages.levels.levels",
+            "com.skpd.pixeldungeonskills.messages.plants.plants",
+            "com.skpd.pixeldungeonskills.messages.scenes.scenes",
+            "com.skpd.pixeldungeonskills.messages.ui.ui",
+            "com.skpd.pixeldungeonskills.messages.windows.windows",
+            "com.skpd.pixeldungeonskills.messages.misc.misc"
     };
 
     static{
@@ -96,7 +96,7 @@ public class Messages {
     public static String get(Class c, String k, Object...args){
         String key;
         if (c != null){
-            key = c.getName().replace("com.", "");
+            key = c.getName().replace("com.skpd.pixeldungeonskills.", "");
             key += "." + k;
         } else
             key = k;

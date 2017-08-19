@@ -17,15 +17,15 @@
 
 package com.skpd.noosa;
 
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
 import android.opengl.GLES20;
 
 import com.skpd.glscripts.Script;
 import com.skpd.glwrap.Attribute;
 import com.skpd.glwrap.Quad;
 import com.skpd.glwrap.Uniform;
+
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 public class NoosaScript extends Script {
 	
@@ -116,20 +116,25 @@ public class NoosaScript extends Script {
 	public void resetCamera() {
 		lastCamera = null;
 	}
-	
+
 	public void camera( Camera camera ) {
 		if (camera == null) {
 			camera = Camera.main;
 		}
-		if (camera != lastCamera) {
+		if (camera != lastCamera && camera.matrix != null) {
 			lastCamera = camera;
 			uCamera.valueM4( camera.matrix );
-			
-			GLES20.glScissor( 
-				camera.x, 
-				Game.height - camera.screenHeight - camera.y, 
-				camera.screenWidth, 
-				camera.screenHeight );
+
+			if (!camera.fullScreen) {
+				GLES20.glEnable( GLES20.GL_SCISSOR_TEST );
+				GLES20.glScissor(
+						camera.x,
+						Game.height - camera.screenHeight - camera.y,
+						camera.screenWidth,
+						camera.screenHeight);
+			} else {
+				GLES20.glDisable( GLES20.GL_SCISSOR_TEST );
+			}
 		}
 	}
 	

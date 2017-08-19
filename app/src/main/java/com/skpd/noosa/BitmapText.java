@@ -17,15 +17,16 @@
 
 package com.skpd.noosa;
 
-import java.nio.FloatBuffer;
+import android.graphics.Bitmap;
+import android.graphics.RectF;
 
 import com.skpd.gltextures.SmartTexture;
 import com.skpd.gltextures.TextureCache;
 import com.skpd.glwrap.Matrix;
 import com.skpd.glwrap.Quad;
+import com.skpd.glwrap.Vertexbuffer;
 
-import android.graphics.Bitmap;
-import android.graphics.RectF;
+import java.nio.FloatBuffer;
 
 public class BitmapText extends Visual {
 
@@ -34,6 +35,7 @@ public class BitmapText extends Visual {
 
 	protected float[] vertices = new float[16];
 	protected FloatBuffer quads;
+	protected Vertexbuffer buffer;
 	
 	public int realLength;
 	
@@ -83,6 +85,11 @@ public class BitmapText extends Visual {
 		
 		if (dirty) {
 			updateVertices();
+			quads.limit(quads.position());
+			if (buffer == null)
+				buffer = new Vertexbuffer(quads);
+			else
+				buffer.updateVertices(quads);
 		}
 		
 		script.camera( camera() );

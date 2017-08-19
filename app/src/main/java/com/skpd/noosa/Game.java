@@ -54,6 +54,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	// Actual size of the screen
 	public static int width;
 	public static int height;
+	public static int dispWidth;
+	public static int dispHeight;
 
 	protected SceneChangeCallback onChange;
 
@@ -62,7 +64,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	
 	public static String version;
     public static int versionBuild;
-	public static String vanillaVersion = "Vanilla PD v 1.9.2a";
+	public static String vanillaVersion = "1.0";
 
 	// Current scene
 	protected Scene scene;
@@ -104,7 +106,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		DisplayMetrics m = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics( m );
 		density = m.density;
-		
+		dispHeight = m.heightPixels;
+		dispWidth = m.widthPixels;
+
 		try {
 			version = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName;
             versionBuild = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionCode;
@@ -217,7 +221,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		
 		step();
 
-		NoosaScript.get().resetCamera();
+		com.skpd.noosa.NoosaScript.get().resetCamera();
 		GLES20.glScissor( 0, 0, width, height );
 		GLES20.glClear( GLES20.GL_COLOR_BUFFER_BIT );
 		draw();
@@ -243,7 +247,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		GLES20.glEnable( GL10.GL_SCISSOR_TEST );
 		
 		TextureCache.reload();
-		RenderedText.reloadCache();
+		com.skpd.noosa.RenderedText.reloadCache();
 		Vertexbuffer.refreshAllBuffers();
 	}
 	
@@ -296,7 +300,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	
 	protected void switchScene() {
 
-		Camera.reset();
+		com.skpd.noosa.Camera.reset();
 		
 		if (scene != null) {
 			scene.destroy();
@@ -321,7 +325,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		}
 		
 		scene.update();		
-		Camera.updateAll();
+		com.skpd.noosa.Camera.updateAll();
 	}
 	
 	public static void vibrate( int milliseconds ) {
