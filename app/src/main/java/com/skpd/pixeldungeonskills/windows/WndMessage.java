@@ -17,9 +17,9 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndMessage extends Window {
@@ -33,10 +33,9 @@ public class WndMessage extends Window {
 		
 		super();
 		
-		BitmapTextMultiline info = PixelScene.createMultiline( text, 6 );
+		RenderedTextMultiline info = PixelScene.renderMultiline( text, 6 );
 		info.maxWidth = (PixelDungeon.landscape() ? WIDTH_L : WIDTH_P) - MARGIN * 2;
-		info.measure();
-		info.x = info.y = MARGIN;
+		info.setPos(MARGIN, MARGIN);
 		add( info );
 
 		resize( 

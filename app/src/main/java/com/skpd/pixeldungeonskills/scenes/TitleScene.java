@@ -43,11 +43,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class TitleScene extends PixelScene {
 
-	private static final String TXT_PLAY		= "Play";
-	private static final String TXT_HIGHSCORES	= "Rankings";
-	private static final String TXT_BADGES		= "Badges";
-	private static final String TXT_ABOUT		= "About";
-	
 	@Override
 	public void create() {
 		
@@ -103,7 +98,7 @@ public class TitleScene extends PixelScene {
 		};
 		add( btnBadges );
 		
-		DashboardItem btnAbout = new DashboardItem( TXT_ABOUT, 1 ) {
+		DashboardItem btnAbout = new DashboardItem( Messages.get(this, "about"), 1 ) {
 			@Override
 			protected void onClick() {
 				PixelDungeon.switchNoFade( AboutScene.class );
@@ -111,7 +106,7 @@ public class TitleScene extends PixelScene {
 		};
 		add( btnAbout );
 		
-		DashboardItem btnPlay = new DashboardItem( TXT_PLAY, 0 ) {
+		DashboardItem btnPlay = new DashboardItem( Messages.get(this, "play"), 0 ) {
 			@Override
 			protected void onClick() {
 				PixelDungeon.switchNoFade( StartScene.class );
@@ -119,7 +114,7 @@ public class TitleScene extends PixelScene {
 		};
 		add( btnPlay );
 		
-		DashboardItem btnHighscores = new DashboardItem( TXT_HIGHSCORES, 2 ) {
+		DashboardItem btnHighscores = new DashboardItem( Messages.get(this, "rankings"), 2 ) {
 			@Override
 			protected void onClick() {
 				PixelDungeon.switchNoFade( RankingsScene.class );

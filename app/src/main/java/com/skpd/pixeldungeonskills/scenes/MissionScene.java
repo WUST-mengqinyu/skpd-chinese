@@ -42,6 +42,7 @@ import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.MovieLevel;
 import com.skpd.pixeldungeonskills.levels.RegularLevel;
 import com.skpd.pixeldungeonskills.levels.features.Chasm;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Plant;
 import com.skpd.pixeldungeonskills.sprites.LegendSprite;
 import com.skpd.pixeldungeonskills.ui.AttackIndicator;
@@ -59,8 +60,6 @@ import com.skpd.utils.Random;
 import java.util.ArrayList;
 
 public class MissionScene extends GameScene {
-
-
 
     public LegendSprite hero;
     public static boolean scenePause = false;
@@ -212,7 +211,7 @@ public class MissionScene extends GameScene {
 			case 1:
 				WndStory.showChapter( WndStory.ID_SEWERS );
                 if(PixelDungeon.itemDeg() == false)
-                    WndStory.showStory( TXT_WARN_DEGRADATION );
+                    WndStory.showStory( Messages.get(this,"h") );
 				break;
 			case 6:
 				WndStory.showChapter( WndStory.ID_PRISON );
@@ -253,36 +252,36 @@ public class MissionScene extends GameScene {
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.depth != 0) {
 			if (Dungeon.depth < Statistics.deepestFloor) {
-				GLog.h( TXT_WELCOME_BACK, Dungeon.depth );
+				GLog.h( Messages.get(this,"b"), Dungeon.depth );
 			} else {
                 if(Dungeon.depth != ColdGirl.FROST_DEPTH) {
-                    GLog.h(TXT_WELCOME, Dungeon.depth);
+                    GLog.h(Messages.get(this,"a"), Dungeon.depth);
                     Sample.INSTANCE.play(Assets.SND_DESCEND);
                 }
                 else
                 {
-                    GLog.h(TXT_FROST);
+                    GLog.h(Messages.get(this,"i"));
                     Sample.INSTANCE.play(Assets.SND_TELEPORT);
                 }
 			}
 			switch (Dungeon.level.feeling) {
 				case CHASM:
-					GLog.w( TXT_CHASM );
+					GLog.w( Messages.get(this,"d"));
 					break;
 				case WATER:
-					GLog.w( TXT_WATER );
+					GLog.w( Messages.get(this,"e") );
 					break;
 				case GRASS:
-					GLog.w( TXT_GRASS );
+					GLog.w( Messages.get(this,"f") );
 					break;
 				default:
 			}
 			if (Dungeon.level instanceof RegularLevel &&
 					((RegularLevel) Dungeon.level).secretDoors > Random.IntRange( 3, 4 )) {
-				GLog.w( TXT_SECRETS );
+				GLog.w( Messages.get(this,"g") );
 			}
 			if (Dungeon.nightMode && !Dungeon.bossLevel()) {
-				GLog.w( TXT_NIGHT_MODE );
+				GLog.w( Messages.get(this,"c") );
 			}
 
 			InterlevelScene.mode = InterlevelScene.Mode.NONE;

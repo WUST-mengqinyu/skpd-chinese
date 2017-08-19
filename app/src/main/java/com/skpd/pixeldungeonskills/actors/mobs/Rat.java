@@ -20,13 +20,14 @@ package com.skpd.pixeldungeonskills.actors.mobs;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Ghost;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.RatSprite;
 import com.skpd.utils.Random;
 
 public class Rat extends Mob {
 
 	{
-		name = "marsupial rat";
+		name = Messages.get(this,"1");
 		spriteClass = RatSprite.class;
 		
 		HP = HT = 8;

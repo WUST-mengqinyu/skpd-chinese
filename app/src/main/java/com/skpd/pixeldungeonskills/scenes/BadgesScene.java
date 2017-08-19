@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import java.util.List;
-
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
@@ -30,6 +28,7 @@ import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.effects.BadgeBanner;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.Window;
@@ -37,9 +36,9 @@ import com.skpd.pixeldungeonskills.windows.WndBadge;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
+import java.util.List;
+
 public class BadgesScene extends PixelScene {
-	
-	private static final String TXT_TITLE = "Your Badges";
 	
 	@Override
 	public void create() {
@@ -69,7 +68,7 @@ public class BadgesScene extends PixelScene {
 		float left = (w - size * nCols) / 2;
 		float top = (h - size * nRows) / 2;
 		
-		BitmapText title = PixelScene.createText( TXT_TITLE, 9 );
+		BitmapText title = PixelScene.createText(Messages.get(this,"a"), 9 );
 		title.hardlight( Window.TITLE_COLOR );
 		title.measure();
 		title.x = align( (w - title.width()) / 2 );

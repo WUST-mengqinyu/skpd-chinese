@@ -14,7 +14,6 @@ import com.skpd.pixeldungeonskills.ui.Window;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 /**
  * Created by badcw on 2017/8/18.
@@ -34,7 +33,7 @@ public class WndLangs extends Window {
 
         final ArrayList<Languages> langs = new ArrayList<>(Arrays.asList(Languages.values()));
 
-        Languages nativeLang = Languages.matchLocale(Locale.getDefault());
+        Languages nativeLang = Languages.CHINESE;
         langs.remove(nativeLang);
         //move the native language to the top.
         langs.add(0, nativeLang);

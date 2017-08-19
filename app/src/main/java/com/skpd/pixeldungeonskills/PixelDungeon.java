@@ -33,8 +33,6 @@ import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.scenes.TitleScene;
 
-import java.util.Locale;
-
 import javax.microedition.khronos.opengles.GL10;
 
 public class PixelDungeon extends Game {
@@ -206,7 +204,7 @@ public class PixelDungeon extends Game {
 	public static Languages language() {
 		String code = Preferences.INSTANCE.getString(Preferences.KEY_LANG, null);
 		if (code == null){
-			Languages lang = Languages.matchLocale(Locale.getDefault());
+			Languages lang = Languages.CHINESE;
 			if (lang.status() == Languages.Status.REVIEWED)
 				return lang;
 			else
@@ -416,9 +414,9 @@ public class PixelDungeon extends Game {
 	public static void challenges( int value ) {
 		Preferences.INSTANCE.put( Preferences.KEY_CHALLENGES, value );
 	}
-	
+
 	public static int challenges() {
-		return Preferences.INSTANCE.getInt( Preferences.KEY_CHALLENGES, 0 );
+		return Preferences.INSTANCE.getInt( Preferences.KEY_CHALLENGES, 0, 0, Challenges.MAX_VALUE );
 	}
 	
 	public static void intro( boolean value ) {

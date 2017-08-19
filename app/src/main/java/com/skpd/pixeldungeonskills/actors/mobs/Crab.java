@@ -21,13 +21,14 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Ghost;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CrabSprite;
 import com.skpd.utils.Random;
 
 public class Crab extends Mob {
 
 	{
-		name = "sewer crab";
+		name = Messages.get(this,"1");
 		spriteClass = CrabSprite.class;
 		
 		HP = HT = 15;
@@ -62,7 +63,7 @@ public class Crab extends Mob {
 	
 	@Override
 	public String defenseVerb() {
-		return "parried";
+		return Messages.get(this,"2");
 	}
 	
 	@Override
@@ -80,8 +81,6 @@ public class Crab extends Mob {
 	@Override
 	public String description() {
 		return
-			"These huge crabs are at the top of the food chain in the sewers. " +
-			"They are extremely fast and their thick exoskeleton can withstand " +
-			"heavy blows.";
+				Messages.get(this,"3");
 	}
 }

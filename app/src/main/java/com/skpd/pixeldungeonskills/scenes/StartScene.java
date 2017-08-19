@@ -17,16 +17,12 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import java.util.HashMap;
-
-import com.skpd.noosa.BitmapText;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Group;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
-import com.skpd.noosa.particles.BitmaskEmitter;
 import com.skpd.noosa.particles.Emitter;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
@@ -37,12 +33,14 @@ import com.skpd.pixeldungeonskills.GamesInProgress;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.effects.BannerSprites;
-import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.BannerSprites.Type;
+import com.skpd.pixeldungeonskills.effects.Speck;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.Icons;
-import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.NewRedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.ResumeButton;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.pixeldungeonskills.windows.WndChallenges;
@@ -51,26 +49,25 @@ import com.skpd.pixeldungeonskills.windows.WndMessage;
 import com.skpd.pixeldungeonskills.windows.WndOptions;
 import com.skpd.utils.Callback;
 
+import java.util.HashMap;
+
 public class StartScene extends PixelScene {
 
 	private static final float BUTTON_HEIGHT	= 24;
 	private static final float GAP				= 2;
 	
-	private static final String TXT_LOAD	= "Load Game";
-	private static final String TXT_NEW		= "New Game";
+	private static final String TXT_LOAD	= Messages.get(StartScene.class,"1");
+	private static final String TXT_NEW		= Messages.get(StartScene.class,"2");
 	
-	private static final String TXT_ERASE		= "Erase current game";
-	private static final String TXT_DPTH_LVL	= "Depth: %d, level: %d";
+	private static final String TXT_ERASE		= Messages.get(StartScene.class,"3");
+	private static final String TXT_DPTH_LVL	= Messages.get(StartScene.class,"4");
 	
-	private static final String TXT_REALLY	= "Do you really want to start new game?";
-	private static final String TXT_WARNING	= "Your current game progress will be erased.";
-	private static final String TXT_YES		= "Yes, start new game";
-	private static final String TXT_NO		= "No, return to main menu";
+	private static final String TXT_REALLY	= Messages.get(StartScene.class,"5");
+	private static final String TXT_WARNING	= Messages.get(StartScene.class,"6");
+	private static final String TXT_YES		= Messages.get(StartScene.class,"7");
+	private static final String TXT_NO		= Messages.get(StartScene.class,"8");
 	
-	private static final String TXT_UNLOCK	= "To unlock this character class, slay the 3rd boss with any other class";
-	
-	private static final String TXT_WIN_THE_GAME = 
-		"To unlock \"Challenges\", win the game with any character class.";
+	private static final String TXT_WIN_THE_GAME = Messages.get(StartScene.class,"10");
 	
 	private static final float WIDTH_P	= 116;
 	private static final float HEIGHT_P	= 220;
@@ -228,23 +225,16 @@ public class StartScene extends PixelScene {
 		add( unlock );
 		
 		if (!(huntressUnlocked = Badges.isUnlocked( Badges.Badge.BOSS_SLAIN_3 ))) {
-		
-			BitmapTextMultiline text = PixelScene.createMultiline( TXT_UNLOCK, 9 );
-			text.maxWidth = (int)width;
-			text.measure();
-			
-			float pos = (bottom - BUTTON_HEIGHT) + (BUTTON_HEIGHT - text.height()) / 2;
-			for (BitmapText line : text.new LineSplitter().split()) {
-				line.measure();
-				line.hardlight( 0xFFFF00 );
-				line.x = PixelScene.align( w / 2 - line.width() / 2 );
-				line.y = PixelScene.align( pos );
-				unlock.add( line );
-				
-				pos += line.height(); 
-			}
+
+			RenderedTextMultiline text = PixelScene.renderMultiline( Messages.get(this, "9"), 9 );
+			text.maxWidth((int)width);
+			text.hardlight( 0xFFFF00 );
+			text.setPos(w / 2 - text.width() / 2, (bottom - BUTTON_HEIGHT) + (BUTTON_HEIGHT - text.height()) / 2);
+			align(text);
+			unlock.add(text);
+
 		}
-        huntressUnlocked = true; // Just let it go... let it go... bla bla bla
+
 		ExitButton btnExit = new ExitButton();
 		btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
 		add( btnExit );
@@ -267,7 +257,7 @@ public class StartScene extends PixelScene {
 
     private void chooseDifficulty()
     {
-        StartScene.this.add( new WndOptions( "Game Difficulty", "Cannot be changed in game!", Difficulties.EASY.title(), Difficulties.NORMAL.title(), Difficulties.HARD.title(), Difficulties.HELL.title(), Difficulties.SUICIDE.title() , Difficulties.JUSTKILLME.title() ) {
+        StartScene.this.add( new WndOptions( Messages.get(this,"11"), Messages.get(this,"12"), Difficulties.EASY.title(), Difficulties.NORMAL.title(), Difficulties.HARD.title(), Difficulties.HELL.title(), Difficulties.SUICIDE.title() , Difficulties.JUSTKILLME.title() ) {
             @Override
             protected void onSelect( int index ) {
                 chooseDifficultyFinal(index);
@@ -284,7 +274,7 @@ public class StartScene extends PixelScene {
         final int diff = index;
 
 
-        StartScene.this.add( new WndOptions( title, Description, "Yes", "No" ) {
+        StartScene.this.add( new WndOptions( title, Description, Messages.get(this,"13"), Messages.get(this,"14") ) {
 
             @Override
             protected void onSelect( int index ) {
@@ -380,12 +370,12 @@ public class StartScene extends PixelScene {
 		PixelDungeon.switchNoFade( TitleScene.class );
 	}
 	
-	private static class GameButton extends RedButton {
+	private static class GameButton extends NewRedButton {
 		
 		private static final int SECONDARY_COLOR_N	= 0xCACFC2;
 		private static final int SECONDARY_COLOR_H	= 0xFFFF88;
 		
-		private BitmapText secondary;
+		private RenderedText secondary;
 		
 		public GameButton( String primary ) {
 			super( primary );
@@ -397,7 +387,7 @@ public class StartScene extends PixelScene {
 		protected void createChildren() {
 			super.createChildren();
 			
-			secondary = createText( 6 );
+			secondary = renderText( 6 );
 			add( secondary );
 		}
 		
@@ -417,8 +407,6 @@ public class StartScene extends PixelScene {
 		
 		public void secondary( String text, boolean highlighted ) {
 			secondary.text( text );
-			secondary.measure();
-			
 			secondary.hardlight( highlighted ? SECONDARY_COLOR_H : SECONDARY_COLOR_N );
 		}
 	}
@@ -440,7 +428,7 @@ public class StartScene extends PixelScene {
 		private HeroClass cl;
 		
 		private Image avatar;
-		private BitmapText name;
+		private RenderedText name;
 		private Emitter emitter;
 		
 		private float brightness;
@@ -463,9 +451,8 @@ public class StartScene extends PixelScene {
 				normal = BASIC_NORMAL;
 				highlighted = BASIC_HIGHLIGHTED;
 			}
-			
-			name.text( cl.name() );
-			name.measure();
+
+			name.text(cl.title().toUpperCase());
 			name.hardlight( normal );
 			
 			brightness = MIN_BRIGHTNESS;
@@ -480,10 +467,10 @@ public class StartScene extends PixelScene {
 			avatar = new Image( Assets.AVATARS );
 			add( avatar );
 			
-			name = PixelScene.createText( 9 );
+			name = PixelScene.renderText( 9 );
 			add( name );
 			
-			emitter = new BitmaskEmitter( avatar );
+			emitter = new Emitter();
 			add( emitter );
 		}
 		
@@ -497,6 +484,8 @@ public class StartScene extends PixelScene {
 			
 			name.x = align( x + (width - name.width()) / 2 );
 			name.y = avatar.y + avatar.height() + SCALE;
+
+			emitter.pos(avatar.x, avatar.y, avatar.width(), avatar.height());
 		}
 		
 		@Override

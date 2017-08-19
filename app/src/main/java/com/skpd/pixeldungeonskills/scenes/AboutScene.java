@@ -35,19 +35,8 @@ import com.skpd.pixeldungeonskills.ui.Window;
 
 public class AboutScene extends PixelScene {
 
-    private static final String TXTFirst = "SkillFull Pixel Dungeon \n \n"
-     + "Code & graphics: BilbolDev\n"
-     + "Source code is available on GitHub\n";
-
-    private static final String TXTOther = "Some graphics taken from Nels Dachel & Sarius\n";
-
-    private static final String TXT =
-         "Based on Pixel Dungeon \n \n" +
-		"Code & graphics: Watabou\n" +
-		"Music: Cube_Code\n\n";
-	
 	private static final String LNK = "pixeldungeon.watabou.ru";
-    private static final String LNK_SPD = "https://github.com/bilbolPrime/SPD";
+    private static final String LNK_SPD = "https://github.com/badcw/skpd-chinese";
     private static final String LNK_SPD_WIKI = "http://pixeldungeon.wikia.com";
 
     float GAP = 2;
@@ -56,7 +45,7 @@ public class AboutScene extends PixelScene {
 	public void create() {
 		super.create();
 
-        BitmapTextMultiline textfirst = createMultiline( "SkillFull Pixel Dungeon", 8 );
+        BitmapTextMultiline textfirst = createMultiline( "技巧的像素地牢汉化版", 8 );
         textfirst.hardlight( Window.TITLE_COLOR );
         textfirst.maxWidth = Math.min( Camera.main.width, 120 );
         textfirst.measure();
@@ -67,7 +56,7 @@ public class AboutScene extends PixelScene {
 
         pos =  textfirst.y + textfirst.height() + GAP;
 
-        textfirst = createMultiline( "Code & graphics: BilbolDev", 8 );
+        textfirst = createMultiline( "制作者：雷霆", 8 );
         textfirst.maxWidth = Math.min( Camera.main.width, 120 );
         textfirst.measure();
         add( textfirst );
@@ -77,7 +66,7 @@ public class AboutScene extends PixelScene {
 
         pos =  textfirst.y + textfirst.height() + GAP;
 
-        textfirst = createMultiline( "Source code is available on GitHub", 8 );
+        textfirst = createMultiline( "GitHub中提供源码", 8 );
         textfirst.maxWidth = Math.min( Camera.main.width, 120 );
         textfirst.measure();
         add( textfirst );

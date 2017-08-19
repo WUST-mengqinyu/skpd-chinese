@@ -28,7 +28,7 @@ import com.skpd.utils.Random;
 public class Albino extends Rat {
 
 	{
-		name = "albino rat";
+		name = "";
 		spriteClass = AlbinoSprite.class;
 		
 		HP = HT = 15;

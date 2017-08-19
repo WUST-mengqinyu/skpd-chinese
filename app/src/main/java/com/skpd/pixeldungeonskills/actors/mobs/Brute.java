@@ -17,24 +17,25 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Terror;
 import com.skpd.pixeldungeonskills.items.Gold;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.BruteSprite;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public class Brute extends Mob {
 
-	private static final String TXT_ENRAGED = "%s becomes enraged!";
+	private static final String TXT_ENRAGED =  Messages.get(Brute.class,"1");
 	
 	{
-		name = "gnoll brute";
+		name =  Messages.get(this,"2");
 		spriteClass = BruteSprite.class;
 		
 		HP = HT = 40;
@@ -85,7 +86,7 @@ public class Brute extends Mob {
 			spend( TICK );
 			if (Dungeon.visible[pos]) {
 				GLog.w( TXT_ENRAGED, name );
-				sprite.showStatus( CharSprite.NEGATIVE, "enraged" );
+				sprite.showStatus( CharSprite.NEGATIVE,  Messages.get(this,"3") );
 			}
 		}
 	}
@@ -99,8 +100,7 @@ public class Brute extends Mob {
     @Override
 	public String description() {
 		return
-			"Brutes are the largest, strongest and toughest of all gnolls. When severely wounded, " +
-			"they go berserk, inflicting even more damage to their enemies.";
+				Messages.get(this,"4");
 	}
 	
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();

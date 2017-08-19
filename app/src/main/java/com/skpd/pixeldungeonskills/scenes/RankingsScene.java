@@ -27,6 +27,7 @@ import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.Rankings;
 import com.skpd.pixeldungeonskills.effects.Flare;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.ui.Archs;
@@ -40,11 +41,11 @@ public class RankingsScene extends PixelScene {
 	
 	private static final int DEFAULT_COLOR	= 0xCCCCCC;
 	
-	private static final String TXT_TITLE		= "Top Rankings";
-	private static final String TXT_TOTAL		= "Games played: ";
-	private static final String TXT_NO_GAMES	= "No games have been played yet.";
+	private static final String TXT_TITLE		= Messages.get(RankingsScene.class,"1");
+	private static final String TXT_TOTAL		= Messages.get(RankingsScene.class,"2");
+	private static final String TXT_NO_GAMES	= Messages.get(RankingsScene.class,"3");
 	
-	private static final String TXT_NO_INFO	= "No additional information";
+	private static final String TXT_NO_INFO	= Messages.get(RankingsScene.class,"4");
 	
 	private static final float ROW_HEIGHT_L	= 22;
 	private static final float ROW_HEIGHT_P	= 28;

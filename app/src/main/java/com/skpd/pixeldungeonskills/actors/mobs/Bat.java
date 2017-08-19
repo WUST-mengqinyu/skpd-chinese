@@ -17,20 +17,21 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Leech;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.BatSprite;
 import com.skpd.utils.Random;
+
+import java.util.HashSet;
 
 public class Bat extends Mob {
 
 	{
-		name = "vampire bat";
+		name =  Messages.get(this,"1");
 		spriteClass = BatSprite.class;
 		
 		HP = HT = 30;
@@ -67,7 +68,7 @@ public class Bat extends Mob {
 	
 	@Override
 	public String defenseVerb() {
-		return "evaded";
+		return  Messages.get(this,"2");
 	}
 	
 	@Override
@@ -88,8 +89,7 @@ public class Bat extends Mob {
 	@Override
 	public String description() {
 		return
-			"These brisk and tenacious inhabitants of cave domes may defeat much larger opponents by " +
-			"replenishing their health with each successful attack.";
+				Messages.get(this,"3");
 	}
 	
 	private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();

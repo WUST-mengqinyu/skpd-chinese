@@ -17,9 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Group;
@@ -54,6 +51,7 @@ import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.MovieLevel;
 import com.skpd.pixeldungeonskills.levels.RegularLevel;
 import com.skpd.pixeldungeonskills.levels.features.Chasm;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Plant;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.DiscardedItemSprite;
@@ -71,26 +69,16 @@ import com.skpd.pixeldungeonskills.ui.Toast;
 import com.skpd.pixeldungeonskills.ui.Toolbar;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.GLog;
+import com.skpd.pixeldungeonskills.windows.WndBag;
 import com.skpd.pixeldungeonskills.windows.WndBag.Mode;
 import com.skpd.pixeldungeonskills.windows.WndGame;
-import com.skpd.pixeldungeonskills.windows.WndBag;
 import com.skpd.pixeldungeonskills.windows.WndStory;
 import com.skpd.utils.Random;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class GameScene extends PixelScene {
-	
-	protected static final String TXT_WELCOME			= "Welcome to the level %d of Pixel Dungeon!";
-    protected static final String TXT_WELCOME_BACK	= "Welcome back to the level %d of Pixel Dungeon!";
-    protected static final String TXT_NIGHT_MODE		= "Be cautious, since the dungeon is even more dangerous at night!";
-
-    protected static final String TXT_CHASM	= "Your steps echo across the dungeon.";
-    protected static final String TXT_WATER	= "You hear the water splashing around you.";
-    protected static final String TXT_GRASS	= "The smell of vegetation is thick in the air.";
-    protected static final String TXT_SECRETS	= "The atmosphere hints that this floor hides many secrets.";
-
-    protected static final String TXT_WARN_DEGRADATION = "Your items will wear down with time. You can disable item degradation from settings.";
-
-    protected static final String TXT_FROST			= "The portal spits you out in a cold domain...";
 
     protected static GameScene scene;
 
@@ -270,7 +258,7 @@ public class GameScene extends PixelScene {
 			case 1:
 				WndStory.showChapter( WndStory.ID_SEWERS );
                 if(PixelDungeon.itemDeg() == false)
-                    WndStory.showStory( TXT_WARN_DEGRADATION );
+                    WndStory.showStory( Messages.get(this,"h") );
 				break;
 			case 6:
 				WndStory.showChapter( WndStory.ID_PRISON );
@@ -311,36 +299,36 @@ public class GameScene extends PixelScene {
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.depth != 0) {
 			if (Dungeon.depth < Statistics.deepestFloor) {
-				GLog.h( TXT_WELCOME_BACK, Dungeon.depth );
+				GLog.h( Messages.get(this,"b"), Dungeon.depth );
 			} else {
                 if(Dungeon.depth != ColdGirl.FROST_DEPTH) {
-                    GLog.h(TXT_WELCOME, Dungeon.depth);
+                    GLog.h(Messages.get(this,"a"), Dungeon.depth);
                     Sample.INSTANCE.play(Assets.SND_DESCEND);
                 }
                 else
                 {
-                    GLog.h(TXT_FROST);
+                    GLog.h(Messages.get(this,"i"));
                     Sample.INSTANCE.play(Assets.SND_TELEPORT);
                 }
 			}
 			switch (Dungeon.level.feeling) {
 				case CHASM:
-					GLog.w( TXT_CHASM );
+					GLog.w( Messages.get(this,"d") );
 					break;
 				case WATER:
-					GLog.w( TXT_WATER );
+					GLog.w( Messages.get(this,"e") );
 					break;
 				case GRASS:
-					GLog.w( TXT_GRASS );
+					GLog.w( Messages.get(this,"f") );
 					break;
 				default:
 			}
 			if (Dungeon.level instanceof RegularLevel &&
 					((RegularLevel) Dungeon.level).secretDoors > Random.IntRange( 3, 4 )) {
-				GLog.w( TXT_SECRETS );
+				GLog.w( Messages.get(this,"g") );
 			}
 			if (Dungeon.nightMode && !Dungeon.bossLevel()) {
-				GLog.w( TXT_NIGHT_MODE );
+				GLog.w( Messages.get(this,"c") );
 			}
 
 			InterlevelScene.mode = InterlevelScene.Mode.NONE;

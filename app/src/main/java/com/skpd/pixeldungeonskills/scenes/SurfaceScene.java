@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import java.nio.FloatBuffer;
-
 import com.skpd.gltextures.Gradient;
 import com.skpd.gltextures.SmartTexture;
 import com.skpd.glwrap.Matrix;
@@ -39,10 +37,13 @@ import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.utils.Point;
 import com.skpd.utils.Random;
+
+import java.nio.FloatBuffer;
 
 public class SurfaceScene extends PixelScene {
 	
@@ -157,7 +158,7 @@ public class SurfaceScene extends PixelScene {
 			frame.hardlight( 0xDDEEFF );
 		}
 		
-		RedButton gameOver = new RedButton( "Game Over" ) {
+		RedButton gameOver = new RedButton( Messages.get(this,"1") ) {
 			protected void onClick() {
 				Game.switchScene( TitleScene.class );
 			}

@@ -39,6 +39,7 @@ import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.items.armor.glyphs.Affection;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
@@ -58,7 +59,7 @@ import java.util.HashSet;
 public class ColdGirl extends Mob {
 	
 	{
-		name = "Cold Girl";
+		name = Messages.get(ColdGirl.class,"1");
 		spriteClass = ColdGirlSprite.class;
 
         HP = HT = 30;
@@ -72,8 +73,8 @@ public class ColdGirl extends Mob {
 
     public boolean isSister = false;
 
-    private static final String TXT_SMB_MISSED	= "%s %s %s's attack";
-    public static final String TXT_DEATH =  "Killed in the ice cave";
+    private static final String TXT_SMB_MISSED	= Messages.get(ColdGirl.class,"2");
+    public static final String TXT_DEATH =  Messages.get(ColdGirl.class,"3");
 
     public static final int PASSIVE = 0;
     public static final int HUNTING = 1;
@@ -143,7 +144,7 @@ public class ColdGirl extends Mob {
         if(Level.adjacent(pos, enemy.pos) == true && damage < HP)  // Curse
         {
             if (firstDamage) {
-                speak("I have to feel your pain too?!");
+                speak(Messages.get(this,"4"));
                 firstDamage = false;
             }
 
@@ -193,7 +194,7 @@ public class ColdGirl extends Mob {
                     }
 
                     if(skelSpawns.size() > 0)
-                        speak("This is you once I am done");
+                        speak(Messages.get(this,"5"));
                     Dungeon.observe();
                     break;
                 }
@@ -204,14 +205,14 @@ public class ColdGirl extends Mob {
         {
             if(((ColdGirlAI)state).aiStatus < GOD_MODE)
             {
-                speak("Baka..");
+                speak(Messages.get(this,"6"));
                 return super.attackProc(enemy, damage);
             }
             else
             {
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
                 enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
-                speak("Are you done yet?!");
+                speak(Messages.get(this,"7"));
                 hostile = false;
                 if(Level.adjacent(pos, enemy.pos) == true)  // Knockback
                 {
@@ -253,7 +254,7 @@ public class ColdGirl extends Mob {
         {
             if(((ColdGirlAI)state).aiStatus == PASSIVE)
                 ((ColdGirlAI)state).aiStatus = HUNTING;
-            speak("Are you mocking me?");
+            speak(Messages.get(this,"8"));
         }
         else
             super.damage(dmg, src);
@@ -270,7 +271,7 @@ public class ColdGirl extends Mob {
         {
 
             //if(firstTroll)
-                speak("I have no time for fodder");
+                speak(Messages.get(this,"9"));
             //GameScene.flash( 0x0042ff );
             //Sample.INSTANCE.play( Assets.SND_BLAST );
             firstTroll = false;
@@ -295,8 +296,8 @@ public class ColdGirl extends Mob {
                 Sample.INSTANCE.play( Assets.SND_HIT, 1, 1, Random.Float( 0.8f, 1.25f ) );
                 enemy.sprite.bloodBurstA( sprite.center(), enemy.HP );
                 if (firstSwap) {
-                    speak("I have no time for this");
-                    heroSpeak("EH?!");
+                    speak(Messages.get(this,"10"));
+                    heroSpeak(Messages.get(this,"11"));
                 } else {
                    // speak("Space Swap!");
                     heroSpeak("...");
@@ -309,7 +310,7 @@ public class ColdGirl extends Mob {
             {
                 if(firstComplaint)
                 {
-                    speak("Erg...");
+                    speak(Messages.get(this,"12"));
                     firstComplaint = false;
                 }
 
@@ -340,8 +341,8 @@ public class ColdGirl extends Mob {
 
 
                 firstFetch = false;
-                speak("Go Fetch");
-                heroSpeak("Wha..");
+                speak(Messages.get(this,"13"));
+                heroSpeak(Messages.get(this,"14"));
                 spend(1f);
             }
             return -1;
@@ -428,7 +429,7 @@ public class ColdGirl extends Mob {
                         break;
                     }
                 }
-                speak("Leave me alone!");
+                speak(Messages.get(this,"15"));
                 spawnMinions();
                 spawnMinions();
                 spawnMinions();
@@ -468,7 +469,7 @@ public class ColdGirl extends Mob {
                 }
             }
             discussionProgress = DISCUSSION_DEAD;
-            speak("What is your malfunction?!");
+            speak(Messages.get(this,"16"));
 
             GameScene.flash( 0x0042ff );
             Camera.main.shake( 5, 0.07f * (30) );
@@ -478,7 +479,7 @@ public class ColdGirl extends Mob {
 
 
         HP = 10000;
-        speak("In your dreams fool");
+        speak(Messages.get(this,"17"));
 
 	}
 
@@ -491,18 +492,18 @@ public class ColdGirl extends Mob {
 	@Override
 	public void notice() {
 		super.notice();
-        speak("You don't belong here");
+        speak(Messages.get(this,"18"));
 	}
 	
 	@Override
 	public String description() {
 		return
-			"A young girl somewhat not affected by the cold.";
+                Messages.get(this,"19");
 	}
 
-    private static final String AI_STATE = "aistate";
-    private static final String CAME_FROM = "camefrom";
-    private static final String CAME_FROM_POS = "cameformpos";
+    private static final String AI_STATE = Messages.get(ColdGirl.class,"20");
+    private static final String CAME_FROM = Messages.get(ColdGirl.class,"21");
+    private static final String CAME_FROM_POS = Messages.get(ColdGirl.class,"22");
     @Override
     public void storeInBundle( Bundle bundle ) {
         super.storeInBundle( bundle );
@@ -657,41 +658,41 @@ public class ColdGirl extends Mob {
     {
         switch (discussionProgress + index)
         {
-            case 0: Discussion("Cold Girl", "My existence does not concern you... leave", "How do I leave?", "Were you raised like this?");
+            case 0: Discussion(Messages.get(this,"23"), Messages.get(this,"24"), Messages.get(this,"25"), Messages.get(this,"26"));
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case 1:
-                speak("Die then");
+                speak(Messages.get(this,"27"));
                 hostile = true;
                 ((ColdGirlAI)state).aiStatus = HUNTING;
                 break;
             case DISCUSSION_STEP:
                 sendBack();
                 break;
-            case DISCUSSION_STEP + 1: Discussion("Cold Girl", "Talk about my mother like that again and I...\n You know what? Just die..", "Ok");
+            case DISCUSSION_STEP + 1: Discussion(Messages.get(this,"23"), Messages.get(this,"28"), Messages.get(this,"29"));
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case 2 * DISCUSSION_STEP:
                 ((ColdGirlAI)state).aiStatus = HUNTING;
-                speak("The dead are always silent");
+                speak(Messages.get(this,"30"));
                 hostile = true;
                 break;
             case DISCUSSION_DEAD:
-                Discussion("Cold Girl", "What is wrong with you?!", "How are you this strong?");
+                Discussion(Messages.get(this,"23"), Messages.get(this,"31"), Messages.get(this,"32"));
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + DISCUSSION_STEP:
-                Discussion("Cold Girl", "The rules cannot protect you from me fool!", "What rules?");
+                Discussion(Messages.get(this,"23"), Messages.get(this,"33"), Messages.get(this,"34"));
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + 2 * DISCUSSION_STEP:
-                Discussion("Cold Girl", "LEAVE!", "Wai..");
+                Discussion(Messages.get(this,"23"), Messages.get(this,"35"), Messages.get(this,"36"));
                 discussionProgress += DISCUSSION_STEP;
                 break;
             case DISCUSSION_DEAD + 3 * DISCUSSION_STEP:
                 sendBack();
                 Dungeon.hero.heroSkills.unlockSkill();
-                GLog.p("Fighting that weird girl inspired you into learning " +   Dungeon.hero.heroSkills.unlockableSkillName());
+                GLog.p(Messages.get(this,"37") +   Dungeon.hero.heroSkills.unlockableSkillName());
                 break;
             default:
                 discuss(); // fallback to prevent getting stuck
@@ -752,12 +753,12 @@ public class ColdGirl extends Mob {
         @Override
         public void die( Object cause ) {
             if(cause != null)
-                ColdGirl.this.speak("What a waste of mana");
+                ColdGirl.this.speak(Messages.get(this,"38"));
             super.die(cause);
         }
         @Override
         public String description() {
-            return "Me in the future...";
+            return Messages.get(this,"39");
 
         }
     }
@@ -765,7 +766,7 @@ public class ColdGirl extends Mob {
     public class Slaves extends EnslavedSouls {
 
         {
-            name = "enslaved spirit";
+            name = Messages.get(this,"40");
 
             HP = HT = 1;
             defenseSkill = 1;
@@ -804,12 +805,12 @@ public class ColdGirl extends Mob {
         @Override
         public void die( Object cause ) {
             if(cause != null)
-                ColdGirl.this.speak("Useless!");
+                ColdGirl.this.speak(Messages.get(this,"41"));
             super.die(cause);
         }
         @Override
         public String description() {
-            return "A spirit in agony";
+            return Messages.get(this,"42");
 
         }
     }
@@ -925,13 +926,13 @@ public class ColdGirl extends Mob {
         @Override
         public String status() {
             if(aiStatus == PASSIVE)
-                return Utils.format("The %s seems passive.\n You can tell she is cold but she shows no physical signs of it.", name);
+                return Utils.format(Messages.get(this,"43"), name);
             else if(aiStatus == HUNTING)
-                return Utils.format("The %s seems upset.\n She may be young but she looks dangerous.", name);
+                return Utils.format(Messages.get(this,"44"), name);
             else if(aiStatus == SUPER_HUNTING)
-                return Utils.format("The %s seems very dangerous.\n Something is not right about her.", name);
+                return Utils.format(Messages.get(this,"45"), name);
             else
-                return Utils.format("The %s seems non-human.\n Taunting her was a bad idea", name);
+                return Utils.format(Messages.get(this,"46"), name);
         }
     }
 }

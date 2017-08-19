@@ -1,13 +1,11 @@
 package com.skpd.pixeldungeonskills.messages;
 
-import java.util.Locale;
-
 public enum Languages {
     ENGLISH("english",      "", Status.REVIEWED, null, null),
 
     //RUSSIAN("русский",      "ru", Status.REVIEWED, new String[]{"ConsideredHamster", "Inevielle", "yarikonline"}, new String[]{"AttHawk46", "HerrGotlieb", "Shamahan", "Un_logic"}),
     //KOREAN("한국어",         "ko", Status.REVIEWED, new String[]{"Flameblast12"}, new String[]{"Ddojin0115", "Eeeei", "Lsiebnie", "Linterpreteur", "WondarRabb1t"}),
-    CHINESE("中文",          "zh", Status.REVIEWED, new String[]{"g2159687"}, new String[]{"g2159687", "youxia5325", "破碎的像素地牢·翻译团队"});
+    CHINESE("中文",          "zh", Status.REVIEWED, new String[]{"雷霆"}, new String[]{});
     //FINNISH("suomi", 		"fi", Status.REVIEWED, new String[]{"TenguTheKnight"}, null ),
 
     //GERMAN("deutsch",       "de", Status.UNREVIEWED, new String[]{"Dallukas", "KrystalCroft", "Wuzzy", "Zap0", "Davedude" }, new String[]{"DarkPixel", "ErichME", "Sarius", "Sorpl3x", "ThunfischGott", "Oragothen"}),
@@ -62,8 +60,8 @@ public enum Languages {
         else return translators.clone();
     }
 
-    public static Languages matchLocale(Locale locale){
-        return matchCode(locale.getLanguage());
+    public static Languages matchLocale(){
+        return CHINESE;
     }
 
     public static Languages matchCode(String code){

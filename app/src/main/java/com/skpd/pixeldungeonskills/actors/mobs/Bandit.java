@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Blindness;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.BanditSprite;
 import com.skpd.utils.Random;
 
@@ -31,7 +32,7 @@ public class Bandit extends Thief {
 	public Item item;
 	
 	{
-		name = "crazy bandit";
+		name =  Messages.get(this,"1");;
 		spriteClass = BanditSprite.class;
 
         name = Dungeon.currentDifficulty.mobPrefix() + name;

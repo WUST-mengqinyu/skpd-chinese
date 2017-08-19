@@ -20,13 +20,14 @@ package com.skpd.pixeldungeonskills.actors.mobs;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.AcidicSprite;
 import com.skpd.utils.Random;
 
 public class Acidic extends Scorpio {
 
 	{
-		name = "acidic scorpio";
+		name = Messages.get(this,"1");
 		spriteClass = AcidicSprite.class;
 
         name = Dungeon.currentDifficulty.mobPrefix() + name;
