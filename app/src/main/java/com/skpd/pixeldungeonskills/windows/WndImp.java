@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
@@ -26,6 +25,7 @@ import com.skpd.pixeldungeonskills.items.quest.DwarfToken;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -52,10 +52,9 @@ public class WndImp extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline message = PixelScene.createMultiline( TXT_MESSAGE, 6 );
-		message.maxWidth = WIDTH;
-		message.measure();
-		message.y = titlebar.bottom() + GAP;
+		RenderedTextMultiline message = PixelScene.renderMultiline( TXT_MESSAGE, 6 );
+		message.maxWidth (WIDTH);
+		message.setPos(0,titlebar.bottom() + GAP);
 		add( message );
 		
 		RedButton btnReward = new RedButton( TXT_REWARD ) {
@@ -64,7 +63,7 @@ public class WndImp extends Window {
 				takeReward( imp, tokens, Imp.Quest.reward );
 			}
 		};
-		btnReward.setRect( 0, message.y + message.height() + GAP, WIDTH, BTN_HEIGHT );
+		btnReward.setRect( 0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT );
 		add( btnReward );
 		
 		resize( WIDTH, (int)btnReward.bottom() );

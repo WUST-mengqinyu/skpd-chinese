@@ -21,194 +21,140 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.skpd.input.Touchscreen.Touch;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.TouchArea;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.Icons;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class AboutScene extends PixelScene {
 
-	private static final String LNK = "pixeldungeon.watabou.ru";
-    private static final String LNK_SPD = "https://github.com/badcw/skpd-chinese";
-    private static final String LNK_SPD_WIKI = "http://pixeldungeon.wikia.com";
+    private static final String TTL_SHPX = "技巧地牢汉化版";
 
-    float GAP = 2;
-    float pos = 0f;
-	@Override
-	public void create() {
-		super.create();
+    private static final String TXT_SHPX =
+            "制作者：雷霆";
 
-        BitmapTextMultiline textfirst = createMultiline( "技巧的像素地牢汉化版", 8 );
-        textfirst.hardlight( Window.TITLE_COLOR );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
-        textfirst.measure();
-        add( textfirst );
+    private static final String LNK_SHPX = "github源码地址";
 
-        textfirst.x = align( (Camera.main.width - textfirst.width()) / 2 );
-        textfirst.y = align( ((Camera.main.height / 2) - textfirst.height()) / 2 );
+    private static final String TTL_WATA = "Pixel Dungeon";
 
-        pos =  textfirst.y + textfirst.height() + GAP;
+    private static final String TXT_WATA =
+            "Code & Graphics: Watabou\n" +
+                    "Music: Cube_Code";
 
-        textfirst = createMultiline( "制作者：雷霆", 8 );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
-        textfirst.measure();
-        add( textfirst );
+    private static final String LNK_WATA = "pixeldungeon.watabou.ru";
 
-        textfirst.x = align( (Camera.main.width - textfirst.width()) / 2 );
-        textfirst.y = pos;
+    @Override
+    public void create() {
+        super.create();
 
-        pos =  textfirst.y + textfirst.height() + GAP;
+        final float colWidth = Camera.main.width / (PixelDungeon.landscape() ? 2 : 1);
+        final float colTop = (Camera.main.height / 2) - (PixelDungeon.landscape() ? 30 : 90);
+        final float wataOffset = PixelDungeon.landscape() ? colWidth : 0;
 
-        textfirst = createMultiline( "GitHub中提供源码", 8 );
-        textfirst.maxWidth = Math.min( Camera.main.width, 120 );
-        textfirst.measure();
-        add( textfirst );
+        Image shpx = Icons.WARRIOR.get();
+        shpx.x = (colWidth - shpx.width()) / 2;
+        shpx.y = colTop;
+        align(shpx);
+        add( shpx );
 
-        textfirst.x = align( (Camera.main.width - textfirst.width()) / 2 );
-        textfirst.y = pos;
+        new Flare( 7, 64 ).color( 0x225511, true ).show( shpx, 0 ).angularSpeed = +20;
 
-        pos =  textfirst.y + textfirst.height() + GAP;
+        RenderedText shpxtitle = renderText( TTL_SHPX, 8 );
+        shpxtitle.hardlight( Window.SHPX_COLOR );
+        add( shpxtitle );
 
-        BitmapTextMultiline link_SPD = createMultiline( LNK_SPD, 8 );
-        link_SPD.maxWidth = Math.min( Camera.main.width, 120 );
-        link_SPD.measure();
-        link_SPD.hardlight( Window.TITLE_COLOR );
-        add( link_SPD );
+        shpxtitle.x = (colWidth - shpxtitle.width()) / 2;
+        shpxtitle.y = shpx.y + shpx.height + 5;
+        align(shpxtitle);
 
+        RenderedTextMultiline shpxtext = renderMultiline( TXT_SHPX, 8 );
+        shpxtext.maxWidth((int)Math.min(colWidth, 120));
+        add( shpxtext );
 
+        shpxtext.setPos((colWidth - shpxtext.width()) / 2, shpxtitle.y + shpxtitle.height() + 12);
+        align(shpxtext);
 
-        TouchArea hotArea_SPD = new TouchArea( link_SPD ) {
+        RenderedTextMultiline shpxlink = renderMultiline( LNK_SHPX, 8 );
+        shpxlink.maxWidth(shpxtext.maxWidth());
+        shpxlink.hardlight( Window.SHPX_COLOR );
+        add( shpxlink );
+
+        shpxlink.setPos((colWidth - shpxlink.width()) / 2, shpxtext.bottom() + 6);
+        align(shpxlink);
+
+        TouchArea shpxhotArea = new TouchArea( shpxlink.left(), shpxlink.top(), shpxlink.width(), shpxlink.height() ) {
             @Override
             protected void onClick( Touch touch ) {
-                Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( LNK_SPD ) );
+                Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "https://github.com/badcw/skpd-chinese" ) );
                 Game.instance.startActivity( intent );
             }
         };
-        add( hotArea_SPD );
+        add( shpxhotArea );
 
-        link_SPD.x = align( (Camera.main.width - link_SPD.width()) / 2 );
-        link_SPD.y = pos;
+        Image wata = Icons.WATA.get();
+        wata.x = wataOffset + (colWidth - wata.width()) / 2;
+        wata.y = PixelDungeon.landscape() ?
+                colTop:
+                shpxlink.top() + wata.height + 20;
+        align(wata);
+        add( wata );
 
-        pos =  link_SPD.y + link_SPD.height() + GAP;
+        new Flare( 7, 64 ).color( 0x112233, true ).show( wata, 0 ).angularSpeed = +20;
 
-        BitmapTextMultiline link_SPD_Wiki = createMultiline( LNK_SPD_WIKI, 8 );
-        link_SPD_Wiki.maxWidth = Math.min( Camera.main.width, 120 );
-        link_SPD_Wiki.measure();
-        link_SPD_Wiki.hardlight( Window.TITLE_COLOR );
-        add( link_SPD_Wiki );
+        RenderedText wataTitle = renderText( TTL_WATA, 8 );
+        wataTitle.hardlight(Window.TITLE_COLOR);
+        add( wataTitle );
 
-        link_SPD_Wiki.x = align( (Camera.main.width - link_SPD_Wiki.width()) / 2 );
-        link_SPD_Wiki.y = pos;
+        wataTitle.x = wataOffset + (colWidth - wataTitle.width()) / 2;
+        wataTitle.y = wata.y + wata.height + 11;
+        align(wataTitle);
 
-        pos =  link_SPD_Wiki.y + link_SPD_Wiki.height() + 4 * GAP;
+        RenderedTextMultiline wataText = renderMultiline( TXT_WATA, 8 );
+        wataText.maxWidth((int)Math.min(colWidth, 120));
+        add( wataText );
 
-        TouchArea hotArea_SPD_WIKI = new TouchArea( link_SPD_Wiki ) {
+        wataText.setPos(wataOffset + (colWidth - wataText.width()) / 2, wataTitle.y + wataTitle.height() + 12);
+        align(wataText);
+
+        RenderedTextMultiline wataLink = renderMultiline( LNK_WATA, 8 );
+        wataLink.maxWidth((int)Math.min(colWidth, 120));
+        wataLink.hardlight(Window.TITLE_COLOR);
+        add(wataLink);
+
+        wataLink.setPos(wataOffset + (colWidth - wataLink.width()) / 2 , wataText.bottom() + 6);
+        align(wataLink);
+
+        TouchArea hotArea = new TouchArea( wataLink.left(), wataLink.top(), wataLink.width(), wataLink.height() ) {
             @Override
             protected void onClick( Touch touch ) {
-                Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( LNK_SPD_WIKI ) );
+                Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "http://" + LNK_WATA ) );
                 Game.instance.startActivity( intent );
             }
         };
-        add( hotArea_SPD_WIKI );
+        add( hotArea );
 
 
+        Archs archs = new Archs();
+        archs.setSize( Camera.main.width, Camera.main.height );
+        addToBack( archs );
 
+        ExitButton btnExit = new ExitButton();
+        btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
+        add( btnExit );
 
-        BitmapTextMultiline textOther = createMultiline( "Some ice art: Nels Dachel & Sarius", 8 );
-        textOther.maxWidth = Math.min( Camera.main.width, 120 );
-        textOther.measure();
-        add( textOther );
+        fadeIn();
+    }
 
-        textOther.x = align( (Camera.main.width - textOther.width()) / 2 );
-        textOther.y = pos;
-
-        pos =  textOther.y + textOther.height() + 4 * GAP;
-
-        textOther = createMultiline( "Alternative Sound Track: Jivz & YAPD", 8 );
-        textOther.maxWidth = Math.min( Camera.main.width, 120 );
-        textOther.measure();
-        add( textOther );
-
-        textOther.x = align( (Camera.main.width - textOther.width()) / 2 );
-        textOther.y = pos;
-
-        pos =  textOther.y + textOther.height() + 4 * GAP;
-
-        BitmapTextMultiline text = createMultiline( "Based on Pixel Dungeon", 8 );
-		text.maxWidth = Math.min( Camera.main.width, 120 );
-		text.measure();
-		add( text );
-
-		text.x = align( (Camera.main.width - text.width()) / 2 );
-		text.y = pos;
-
-        pos =  text.y + text.height() + GAP;
-
-        text = createMultiline( "Code & graphics: Watabou", 8 );
-        text.maxWidth = Math.min( Camera.main.width, 120 );
-        text.measure();
-        add( text );
-
-        text.x = align( (Camera.main.width - text.width()) / 2 );
-        text.y = pos;
-
-        pos =  text.y + text.height() + GAP;
-
-        text = createMultiline( "Music: Cube_Code", 8 );
-        text.maxWidth = Math.min( Camera.main.width, 120 );
-        text.measure();
-        add( text );
-
-        text.x = align( (Camera.main.width - text.width()) / 2 );
-        text.y = pos;
-
-        pos =  text.y + text.height() + GAP;
-
-		BitmapTextMultiline link = createMultiline( LNK, 8 );
-		link.maxWidth = Math.min( Camera.main.width, 120 );
-		link.measure();
-		link.hardlight( Window.TITLE_COLOR );
-		add( link );
-
-		link.x = align( (Camera.main.width - link.width()) / 2 );
-		link.y = pos;
-
-		TouchArea hotArea = new TouchArea( link ) {
-			@Override
-			protected void onClick( Touch touch ) {
-				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "http://" + LNK ) );
-				Game.instance.startActivity( intent );
-			}
-		};
-		add( hotArea );
-
-		Image wata = Icons.WATA.get();
-		wata.x = align( (Camera.main.width - wata.width) / 2 );
-		wata.y = text.y + text.height() + wata.height + 8;
-		add( wata );
-
-		new Flare( 7, 64 ).color( 0x112233, true ).show( wata, 0 ).angularSpeed = +20;
-
-		Archs archs = new Archs();
-		archs.setSize( Camera.main.width, Camera.main.height );
-		addToBack( archs );
-
-		ExitButton btnExit = new ExitButton();
-		btnExit.setPos( Camera.main.width - btnExit.width(), 0 );
-		add( btnExit );
-
-		fadeIn();
-	}
-	
-	@Override
-	protected void onBackPressed() {
-		PixelDungeon.switchNoFade( TitleScene.class );
-	}
+    @Override
+    protected void onBackPressed() {
+        PixelDungeon.switchNoFade(TitleScene.class);
+    }
 }

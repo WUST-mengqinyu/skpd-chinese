@@ -17,13 +17,13 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -55,14 +55,12 @@ public class WndItemStorage extends Window {
             titlebar.color( ItemSlot.DEGRADED );
         }
 
-        BitmapTextMultiline info = PixelScene.createMultiline( item.info(), 6 );
-        info.maxWidth = WIDTH;
-        info.measure();
-        info.x = titlebar.left();
-        info.y = titlebar.bottom() + GAP;
+        RenderedTextMultiline info = PixelScene.renderMultiline( item.info(), 6 );
+        info.maxWidth (WIDTH);
+        info.setPos(titlebar.left(),titlebar.bottom() + GAP);
         add( info );
 
-        float y = info.y + info.height() + GAP;
+        float y = info.top() + info.height() + GAP;
         float x = 0;
 
         if (Dungeon.hero.isAlive() && owner != null) {

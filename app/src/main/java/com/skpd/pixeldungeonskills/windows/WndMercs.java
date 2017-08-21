@@ -21,7 +21,6 @@ import android.graphics.RectF;
 
 import com.skpd.input.Touchscreen;
 import com.skpd.noosa.BitmapText;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.TouchArea;
 import com.skpd.noosa.ui.Component;
@@ -48,6 +47,7 @@ import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.sprites.SkillSprite;
 import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -106,15 +106,14 @@ public class WndMercs extends WndTabbed {
             pos = (int) titlebar.bottom() + GAP * 2;
 
 
-            BitmapTextMultiline info = PixelScene.createMultiline(6);
+            RenderedTextMultiline info = PixelScene.renderMultiline(6);
             add(info);
 
             info.text(TXT_MERCENARIES_DETAIL);
-            info.maxWidth = width;
-            info.measure();
-            info.y = pos;
+            info.maxWidth (width);
+            info.setPos(0, pos);
 
-            pos = (int) info.y + (int) info.height() + GAP * 2;
+            pos = (int) info.top() + (int) info.height() + GAP * 2;
 
             if(maxHeight < pos)
                 maxHeight = (int)pos;
@@ -133,15 +132,14 @@ public class WndMercs extends WndTabbed {
             pos = (int) titlebar.bottom() + GAP * 2;
 
 
-            BitmapTextMultiline info = PixelScene.createMultiline(6);
+            RenderedTextMultiline info = PixelScene.renderMultiline(6);
             add(info);
 
             info.text(getMercDetails(mode));
-            info.maxWidth = width;
-            info.measure();
-            info.y = pos;
+            info.maxWidth (width);
+            info.setPos(0,pos);
 
-            pos = (int) info.y + (int) info.height() + GAP * 2;
+            pos = (int) info.top() + (int) info.height() + GAP * 2;
 
             BitmapText stats = PixelScene.createText( Utils.capitalize(getName(mode) + " Stats" ), 9 );
             stats.hardlight( TITLE_COLOR );
@@ -152,15 +150,14 @@ public class WndMercs extends WndTabbed {
 
             pos = stats.y + stats.height() + GAP;
 
-            BitmapTextMultiline infoStats = PixelScene.createMultiline(6);
+            RenderedTextMultiline infoStats = PixelScene.renderMultiline(6);
             add(infoStats);
 
             infoStats.text(getMercStats(mode));
-            infoStats.maxWidth = width;
-            infoStats.measure();
-            infoStats.y = pos;
+            infoStats.maxWidth (width);
+            infoStats.setPos(0,pos);
 
-            pos = infoStats.y + infoStats.height() + 2 * GAP;
+            pos = infoStats.top() + infoStats.height() + 2 * GAP;
 
             BitmapText equipment = PixelScene.createText( Utils.capitalize("Standard Layout" ), 9 );
             equipment.hardlight( TITLE_COLOR );
@@ -841,14 +838,12 @@ public class WndMercs extends WndTabbed {
             titlebar.setRect( 0, 0, 100, 0 );
             add( titlebar );
 
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = 100;
-            txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            RenderedTextMultiline txtInfo = PixelScene.renderMultiline( description, 6 );
+            txtInfo.maxWidth (100);
+            txtInfo.setPos(titlebar.left(),titlebar.bottom() + GAP);
             add( txtInfo );
 
-            resize( 100, (int) txtInfo.y + (int) txtInfo.height() + (int)GAP);
+            resize( 100, (int) txtInfo.top() + (int) txtInfo.height() + (int)GAP);
         }
     }
 

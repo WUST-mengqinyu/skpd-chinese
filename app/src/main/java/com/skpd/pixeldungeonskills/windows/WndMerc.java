@@ -20,7 +20,6 @@ package com.skpd.pixeldungeonskills.windows;
 import android.graphics.RectF;
 
 import com.skpd.gltextures.TextureCache;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.ColorBlock;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.audio.Sample;
@@ -51,6 +50,7 @@ import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.sprites.SkillSprite;
 import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.SkillSlot;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -125,39 +125,37 @@ public class WndMerc extends WndTabbed {
         add(titlebar);
 
 
-        BitmapTextMultiline info = PixelScene.createMultiline(Dungeon.hero.hiredMerc.mercType.getDescription(), 6);
-        info.maxWidth = WIDTH;
-        info.measure();
-        info.x = titlebar.left();
-        info.y = titlebar.bottom() + GAP;
+        RenderedTextMultiline info = PixelScene.renderMultiline(Dungeon.hero.hiredMerc.mercType.getDescription(), 6);
+        info.maxWidth (WIDTH);
+		info.setPos(titlebar.left(), titlebar.bottom()+GAP);
         add( info );
 
         //if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden && Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.Archer)
-        add( new ItemButton( Dungeon.hero.hiredMerc.weapon == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getWeaponPlaceHolder() ) :  Dungeon.hero.hiredMerc.weapon , false).setPos( SLOT_MARGIN, info.y + info.height() + GAP) );
+        add( new ItemButton( Dungeon.hero.hiredMerc.weapon == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getWeaponPlaceHolder() ) :  Dungeon.hero.hiredMerc.weapon , false).setPos( SLOT_MARGIN, info.top() + info.height() + GAP) );
 
         if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden)
         {
-            add( new ItemButton( Dungeon.hero.hiredMerc.armor == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getArmorPlaceHolder() ) :  Dungeon.hero.hiredMerc.armor, false).setPos( SLOT_SIZE + 2 * SLOT_MARGIN , info.y + info.height() + GAP) );
+            add( new ItemButton( Dungeon.hero.hiredMerc.armor == null ? new Placeholder( Dungeon.hero.hiredMerc.mercType.getArmorPlaceHolder() ) :  Dungeon.hero.hiredMerc.armor, false).setPos( SLOT_SIZE + 2 * SLOT_MARGIN , info.top() + info.height() + GAP) );
             if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.Brute)
-                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying , false) .setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP) );
+                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying , false) .setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.top() + info.height() + GAP) );
             else
-                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.hero.hiredMerc.carrying , true) .setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.y + info.height() + GAP) );
+                add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.SMTH ) : Dungeon.hero.hiredMerc.carrying , true) .setPos( 2 * SLOT_SIZE + 3 * SLOT_MARGIN, info.top() + info.height() + GAP) );
         }
         else
         {
-            add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying , false) .setPos( SLOT_SIZE + 2 * SLOT_MARGIN , info.y + info.height() + GAP) );
+            add( new ItemButton( Dungeon.hero.hiredMerc.carrying == null ? new Placeholder( ItemSpriteSheet.POTION_PLACEHOLDER ) : Dungeon.hero.hiredMerc.carrying , false) .setPos( SLOT_SIZE + 2 * SLOT_MARGIN , info.top() + info.height() + GAP) );
         }
 
 
         if(Dungeon.hero.hiredMerc.mercType != HiredMerc.MERC_TYPES.ArcherMaiden)
-            add( new SkillButton(Dungeon.hero.hiredMerc.skill).setPos(WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP) );
+            add( new SkillButton(Dungeon.hero.hiredMerc.skill).setPos(WIDTH - SLOT_SIZE - SLOT_MARGIN, info.top() + info.height() + GAP) );
         else
         {
-            add( new SkillButton(Dungeon.hero.hiredMerc.skill).setPos(WIDTH - 2 * (SLOT_SIZE + SLOT_MARGIN) , info.y + info.height() + GAP) );
-            add( new SkillButton(Dungeon.hero.hiredMerc.skillb).setPos(WIDTH - SLOT_SIZE - SLOT_MARGIN, info.y + info.height() + GAP) );
+            add( new SkillButton(Dungeon.hero.hiredMerc.skill).setPos(WIDTH - 2 * (SLOT_SIZE + SLOT_MARGIN) , info.top() + info.height() + GAP) );
+            add( new SkillButton(Dungeon.hero.hiredMerc.skillb).setPos(WIDTH - SLOT_SIZE - SLOT_MARGIN, info.top() + info.height() + GAP) );
         }
 
-		resize( WIDTH, (int) info.y + (int)info.height() + SLOT_SIZE + (int)GAP );
+		resize( WIDTH, (int) info.top() + (int)info.height() + SLOT_SIZE + (int)GAP );
 
 	}
 

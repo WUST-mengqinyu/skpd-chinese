@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
@@ -28,6 +27,7 @@ import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.utils.Random;
 
 public class AmuletScene extends PixelScene {
@@ -45,11 +45,10 @@ public class AmuletScene extends PixelScene {
 	public void create() {
 		super.create();
 		
-		BitmapTextMultiline text = null;
+		RenderedTextMultiline text = null;
 		if (!noText) {
-			text = createMultiline( Messages.get(this,"c"), 8 );
-			text.maxWidth = WIDTH;
-			text.measure();
+			text = renderMultiline(Messages.get(this,"c"), 8 );
+			text.maxWidth(WIDTH);
 			add( text );
 		}
 		
@@ -91,11 +90,11 @@ public class AmuletScene extends PixelScene {
 			
 			amulet.x = align( (Camera.main.width - amulet.width) / 2 );
 			amulet.y = align( (Camera.main.height - height) / 2 );
-			
-			text.x =  align( (Camera.main.width - text.width()) / 2 );
-			text.y = amulet.y + amulet.height + LARGE_GAP;
-			
-			btnExit.setPos( (Camera.main.width - btnExit.width()) / 2, text.y + text.height() + LARGE_GAP );
+
+
+			text.setPos((Camera.main.width - text.width()) / 2,amulet.y + amulet.height + LARGE_GAP);
+
+			btnExit.setPos( (Camera.main.width - btnExit.width()) / 2, text.top() + text.height() + LARGE_GAP );
 			btnStay.setPos( btnExit.left(), btnExit.bottom() + SMALL_GAP );
 		}
 

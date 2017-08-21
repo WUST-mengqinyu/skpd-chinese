@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Shopkeeper;
@@ -30,6 +29,7 @@ import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -182,14 +182,12 @@ public class WndTradeItem extends Window {
 			}
 		}
 		
-		BitmapTextMultiline info = PixelScene.createMultiline( item.info(), 6 );
-		info.maxWidth = WIDTH;
-		info.measure();
-		info.x = titlebar.left();
-		info.y = titlebar.bottom() + GAP;
+		RenderedTextMultiline info = PixelScene.renderMultiline( item.info(), 6 );
+		info.maxWidth (WIDTH);
+		info.setPos(titlebar.left(), titlebar.bottom() + GAP);
 		add( info );
 		
-		return info.y + info.height();
+		return info.top() + info.height();
 	}
 	
 	private void sell( Item item ) {

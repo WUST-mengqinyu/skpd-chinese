@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Game;
 import com.skpd.pixeldungeonskills.Rankings;
 import com.skpd.pixeldungeonskills.Statistics;
@@ -27,6 +26,7 @@ import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndResurrect extends Window {
@@ -55,10 +55,9 @@ public class WndResurrect extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline message = PixelScene.createMultiline( TXT_MESSAGE, 6 );
-		message.maxWidth = WIDTH;
-		message.measure();
-		message.y = titlebar.bottom() + GAP;
+		RenderedTextMultiline message = PixelScene.renderMultiline( TXT_MESSAGE, 6 );
+		message.maxWidth (WIDTH);
+		message.setPos(0,titlebar.bottom() + GAP);
 		add( message );
 		
 		RedButton btnYes = new RedButton( TXT_YES ) {
@@ -72,7 +71,7 @@ public class WndResurrect extends Window {
 				Game.switchScene( InterlevelScene.class );
 			}
 		};
-		btnYes.setRect( 0, message.y + message.height() + GAP, WIDTH, BTN_HEIGHT );
+		btnYes.setRect( 0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT );
 		add( btnYes );
 		
 		RedButton btnNo = new RedButton( TXT_NO ) {

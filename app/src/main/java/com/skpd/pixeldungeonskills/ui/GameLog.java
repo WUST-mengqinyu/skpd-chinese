@@ -17,10 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.ui;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
@@ -28,13 +24,16 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Signal;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 public class GameLog extends Component implements Signal.Listener<String> {
 
 	private static final int MAX_LINES = 3;
 	
 	private static final Pattern PUNCTUATION = Pattern.compile( ".*[.,;?! ]$" );
 	
-	private BitmapTextMultiline lastEntry;
+	private RenderedTextMultiline lastEntry;
 	private int lastColor;
 
 	private static ArrayList<Entry> entries = new ArrayList<Entry>();
@@ -48,7 +47,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 
 	private void recreateLines() {
 		for (Entry entry : entries) {
-			lastEntry = PixelScene.createMultiline( entry.text, 6 );
+			lastEntry = PixelScene.renderMultiline( entry.text, 6 );
 			lastEntry.hardlight( lastColor = entry.color );
 			add( lastEntry );
 		}
@@ -86,13 +85,12 @@ public class GameLog extends Component implements Signal.Listener<String> {
 			
 			String lastMessage = lastEntry.text();
 			lastEntry.text( lastMessage.length() == 0 ? text : lastMessage + " " + text );
-			lastEntry.measure();
 
 			entries.get( entries.size() - 1 ).text = lastEntry.text();
 			
 		} else {
 			
-			lastEntry = PixelScene.createMultiline( text, 6 );
+			lastEntry = PixelScene.renderMultiline( text, 6 );
 			lastEntry.hardlight( color );
 			lastColor = color;
 			add( lastEntry );
@@ -106,11 +104,13 @@ public class GameLog extends Component implements Signal.Listener<String> {
 			do {
 				nLines = 0;
 				for (int i = 0; i < length; i++) {
-					nLines += ((BitmapTextMultiline) members.get(i)).nLines;
+					nLines += ((RenderedTextMultiline) members.get(i)).nLines;
 				}
 
 				if (nLines > MAX_LINES) {
-					remove(members.get(0));
+					RenderedTextMultiline r = ((RenderedTextMultiline) members.get(0));
+					remove(r);
+					r.destroy();
 
 					entries.remove( 0 );
 				}
@@ -127,11 +127,9 @@ public class GameLog extends Component implements Signal.Listener<String> {
 	protected void layout() {
 		float pos = y;
 		for (int i=length-1; i >= 0; i--) {
-			BitmapTextMultiline entry = (BitmapTextMultiline)members.get( i );
-			entry.maxWidth = (int)width;
-			entry.measure();
-			entry.x = x;
-			entry.y = pos - entry.height();
+			RenderedTextMultiline entry = (RenderedTextMultiline) members.get( i );
+			entry.maxWidth ((int)width);
+			entry.setPos(x,pos-entry.height());
 			pos -= entry.height();
 		}
 	}

@@ -31,7 +31,7 @@ import java.util.List;
 
 public class RenderedTextMultiline extends Component {
 
-    public int maxWidth = Integer.MAX_VALUE;
+    private int maxWidth = Integer.MAX_VALUE;
     public int nLines;
 
     private String text;
@@ -199,3 +199,4 @@ public class RenderedTextMultiline extends Component {
         this.height = (y - this.y) + height+0.5f;
     }
 }
+

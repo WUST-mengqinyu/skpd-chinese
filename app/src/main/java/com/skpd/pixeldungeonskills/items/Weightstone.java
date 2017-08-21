@@ -17,9 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
@@ -28,11 +25,14 @@ import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.pixeldungeonskills.windows.IconTitle;
 import com.skpd.pixeldungeonskills.windows.WndBag;
+
+import java.util.ArrayList;
 
 public class Weightstone extends Item {
 	
@@ -142,14 +142,12 @@ public class Weightstone extends Item {
 			titlebar.setRect( 0, 0, WIDTH, 0 );
 			add( titlebar );
 			
-			BitmapTextMultiline tfMesage = PixelScene.createMultiline( Utils.format( TXT_CHOICE, weapon.name() ), 8 );
-			tfMesage.maxWidth = WIDTH - MARGIN * 2;
-			tfMesage.measure();
-			tfMesage.x = MARGIN;
-			tfMesage.y = titlebar.bottom() + MARGIN;
+			RenderedTextMultiline tfMesage = PixelScene.renderMultiline( Utils.format( TXT_CHOICE, weapon.name() ), 8 );
+			tfMesage.maxWidth(WIDTH - MARGIN * 2);
+			tfMesage.setPos(MARGIN, titlebar.bottom() + MARGIN);
 			add( tfMesage );
 			
-			float pos = tfMesage.y + tfMesage.height();
+			float pos = tfMesage.top() + tfMesage.height();
 			
 			if (weapon.imbue != Weapon.Imbue.SPEED) {
 				RedButton btnSpeed = new RedButton( TXT_SPEED ) {

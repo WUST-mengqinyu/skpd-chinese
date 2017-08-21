@@ -17,10 +17,10 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.plants.Plant;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.PlantSprite;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndInfoPlant extends Window {
@@ -39,15 +39,13 @@ public class WndInfoPlant extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline info = PixelScene.createMultiline( 6 );
+		RenderedTextMultiline info = PixelScene.renderMultiline( 6 );
 		add( info );
 		
 		info.text( plant.desc() );
-		info.maxWidth = WIDTH;
-		info.measure();
-		info.x = titlebar.left();
-		info.y = titlebar.bottom() + GAP;
+		info.maxWidth (WIDTH);
+		info.setPos(titlebar.left(), titlebar.bottom() + GAP);
 		
-		resize( WIDTH, (int)(info.y + info.height()) );
+		resize( WIDTH, (int)(info.top() + info.height()) );
 	}
 }

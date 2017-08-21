@@ -17,13 +17,13 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Heap.Type;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -117,13 +117,11 @@ public class WndInfoItem extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline txtInfo = PixelScene.createMultiline( info, 6 );
-		txtInfo.maxWidth = WIDTH;
-		txtInfo.measure();
-		txtInfo.x = titlebar.left();
-		txtInfo.y = titlebar.bottom() + GAP;
+		RenderedTextMultiline txtInfo = PixelScene.renderMultiline( info, 6 );
+		txtInfo.maxWidth (WIDTH);
+		txtInfo.setPos(titlebar.left(),titlebar.bottom() + GAP);
 		add( txtInfo );
 		
-		resize( WIDTH, (int)(txtInfo.y + txtInfo.height()) );
+		resize( WIDTH, (int)(txtInfo.top() + txtInfo.height()) );
 	}
 }

@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.NinePatch;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Component;
@@ -30,6 +29,7 @@ import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -64,10 +64,10 @@ public class WndBlacksmith extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline message = PixelScene.createMultiline( TXT_PROMPT, 6 );
-		message.maxWidth = WIDTH;
-		message.measure();
-		message.y = titlebar.bottom() + GAP;
+		RenderedTextMultiline message = PixelScene.renderMultiline( TXT_PROMPT, 6 );
+		message.maxWidth ( WIDTH);
+
+		message.setPos(0,titlebar.bottom() + GAP);
 		add( message );
 		
 		btnItem1 = new ItemButton() {
@@ -77,7 +77,7 @@ public class WndBlacksmith extends Window {
 				GameScene.selectItem( itemSelector, WndBag.Mode.UPGRADEABLE, TXT_SELECT );
 			}
 		};
-		btnItem1.setRect( (WIDTH - BTN_GAP) / 2 - BTN_SIZE, message.y + message.height() + BTN_GAP, BTN_SIZE, BTN_SIZE );
+		btnItem1.setRect( (WIDTH - BTN_GAP) / 2 - BTN_SIZE, message.top() + message.height() + BTN_GAP, BTN_SIZE, BTN_SIZE );
 		add( btnItem1 );
 		
 		btnItem2 = new ItemButton() {

@@ -17,13 +17,13 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.HealthBar;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -34,7 +34,7 @@ public class IconTitle extends Component {
 	private static final float GAP = 2;
 	
 	protected Image imIcon;
-	protected BitmapTextMultiline tfLabel;
+	protected RenderedTextMultiline tfLabel;
 	protected HealthBar health;
 	
 	private float healthLvl = Float.NaN;
@@ -61,7 +61,7 @@ public class IconTitle extends Component {
 		imIcon = new Image();
 		add( imIcon );
 		
-		tfLabel = PixelScene.createMultiline( FONT_SIZE );
+		tfLabel = PixelScene.renderMultiline( (int)FONT_SIZE );
 		tfLabel.hardlight( Window.TITLE_COLOR );
 		add( tfLabel );
 		
@@ -73,23 +73,25 @@ public class IconTitle extends Component {
 	protected void layout() {
 		
 		health.visible = !Float.isNaN( healthLvl );
-		
-		imIcon.x = x;
-		imIcon.y = y;
-		
-		tfLabel.x = PixelScene.align( PixelScene.uiCamera, imIcon.x + imIcon.width() + GAP );
-		tfLabel.maxWidth = (int)(width - tfLabel.x);
-		tfLabel.measure();
-		tfLabel.y =  PixelScene.align( PixelScene.uiCamera,
-			imIcon.height > tfLabel.height() ?
-				imIcon.y + (imIcon.height() - tfLabel.baseLine()) / 2 :
-				imIcon.y );
-		
+
+		imIcon.x = x + (Math.max(0, 8 - imIcon.width()/2));
+		imIcon.y = y + (Math.max(0, 8 - imIcon.height()/2));
+		PixelScene.align(imIcon);
+
+		int imWidth = (int)Math.max(imIcon.width(), 16);
+		int imHeight = (int)Math.max(imIcon.height(), 16);
+
+		tfLabel.maxWidth((int)(width - (imWidth + GAP)));
+		tfLabel.setPos(x + imWidth + GAP, imHeight > tfLabel.height() ?
+				y +(imHeight - tfLabel.height()) / 2 :
+				y);
+		PixelScene.align(tfLabel);
+
 		if (health.visible) {
-			health.setRect( tfLabel.x, Math.max( tfLabel.y + tfLabel.height(), imIcon.y + imIcon.height() - health.height() ), tfLabel.maxWidth, 0 );
-			height = health.bottom();
+			health.setRect( tfLabel.left(), tfLabel.bottom(), tfLabel.maxWidth(), 0 );
+			height = Math.max( imHeight, health.bottom() );
 		} else {
-			height = Math.max( imIcon.y + imIcon.height(), tfLabel.y + tfLabel.height() );
+			height = Math.max( imHeight,  tfLabel.height() );
 		}
 	}
 	

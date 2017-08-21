@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Image;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.DungeonTilemap;
@@ -25,6 +24,7 @@ import com.skpd.pixeldungeonskills.actors.blobs.Blob;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndInfoCell extends Window {
@@ -58,7 +58,7 @@ public class WndInfoCell extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline info = PixelScene.createMultiline( 6 );
+		RenderedTextMultiline info = PixelScene.renderMultiline( 6 );
 		add( info );
 		
 		StringBuilder desc = new StringBuilder( Dungeon.level.tileDesc( tile ) );
@@ -74,11 +74,9 @@ public class WndInfoCell extends Window {
 		}
 		
 		info.text( desc.length() > 0 ? desc.toString() : TXT_NOTHING );
-		info.maxWidth = WIDTH;
-		info.measure();
-		info.x = titlebar.left();
-		info.y = titlebar.bottom() + GAP;
+		info.maxWidth ( WIDTH );
+		info.setPos(titlebar.left(),titlebar.bottom() + GAP);
 		
-		resize( WIDTH, (int)(info.y + info.height()) );
+		resize( WIDTH, (int)(info.top() + info.height()) );
 	}
 }

@@ -18,13 +18,13 @@
 package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.noosa.BitmapText;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Group;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.HighlightedText;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndClass extends WndTabbed {
@@ -122,11 +122,9 @@ public class WndClass extends WndTabbed {
 				}
 				add( dot );
 				
-				BitmapTextMultiline item = PixelScene.createMultiline( items[i], 6 );
-				item.x = dot.x + dotWidth;
-				item.y = pos;
-				item.maxWidth = (int)(WIDTH - MARGIN * 2 - dotWidth);
-				item.measure();
+				RenderedTextMultiline item = PixelScene.renderMultiline( items[i], 6 );
+				item.setPos(dot.x + dotWidth,pos);
+				item.maxWidth ((int)(WIDTH - MARGIN * 2 - dotWidth));
 				add( item );
 				
 				pos += item.height();

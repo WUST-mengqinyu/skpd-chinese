@@ -19,7 +19,6 @@ package com.skpd.pixeldungeonskills.windows;
 
 import android.graphics.RectF;
 
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.ui.Component;
@@ -30,6 +29,7 @@ import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.CheckBox;
 import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -84,15 +84,13 @@ public class WndRatKing extends WndTabbed {
                     + "You question my command? I will prove to you my strength.\n \n"
                     + "The inhabitants of this dungeon, all of them.. rodents or not so blessed... even you follow my command and can be molded by my will.\n"
                     + "\n \nNow tell me what to do...";
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = WIDTH;
-            txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            RenderedTextMultiline txtInfo = PixelScene.renderMultiline( description, 6 );
+            txtInfo.maxWidth (WIDTH);
+            txtInfo.setPos(titlebar.left(),titlebar.bottom() + GAP);
             add( txtInfo );
 
-            if(maxHeight < (int) txtInfo.y + (int)txtInfo.height() )
-                maxHeight = (int) txtInfo.y + (int)txtInfo.height();
+            if(maxHeight < (int) txtInfo.top() + (int)txtInfo.height() )
+                maxHeight = (int) txtInfo.top() + (int)txtInfo.height();
 
             resize(WIDTH, maxHeight);
         }
@@ -420,14 +418,12 @@ public class WndRatKing extends WndTabbed {
             titlebar.setRect( 0, 0, WIDTH - GAP, 0 );
             add( titlebar );
 
-            BitmapTextMultiline txtInfo = PixelScene.createMultiline( description, 6 );
-            txtInfo.maxWidth = WIDTH - GAP * 2;
-            txtInfo.measure();
-            txtInfo.x = titlebar.left();
-            txtInfo.y = titlebar.bottom() + GAP;
+            RenderedTextMultiline txtInfo = PixelScene.renderMultiline( description, 6 );
+            txtInfo.maxWidth (WIDTH - GAP * 2);
+            txtInfo.setPos(titlebar.left(),titlebar.bottom() + GAP);
             add( txtInfo );
 
-            resize( 100, (int) txtInfo.y + (int) txtInfo.height() + (int)GAP);
+            resize( 100, (int) txtInfo.top() + (int) txtInfo.height() + (int)GAP);
         }
     }
 }
