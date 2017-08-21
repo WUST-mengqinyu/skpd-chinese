@@ -17,11 +17,9 @@
  */
 package com.skpd.pixeldungeonskills.ui;
 
-import java.util.ArrayList;
-
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.Assets;
@@ -29,6 +27,8 @@ import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.effects.BadgeBanner;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.windows.WndBadge;
+
+import java.util.ArrayList;
 
 public class BadgesList extends ScrollPane {
 
@@ -81,7 +81,7 @@ public class BadgesList extends ScrollPane {
 		private Badges.Badge badge;
 		
 		private Image icon;
-		private BitmapText label;
+		private RenderedText label;
 		
 		public ListItem( Badges.Badge badge ) {
 			super();
@@ -96,7 +96,7 @@ public class BadgesList extends ScrollPane {
 			icon = new Image();
 			add( icon );
 			
-			label = PixelScene.createText( 6 );
+			label = PixelScene.renderText( 6 );
 			add( label );
 		}
 		

@@ -17,13 +17,12 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.util.Locale;
-
 import com.skpd.gltextures.SmartTexture;
 import com.skpd.gltextures.TextureCache;
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Group;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.TextureFilm;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
@@ -35,6 +34,8 @@ import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.utils.Utils;
+
+import java.util.Locale;
 
 public class WndHero extends WndTabbed {
 	
@@ -155,14 +156,14 @@ public class WndHero extends WndTabbed {
 		
 		private void statSlot( String label, String value ) {
 			
-			BitmapText txt = PixelScene.createText( label, 8 );
+			RenderedText txt = PixelScene.renderText( label, 8 );
 			txt.y = pos;
 			add( txt );
 			
-			txt = PixelScene.createText( value, 8 );
-			txt.measure();
+			txt = PixelScene.renderText( value, 8 );
 			txt.x = PixelScene.align( WIDTH * 0.65f );
 			txt.y = pos;
+			PixelScene.align(txt);
 			add( txt );
 			
 			pos += GAP + txt.baseLine();
@@ -200,7 +201,7 @@ public class WndHero extends WndTabbed {
 				icon.y = pos;
 				add( icon );
 				
-				BitmapText txt = PixelScene.createText( buff.toString(), 8 );
+				RenderedText txt = PixelScene.renderText( buff.toString(), 8 );
 				txt.x = icon.width + GAP;
 				txt.y = pos + (int)(icon.height - txt.baseLine()) / 2;
 				add( txt );

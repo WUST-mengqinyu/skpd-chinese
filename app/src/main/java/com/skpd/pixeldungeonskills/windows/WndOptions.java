@@ -17,53 +17,55 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapTextMultiline;
+import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
-import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.NewRedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndOptions extends Window {
 
-	private static final int WIDTH			= 120;
-	private static final int MARGIN 		= 2;
-	private static final int BUTTON_HEIGHT	= 20;
-	
+	private static final int MARGIN = 2;
+	private static final int BUTTON_HEIGHT = 20;
+
+	private static final int WIDTH_P = 120;
+	private static final int WIDTH_L = 144;
+
 	public WndOptions( String title, String message, String... options ) {
 		super();
-		
-		BitmapTextMultiline tfTitle = PixelScene.createMultiline( title, 9 );
+
+		int width = PixelDungeon.landscape() ? WIDTH_L : WIDTH_P;
+
+		RenderedTextMultiline tfTitle = PixelScene.renderMultiline( title, 9 );
 		tfTitle.hardlight( TITLE_COLOR );
-		tfTitle.x = tfTitle.y = MARGIN;
-		tfTitle.maxWidth = WIDTH - MARGIN * 2;
-		tfTitle.measure();
+		tfTitle.setPos(MARGIN, MARGIN);
+		tfTitle.maxWidth(width - MARGIN * 2);
 		add( tfTitle );
-		
-		BitmapTextMultiline tfMesage = PixelScene.createMultiline( message, 8 );
-		tfMesage.maxWidth = WIDTH - MARGIN * 2;
-		tfMesage.measure();
-		tfMesage.x = MARGIN;
-		tfMesage.y = tfTitle.y + tfTitle.height() + MARGIN;
+
+		RenderedTextMultiline tfMesage = PixelScene.renderMultiline( 6 );
+		tfMesage.text(message, width - MARGIN * 2);
+		tfMesage.setPos( MARGIN, tfTitle.top() + tfTitle.height() + MARGIN );
 		add( tfMesage );
-		
-		float pos = tfMesage.y + tfMesage.height() + MARGIN;
-		
+
+		float pos = tfMesage.bottom() + MARGIN;
+
 		for (int i=0; i < options.length; i++) {
 			final int index = i;
-			RedButton btn = new RedButton( options[i] ) {
+			NewRedButton btn = new NewRedButton( options[i] ) {
 				@Override
 				protected void onClick() {
 					hide();
 					onSelect( index );
 				}
 			};
-			btn.setRect( MARGIN, pos, WIDTH - MARGIN * 2, BUTTON_HEIGHT );
+			btn.setRect( MARGIN, pos, width - MARGIN * 2, BUTTON_HEIGHT );
 			add( btn );
-			
+
 			pos += BUTTON_HEIGHT + MARGIN;
 		}
-		
-		resize( WIDTH, (int)pos );
+
+		resize( width, (int)pos );
 	}
-	
-	protected void onSelect( int index ) {};
+
+	protected void onSelect( int index ) {}
 }

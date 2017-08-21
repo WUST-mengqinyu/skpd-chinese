@@ -22,13 +22,14 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Bleeding;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.AlbinoSprite;
 import com.skpd.utils.Random;
 
 public class Albino extends Rat {
 
 	{
-		name = "";
+		name = Messages.get(this,"1");
 		spriteClass = AlbinoSprite.class;
 		
 		HP = HT = 15;

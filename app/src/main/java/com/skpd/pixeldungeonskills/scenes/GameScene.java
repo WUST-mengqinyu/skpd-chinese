@@ -299,10 +299,10 @@ public class GameScene extends PixelScene {
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE && Dungeon.depth != 0) {
 			if (Dungeon.depth < Statistics.deepestFloor) {
-				GLog.h( Messages.get(this,"b"), Dungeon.depth );
+				GLog.i( Messages.get(this,"b"), Dungeon.depth );
 			} else {
                 if(Dungeon.depth != ColdGirl.FROST_DEPTH) {
-                    GLog.h(Messages.get(this,"a"), Dungeon.depth);
+                    GLog.i(Messages.get(this,"a"), Dungeon.depth);
                     Sample.INSTANCE.play(Assets.SND_DESCEND);
                 }
                 else

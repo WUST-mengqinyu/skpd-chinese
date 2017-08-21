@@ -17,9 +17,10 @@
  */
 package com.skpd.pixeldungeonskills.utils;
 
-import com.skpd.utils.Signal;
-
 import android.util.Log;
+
+import com.skpd.pixeldungeonskills.messages.Messages;
+import com.skpd.utils.Signal;
 
 public class GLog {
 
@@ -35,7 +36,7 @@ public class GLog {
 	public static void i( String text, Object... args ) {
 		
 		if (args.length > 0) {
-			text = Utils.format( text, args );
+			text = Messages.format( text, args );
 		}
 		
 		Log.i( TAG, text );

@@ -17,10 +17,10 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
@@ -67,13 +67,13 @@ public class BadgesScene extends PixelScene {
 		
 		float left = (w - size * nCols) / 2;
 		float top = (h - size * nRows) / 2;
-		
-		BitmapText title = PixelScene.createText(Messages.get(this,"a"), 9 );
-		title.hardlight( Window.TITLE_COLOR );
-		title.measure();
-		title.x = align( (w - title.width()) / 2 );
-		title.y = align( (top - title.baseLine()) / 2 );
-		add( title );
+
+		RenderedText title = PixelScene.renderText( Messages.get(this, "a"), 9 );
+		title.hardlight(Window.TITLE_COLOR);
+		title.x = (w - title.width()) / 2 ;
+		title.y = (top - title.baseLine()) / 2 ;
+		align(title);
+		add(title);
 		
 		Badges.loadGlobal();
 		

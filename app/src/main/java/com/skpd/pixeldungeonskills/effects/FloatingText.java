@@ -17,17 +17,17 @@
  */
 package com.skpd.pixeldungeonskills.effects;
 
-import java.util.ArrayList;
-
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
+import com.skpd.noosa.RenderedText;
 import com.skpd.pixeldungeonskills.DungeonTilemap;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.utils.SparseArray;
 
-public class FloatingText extends BitmapText {
+import java.util.ArrayList;
+
+public class FloatingText extends RenderedText {
 
 	private static final float LIFESPAN	= 1f;
 	private static final float DISTANCE	= DungeonTilemap.SIZE;
@@ -41,7 +41,6 @@ public class FloatingText extends BitmapText {
 	private static SparseArray<ArrayList<FloatingText>> stacks = new SparseArray<ArrayList<FloatingText>>();
 	
 	public FloatingText() {
-		super();
 		speed.y = - DISTANCE / LIFESPAN;
 	}
 	
@@ -81,14 +80,13 @@ public class FloatingText extends BitmapText {
 		if (cameraZoom != Camera.main.zoom) {
 			cameraZoom = Camera.main.zoom;
 			PixelScene.chooseFont( 9, cameraZoom );
-			font = PixelScene.font;
+			size(9 * (int)cameraZoom);
 			scale.set( PixelScene.scale );
 		}
 
 		text( text );
 		hardlight( color );
-		
-		measure();
+
 		this.x = PixelScene.align( x - width() / 2 );
 		this.y = y - height();
 		

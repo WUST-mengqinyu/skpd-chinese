@@ -17,13 +17,12 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.util.Locale;
-
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.ColorBlock;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Group;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
@@ -42,6 +41,8 @@ import com.skpd.pixeldungeonskills.ui.QuickSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.ScrollPane;
 import com.skpd.pixeldungeonskills.utils.Utils;
+
+import java.util.Locale;
 
 public class WndRanking extends WndTabbed {
 	
@@ -228,14 +229,14 @@ public class WndRanking extends WndTabbed {
 		
 		private float statSlot( Group parent, String label, String value, float pos ) {
 			
-			BitmapText txt = PixelScene.createText( label, 7 );
+			RenderedText txt = PixelScene.renderText( label, 7 );
 			txt.y = pos;
 			parent.add( txt );
 			
-			txt = PixelScene.createText( value, 7 );
-			txt.measure();
+			txt = PixelScene.renderText( value, 7 );
 			txt.x = PixelScene.align( WIDTH * 0.65f );
 			txt.y = pos;
+			PixelScene.align(txt);
 			parent.add( txt );
 			
 			return pos + GAP + txt.baseLine();

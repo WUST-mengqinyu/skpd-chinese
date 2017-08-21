@@ -17,17 +17,17 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.util.ArrayList;
-
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.NinePatch;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Chrome;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.Window;
+
+import java.util.ArrayList;
 
 public class WndTabbed extends Window {
 
@@ -100,7 +100,43 @@ public class WndTabbed extends Window {
 			add( tab );
 		}
 	}
-	
+
+	public void layoutTabs(){
+		//subract two as there's extra horizontal space for those nobs on the top.
+		int fullWidth = width+chrome.marginHor()-2;
+		int numTabs = tabs.size();
+
+		if (numTabs == 0)
+			return;
+		if (numTabs == 1) {
+			tabs.get(0).setSize(fullWidth, tabHeight());
+			return;
+		}
+
+		int spaces = numTabs-1;
+		int spacing = -1;
+
+		while (spacing == -1) {
+			for (int i = 0; i <= 3; i++){
+				if ((fullWidth - i*(spaces)) % numTabs == 0) {
+					spacing = i;
+					break;
+				}
+			}
+			if (spacing == -1) fullWidth--;
+		}
+
+		int tabWidth = (fullWidth - spacing*(numTabs-1)) / numTabs;
+
+		for (int i = 0; i < tabs.size(); i++){
+			tabs.get(i).setSize(tabWidth, tabHeight());
+			tabs.get(i).setPos( i == 0 ?
+					-chrome.marginLeft() + 1 :
+					tabs.get( i - 1 ).right() + spacing, height );
+		}
+
+	}
+
 	protected int tabHeight() {
 		return 25;
 	}
@@ -153,21 +189,20 @@ public class WndTabbed extends Window {
 	
 	protected class LabeledTab extends Tab {
 		
-		private BitmapText btLabel;
+		private RenderedText btLabel;
 		
 		public LabeledTab( String label ) {
 			
 			super();
 			
 			btLabel.text( label );
-			btLabel.measure();
 		}
 		
 		@Override
 		protected void createChildren() {
 			super.createChildren();
 			
-			btLabel = PixelScene.createText( 9 );
+			btLabel = PixelScene.renderText( 9 );
 			add( btLabel );
 		}
 		

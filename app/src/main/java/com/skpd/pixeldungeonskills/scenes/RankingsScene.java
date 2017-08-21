@@ -18,9 +18,9 @@
 package com.skpd.pixeldungeonskills.scenes;
 
 import com.skpd.noosa.BitmapText;
-import com.skpd.noosa.BitmapTextMultiline;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
@@ -33,6 +33,7 @@ import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.Icons;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.windows.WndError;
 import com.skpd.pixeldungeonskills.windows.WndRanking;
@@ -82,12 +83,12 @@ public class RankingsScene extends PixelScene {
 			float left = (w - Math.min( MAX_ROW_WIDTH, w )) / 2 + GAP;
 			float top = align( (h - rowHeight  * Rankings.INSTANCE.records.size()) / 2 );
 			
-			BitmapText title = PixelScene.createText( TXT_TITLE, 9 );
-			title.hardlight( Window.TITLE_COLOR );
-			title.measure();
-			title.x = align( (w - title.width()) / 2 );
-			title.y = align( top - title.height() - GAP );
-			add( title );
+			RenderedText title = PixelScene.renderText( TXT_TITLE, 9 );
+			title.hardlight(Window.SHPX_COLOR);
+			title.x = (w - title.width()) / 2;
+			title.y = GAP;
+			align(title);
+			add(title);
 			
 			int pos = 0;
 			
@@ -100,19 +101,16 @@ public class RankingsScene extends PixelScene {
 			}
 			
 			if (Rankings.INSTANCE.totalNumber >= Rankings.TABLE_SIZE) {
-				BitmapText label = PixelScene.createText( TXT_TOTAL, 8 );
+				RenderedText label = PixelScene.renderText( TXT_TOTAL, 8 );
 				label.hardlight( DEFAULT_COLOR );
-				label.measure();
 				add( label );
 				
-				BitmapText won = PixelScene.createText( Integer.toString( Rankings.INSTANCE.wonNumber ), 8 );
+				RenderedText won = PixelScene.renderText( Integer.toString( Rankings.INSTANCE.wonNumber ), 8 );
 				won.hardlight( Window.TITLE_COLOR );
-				won.measure();
 				add( won );
 				
-				BitmapText total = PixelScene.createText( "/" + Rankings.INSTANCE.totalNumber, 8 );
+				RenderedText total = PixelScene.renderText( "/" + Rankings.INSTANCE.totalNumber, 8 );
 				total.hardlight( DEFAULT_COLOR );
-				total.measure();
 				total.x = align( (w - total.width()) / 2 );
 				total.y = align( top + pos * rowHeight + GAP );
 				add( total );
@@ -126,9 +124,8 @@ public class RankingsScene extends PixelScene {
 			
 		} else {
 			
-			BitmapText title = PixelScene.createText( TXT_NO_GAMES, 8 );
+			RenderedText title = PixelScene.renderText( TXT_NO_GAMES, 8 );
 			title.hardlight( DEFAULT_COLOR );
-			title.measure();
 			title.x = align( (w - title.width()) / 2 );
 			title.y = align( (h - title.height()) / 2 );
 			add( title );
@@ -161,7 +158,7 @@ public class RankingsScene extends PixelScene {
 		private ItemSprite shield;
 		private Flare flare;
 		private BitmapText position;
-		private BitmapTextMultiline desc;
+		private RenderedTextMultiline desc;
 		private Image classIcon;
 		
 		public Record( int pos, boolean latest, Rankings.Record rec ) {
@@ -180,7 +177,6 @@ public class RankingsScene extends PixelScene {
 			position.measure();
 			
 			desc.text( rec.info );
-			desc.measure();
 			
 			if (rec.win) {
 				shield.view( ItemSpriteSheet.AMULET, null );
@@ -205,7 +201,7 @@ public class RankingsScene extends PixelScene {
 			position = new BitmapText( PixelScene.font1x );
 			add( position );
 			
-			desc = createMultiline( 9 );		
+			desc = renderMultiline( 9 );
 			add( desc );
 			
 			classIcon = new Image();
@@ -222,18 +218,17 @@ public class RankingsScene extends PixelScene {
 			
 			position.x = align( shield.x + (shield.width - position.width()) / 2 );
 			position.y = align( shield.y + (shield.height - position.height()) / 2 + 1 );
-			
+			align(position);
+
 			if (flare != null) {
 				flare.point( shield.center() );
 			}
-			
-			classIcon.x = align( x + width - classIcon.width );
+
+			classIcon.x = x + width - classIcon.width;
 			classIcon.y = shield.y;
-			
-			desc.x = shield.x + shield.width + GAP;
-			desc.maxWidth = (int)(classIcon.x - desc.x);
-			desc.measure();
-			desc.y = position.y + position.baseLine() - desc.baseLine();
+
+			desc.setPos(shield.x + shield.width + GAP, shield.y + (shield.height - desc.height()) / 2f + 1);
+			align(desc);
 		}
 		
 		@Override

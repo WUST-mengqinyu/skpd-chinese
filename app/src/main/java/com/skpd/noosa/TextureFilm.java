@@ -17,12 +17,12 @@
 
 package com.skpd.noosa;
 
-import java.util.HashMap;
+import android.graphics.RectF;
 
 import com.skpd.gltextures.SmartTexture;
 import com.skpd.gltextures.TextureCache;
 
-import android.graphics.RectF;
+import java.util.HashMap;
 
 public class TextureFilm {
 	
@@ -30,12 +30,14 @@ public class TextureFilm {
 	
 	private int texWidth;
 	private int texHeight;
-	
+
+	private SmartTexture texture;
+
 	protected HashMap<Object,RectF> frames = new HashMap<Object, RectF>();
 	
 	public TextureFilm( Object tx ) {
 		
-		SmartTexture texture = TextureCache.get( tx );
+		texture = TextureCache.get( tx );
 		
 		texWidth = texture.width;
 		texHeight = texture.height;
