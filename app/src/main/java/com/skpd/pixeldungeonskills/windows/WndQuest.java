@@ -19,8 +19,9 @@ package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.NPC;
-import com.skpd.pixeldungeonskills.ui.HighlightedText;
+import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -42,7 +43,7 @@ public class WndQuest extends Window {
 		titlebar.setRect( 0, 0, width, 0 );
 		add( titlebar );
 		
-		HighlightedText hl = new HighlightedText( 6 );
+		RenderedTextMultiline hl = PixelScene.renderMultiline( 6 );
 		hl.text( text, width );
 		hl.setPos( titlebar.left(), titlebar.bottom() + GAP );
 		add( hl );

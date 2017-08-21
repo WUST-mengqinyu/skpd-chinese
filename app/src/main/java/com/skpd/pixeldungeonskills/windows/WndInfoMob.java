@@ -20,11 +20,11 @@ package com.skpd.pixeldungeonskills.windows;
 import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.ui.HealthBar;
-import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndInfoMob extends WndTitledMessage {
 
@@ -54,13 +54,13 @@ public class WndInfoMob extends WndTitledMessage {
 		
 		public MobTitle( Mob mob ) {
 			
-			name = PixelScene.renderText( Utils.capitalize( mob.name ), 9 );
+			name = PixelScene.renderText( Messages.titleCase( mob.name ), 9 );
 			name.hardlight( TITLE_COLOR );
 			add( name );
 			
 			image = mob.sprite();
 			add( image );
-			
+
 			health = new HealthBar();
 			health.level( (float)mob.HP / mob.HT );
 			add( health );
@@ -83,8 +83,8 @@ public class WndInfoMob extends WndTitledMessage {
 			health.setRect( image.width + GAP, image.height - health.height(), w, health.height() ); 
 			
 			buffs.setPos( 
-				name.x + name.width() + GAP, 
-				name.y + name.baseLine() - BuffIndicator.SIZE );
+				name.x + name.width() + GAP-1,
+				name.y + name.baseLine() - BuffIndicator.SIZE-2 );
 
 			height = health.bottom();
 		}

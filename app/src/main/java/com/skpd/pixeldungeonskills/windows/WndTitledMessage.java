@@ -20,7 +20,8 @@ package com.skpd.pixeldungeonskills.windows;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.PixelDungeon;
-import com.skpd.pixeldungeonskills.ui.HighlightedText;
+import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndTitledMessage extends Window {
@@ -44,8 +45,8 @@ public class WndTitledMessage extends Window {
 		
 		titlebar.setRect( 0, 0, width, 0 );
 		add( titlebar );
-		
-		HighlightedText text = new HighlightedText( 6 );
+
+		RenderedTextMultiline text = PixelScene.renderMultiline( 6 );
 		text.text( message, width );
 		text.setPos( titlebar.left(), titlebar.bottom() + GAP );
 		add( text );

@@ -19,9 +19,10 @@ package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
 import com.skpd.pixeldungeonskills.items.TomeOfMastery;
+import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
-import com.skpd.pixeldungeonskills.ui.HighlightedText;
 import com.skpd.pixeldungeonskills.ui.RedButton;
+import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -111,8 +112,8 @@ public class WndChooseWay extends Window {
 		titlebar.label( tome.name() );
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
-		
-		HighlightedText hl = new HighlightedText( 6 );
+
+		RenderedTextMultiline hl = PixelScene.renderMultiline( 6 );
 		hl.text( text, WIDTH );
 		hl.setPos( titlebar.left(), titlebar.bottom() + GAP );
 		add( hl );

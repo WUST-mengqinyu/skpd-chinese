@@ -23,7 +23,6 @@ import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
-import com.skpd.pixeldungeonskills.ui.HighlightedText;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
@@ -165,7 +164,7 @@ public class WndClass extends WndTabbed {
 				break;
 			}
 
-			HighlightedText text = new HighlightedText( 6 );
+			RenderedTextMultiline text = PixelScene.renderMultiline( 6 );
 			text.text( message, WIDTH - MARGIN * 2 );
 			text.setPos( MARGIN, MARGIN );
 			add( text );
