@@ -1,27 +1,25 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
     defaultConfig {
-        applicationId "test.myapplication"
+        applicationId "com.skpd.lightning"
         minSdkVersion 8
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.1"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 23
     }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-}
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    android.applicationVariants.all {
+        variant -> variant.outputs.each {
+            output -> output.outputFile = new File(output.outputFile.parent, "技巧汉化版v" + versionName + ".apk");
+        }
+    }
 }
