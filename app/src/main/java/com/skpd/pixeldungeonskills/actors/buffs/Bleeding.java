@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.ResultDescriptions;
 import com.skpd.pixeldungeonskills.effects.Splash;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -57,7 +58,7 @@ public class Bleeding extends Buff {
 	
 	@Override
 	public String toString() {
-		return "Bleeding";
+		return Messages.get(this,"");
 	}
 	
 	@Override
@@ -74,7 +75,7 @@ public class Bleeding extends Buff {
 				
 				if (target == Dungeon.hero && !target.isAlive()) {
 					Dungeon.fail( Utils.format( ResultDescriptions.BLEEDING, Dungeon.depth ) );
-					GLog.n( "You bled to death..." );
+					GLog.n( Messages.get(this,"1") );
 				}
 				
 				spend( TICK );

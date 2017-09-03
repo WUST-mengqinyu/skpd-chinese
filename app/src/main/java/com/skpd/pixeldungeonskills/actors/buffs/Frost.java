@@ -24,6 +24,7 @@ import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.food.FrozenCarpaccio;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
 import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Frost extends FlavourBuff {
@@ -69,7 +70,7 @@ public class Frost extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Frozen";
+		return Messages.get(this,"");
 	}
 	
 	public static float duration( Char ch ) {

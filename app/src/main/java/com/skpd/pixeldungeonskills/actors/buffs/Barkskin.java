@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Barkskin extends Buff {
@@ -58,6 +59,6 @@ public class Barkskin extends Buff {
 	
 	@Override
 	public String toString() {
-		return "Barkskin";
+		return Messages.get(this,"");
 	}
 }

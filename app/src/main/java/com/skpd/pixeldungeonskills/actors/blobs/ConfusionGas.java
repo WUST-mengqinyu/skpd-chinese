@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.effects.BlobEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 public class ConfusionGas extends Blob {
 	
@@ -47,6 +48,6 @@ public class ConfusionGas extends Blob {
 	
 	@Override
 	public String tileDesc() {
-		return "A cloud of confusion gas is swirling here.";
+		return Messages.get(this,"1");
 	}
 }

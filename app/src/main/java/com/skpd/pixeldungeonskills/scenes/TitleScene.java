@@ -135,14 +135,14 @@ public class TitleScene extends PixelScene {
 			btnHighscores.setPos( w / 2, btnPlay.top() );
 		}
 
-        BitmapText version = new BitmapText( "forChinese", font1x );
+        BitmapText version = new BitmapText( "ForChinese", font1x );
         version.measure();
         version.hardlight( 0xFFFFFF );
         version.x = w - version.width();
         version.y = h - version.height() - 9;
         add( version );
 
-        BitmapText versionPD = new BitmapText( Game.vanillaVersion , font1x );
+        BitmapText versionPD = new BitmapText( Game.version , font1x );
         versionPD.measure();
         versionPD.hardlight( 0x666666 );
         versionPD.x = w - versionPD.width();

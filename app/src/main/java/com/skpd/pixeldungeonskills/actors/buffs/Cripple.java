@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Cripple extends FlavourBuff {
@@ -30,6 +31,6 @@ public class Cripple extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Crippled";
+		return Messages.get(this,"");
 	}
 }

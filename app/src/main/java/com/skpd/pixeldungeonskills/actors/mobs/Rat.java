@@ -73,7 +73,6 @@ public class Rat extends Mob {
 	@Override
 	public String description() {
 		return
-			"Marsupial rats are aggressive, but rather weak denizens " +
-			"of the sewers. They can be dangerous only in big numbers.";
+			Messages.get(this,"2");
 	}
 }

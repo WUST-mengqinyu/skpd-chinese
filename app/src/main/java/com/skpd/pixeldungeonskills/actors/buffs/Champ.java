@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
@@ -76,7 +77,7 @@ public class Champ extends Buff {
             {
                 case 5: type = CHAMP_VAMPERIC;
                 case CHAMP_VAMPERIC: //red
-                    this.target.name = "Vampiric " + this.target.name;
+                    this.target.name = Messages.get(this,"1") + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
                     ((Mob)this.target).defenseSkill *= 1.1;
@@ -87,7 +88,7 @@ public class Champ extends Buff {
                     }
                     break;
                 case CHAMP_CHIEF: //white
-                    this.target.name = "Chief " + this.target.name;
+                    this.target.name = Messages.get(this,"2") + this.target.name;
                     this.target.HT *= 2;
                     this.target.HP = this.target.HT;
                     ((Mob)this.target).defenseSkill *= 1.3;
@@ -98,7 +99,7 @@ public class Champ extends Buff {
                     }
                     break;
                 case CHAMP_CURSED: //black
-                    this.target.name = "Cursed " + this.target.name;
+                    this.target.name = Messages.get(this,"3") + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
                     ((Mob)this.target).defenseSkill *= 1.15;
@@ -109,7 +110,7 @@ public class Champ extends Buff {
                     }
                     break;
                 case CHAMP_FOUL: //yellow
-                    this.target.name = "Foul " + this.target.name;
+                    this.target.name = Messages.get(this,"4") + this.target.name;
                     this.target.HT *= 1.5;
                     this.target.HP = this.target.HT;
                     ((Mob)this.target).defenseSkill *= 1.2;
@@ -128,7 +129,7 @@ public class Champ extends Buff {
             switch(type)
             {
                 case CHAMP_VAMPERIC: //red
-                    this.target.name = "Vampiric " + this.target.name;
+                    this.target.name = Messages.get(this,"1") + this.target.name;
                     ((Mob)this.target).defenseSkill *= 1.1;
                     if(target.sprite != null)
                     {
@@ -137,7 +138,7 @@ public class Champ extends Buff {
                     }
                     break;
                 case CHAMP_CHIEF: //white
-                    this.target.name = "Chief " + this.target.name;
+                    this.target.name = Messages.get(this,"2") + this.target.name;
                     ((Mob)this.target).defenseSkill *= 1.3;
                     if(target.sprite != null)
                     {
@@ -146,7 +147,7 @@ public class Champ extends Buff {
                     }
                     break;
                 case CHAMP_CURSED: //black
-                    this.target.name = "Cursed " + this.target.name;
+                    this.target.name = Messages.get(this,"3") + this.target.name;
                     ((Mob)this.target).defenseSkill *= 1.15;
                     if(target.sprite != null)
                     {

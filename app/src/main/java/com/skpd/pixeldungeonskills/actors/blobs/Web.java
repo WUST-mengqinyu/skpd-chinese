@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Roots;
 import com.skpd.pixeldungeonskills.effects.BlobEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.WebParticle;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 public class Web extends Blob {
 	
@@ -63,6 +64,6 @@ public class Web extends Blob {
 	
 	@Override
 	public String tileDesc() {
-		return "Everything is covered with a thick web here.";
+		return Messages.get(this,"");
 	}
 }

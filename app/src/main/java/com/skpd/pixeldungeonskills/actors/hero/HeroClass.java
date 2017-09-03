@@ -44,12 +44,13 @@ import com.skpd.pixeldungeonskills.items.weapon.melee.DualSwords;
 import com.skpd.pixeldungeonskills.items.weapon.melee.Knuckles;
 import com.skpd.pixeldungeonskills.items.weapon.melee.ShortSword;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Arrow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Boomerang;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.CupidArrow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Dart;
-import com.skpd.pixeldungeonskills.items.weapon.missiles.Boomerang;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Shuriken;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.SoulCrystal;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.EyeSprite;
 import com.skpd.pixeldungeonskills.ui.QuickSlot;
 import com.skpd.utils.Bundle;
@@ -63,48 +64,6 @@ public enum HeroClass {
 	private HeroClass( String title ) {
 		this.title = title;
 	}
-	
-	public static final String[] WAR_PERKS = {
-		"Warriors start with 11 points of Strength.",
-		"Warriors start with a unique short sword. This sword can be later \"reforged\" to upgrade another melee weapon.",
-		"Warriors are less proficient with missile weapons.",
-		"Any piece of food restores some health when eaten.",
-		"Potions of Strength are identified from the beginning.",
-	};
-	
-	public static final String[] MAG_PERKS = {
-		"Mages start with a unique Wand of Magic Missile. This wand can be later \"disenchanted\" to upgrade another wand.",
-		"Mages recharge their wands faster.",
-		"When eaten, any piece of food restores 1 charge for all wands in the inventory.",
-		"Mages can use wands as a melee weapon.",
-		"Scrolls of Identify are identified from the beginning.",
-         "Master of magic."
-	};
-	
-	public static final String[] ROG_PERKS = {
-		"Rogues start with a Ring of Shadows+1.",
-		"Rogues identify a type of a ring on equipping it.",
-		"Rogues are proficient with light armor, dodging better while wearing one.",
-		"Rogues are proficient in detecting hidden doors and traps.",
-		"Rogues can go without food longer.",
-		"Scrolls of Magic Mapping are identified from the beginning."
-	};
-	
-	public static final String[] HUN_PERKS = {
-		"Huntresses start with 15 points of Health.",
-		"Huntresses start with a unique upgradeable boomerang.",
-		"Huntresses are proficient with missile weapons and get a damage bonus for excessive strength when using them.",
-		"Huntresses gain more health from dewdrops.",
-		"Huntresses sense neighbouring monsters even if they are hidden behind obstacles."
-	};
-
-    public static final String[] LEGEND_PERKS = {
-            "Hatsune is believed to be a descendant of an Avatar who broke the rules and interacted with mortals.",
-            "She is best known for leading the failed defence of the town of Boonamai.",
-            "She is the first to give birth to twin daughters instead of one. A first in a lineage of over 10 generations.",
-            "She excels in tactics and has mastered both light and dark arts.",
-            "Her hair has turned blue from her massive spiritual strength."
-    };
 	
 	public void initHero( Hero hero ) {
 		
@@ -281,22 +240,53 @@ public enum HeroClass {
 		
 		return null;
 	}
-	
+
 	public String[] perks() {
-		
+
 		switch (this) {
-		case WARRIOR:
-			return WAR_PERKS;
-		case MAGE:
-			return MAG_PERKS;
-		case ROGUE:
-			return ROG_PERKS;
-		case HUNTRESS:
-			return HUN_PERKS;
-        case HATSUNE:
-             return LEGEND_PERKS;
+			case WARRIOR:
+				return new String[]{
+						Messages.get(HeroClass.class, "warrior_perk1"),
+						Messages.get(HeroClass.class, "warrior_perk2"),
+						Messages.get(HeroClass.class, "warrior_perk3"),
+						Messages.get(HeroClass.class, "warrior_perk4"),
+						Messages.get(HeroClass.class, "warrior_perk5"),
+				};
+			case MAGE:
+				return new String[]{
+						Messages.get(HeroClass.class, "mage_perk1"),
+						Messages.get(HeroClass.class, "mage_perk2"),
+						Messages.get(HeroClass.class, "mage_perk3"),
+						Messages.get(HeroClass.class, "mage_perk4"),
+						Messages.get(HeroClass.class, "mage_perk5"),
+				};
+			case ROGUE:
+				return new String[]{
+						Messages.get(HeroClass.class, "rogue_perk1"),
+						Messages.get(HeroClass.class, "rogue_perk2"),
+						Messages.get(HeroClass.class, "rogue_perk3"),
+						Messages.get(HeroClass.class, "rogue_perk4"),
+						Messages.get(HeroClass.class, "rogue_perk5"),
+						Messages.get(HeroClass.class, "rogue_perk6"),
+				};
+			case HUNTRESS:
+				return new String[]{
+						Messages.get(HeroClass.class, "huntress_perk1"),
+						Messages.get(HeroClass.class, "huntress_perk2"),
+						Messages.get(HeroClass.class, "huntress_perk3"),
+						Messages.get(HeroClass.class, "huntress_perk4"),
+						Messages.get(HeroClass.class, "huntress_perk5"),
+				};
+			case HATSUNE:
+				return new String[] {
+						Messages.get(HeroClass.class, "hatsume_perk1"),
+						Messages.get(HeroClass.class, "hatsume_perk2"),
+						Messages.get(HeroClass.class, "hatsume_perk3"),
+						Messages.get(HeroClass.class, "hatsume_perk4"),
+						Messages.get(HeroClass.class, "hatsume_perk5"),
+				};
 		}
-		
+
 		return null;
 	}
 

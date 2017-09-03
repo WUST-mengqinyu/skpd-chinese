@@ -31,12 +31,13 @@ import com.skpd.pixeldungeonskills.effects.particles.ShaftParticle;
 import com.skpd.pixeldungeonskills.items.DewVial;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class WaterOfHealth extends WellWater {
 
 	private static final String TXT_PROCCED =
-		"As you take a sip, you feel your wounds heal completely.";
+			Messages.get(WaterOfAwareness.class,"1");
 	
 	@Override
 	protected boolean affectHero( Hero hero ) {
@@ -78,7 +79,6 @@ public class WaterOfHealth extends WellWater {
 	@Override
 	public String tileDesc() {
 		return 
-			"Power of health radiates from the water of this well. " +
-			"Take a sip from it to heal your wounds and satisfy hunger.";
+			Messages.get(this,"2");
 	}
 }

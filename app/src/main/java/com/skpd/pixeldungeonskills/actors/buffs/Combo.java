@@ -19,12 +19,13 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class Combo extends Buff {
 	
-	private static String TXT_COMBO = "%d hit combo!";
+	private static String TXT_COMBO = Messages.get(Combo.class,"1");
 	
 	public int count = 0;
 	
@@ -35,7 +36,7 @@ public class Combo extends Buff {
 	
 	@Override
 	public String toString() {
-		return "Combo";
+		return Messages.get(this,"");
 	}
 	
 	public int hit( Char enemy, int damage ) {

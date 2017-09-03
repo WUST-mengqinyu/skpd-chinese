@@ -501,9 +501,9 @@ public class ColdGirl extends Mob {
                 Messages.get(this,"19");
 	}
 
-    private static final String AI_STATE = Messages.get(ColdGirl.class,"20");
-    private static final String CAME_FROM = Messages.get(ColdGirl.class,"21");
-    private static final String CAME_FROM_POS = Messages.get(ColdGirl.class,"22");
+    private static final String AI_STATE = "aistate";
+    private static final String CAME_FROM = "camefrom";
+    private static final String CAME_FROM_POS = "camefrompos";
     @Override
     public void storeInBundle( Bundle bundle ) {
         super.storeInBundle( bundle );

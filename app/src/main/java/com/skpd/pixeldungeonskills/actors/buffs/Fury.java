@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Fury extends Buff {
@@ -41,6 +42,6 @@ public class Fury extends Buff {
 	
 	@Override
 	public String toString() {
-		return "Fury";
+		return Messages.get(this,"");
 	}
 }

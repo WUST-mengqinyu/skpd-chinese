@@ -26,6 +26,7 @@ import com.skpd.pixeldungeonskills.effects.BlobEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.ShaftParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 
 public class Foliage extends Blob {
@@ -81,6 +82,6 @@ public class Foliage extends Blob {
 	
 	@Override
 	public String tileDesc() {
-		return "Shafts of light pierce the gloom of the underground garden.";
+		return Messages.get(this,"1");
 	}
 }

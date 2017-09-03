@@ -64,7 +64,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	
 	public static String version;
     public static int versionBuild;
-	public static String vanillaVersion = "1.0";
+	public static String vanillaVersion = "1.1";
 
 	// Current scene
 	protected Scene scene;

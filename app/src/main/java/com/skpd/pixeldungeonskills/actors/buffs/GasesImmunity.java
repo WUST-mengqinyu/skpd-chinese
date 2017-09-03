@@ -17,10 +17,11 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.actors.blobs.ToxicGas;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
+
+import java.util.HashSet;
 
 public class GasesImmunity extends FlavourBuff {
 	
@@ -33,7 +34,7 @@ public class GasesImmunity extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Immune to gases";
+		return Messages.get(this,"1");
 	}
 	
 	public static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();

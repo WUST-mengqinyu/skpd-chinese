@@ -34,6 +34,7 @@ import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Wound;
 import com.skpd.pixeldungeonskills.effects.particles.SacrificialParticle;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfWipeOut;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -42,9 +43,9 @@ import com.skpd.utils.Random;
 
 public class SacrificialFire extends Blob {
 	
-	private static final String TXT_WORTHY		= "\"Your sacrifice is worthy...\" ";
-	private static final String TXT_UNWORTHY	= "\"Your sacrifice is unworthy...\" ";
-	private static final String TXT_REWARD		= "\"Your sacrifice is worthy and so you are!\" ";
+	private static final String TXT_WORTHY		= Messages.get(SacrificialFire.class,"1");
+	private static final String TXT_UNWORTHY	= Messages.get(SacrificialFire.class,"2");
+	private static final String TXT_REWARD		= Messages.get(SacrificialFire.class,"3");
 	
 	protected int pos;
 	
@@ -128,7 +129,7 @@ public class SacrificialFire extends Blob {
 	
 	@Override
 	public String tileDesc() {
-		return "Sacrificial fire burns here. Every creature touched by this fire is marked as an offering for the spirits of the dungeon.";
+		return Messages.get(this,"4");
 	}
 	
 	public static class Marked extends FlavourBuff {
@@ -142,7 +143,7 @@ public class SacrificialFire extends Blob {
 		
 		@Override
 		public String toString() {
-			return "Marked for sacrifice";
+			return Messages.get(this,"5");
 		}
 		
 		@Override

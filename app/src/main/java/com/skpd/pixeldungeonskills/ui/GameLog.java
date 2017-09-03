@@ -21,7 +21,6 @@ import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Signal;
 
 import java.util.ArrayList;
@@ -30,17 +29,17 @@ import java.util.regex.Pattern;
 public class GameLog extends Component implements Signal.Listener<String> {
 
 	private static final int MAX_LINES = 3;
-	
+
 	private static final Pattern PUNCTUATION = Pattern.compile( ".*[.,;?! ]$" );
-	
+
 	private RenderedTextMultiline lastEntry;
 	private int lastColor;
 
 	private static ArrayList<Entry> entries = new ArrayList<Entry>();
-	
+
 	public GameLog() {
 		super();
-		GLog.update.add( this );
+		GLog.update.replace( this );
 
 		recreateLines();
 	}
@@ -52,7 +51,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 			add( lastEntry );
 		}
 	}
-	
+
 	public void newLine() {
 		lastEntry = null;
 	}
@@ -60,15 +59,20 @@ public class GameLog extends Component implements Signal.Listener<String> {
 	@Override
 	public void onSignal( String text ) {
 
+		if (length != entries.size()){
+			clear();
+			recreateLines();
+		}
+
 		int color = CharSprite.DEFAULT;
 		if (text.startsWith( GLog.POSITIVE )) {
 			text = text.substring( GLog.POSITIVE.length() );
 			color = CharSprite.POSITIVE;
-		} else 
+		} else
 		if (text.startsWith( GLog.NEGATIVE )) {
 			text = text.substring( GLog.NEGATIVE.length() );
 			color = CharSprite.NEGATIVE;
-		} else 
+		} else
 		if (text.startsWith( GLog.WARNING )) {
 			text = text.substring( GLog.WARNING.length() );
 			color = CharSprite.WARNING;
@@ -77,40 +81,35 @@ public class GameLog extends Component implements Signal.Listener<String> {
 			text = text.substring( GLog.HIGHLIGHT.length() );
 			color = CharSprite.NEUTRAL;
 		}
-		
-		text = Utils.capitalize( text ) + 
-			(PUNCTUATION.matcher( text ).matches() ? "" : ".");
-		
+
 		if (lastEntry != null && color == lastColor && lastEntry.nLines < MAX_LINES) {
-			
+
 			String lastMessage = lastEntry.text();
 			lastEntry.text( lastMessage.length() == 0 ? text : lastMessage + " " + text );
 
 			entries.get( entries.size() - 1 ).text = lastEntry.text();
-			
+
 		} else {
-			
+
 			lastEntry = PixelScene.renderMultiline( text, 6 );
 			lastEntry.hardlight( color );
 			lastColor = color;
 			add( lastEntry );
 
 			entries.add( new Entry( text, color ) );
-			
+
 		}
 
 		if (length > 0) {
 			int nLines;
 			do {
 				nLines = 0;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length-1; i++) {
 					nLines += ((RenderedTextMultiline) members.get(i)).nLines;
 				}
 
 				if (nLines > MAX_LINES) {
-					RenderedTextMultiline r = ((RenderedTextMultiline) members.get(0));
-					remove(r);
-					r.destroy();
+					remove(members.get(0));
 
 					entries.remove( 0 );
 				}
@@ -119,21 +118,21 @@ public class GameLog extends Component implements Signal.Listener<String> {
 				lastEntry = null;
 			}
 		}
-		
+
 		layout();
 	}
-	
+
 	@Override
 	protected void layout() {
 		float pos = y;
 		for (int i=length-1; i >= 0; i--) {
-			RenderedTextMultiline entry = (RenderedTextMultiline) members.get( i );
-			entry.maxWidth ((int)width);
-			entry.setPos(x,pos-entry.height());
+			RenderedTextMultiline entry = (RenderedTextMultiline)members.get( i );
+			entry.maxWidth((int)width);
+			entry.setPos(x+2, pos-entry.height());
 			pos -= entry.height();
 		}
 	}
-	
+
 	@Override
 	public void destroy() {
 		GLog.update.remove( this );

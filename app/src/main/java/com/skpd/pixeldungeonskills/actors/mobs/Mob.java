@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Challenges;
 import com.skpd.pixeldungeonskills.Dungeon;
@@ -43,23 +41,21 @@ import com.skpd.pixeldungeonskills.items.Generator;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.PathFinder;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public abstract class Mob extends Char {
 	
-	private static final String	TXT_DIED	= "You hear something died in the distance";
-	
-	protected static final String	TXT_ECHO	= "echo of ";
-	
-	protected static final String TXT_NOTICE1	= "?!";
+	private static final String	TXT_DIED	= Messages.get(Mob.class,"1");
 	protected static final String TXT_RAGE		= "#$%^";
-	protected static final String TXT_EXP		= "%+dEXP";
-    protected static final String TXT_EXP_CHAMP		= "%+dEXP (Champion killed!)";
+	protected static final String TXT_EXP		= Messages.get(Mob.class,"2");
+    protected static final String TXT_EXP_CHAMP		= Messages.get(Mob.class,"3");
 
 	public AiState SLEEPEING	= new Sleeping();
 	public AiState HUNTING		= new Hunting();
@@ -543,7 +539,7 @@ public abstract class Mob extends Char {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is sleeping", name );
+			return Messages.format( Messages.get(this,"4"), name );
 		}
 	}
 	
@@ -580,7 +576,7 @@ public abstract class Mob extends Char {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is wandering", name );
+			return Messages.format( Messages.get(this,"5"), name );
 		}
 	}
 	
@@ -619,7 +615,7 @@ public abstract class Mob extends Char {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is hunting", name );
+			return Messages.format( Messages.get(this,"6"), name );
 		}
 	}
 	
@@ -654,7 +650,7 @@ public abstract class Mob extends Char {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is fleeing", name );
+			return Messages.format( Messages.get(this,"7"), name );
 		}
 	}
 	
@@ -671,7 +667,7 @@ public abstract class Mob extends Char {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is passive", name );
+			return Messages.format( Messages.get(this,"8"), name );
 		}
 	}
 

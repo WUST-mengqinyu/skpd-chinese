@@ -41,8 +41,8 @@ import com.skpd.pixeldungeonskills.effects.TorchHalo;
 import com.skpd.pixeldungeonskills.effects.particles.FlameParticle;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfInvisibility;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Callback;
 import com.skpd.utils.PointF;
 import com.skpd.utils.Random;
@@ -142,7 +142,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public void showStatus( int color, String text, Object... args ) {
 		if (visible) {
 			if (args.length > 0) {
-				text = Utils.format( text, args );
+				text = Messages.format( text, args );
 			}
 			if (ch != null) {
 				FloatingText.show( x + width * 0.5f, y, ch.pos, text, color );

@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Amok extends FlavourBuff {
@@ -28,6 +29,6 @@ public class Amok extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Amok";
+		return Messages.get(this,"");
 	}
 }

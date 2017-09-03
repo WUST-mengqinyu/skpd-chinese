@@ -3,6 +3,7 @@ package com.skpd.pixeldungeonskills;
 
 import com.skpd.pixeldungeonskills.items.food.Food;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 import java.util.ArrayList;
 
@@ -37,46 +38,27 @@ public enum Difficulties {
     }
 
     public static final String[] EASY_DESC = {
-            "- Start with 2 extra rations.",
-            "- Start with 2 potions of healing.",
-            "- Start with 200 Gold.",
-            "- Mobs are Weak, do 25% less damage, take 10% more damage and have 15% less HP.",
-            "- Champion spawn rate set to 10%."
+            Messages.get(Difficulties.class,"eazy")
     };
 
     public static final String[] NORMAL_DESC = {
-            "- Mobs are standard.",
-            "- Champion spawn rate set to 20%."
+            Messages.get(Difficulties.class,"nomal")
     };
 
     public static final String[] HARD_DESC = {
-            "- Potion of healing heals 75% max hp.",
-            "- Mobs are Strong, do 10% extra damage, take 10% less damage and have 20% more HP.",
-            "- Champion spawn rate set to 30%."
+            Messages.get(Difficulties.class,"hard")
     };
 
     public static final String[] HELL_DESC = {
-            "- Potion of healing heals 50% max hp.",
-            "- Mobs are Immortal, do 25% more damage, take 20% less damage and have 35% more HP.",
-            "- Champion spawn rate set to 40%.",
-            "- Hero starts with 4 less maxHP.",
-            "- Hero gains 1 less maxHP on leveling."
+            Messages.get(Difficulties.class,"hell")
     };
 
     public static final String[] SUICIDE_DESC = {
-            "- Potion of healing heals 25% max hp.",
-            "- Mobs are Godlike, do 45% more damage, take 30% less damage and have 60% more HP.",
-            "- Champion spawn rate set to 50%.",
-            "- Hero starts with 8 less maxHP.",
-            "- Hero gains 3 less maxHP on leveling."
+            Messages.get(Difficulties.class,"suicide")
     };
 
     public static final String[] JUST_KILL_ME_DESC = {
-            "- Potion of healing heals 10% max hp.",
-            "- Mobs are Deities, do 60% more damage, take 40% less damage and have 75% more HP.",
-            "- Champion spawn rate set to 100%.",
-            "- Hero starts with 8 less maxHP.",
-            "- Hero gains 3 less maxHP on leveling."
+            Messages.get(Difficulties.class,"justkillme")
     };
 
 
@@ -84,17 +66,17 @@ public enum Difficulties {
 
         switch (this) {
             case EASY:
-                return "Easy";
+                return Messages.get(Difficulties.class,"rate1");
             case NORMAL:
-                return "Normal";
+                return Messages.get(Difficulties.class,"rate2");
             case HARD:
-                return "Hard";
+                return Messages.get(Difficulties.class,"rate3");
             case HELL:
-                return "Hell!";
+                return Messages.get(Difficulties.class,"rate4");
             case SUICIDE:
-                return "Suicide!!";
+                return Messages.get(Difficulties.class,"rate5");
             case JUSTKILLME:
-                return "Just Kill Me";
+                return Messages.get(Difficulties.class,"rate6");
         }
         return "";
     }
@@ -122,17 +104,17 @@ public enum Difficulties {
 
         switch (this) {
             case EASY:
-                return "Weak ";
+                return Messages.get(Difficulties.class,"mob1");
             case NORMAL:
                 return "";
             case HARD:
-                return "Strong ";
+                return Messages.get(Difficulties.class,"mob3");
             case HELL:
-                return "Immortal ";
+                return Messages.get(Difficulties.class,"mob4");
             case SUICIDE:
-                return "Godlike ";
+                return Messages.get(Difficulties.class,"mob5");
             case JUSTKILLME:
-                return "Deity ";
+                return Messages.get(Difficulties.class,"mob6");
         }
         return "";
     }
@@ -278,10 +260,10 @@ public enum Difficulties {
         switch (this) {
             case EASY:
             case NORMAL:
-                return "Your wounds heal completely.";
+                return Messages.get(this,"heal1");
 
         }
-        return "Your wounds are partially healed.";
+        return Messages.get(this,"heal2");
     }
 
 
@@ -443,11 +425,11 @@ public enum Difficulties {
         switch(isNight)
         {
             case ALWAYS_DAY:
-                return "Always Day";
+                return Messages.get(this,"day");
             case ALWAYS_NIGHT:
-                return "Always Night";
+                return Messages.get(this,"night");
             case DEFAULT:
-                return "Day/Night";
+                return Messages.get(this,"default");
         }
         return "error";
     }

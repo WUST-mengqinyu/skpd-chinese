@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Arrow;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class Fletching extends Buff {
@@ -39,7 +40,7 @@ public class Fletching extends Buff {
                 return true;
             }
 
-                    GLog.p("Fletched an arrow!");
+                    GLog.p(Messages.get(this,"1"));
                     Arrow arrow = new Arrow();
                     if(arrow.collect()  == false)
                         Dungeon.level.drop( arrow, hero.pos ).sprite.drop();

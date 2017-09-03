@@ -33,6 +33,7 @@ import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.weapon.melee.*;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Plant;
 
 public class WaterOfTransmutation extends WellWater {
@@ -218,8 +219,7 @@ public class WaterOfTransmutation extends WellWater {
 	
 	@Override
 	public String tileDesc() {
-		return 
-			"Power of change radiates from the water of this well. " +
-			"Throw an item into the well to turn it into something else.";
+		return
+				Messages.get(this,"1");
 	}
 }

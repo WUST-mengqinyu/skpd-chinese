@@ -93,26 +93,24 @@ public class WndClass extends WndTabbed {
 		private static final int MARGIN	= 4;
 		private static final int GAP	= 4;
 		
-		private static final String DOT	= "\u007F";
-		
 		public float height;
 		public float width;
-		
+
 		public PerksTab() {
 			super();
-			
+
 			float dotWidth = 0;
-			
+
 			String[] items = cl.perks();
 			float pos = MARGIN;
-			
+
 			for (int i=0; i < items.length; i++) {
-				
+
 				if (i > 0) {
 					pos += GAP;
 				}
-				
-				BitmapText dot = PixelScene.createText( DOT, 6 );
+
+				BitmapText dot = PixelScene.createText( "-", 6 );
 				dot.x = MARGIN;
 				dot.y = pos;
 				if (dotWidth == 0) {
@@ -120,19 +118,19 @@ public class WndClass extends WndTabbed {
 					dotWidth = dot.width();
 				}
 				add( dot );
-				
+
 				RenderedTextMultiline item = PixelScene.renderMultiline( items[i], 6 );
-				item.setPos(dot.x + dotWidth,pos);
-				item.maxWidth ((int)(WIDTH - MARGIN * 2 - dotWidth));
+				item.maxWidth((int)(WIDTH - MARGIN * 2 - dotWidth));
+				item.setPos(dot.x + dotWidth, pos);
 				add( item );
-				
+
 				pos += item.height();
 				float w = item.width();
 				if (w > width) {
 					width = w;
 				}
 			}
-			
+
 			width += MARGIN + dotWidth;
 			height = pos + MARGIN;
 		}

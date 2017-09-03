@@ -33,6 +33,7 @@ import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
 import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -42,8 +43,8 @@ import com.skpd.utils.Random;
 
 public class Burning extends Buff implements Hero.Doom {
 
-	private static final String TXT_BURNS_UP		= "%s burns up!";
-	private static final String TXT_BURNED_TO_DEATH	= "You burned to death...";
+	private static final String TXT_BURNS_UP		= Messages.get(Burning.class,"1");
+	private static final String TXT_BURNED_TO_DEATH	= Messages.get(Burning.class,"2");
 	
 	private static final float DURATION = 8f;
 	
@@ -135,7 +136,7 @@ public class Burning extends Buff implements Hero.Doom {
 	
 	@Override
 	public String toString() {
-		return "Burning";
+		return Messages.get(this,"");
 	}
 
 	public static float duration( Char ch ) {

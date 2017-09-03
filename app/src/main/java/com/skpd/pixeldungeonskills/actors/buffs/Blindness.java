@@ -18,6 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Blindness extends FlavourBuff {
@@ -35,6 +36,6 @@ public class Blindness extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Blinded";
+		return Messages.get(this,"");
 	}
 }

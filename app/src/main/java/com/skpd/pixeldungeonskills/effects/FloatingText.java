@@ -81,14 +81,14 @@ public class FloatingText extends RenderedText {
 			cameraZoom = Camera.main.zoom;
 			PixelScene.chooseFont( 9, cameraZoom );
 			size(9 * (int)cameraZoom);
-			scale.set( PixelScene.scale );
+			scale.set( 1 /cameraZoom);
 		}
 
 		text( text );
 		hardlight( color );
 
-		this.x = PixelScene.align( x - width() / 2 );
-		this.y = y - height();
+		this.x = PixelScene.align( Camera.main, x - width() / 2);
+		this.y = PixelScene.align( Camera.main, y - height());
 		
 		timeLeft = LIFESPAN;
 	}
