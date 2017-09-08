@@ -29,6 +29,7 @@ import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
+import com.skpd.pixeldungeonskills.skills.Negotiations;
 import com.skpd.pixeldungeonskills.items.armor.ClothArmor;
 import com.skpd.pixeldungeonskills.items.armor.LeatherArmor;
 import com.skpd.pixeldungeonskills.items.food.ChargrilledMeat;
@@ -40,6 +41,7 @@ import com.skpd.pixeldungeonskills.items.weapon.melee.Mace;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.FrostBow;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
@@ -72,20 +74,13 @@ public class WndMercs extends WndTabbed {
 
     protected static final int TAB_WIDTH	= 25;
 
-    private static final String TXT_TITLE =  "Hire A Mercenary";
+    private static final String TXT_TITLE =  Messages.get(Negotiations.class,"1");
 
-    private static final String TXT_MERCENARIES_DETAIL = "Mercenaries will fight for you in exchange for a fee.\n \n"
-            + "There are five mercenary classes each with strengths and weaknesses. \n"
-            + "Each class has one skill with the exception of the Archer Maiden who knows two.\n"
-            + "Skills level with the mercenary and are capped at level 3. \n"
-            + "Mercenaries have the same level as the hero and level with him. \n \n"
-            + "You can unequip an item from a merc by tapping on it and holding down. \n \n"
-            + "Mercs will consume any healing potion equipped on them if about to die. \n \n"
-            + "You cannot hire the mercenary equivalent of your class.";
+    private static final String TXT_MERCENARIES_DETAIL = Messages.get(WndMercs.class,"1");
 
 
 
-    private static final String TXT_NO_GOLD = "Insufficient Gold";
+    private static final String TXT_NO_GOLD = "";
 
     public static int maxHeight = 0;
 

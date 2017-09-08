@@ -1,11 +1,11 @@
 package com.skpd.pixeldungeonskills.messages;
 
 public enum Languages {
-    ENGLISH("english",      "", Status.REVIEWED, null, null),
+    ENGLISH("english",      "",  null),
 
     //RUSSIAN("русский",      "ru", Status.REVIEWED, new String[]{"ConsideredHamster", "Inevielle", "yarikonline"}, new String[]{"AttHawk46", "HerrGotlieb", "Shamahan", "Un_logic"}),
     //KOREAN("한국어",         "ko", Status.REVIEWED, new String[]{"Flameblast12"}, new String[]{"Ddojin0115", "Eeeei", "Lsiebnie", "Linterpreteur", "WondarRabb1t"}),
-    CHINESE("中文",          "zh", Status.REVIEWED, new String[]{"雷霆"}, new String[]{});
+    CHINESE("中文",          "zh",  new String[]{"雷霆"});
     //FINNISH("suomi", 		"fi", Status.REVIEWED, new String[]{"TenguTheKnight"}, null ),
 
     //GERMAN("deutsch",       "de", Status.UNREVIEWED, new String[]{"Dallukas", "KrystalCroft", "Wuzzy", "Zap0", "Davedude" }, new String[]{"DarkPixel", "ErichME", "Sarius", "Sorpl3x", "ThunfischGott", "Oragothen"}),
@@ -17,24 +17,13 @@ public enum Languages {
     //PORTUGUESE("português", "pt", Status.INCOMPLETE, new String[]{"Matheus208"}, new String[]{"ChainedFreaK", "JST", "TDF2001", "Try31"}),
     //POLISH("polski",        "pl", Status.INCOMPLETE, null, new String[]{"Darden", "Deksippos", "MJedi", "Scharnvirk", "Shmilly", "Dusakus", "Kuadziw", "Michaub", "Ozziezombie", "Szymex73"});
 
-    public enum Status{
-        //below 60% complete languages are not added.
-        INCOMPLETE, //60-99% complete
-        UNREVIEWED, //100% complete
-        REVIEWED    //100% reviewed
-    }
-
     private String name;
     private String code;
-    private Status status;
-    private String[] reviewers;
     private String[] translators;
 
-    Languages(String name, String code, Status status, String[] reviewers, String[] translators){
+    Languages(String name, String code, String[] translators){
         this.name = name;
         this.code = code;
-        this.status = status;
-        this.reviewers = reviewers;
         this.translators = translators;
     }
 
@@ -46,22 +35,9 @@ public enum Languages {
         return code;
     }
 
-    public Status status(){
-        return status;
-    }
-
-    public String[] reviewers() {
-        if (reviewers == null) return new String[]{};
-        else return reviewers.clone();
-    }
-
     public String[] translators() {
         if (translators == null) return new String[]{};
         else return translators.clone();
-    }
-
-    public static Languages matchLocale(){
-        return CHINESE;
     }
 
     public static Languages matchCode(String code){

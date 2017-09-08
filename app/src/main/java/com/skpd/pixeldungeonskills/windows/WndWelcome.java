@@ -17,11 +17,12 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Icons;
 
 public class WndWelcome extends WndTitledMessage {
 
-	private static final String TXT_TITLE =  "Welcome";
+	private static final String TXT_TITLE = Messages.get(WndWelcome.class,"");
 
 	public WndWelcome(String message) {
 		super( Icons.SKILLS.get(), TXT_TITLE, message );

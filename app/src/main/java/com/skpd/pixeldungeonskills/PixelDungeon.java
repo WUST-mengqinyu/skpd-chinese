@@ -205,10 +205,7 @@ public class PixelDungeon extends Game {
 		String code = Preferences.INSTANCE.getString(Preferences.KEY_LANG, null);
 		if (code == null){
 			Languages lang = Languages.CHINESE;
-			if (lang.status() == Languages.Status.REVIEWED)
-				return lang;
-			else
-				return Languages.ENGLISH;
+			return lang;
 		}
 		else return Languages.matchCode(code);
 	}

@@ -40,6 +40,7 @@ public class Messages {
 
     private static String[] prop_files = new String[]{
             "com.skpd.pixeldungeonskills.messages.actors.actors",
+            "com.skpd.pixeldungeonskills.messages.skills.skills",
             "com.skpd.pixeldungeonskills.messages.items.items",
             "com.skpd.pixeldungeonskills.messages.levels.levels",
             "com.skpd.pixeldungeonskills.messages.plants.plants",

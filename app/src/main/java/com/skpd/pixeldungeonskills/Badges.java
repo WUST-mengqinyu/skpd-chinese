@@ -17,15 +17,6 @@
  */
 package com.skpd.pixeldungeonskills;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-
 import com.skpd.noosa.Game;
 import com.skpd.pixeldungeonskills.actors.mobs.Acidic;
 import com.skpd.pixeldungeonskills.actors.mobs.Albino;
@@ -47,6 +38,15 @@ import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Callback;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 public class Badges {
 	
@@ -143,7 +143,9 @@ public class Badges {
 		GAMES_PLAYED_4( "2000 games played", 63, true ),
 		HAPPY_END( "Happy end", 38 ),
 		CHAMPION( "Challenge won", 39, true ),
-		SUPPORTER( "Thanks for your support!", 31, true );
+		SUPPORTER( "Thanks for your support!", 31, true ),
+		SUPPORTER2( "Thanks for your support!", 31, true );
+
 		
 		public boolean meta;
 		
@@ -850,6 +852,12 @@ public class Badges {
 	
 	public static void validateChampion() {
 		displayBadge( Badge.CHAMPION );
+	}
+
+	public static void validateSupporter2() {
+		loadGlobal();
+		global.add(Badge.SUPPORTER2);
+		saveNeeded = true;
 	}
 	
 	private static void displayBadge( Badge badge ) {

@@ -1,11 +1,9 @@
 package com.skpd.pixeldungeonskills.windows;
 
+import com.skpd.noosa.Image;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
-import com.skpd.pixeldungeonskills.messages.Messages;
-import com.skpd.pixeldungeonskills.ui.Icons;
-import com.skpd.noosa.Image;
 
 /**
  * Created by badcw on 2017/8/18.
@@ -26,21 +24,10 @@ public class LanguageButton extends Button {
     protected void createChildren() {
         super.createChildren();
 
-        image = Icons.get(Icons.EXIT);
+        image=new Image( Assets.AMULET );
         add( image );
-        updateIcon();
     }
 
-    private void updateIcon(){
-        switch(Messages.lang().status()){
-            case INCOMPLETE:
-                image.tint(1, 0, 0, .5f);
-                break;
-            case UNREVIEWED:
-                image.tint(1, .5f, 0, .5f);
-                break;
-        }
-    }
 
     @Override
     protected void layout() {
@@ -59,7 +46,6 @@ public class LanguageButton extends Button {
     @Override
     protected void onTouchUp() {
         image.resetColor();
-        updateIcon();
     }
 
     @Override

@@ -41,7 +41,7 @@ import com.skpd.pixeldungeonskills.actors.mobs.npcs.Blacksmith;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Ghost;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Wandmaker;
-import com.skpd.pixeldungeonskills.actors.skills.CurrentSkills;
+import com.skpd.pixeldungeonskills.skills.CurrentSkills;
 import com.skpd.pixeldungeonskills.items.Ankh;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.potions.Potion;

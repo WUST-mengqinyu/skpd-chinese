@@ -162,11 +162,10 @@ public class TitleScene extends PixelScene {
 		btnExit.setPos( w - btnExit.width(), 0 );
 		add( btnExit );
 
-        if(VersionNewsInfo.haveMessage())
-        {
-            add(VersionNewsInfo.getWelcomeWindow());
-        }
-
+		if(VersionNewsInfo.useable) {
+			add(VersionNewsInfo.getWelcomeWindow());
+			VersionNewsInfo.useable=false;
+		}
 		fadeIn();
 	}
 	

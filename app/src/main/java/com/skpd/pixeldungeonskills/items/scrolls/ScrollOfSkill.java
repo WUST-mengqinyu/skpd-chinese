@@ -17,7 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.items.scrolls;
 
-import com.skpd.pixeldungeonskills.actors.skills.Skill;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class ScrollOfSkill extends Scroll {

@@ -18,9 +18,9 @@
 package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.actors.skills.BranchSkill;
-import com.skpd.pixeldungeonskills.actors.skills.Negotiations;
-import com.skpd.pixeldungeonskills.actors.skills.Skill;
+import com.skpd.pixeldungeonskills.skills.BranchSkill;
+import com.skpd.pixeldungeonskills.skills.Negotiations;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.SkillSprite;

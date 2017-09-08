@@ -38,7 +38,6 @@ import com.skpd.input.Keys;
 import com.skpd.input.Touchscreen;
 import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.audio.Sample;
-import com.skpd.pixeldungeonskills.VersionNewsInfo;
 import com.skpd.utils.BitmapCache;
 import com.skpd.utils.SystemTime;
 
@@ -64,8 +63,6 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	
 	public static String version;
     public static int versionBuild;
-	public static String vanillaVersion = "1.1";
-
 	// Current scene
 	protected Scene scene;
 	// New scene we are going to switch to
@@ -116,8 +113,6 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 			version = "???";
             versionBuild = 0;
 		}
-
-        VersionNewsInfo.alreadySeen = false; // Static variables tend to stick between games
 
 		setVolumeControlStream( AudioManager.STREAM_MUSIC );
 

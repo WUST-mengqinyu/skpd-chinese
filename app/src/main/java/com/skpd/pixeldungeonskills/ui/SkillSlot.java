@@ -19,7 +19,7 @@ package com.skpd.pixeldungeonskills.ui;
 
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.ui.Button;
-import com.skpd.pixeldungeonskills.actors.skills.Skill;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.SkillSprite;
 

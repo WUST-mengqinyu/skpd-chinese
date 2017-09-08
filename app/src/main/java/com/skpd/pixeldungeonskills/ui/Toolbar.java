@@ -28,7 +28,7 @@ import com.skpd.pixeldungeonskills.DungeonTilemap;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.mobs.ColdGirl;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
-import com.skpd.pixeldungeonskills.actors.skills.CurrentSkills;
+import com.skpd.pixeldungeonskills.skills.CurrentSkills;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.levels.Level;
