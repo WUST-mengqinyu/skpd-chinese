@@ -231,11 +231,9 @@ public class Badges {
 	
 	public static void saveGlobal() {
 		
-		Bundle bundle = null;
-		
 		if (saveNeeded) {
 			
-			bundle = new Bundle();
+			Bundle bundle = new Bundle();
 			store( bundle, global );
 			
 			try {
@@ -244,7 +242,7 @@ public class Badges {
 				output.close();
 				saveNeeded = false;
 			} catch (IOException e) {
-				
+				PixelDungeon.reportException(e);
 			}
 		}
 	}

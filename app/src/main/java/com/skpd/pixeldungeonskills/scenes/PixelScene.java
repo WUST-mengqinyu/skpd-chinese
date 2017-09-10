@@ -351,8 +351,8 @@ public class PixelScene extends Scene {
 			super(
 					(int) (Game.width - Math.ceil(Game.width / zoom) * zoom) / 2,
 					(int) (Game.height - Math.ceil(Game.height / zoom) * zoom) / 2,
-					(int) Math.ceil(Game.width / zoom), (int) Math
-							.ceil(Game.height / zoom), zoom);
+					(int) Math.ceil(Game.width / zoom),
+					(int) Math.ceil(Game.height / zoom), zoom);
 			fullScreen = true;
 		}
 

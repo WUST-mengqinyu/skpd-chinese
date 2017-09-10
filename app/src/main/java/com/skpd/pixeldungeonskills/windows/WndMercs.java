@@ -22,6 +22,7 @@ import android.graphics.RectF;
 import com.skpd.input.Touchscreen;
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.TouchArea;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.Dungeon;
@@ -29,7 +30,6 @@ import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
-import com.skpd.pixeldungeonskills.skills.Negotiations;
 import com.skpd.pixeldungeonskills.items.armor.ClothArmor;
 import com.skpd.pixeldungeonskills.items.armor.LeatherArmor;
 import com.skpd.pixeldungeonskills.items.food.ChargrilledMeat;
@@ -41,9 +41,11 @@ import com.skpd.pixeldungeonskills.items.weapon.melee.Mace;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.FrostBow;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Languages;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.skills.Negotiations;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.sprites.SkillSprite;
@@ -80,7 +82,7 @@ public class WndMercs extends WndTabbed {
 
 
 
-    private static final String TXT_NO_GOLD = "";
+    private static final String TXT_NO_GOLD = Messages.get(WndMercs.class,"2");
 
     public static int maxHeight = 0;
 
@@ -117,7 +119,16 @@ public class WndMercs extends WndTabbed {
         }
         else
         {
-            Component titlebar = new IconTitle(new SkillSprite(getImage(mode)), "Hire " + (mode == Mode.ARCHER || mode == Mode.ARCHERMAIDEN ? "An " : "A ") +   getName(mode));
+            Component titlebar1 = new IconTitle(new SkillSprite(getImage(mode)), "Hire " + (mode == Mode.ARCHER || mode == Mode.ARCHERMAIDEN ? "An " : "A ") +   getName(mode));
+            Component titlebar2 = new IconTitle(new SkillSprite(getImage(mode)),"雇佣一个" + getName(mode));
+            Component titlebar;
+
+            if (Messages.lang()== Languages.ENGLISH){
+                titlebar=titlebar1;
+            }else {
+                titlebar=titlebar2;
+            }
+
             titlebar.setRect(0, 0, width, 0);
             add(titlebar);
 
@@ -136,9 +147,8 @@ public class WndMercs extends WndTabbed {
 
             pos = (int) info.top() + (int) info.height() + GAP * 2;
 
-            BitmapText stats = PixelScene.createText( Utils.capitalize(getName(mode) + " Stats" ), 9 );
+            RenderedText stats = PixelScene.renderText( Utils.capitalize(getName(mode) + " Stats" ), 9 );
             stats.hardlight( TITLE_COLOR );
-            stats.measure();
             add( stats );
 
             stats.y = pos;
@@ -692,11 +702,11 @@ public class WndMercs extends WndTabbed {
     {
         switch (mode)
         {
-            case BRUTE: return "Brute";
-            case WIZARD: return "Wizard";
-            case THIEF: return "Thief";
-            case ARCHER: return "Archer";
-            case ARCHERMAIDEN: return "ArcherMaiden";
+            case BRUTE: return Messages.get(Negotiations.class,"2");
+            case WIZARD: return Messages.get(Negotiations.class,"4");
+            case THIEF: return Messages.get(Negotiations.class,"3");
+            case ARCHER: return Messages.get(Negotiations.class,"5");
+            case ARCHERMAIDEN: return Messages.get(Negotiations.class,"6");
         }
 
         return "Brute";

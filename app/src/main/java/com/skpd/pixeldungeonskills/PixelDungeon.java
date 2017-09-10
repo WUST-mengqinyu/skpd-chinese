@@ -202,12 +202,7 @@ public class PixelDungeon extends Game {
 	}
 
 	public static Languages language() {
-		String code = Preferences.INSTANCE.getString(Preferences.KEY_LANG, null);
-		if (code == null){
-			Languages lang = Languages.CHINESE;
-			return lang;
-		}
-		else return Languages.matchCode(code);
+		return Languages.matchCode();
 	}
 
 	public static void classicFont(boolean classic){
@@ -289,7 +284,8 @@ public class PixelDungeon extends Game {
 			immersiveModeChanged = false;
 		}
 	}
-	
+
+
 	@SuppressLint("NewApi")
 	public static void updateImmersiveMode() {
 		if (android.os.Build.VERSION.SDK_INT >= 19) {

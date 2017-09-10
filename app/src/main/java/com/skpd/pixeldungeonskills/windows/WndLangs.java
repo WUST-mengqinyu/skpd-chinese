@@ -9,6 +9,7 @@ import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.scenes.TitleScene;
 import com.skpd.pixeldungeonskills.ui.NewRedButton;
+import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
 
@@ -33,18 +34,13 @@ public class WndLangs extends Window {
 
         final ArrayList<Languages> langs = new ArrayList<>(Arrays.asList(Languages.values()));
 
-        Languages nativeLang = Languages.CHINESE;
-        langs.remove(nativeLang);
-        //move the native language to the top.
-        langs.add(0, nativeLang);
-
         final Languages currLang = Messages.lang();
 
         //language buttons layout
         int y = 0;
         for (int i = 0; i < langs.size(); i++){
             final int langIndex = i;
-            NewRedButton btn = new NewRedButton(Messages.titleCase(langs.get(i).nativeName())){
+            RedButton btn = new RedButton(Messages.titleCase(langs.get(i).nativeName())){
                 @Override
                 protected void onClick() {
                     super.onClick();
@@ -63,7 +59,11 @@ public class WndLangs extends Window {
                 }
             };
 
-            btn.textColor(TITLE_COLOR);
+            if (currLang == langs.get(i)){
+                btn.textColor(TITLE_COLOR);
+            } else {
+                btn.textColor(0x999999);
+            }
             btn.setSize(BTN_WIDTH, BTN_HEIGHT);
             if (PixelDungeon.landscape() && i % 2 == 1){
                 btn.setPos(BTN_WIDTH+1, y-15);

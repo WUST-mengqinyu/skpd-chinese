@@ -40,12 +40,9 @@ public enum Languages {
         else return translators.clone();
     }
 
-    public static Languages matchCode(String code){
-        for (Languages lang : Languages.values()){
-            if (lang.code().equals(code))
-                return lang;
-        }
-        return ENGLISH;
+
+    public static Languages matchCode(){
+        return CHINESE;
     }
 
 }

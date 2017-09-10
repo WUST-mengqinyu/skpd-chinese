@@ -7,6 +7,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Cripple;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.skills.Endurance;
 import com.skpd.pixeldungeonskills.skills.MercArcherSkillA;
 import com.skpd.pixeldungeonskills.skills.MercArcherSkillB;
@@ -224,7 +225,7 @@ public class HiredMerc extends NPC {
     }
 
     public static boolean archerMaidenUnlocked = false;
-    public static final String MAIDEN_UNLOCK_BY= "Please consider donating to unlock this feature.";
+    public static final String MAIDEN_UNLOCK_BY= Messages.get(HiredMerc.class,"unlock");
     public static final int COST_RATE = 15;
 
     public static final String TXT_LEVEL_UP = "Stronger by the second...";

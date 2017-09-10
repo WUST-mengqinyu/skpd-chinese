@@ -79,6 +79,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	
 	public static float timeScale = 1f;
 	public static float elapsed = 0f;
+	public static float timeTotal = 0f;
 	
 	protected GLSurfaceView view;
 	protected SurfaceHolder holder;
@@ -258,7 +259,25 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 	public static void resetScene() {
 		switchScene( instance.sceneClass );
 	}
-	
+
+	protected void switchScene() {
+
+		Camera.reset();
+
+		if (scene != null) {
+			scene.destroy();
+		}
+		scene = requestedScene;
+		if (onChange != null) onChange.beforeCreate();
+		scene.create();
+		if (onChange != null) onChange.afterCreate();
+		onChange = null;
+
+		Game.elapsed = 0f;
+		Game.timeScale = 1f;
+		Game.timeTotal = 0f;
+	}
+
 	public static void switchScene( Class<? extends Scene> c ) {
 		instance.sceneClass = c;
 		instance.requestedReset = true;
@@ -293,22 +312,9 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		scene.draw();
 	}
 	
-	protected void switchScene() {
-
-		com.skpd.noosa.Camera.reset();
-		
-		if (scene != null) {
-			scene.destroy();
-		}
-		scene = requestedScene;
-		scene.create();
-		
-		Game.elapsed = 0f;
-		Game.timeScale = 1f;
-	}
-	
 	protected void update() {
 		Game.elapsed = Game.timeScale * step * 0.001f;
+		Game.timeTotal += Game.elapsed;
 		
 		synchronized (motionEvents) {
 			Touchscreen.processTouchEvents( motionEvents );
@@ -320,7 +326,7 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		}
 		
 		scene.update();		
-		com.skpd.noosa.Camera.updateAll();
+		Camera.updateAll();
 	}
 	
 	public static void vibrate( int milliseconds ) {

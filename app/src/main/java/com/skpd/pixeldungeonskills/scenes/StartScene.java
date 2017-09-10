@@ -39,7 +39,7 @@ import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.Icons;
-import com.skpd.pixeldungeonskills.ui.NewRedButton;
+import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.ResumeButton;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -370,7 +370,7 @@ public class StartScene extends PixelScene {
 		PixelDungeon.switchNoFade( TitleScene.class );
 	}
 	
-	private static class GameButton extends NewRedButton {
+	private static class GameButton extends RedButton {
 		
 		private static final int SECONDARY_COLOR_N	= 0xCACFC2;
 		private static final int SECONDARY_COLOR_H	= 0xFFFF88;
