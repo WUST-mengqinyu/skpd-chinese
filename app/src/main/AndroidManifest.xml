@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.skpd.lightning"
-	android:versionCode="503"
-	android:versionName="1.3beta"
+	android:versionCode="504"
+	android:versionName="1.3beta2"
 	android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.VIBRATE"/>
