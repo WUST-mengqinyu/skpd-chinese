@@ -20,7 +20,6 @@ package com.skpd.pixeldungeonskills.windows;
 import android.graphics.RectF;
 
 import com.skpd.input.Touchscreen;
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.TouchArea;
@@ -57,6 +56,13 @@ import com.skpd.pixeldungeonskills.utils.Utils;
 
 import java.util.ArrayList;
 
+import static android.R.attr.level;
+import static com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc.MERC_TYPES.Archer;
+import static com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc.MERC_TYPES.ArcherMaiden;
+import static com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc.MERC_TYPES.Brute;
+import static com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc.MERC_TYPES.Thief;
+import static com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc.MERC_TYPES.Wizard;
+
 public class WndMercs extends WndTabbed {
 
 	public static enum Mode {
@@ -80,11 +86,20 @@ public class WndMercs extends WndTabbed {
 
     private static final String TXT_MERCENARIES_DETAIL = Messages.get(WndMercs.class,"1");
 
-
-
     private static final String TXT_NO_GOLD = Messages.get(WndMercs.class,"2");
 
     public static int maxHeight = 0;
+
+    public static int brute1=100;
+    public static int brute2=25;
+    public static int wizard1=80;
+    public static int wizard2=20;
+    public static int thief1=75;
+    public static int thief2=15;
+    public static int archer1=90;
+
+    public static String cost1;
+    public static String cost2;
 
     public WndMercs(final Mode mode)
     {
@@ -118,8 +133,7 @@ public class WndMercs extends WndTabbed {
             resize(width,  maxHeight);
         }
         else
-        {
-            Component titlebar1 = new IconTitle(new SkillSprite(getImage(mode)), "Hire " + (mode == Mode.ARCHER || mode == Mode.ARCHERMAIDEN ? "An " : "A ") +   getName(mode));
+        {   Component titlebar1 = new IconTitle(new SkillSprite(getImage(mode)), "Hire " + (mode == Mode.ARCHER || mode == Mode.ARCHERMAIDEN ? "An " : "A ") +   getName(mode));
             Component titlebar2 = new IconTitle(new SkillSprite(getImage(mode)),"雇佣一个" + getName(mode));
             Component titlebar;
 
@@ -130,13 +144,12 @@ public class WndMercs extends WndTabbed {
             }
 
             titlebar.setRect(0, 0, width, 0);
+
             add(titlebar);
 
             resize(width, (int) titlebar.bottom());
 
-
             pos = (int) titlebar.bottom() + GAP * 2;
-
 
             RenderedTextMultiline info = PixelScene.renderMultiline(6);
             add(info);
@@ -147,26 +160,36 @@ public class WndMercs extends WndTabbed {
 
             pos = (int) info.top() + (int) info.height() + GAP * 2;
 
-            RenderedText stats = PixelScene.renderText( Utils.capitalize(getName(mode) + " Stats" ), 9 );
-            stats.hardlight( TITLE_COLOR );
-            add( stats );
+            switch (mode) {
+                case BRUTE:
+                    cost1 = String.valueOf(brute1);
+                    cost2 = String.valueOf(brute2);
+                    break;
+                case WIZARD:
+                    cost1 = String.valueOf(wizard1);
+                    cost2 = String.valueOf(wizard2);
+                    break;
+                case THIEF:
+                    cost1 = String.valueOf(thief1);
+                    cost2 = String.valueOf(thief2);
+                    break;
+                case ARCHER:
+                    cost1 = String.valueOf(archer1);
+                    cost2 = String.valueOf(wizard2);
+                    break;
+                case ARCHERMAIDEN:
+                    cost1 = String.valueOf(archer1);
+                    cost2 = String.valueOf(brute2);
+                    break;
+            }
 
-            stats.y = pos;
+            statSlot("health",getHealth(level,mode));
+            statSlot(Messages.get(this,"gold"), getGoldCost(mode) );
+            pos += GAP;
 
-            pos = stats.y + stats.height() + GAP;
 
-            RenderedTextMultiline infoStats = PixelScene.renderMultiline(6);
-            add(infoStats);
-
-            infoStats.text(getMercStats(mode));
-            infoStats.maxWidth (width);
-            infoStats.setPos(0,pos);
-
-            pos = infoStats.top() + infoStats.height() + 2 * GAP;
-
-            BitmapText equipment = PixelScene.createText( Utils.capitalize("Standard Layout" ), 9 );
+            RenderedText equipment = PixelScene.renderText( Utils.capitalize("Standard Layout" ), 9 );
             equipment.hardlight( TITLE_COLOR );
-            equipment.measure();
             add( equipment );
 
             equipment.y = pos;
@@ -626,6 +649,25 @@ public class WndMercs extends WndTabbed {
 
     }
 
+    private void statSlot( String label, String value ) {
+
+        RenderedText txt = PixelScene.renderText( label, 6 );
+        txt.y = pos;
+        add( txt );
+
+        txt = PixelScene.renderText( value, 6 );
+        txt.x = PixelScene.align( 30 );
+        txt.y = pos;
+        PixelScene.align(txt);
+        add( txt );
+
+        pos += GAP + txt.baseLine();
+    }
+
+    private void statSlot( String label, int value ) {
+        statSlot( label, Integer.toString( value ) );
+    }
+
     private String getMercDetails(Mode mode)
     {
         switch(mode)
@@ -636,8 +678,7 @@ public class WndMercs extends WndTabbed {
             case ARCHER: return "Archers are physically weak so they strike from a distance. Chance of crippling enemies.\n \n";
             case ARCHERMAIDEN: return "Archer Maidens are elite Archers. Only the select few reach this rank.\n \n";
         }
-
-        return "Brutes are strong mercenaries who rely in physical fitness.\n \n";
+        return null;
     }
 
     private String getMercStats(Mode mode)
@@ -716,28 +757,42 @@ public class WndMercs extends WndTabbed {
     {
         switch (mode)
         {
-            case BRUTE: return HiredMerc.MERC_TYPES.Brute;
-            case WIZARD: return HiredMerc.MERC_TYPES.Wizard;
-            case THIEF: return HiredMerc.MERC_TYPES.Thief;
-            case ARCHER: return HiredMerc.MERC_TYPES.Archer;
-            case ARCHERMAIDEN: return HiredMerc.MERC_TYPES.ArcherMaiden;
+            case BRUTE: return Brute;
+            case WIZARD: return Wizard;
+            case THIEF: return Thief;
+            case ARCHER: return Archer;
+            case ARCHERMAIDEN: return ArcherMaiden;
         }
 
-        return HiredMerc.MERC_TYPES.Brute;
+        return Brute;
     }
 
     private int getGoldCost(Mode mode)
     {
         switch (mode)
         {
-            case BRUTE: return 100 + Dungeon.hero.lvl * 25;
-            case WIZARD: return 80 + Dungeon.hero.lvl * 20;
-            case THIEF: return 75 + Dungeon.hero.lvl * 15;
-            case ARCHER: return 90 + Dungeon.hero.lvl * 20;
-            case ARCHERMAIDEN: return 90 + Dungeon.hero.lvl * 25;
+            case BRUTE: return brute1 + Dungeon.hero.lvl * brute2;
+            case WIZARD: return wizard1 + Dungeon.hero.lvl * wizard2;
+            case THIEF: return thief1 + Dungeon.hero.lvl * thief2;
+            case ARCHER: return archer1 + Dungeon.hero.lvl * wizard2;
+            case ARCHERMAIDEN: return archer1 + Dungeon.hero.lvl * brute2;
         }
 
         return 0;
+    }
+
+    public int getHealth(int level,Mode mode)
+    {
+        switch (mode)
+        {
+            case BRUTE: return 20 + level * 3;
+            case WIZARD: return 10 + level;
+            case THIEF: return 15 + level * 2;
+            case ARCHER: return 15 + level * 2;
+            case ARCHERMAIDEN: return 17 + level * 2;
+        }
+
+        return 1;
     }
 
     @Override
@@ -791,44 +846,6 @@ public class WndMercs extends WndTabbed {
                 icon.frame( frame );
                 icon.y = y;
             }
-        }
-    }
-
-    private static class MercenaryTitle extends Component {
-
-        private static final int GAP	= 2;
-
-        private SkillSprite image;
-        private BitmapText title;
-
-
-        public MercenaryTitle(int image, String name) {
-
-
-
-            this.image = new SkillSprite(image);
-
-
-            title = PixelScene.createText( Utils.capitalize(name ), 9 );
-            title.hardlight( TITLE_COLOR );
-            title.measure();
-            add( title );
-            add(this.image);
-
-        }
-
-        @Override
-        protected void layout() {
-
-            image.x = 0;
-            image.y = Math.max( 0, title.height() + GAP - image.height );
-
-            title.x = image.width + GAP;
-            title.y = image.height - GAP - title.baseLine();
-
-
-
-            height = image.y + image.height();
         }
     }
 

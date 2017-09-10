@@ -19,7 +19,6 @@ package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.gltextures.SmartTexture;
 import com.skpd.gltextures.TextureCache;
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Group;
 import com.skpd.noosa.Image;
 import com.skpd.noosa.RenderedText;
@@ -109,10 +108,9 @@ public class WndHero extends WndTabbed {
 			
 			Hero hero = Dungeon.hero; 
 
-			BitmapText title = PixelScene.createText( 
+			RenderedText title = PixelScene.renderText(
 				Utils.format( TXT_TITLE, hero.lvl, hero.className() ).toUpperCase( Locale.ENGLISH ), 9 );
 			title.hardlight( TITLE_COLOR );
-			title.measure();
 			add( title );
 			
 			RedButton btnCatalogus = new RedButton( TXT_CATALOGUS ) {

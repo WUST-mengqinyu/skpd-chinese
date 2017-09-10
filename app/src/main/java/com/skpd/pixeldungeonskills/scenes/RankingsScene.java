@@ -201,7 +201,7 @@ public class RankingsScene extends PixelScene {
 			position = new BitmapText( PixelScene.font1x );
 			add( position );
 			
-			desc = renderMultiline( 9 );
+			desc = renderMultiline( 5 );
 			add( desc );
 			
 			classIcon = new Image();

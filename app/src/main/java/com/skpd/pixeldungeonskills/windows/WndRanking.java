@@ -53,7 +53,7 @@ public class WndRanking extends WndTabbed {
 	private static final String TXT_BADGES	= "Badges";
 	
 	private static final int WIDTH			= 112;
-	private static final int HEIGHT			= 134;
+	private static final int HEIGHT			= 150;
 	
 	private static final int TAB_WIDTH	= 40;
 	
