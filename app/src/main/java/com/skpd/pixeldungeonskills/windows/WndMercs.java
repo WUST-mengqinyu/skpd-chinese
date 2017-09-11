@@ -543,7 +543,7 @@ public class WndMercs extends WndTabbed {
                         parent.add(new previewInformation(tmp, "Archer Maiden", HiredMerc.MAIDEN_UNLOCK_BY));
                         HiredMerc.archerMaidenUnlocked =true;
                         hide();
-                        GLog.h("解锁成功");
+                        GLog.h("解锁成功,在测试版中弓箭少女免费开放");
                     }
                 };
 

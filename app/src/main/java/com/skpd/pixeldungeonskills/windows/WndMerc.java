@@ -29,8 +29,6 @@ import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.Storage;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
-import com.skpd.pixeldungeonskills.skills.BranchSkill;
-import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.armor.Armor;
@@ -42,8 +40,11 @@ import com.skpd.pixeldungeonskills.items.bags.WandHolster;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.skills.BranchSkill;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.sprites.MercSprite;
@@ -52,7 +53,6 @@ import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.SkillSlot;
-import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndMerc extends WndTabbed {
 
@@ -119,7 +119,7 @@ public class WndMerc extends WndTabbed {
 
         IconTitle titlebar = new IconTitle();
         titlebar.icon( new SkillSprite( Dungeon.hero.hiredMerc.mercType.getImage() ) );
-        titlebar.label( Utils.capitalize( Dungeon.hero.hiredMerc.getNameAndLevel() ) );
+        titlebar.label( Messages.capitalize( Dungeon.hero.hiredMerc.getNameAndLevel() ) );
         titlebar.health( (float) Dungeon.hero.hiredMerc.HP / Dungeon.hero.hiredMerc.HT);
         titlebar.setRect( 0, 0, WIDTH, 0 );
         add(titlebar);
@@ -339,15 +339,15 @@ public class WndMerc extends WndTabbed {
 		@Override
 		protected void onClick() {
             if(holdOnly)
-                GameScene.selectItem(this, WndBag.Mode.BRUTE_HOLD, "Ask Brute To Hold");
+                GameScene.selectItem(this, WndBag.Mode.BRUTE_HOLD, Messages.get(this,"z1"));
             else if(item instanceof Bow || item.image() == ItemSpriteSheet.EMPTY_BOW)
-                GameScene.selectItem(this, WndBag.Mode.BOW, "Equip Bow On Merc");
+                GameScene.selectItem(this, WndBag.Mode.BOW, Messages.get(this,"z2"));
             else  if(item instanceof Weapon || item.image() == ItemSpriteSheet.WEAPON)
-                GameScene.selectItem(this, WndBag.Mode.WEAPON, "Equip Weapon On Merc");
+                GameScene.selectItem(this, WndBag.Mode.WEAPON, Messages.get(this,"z3"));
             else  if(item instanceof Armor || item.image() == ItemSpriteSheet.ARMOR)
-                GameScene.selectItem(this, WndBag.Mode.ARMOR, "Equip Armor On Merc");
+                GameScene.selectItem(this, WndBag.Mode.ARMOR, Messages.get(this,"z4"));
             else  if(item instanceof PotionOfHealing || item.image() == ItemSpriteSheet.POTION_PLACEHOLDER)
-                GameScene.selectItem(this, WndBag.Mode.HEALING_POTION, "Give Potion Of Healing");
+                GameScene.selectItem(this, WndBag.Mode.HEALING_POTION, Messages.get(this,"z5"));
 		}
 		
 		@Override

@@ -57,7 +57,11 @@ import com.skpd.utils.Bundle;
 
 public enum HeroClass {
 
-	WARRIOR( "warrior" ), MAGE( "mage" ), ROGUE( "rogue" ), HUNTRESS( "huntress" ), HATSUNE("hatsune");
+	WARRIOR( Messages.get(HeroClass.class,"warrior") ),
+	MAGE( Messages.get(HeroClass.class,"mage")  ),
+	ROGUE( Messages.get(HeroClass.class,"rouge")  ),
+	HUNTRESS( Messages.get(HeroClass.class,"huntress")  ),
+	HATSUNE(Messages.get(HeroClass.class,"hatsume") );
 	
 	private String title;
 	
@@ -138,7 +142,8 @@ public enum HeroClass {
        // new ScrollOfEnchantment().identify().collect();
 
         new SoulCrystal(3).collect();
-        new SoulCrystalFilled(EyeSprite.class, 50, 20, "Captured Evil Eye").collect();
+		// FIXME: 2017/9/11
+		new SoulCrystalFilled(EyeSprite.class, 50, 20, Messages.get(HeroClass.class,"1")).collect();
        // new PotionOfMindVision().collect();
         //new ArmorKit().collect();
        // new ScrollHolder().collect();

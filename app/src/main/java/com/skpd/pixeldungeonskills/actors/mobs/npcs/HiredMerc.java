@@ -7,14 +7,6 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Cripple;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
-import com.skpd.pixeldungeonskills.messages.Messages;
-import com.skpd.pixeldungeonskills.skills.Endurance;
-import com.skpd.pixeldungeonskills.skills.MercArcherSkillA;
-import com.skpd.pixeldungeonskills.skills.MercArcherSkillB;
-import com.skpd.pixeldungeonskills.skills.MercBruteSkillA;
-import com.skpd.pixeldungeonskills.skills.MercThiefSkillA;
-import com.skpd.pixeldungeonskills.skills.MercWizardSkillA;
-import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.armor.Armor;
@@ -32,11 +24,18 @@ import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.FrostBow;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
+import com.skpd.pixeldungeonskills.skills.Endurance;
+import com.skpd.pixeldungeonskills.skills.MercArcherSkillA;
+import com.skpd.pixeldungeonskills.skills.MercArcherSkillB;
+import com.skpd.pixeldungeonskills.skills.MercBruteSkillA;
+import com.skpd.pixeldungeonskills.skills.MercThiefSkillA;
+import com.skpd.pixeldungeonskills.skills.MercWizardSkillA;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
@@ -49,8 +48,12 @@ public class HiredMerc extends NPC {
 
     public static enum MERC_TYPES
     {
-        Brute("Brute"), Wizard("Wizard"), Thief("Thief"), Archer("Archer"), ArcherMaiden("ArcherMaiden");
-        public String type = "Brute";
+        Brute(Messages.get(HiredMerc.class,"brute")),
+        Wizard(Messages.get(HiredMerc.class,"wizard")),
+        Thief(Messages.get(HiredMerc.class,"thief")),
+        Archer(Messages.get(HiredMerc.class,"archer")),
+        ArcherMaiden(Messages.get(HiredMerc.class,"archer2"));
+        public String type;
         MERC_TYPES(String type) {this.type = type;}
 
         public String getName()
@@ -101,11 +104,11 @@ public class HiredMerc extends NPC {
         {
             switch (this)
             {
-                case Brute: return "Brutes are strong and slow but can tank a lot of damage.";
-                case Wizard: return "Wizards cast spells but cannot take a lot of punishment. They are also weak.";
-                case Thief: return "Thieves are very agile and have admirable strength.";
-                case Archer: return "Archers support from a distance.";
-                case ArcherMaiden: return "Only the select few achieve the title of Archer-Maiden.";
+                case Brute: return Messages.get(HiredMerc.class,"d1");
+                case Wizard: return Messages.get(HiredMerc.class,"d2");
+                case Thief: return  Messages.get(HiredMerc.class,"d3");
+                case Archer: return  Messages.get(HiredMerc.class,"d4");
+                case ArcherMaiden: return  Messages.get(HiredMerc.class,"d5");
             }
             return "";
         }
@@ -228,8 +231,8 @@ public class HiredMerc extends NPC {
     public static final String MAIDEN_UNLOCK_BY= Messages.get(HiredMerc.class,"unlock");
     public static final int COST_RATE = 15;
 
-    public static final String TXT_LEVEL_UP = "Stronger by the second...";
-    public static final String TXT_CANT_EQUIP = "Too heavy for me Sir";
+    public static final String TXT_LEVEL_UP = Messages.get(HiredMerc.class,"1");
+    public static final String TXT_CANT_EQUIP = Messages.get(HiredMerc.class,"2");
 
     public MERC_TYPES mercType = MERC_TYPES.Brute;
 
@@ -267,9 +270,9 @@ public class HiredMerc extends NPC {
 
     public int level;
 
-    private static final String LEVEL	= "level";
-    private static final String WEAPON		= "weapon";
-    private static final String ARMOR		= "armor";
+    private static final String LEVEL   = "level";
+    private static final String WEAPON  = "weapon";
+    private static final String ARMOR	   = "armor";
 
     public HiredMerc()
     {
@@ -489,7 +492,7 @@ public class HiredMerc extends NPC {
 
     public String getNameAndLevel()
     {
-        return mercType.getName() + " (LvL " + level + (mercType != MERC_TYPES.ArcherMaiden ? " STR: " + mercType.getStrength(level) + ")" : ")");
+        return mercType.getName() + Messages.get(this,"lvl") + level + (mercType != MERC_TYPES.ArcherMaiden ? Messages.get(this,"str") + mercType.getStrength(level) + Messages.get(this,"3") : Messages.get(this,"3"));
     }
 
     @Override
@@ -548,7 +551,7 @@ public class HiredMerc extends NPC {
 
         if(rangedAttackCooldown < RANGED_COOLDOWN)
         {
-            sprite.showStatus(CharSprite.NEUTRAL, "Reloading Sir");
+            sprite.showStatus(CharSprite.NEUTRAL, Messages.get(HiredMerc.class,"4"));
             spend( attackDelay() );
             next();
             return false;
@@ -600,7 +603,7 @@ public class HiredMerc extends NPC {
 
         if(carrying instanceof PotionOfHealing)
         {
-            GLog.p(" " + name + " consumed a Potion Of Healing ");
+            GLog.p(" " + name + Messages.get(HiredMerc.class,"5"));
             super.sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 4);
             HP = HT;
             carrying = null;
@@ -687,7 +690,7 @@ public class HiredMerc extends NPC {
 
         @Override
         public String status() {
-            return Utils.format("This %s is wandering", name);
+            return Messages.format(Messages.get(HiredMerc.class,"6"), name);
         }
     }
 

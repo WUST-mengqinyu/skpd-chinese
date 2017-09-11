@@ -32,6 +32,7 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.Statistics;
 import com.skpd.pixeldungeonskills.actors.hero.Belongings;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.ui.BadgesList;
@@ -46,11 +47,11 @@ import java.util.Locale;
 
 public class WndRanking extends WndTabbed {
 	
-	private static final String TXT_ERROR		= "Unable to load additional information";
+	private static final String TXT_ERROR		= Messages.get(WndRanking.class,"13");
 	
-	private static final String TXT_STATS	= "Stats";
-	private static final String TXT_ITEMS	= "Items";
-	private static final String TXT_BADGES	= "Badges";
+	private static final String TXT_STATS	= Messages.get(WndRanking.class,"14");
+	private static final String TXT_ITEMS	= Messages.get(WndRanking.class,"15");
+	private static final String TXT_BADGES	= Messages.get(WndRanking.class,"16");
 	
 	private static final int WIDTH			= 112;
 	private static final int HEIGHT			= 150;
@@ -148,25 +149,25 @@ public class WndRanking extends WndTabbed {
 	private class StatsTab extends Group {
 		
 		private static final int GAP	= 4;
-		
-		private static final String TXT_TITLE	= "Level %d %s (SPD)";
-		
-		private static final String TXT_CHALLENGES	= "Challenges";
-		
-		private static final String TXT_HEALTH	= "Health";
-		private static final String TXT_STR		= "Strength";
-		
-		private static final String TXT_DURATION	= "Game Duration";
-		
-		private static final String TXT_DEPTH	= "Maximum Depth";
-		private static final String TXT_ENEMIES	= "Mobs Killed";
-		private static final String TXT_GOLD	= "Gold Collected";
-		
-		private static final String TXT_FOOD	= "Food Eaten";
-		private static final String TXT_ALCHEMY	= "Potions Cooked";
-		private static final String TXT_ANKHS	= "Ankhs Used";
 
-        private static final String TXT_DIFF	= "Difficulty";
+		private final String TXT_TITLE	= Messages.get(WndRanking.class,"1");
+
+		private final String TXT_CHALLENGES	= Messages.get(WndRanking.class,"2");
+
+		private final String TXT_HEALTH	= Messages.get(WndRanking.class,"3");
+		private final String TXT_STR		= Messages.get(WndRanking.class,"4");
+
+		private final String TXT_DURATION	=Messages.get(WndRanking.class,"5");
+
+		private final String TXT_DEPTH	= Messages.get(WndRanking.class,"6");
+		private final String TXT_ENEMIES	=Messages.get(WndRanking.class,"7");
+		private final String TXT_GOLD	= Messages.get(WndRanking.class,"8");
+
+		private final String TXT_FOOD	= Messages.get(WndRanking.class,"9");
+		private final String TXT_ALCHEMY	= Messages.get(WndRanking.class,"10");
+		private final String TXT_ANKHS	= Messages.get(WndRanking.class,"11");
+
+		private final String TXT_DIFF	= Messages.get(WndRanking.class,"12");
 
 		public StatsTab() {
 			super();
@@ -254,7 +255,7 @@ public class WndRanking extends WndTabbed {
             if(Dungeon.hero == null)
             {
                 IconTitle title = new IconTitle();
-                title.label( "ERROR loading data" );
+                title.label( Messages.get(this,"13") );
                 title.setRect( 0, 0, WIDTH, 0 );
                 add( title );
                 return;
@@ -333,7 +334,7 @@ public class WndRanking extends WndTabbed {
             if(Dungeon.hero == null)
             {
                 IconTitle title = new IconTitle();
-                title.label( "ERROR loading data" );
+                title.label( Messages.get(WndRanking.class,"13") );
                 title.setRect( 0, 0, WIDTH, 0 );
                 add( title );
                 return;
