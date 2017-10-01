@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.windows;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Heap.Type;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
@@ -29,20 +30,16 @@ import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndInfoItem extends Window {
 	
-	private static final String TXT_CHEST			= "Chest";
-	private static final String TXT_LOCKED_CHEST	= "Locked chest";
-	private static final String TXT_CRYSTAL_CHEST	= "Crystal chest";
-	private static final String TXT_TOMB			= "Tomb";
-	private static final String TXT_SKELETON		= "Skeletal remains";
-	private static final String TXT_WONT_KNOW		= "You won't know what's inside until you open it!";
-	private static final String TXT_NEED_KEY		= TXT_WONT_KNOW + " But to open it you need a golden key.";
-	private static final String TXT_INSIDE			= "You can see %s inside, but to open the chest you need a golden key.";
-	private static final String TXT_OWNER	= 
-		"This ancient tomb may contain something useful, " +
-		"but its owner will most certainly object to checking.";
-	private static final String TXT_REMAINS	= 
-		"This is all that's left from one of your predecessors. " +
-		"Maybe it's worth checking for any valuables.";
+	private final String TXT_CHEST			= Messages.get(WndInfoItem.class,"1");
+	private final String TXT_LOCKED_CHEST	= Messages.get(WndInfoItem.class,"2");
+	private final String TXT_CRYSTAL_CHEST	= Messages.get(WndInfoItem.class,"3");
+	private final String TXT_TOMB			= Messages.get(WndInfoItem.class,"4");
+	private final String TXT_SKELETON		= Messages.get(WndInfoItem.class,"5");
+	private final String TXT_WONT_KNOW		= Messages.get(WndInfoItem.class,"6");
+	private final String TXT_NEED_KEY		= TXT_WONT_KNOW +  Messages.get(WndInfoItem.class,"7");
+	private final String TXT_INSIDE			= Messages.get(WndInfoItem.class,"8");
+	private final String TXT_OWNER			= Messages.get(WndInfoItem.class,"9");
+	private final String TXT_REMAINS		= Messages.get(WndInfoItem.class,"0");
 	
 	private static final float GAP	= 2;
 	

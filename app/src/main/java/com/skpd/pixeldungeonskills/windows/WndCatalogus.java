@@ -17,20 +17,21 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.BitmapText;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ScrollPane;
 import com.skpd.pixeldungeonskills.ui.Window;
-import com.skpd.pixeldungeonskills.utils.Utils;
+
+import java.util.ArrayList;
 
 public class WndCatalogus extends WndTabbed {
 	
@@ -44,11 +45,11 @@ public class WndCatalogus extends WndTabbed {
 	
 	private static final int TAB_WIDTH		= 50;
 	
-	private static final String TXT_POTIONS	= "Potions";
-	private static final String TXT_SCROLLS	= "Scrolls";
-	private static final String TXT_TITLE	= "Catalogus";
+	private static final String TXT_POTIONS	= Messages.get(WndCatalogus.class,"1");
+	private static final String TXT_SCROLLS	= Messages.get(WndCatalogus.class,"2");
+	private static final String TXT_TITLE	= Messages.get(WndCatalogus.class,"3");
 	
-	private BitmapText txtTitle;
+	private RenderedText txtTitle;
 	private ScrollPane list;
 	
 	private ArrayList<ListItem> items = new ArrayList<WndCatalogus.ListItem>();
@@ -65,9 +66,8 @@ public class WndCatalogus extends WndTabbed {
 			resize( WIDTH_P, HEIGHT_P );
 		}
 		
-		txtTitle = PixelScene.createText( TXT_TITLE, 9 );
+		txtTitle = PixelScene.renderText( TXT_TITLE, 9 );
 		txtTitle.hardlight( Window.TITLE_COLOR );
-		txtTitle.measure();
 		add( txtTitle );
 		
 		list = new ScrollPane( new Component() ) {
@@ -111,8 +111,7 @@ public class WndCatalogus extends WndTabbed {
 	
 	private void updateList() {
 		
-		txtTitle.text( Utils.format( TXT_TITLE, showPotions ? TXT_POTIONS : TXT_SCROLLS ) );
-		txtTitle.measure();
+		txtTitle.text( Messages.format( TXT_TITLE, showPotions ? TXT_POTIONS : TXT_SCROLLS ) );
 		txtTitle.x = PixelScene.align( PixelScene.uiCamera, (width - txtTitle.width()) / 2 );
 		
 		items.clear();

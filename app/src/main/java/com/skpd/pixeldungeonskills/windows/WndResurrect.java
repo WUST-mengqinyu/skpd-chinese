@@ -22,6 +22,7 @@ import com.skpd.pixeldungeonskills.Rankings;
 import com.skpd.pixeldungeonskills.Statistics;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Ankh;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
@@ -31,9 +32,9 @@ import com.skpd.pixeldungeonskills.ui.Window;
 
 public class WndResurrect extends Window {
 	
-	private static final String TXT_MESSAGE	= "You died, but you were given another chance to win this dungeon. Will you take it?";
-	private static final String TXT_YES		= "Yes, I will fight!";
-	private static final String TXT_NO		= "No, I give up";
+	private static final String TXT_MESSAGE	= Messages.get(WndResurrect.class,"1");
+	private static final String TXT_YES		= Messages.get(WndResurrect.class,"2");
+	private static final String TXT_NO		= Messages.get(WndResurrect.class,"3");
 	
 	private static final int WIDTH		= 120;
 	private static final int BTN_HEIGHT	= 20;

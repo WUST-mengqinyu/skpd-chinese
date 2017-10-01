@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Legend;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.CheckBox;
 import com.skpd.pixeldungeonskills.ui.RedButton;
@@ -33,21 +34,21 @@ public class WndSettings extends Window {
 	
 	private static final String TXT_ZOOM_IN			= "+";
 	private static final String TXT_ZOOM_OUT		= "-";
-	private static final String TXT_ZOOM_DEFAULT	= "Default Zoom";
+	private static final String TXT_ZOOM_DEFAULT	= Messages.get(WndSettings.class,"1");
 
-	private static final String TXT_SCALE_UP		= "Scale up UI";
-	private static final String TXT_IMMERSIVE		= "Immersive mode";
+	private static final String TXT_SCALE_UP		= Messages.get(WndSettings.class,"2");
+	private static final String TXT_IMMERSIVE		= Messages.get(WndSettings.class,"3");
 	
-	private static final String TXT_MUSIC	= "Music";
+	private static final String TXT_MUSIC	= Messages.get(WndSettings.class,"4");
 	
-	private static final String TXT_SOUND	= "Sound FX";
+	private static final String TXT_SOUND	= Messages.get(WndSettings.class,"5");
 	
-	private static final String TXT_BRIGHTNESS	= "Brightness";
+	private static final String TXT_BRIGHTNESS	= Messages.get(WndSettings.class,"6");
 	
-	private static final String TXT_QUICKSLOT	= "Second quickslot";
+	private static final String TXT_QUICKSLOT	= Messages.get(WndSettings.class,"7");
 	
-	private static final String TXT_SWITCH_PORT	= "Switch to portrait";
-	private static final String TXT_SWITCH_LAND	= "Switch to landscape";
+	private static final String TXT_SWITCH_PORT	= Messages.get(WndSettings.class,"8");
+	private static final String TXT_SWITCH_LAND	= Messages.get(WndSettings.class,"9");
 	
 	private static final int WIDTH		= 112;
 	private static final int BTN_HEIGHT	= 20;
@@ -142,7 +143,7 @@ public class WndSettings extends Window {
         if(Dungeon.hero == null || !(Dungeon.hero instanceof Legend)) {
             if (inGame) {
 
-                CheckBox btnDeg = new CheckBox("No Degradation") {
+                CheckBox btnDeg = new CheckBox(Messages.get(this,"0")) {
                     @Override
                     protected void onClick() {
                         super.onClick();

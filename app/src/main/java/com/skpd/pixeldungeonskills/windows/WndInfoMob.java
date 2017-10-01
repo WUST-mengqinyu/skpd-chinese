@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.windows;
 import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
+import com.skpd.pixeldungeonskills.messages.Languages;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
@@ -37,9 +38,12 @@ public class WndInfoMob extends WndTitledMessage {
 	private static String desc( Mob mob ) {
 		
 		StringBuilder builder = new StringBuilder( mob.description() );
-		
-		builder.append( "\n\n" + mob.state.status() + "." );
-		
+
+		if (Messages.lang()==Languages.CHINESE) {
+			builder.append("\n\n" + mob.state.status() + "。");
+		}else {
+			builder.append("\n\n" + mob.state.status() + ".");
+		}
 		return builder.toString();
 	}
 	

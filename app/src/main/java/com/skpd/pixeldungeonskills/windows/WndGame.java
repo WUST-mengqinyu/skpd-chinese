@@ -17,12 +17,11 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.io.IOException;
-
 import com.skpd.noosa.Game;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Legend;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.scenes.RankingsScene;
@@ -31,15 +30,17 @@ import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.Window;
 
+import java.io.IOException;
+
 public class WndGame extends Window {
 	
-	private static final String TXT_SETTINGS	= "Settings";
-	private static final String TXT_CHALLEGES	= "Challenges";
-	private static final String TXT_RANKINGS	= "Rankings";
-	private static final String TXT_START		= "Start New Game";
-	private static final String TXT_MENU		= "Main Menu";
-	private static final String TXT_EXIT		= "Exit Game";
-	private static final String TXT_RETURN		= "Return to Game";
+	private static final String TXT_SETTINGS	= Messages.get(WndGame.class,"1");
+	private static final String TXT_CHALLEGES	= Messages.get(WndGame.class,"2");
+	private static final String TXT_RANKINGS	= Messages.get(WndGame.class,"3");
+	private static final String TXT_START		= Messages.get(WndGame.class,"4");
+	private static final String TXT_MENU		= Messages.get(WndGame.class,"5");
+	private static final String TXT_EXIT		= Messages.get(WndGame.class,"6");
+	private static final String TXT_RETURN		= Messages.get(WndGame.class,"7");
 	
 	private static final int WIDTH		= 120;
 	private static final int BTN_HEIGHT	= 20;

@@ -21,18 +21,17 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Wandmaker;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndWandmaker extends WndQuest {
 	
-	private static final String TXT_MESSAGE	= 
-		"Oh, I see you have succeeded! I do hope it hasn't troubled you too much. " +
-		"As I promised, you can choose one of my high quality wands.";
-	private static final String TXT_BATTLE		= "Battle wand";
-	private static final String TXT_NON_BATTLE	= "Non-battle wand";
+	private static final String TXT_MESSAGE		= Messages.get(WndWandmaker.class,"1");
+	private static final String TXT_BATTLE		= Messages.get(WndWandmaker.class,"2");
+	private static final String TXT_NON_BATTLE	= Messages.get(WndWandmaker.class,"3");
 	
-	private static final String TXT_FARAWELL	= "Good luck in your quest, %s!";
+	private static final String TXT_FARAWELL	= Messages.get(WndWandmaker.class,"4");
 	
 	private Wandmaker wandmaker;
 	private Item questItem;

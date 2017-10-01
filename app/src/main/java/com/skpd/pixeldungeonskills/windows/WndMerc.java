@@ -339,15 +339,15 @@ public class WndMerc extends WndTabbed {
 		@Override
 		protected void onClick() {
             if(holdOnly)
-                GameScene.selectItem(this, WndBag.Mode.BRUTE_HOLD, Messages.get(this,"z1"));
+                GameScene.selectItem(this, WndBag.Mode.BRUTE_HOLD, Messages.get(WndMerc.class,"z1"));
             else if(item instanceof Bow || item.image() == ItemSpriteSheet.EMPTY_BOW)
-                GameScene.selectItem(this, WndBag.Mode.BOW, Messages.get(this,"z2"));
+                GameScene.selectItem(this, WndBag.Mode.BOW, Messages.get(WndMerc.class,"z2"));
             else  if(item instanceof Weapon || item.image() == ItemSpriteSheet.WEAPON)
-                GameScene.selectItem(this, WndBag.Mode.WEAPON, Messages.get(this,"z3"));
+                GameScene.selectItem(this, WndBag.Mode.WEAPON, Messages.get(WndMerc.class,"z3"));
             else  if(item instanceof Armor || item.image() == ItemSpriteSheet.ARMOR)
-                GameScene.selectItem(this, WndBag.Mode.ARMOR, Messages.get(this,"z4"));
+                GameScene.selectItem(this, WndBag.Mode.ARMOR, Messages.get(WndMerc.class,"z4"));
             else  if(item instanceof PotionOfHealing || item.image() == ItemSpriteSheet.POTION_PLACEHOLDER)
-                GameScene.selectItem(this, WndBag.Mode.HEALING_POTION, Messages.get(this,"z5"));
+                GameScene.selectItem(this, WndBag.Mode.HEALING_POTION, Messages.get(WndMerc.class,"z5"));
 		}
 		
 		@Override

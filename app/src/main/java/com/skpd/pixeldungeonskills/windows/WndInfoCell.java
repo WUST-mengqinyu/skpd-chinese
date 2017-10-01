@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.DungeonTilemap;
 import com.skpd.pixeldungeonskills.actors.blobs.Blob;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
@@ -33,7 +34,7 @@ public class WndInfoCell extends Window {
 	
 	private static final int WIDTH = 120;
 	
-	private static final String TXT_NOTHING	= "There is nothing here.";
+	private static final String TXT_NOTHING	= Messages.get(WndInfoCell.class,"1");
 	
 	public WndInfoCell( int cell ) {
 		

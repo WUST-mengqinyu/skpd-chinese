@@ -17,18 +17,20 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import java.util.Collections;
-
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.Journal;
 import com.skpd.pixeldungeonskills.PixelDungeon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.ScrollPane;
 import com.skpd.pixeldungeonskills.ui.Window;
+
+import java.util.Collections;
 
 public class WndJournal extends Window {
 	
@@ -38,7 +40,7 @@ public class WndJournal extends Window {
 	
 	private static final int ITEM_HEIGHT	= 18;
 	
-	private static final String TXT_TITLE	= "Journal";
+	private static final String TXT_TITLE	= Messages.get(WndHero.class,"10");
 	
 	private BitmapText txtTitle;
 	private ScrollPane list;
@@ -77,7 +79,7 @@ public class WndJournal extends Window {
 	
 	private static class ListItem extends Component {
 		
-		private BitmapText feature;
+		private RenderedText feature;
 		private BitmapText depth;
 		
 		private Image icon;
@@ -86,7 +88,6 @@ public class WndJournal extends Window {
 			super();
 			
 			feature.text( f.desc );
-			feature.measure();
 			
 			depth.text( Integer.toString( d ) );
 			depth.measure();
@@ -99,7 +100,7 @@ public class WndJournal extends Window {
 		
 		@Override
 		protected void createChildren() {
-			feature = PixelScene.createText( 9 );
+			feature = PixelScene.renderText( 9 );
 			add( feature );
 			
 			depth = new BitmapText( PixelScene.font1x );

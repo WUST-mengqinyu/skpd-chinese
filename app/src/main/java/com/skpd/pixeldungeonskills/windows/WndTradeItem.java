@@ -25,6 +25,7 @@ import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.rings.RingOfHaggler;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
@@ -40,15 +41,15 @@ public class WndTradeItem extends Window {
 	private static final int WIDTH		= 120;
 	private static final int BTN_HEIGHT	= 16;
 	
-	private static final String TXT_SALE		= "FOR SALE: %s - %dg";
-	private static final String TXT_BUY			= "Buy for %dg";
-	private static final String TXT_SELL		= "Sell for %dg";
-	private static final String TXT_SELL_1		= "Sell 1 for %dg";
-	private static final String TXT_SELL_ALL	= "Sell all for %dg";
-	private static final String TXT_CANCEL		= "Never mind";
+	private static final String TXT_SALE		= Messages.get(WndTradeItem.class,"1");
+	private static final String TXT_BUY			= Messages.get(WndTradeItem.class,"2");
+	private static final String TXT_SELL		= Messages.get(WndTradeItem.class,"3");
+	private static final String TXT_SELL_1		= Messages.get(WndTradeItem.class,"4");
+	private static final String TXT_SELL_ALL	= Messages.get(WndTradeItem.class,"5");
+	private static final String TXT_CANCEL		= Messages.get(WndTradeItem.class,"6");
 	
-	private static final String TXT_SOLD	= "You've sold your %s for %dg";
-	private static final String TXT_BOUGHT	= "You've bought %s for %dg";
+	private static final String TXT_SOLD	= Messages.get(WndTradeItem.class,"7");
+	private static final String TXT_BOUGHT	= Messages.get(WndTradeItem.class,"8");
 	
 	private WndBag owner;
 	
@@ -77,7 +78,7 @@ public class WndTradeItem extends Window {
 		} else {
 			
 			int priceAll= item.price();
-			RedButton btnSell1 = new RedButton( Utils.format( TXT_SELL_1, priceAll / item.quantity() ) ) {
+			RedButton btnSell1 = new RedButton( Messages.format( TXT_SELL_1, priceAll / item.quantity() ) ) {
 				@Override
 				protected void onClick() {
 					sellOne( item );
@@ -86,7 +87,7 @@ public class WndTradeItem extends Window {
 			};
 			btnSell1.setRect( 0, pos + GAP, WIDTH, BTN_HEIGHT );
 			add( btnSell1 );
-			RedButton btnSellAll = new RedButton( Utils.format( TXT_SELL_ALL, priceAll ) ) {
+			RedButton btnSellAll = new RedButton( Messages.format( TXT_SELL_ALL, priceAll ) ) {
 				@Override
 				protected void onClick() {
 					sell( item );
@@ -124,7 +125,7 @@ public class WndTradeItem extends Window {
 		
 		if (canBuy) {
 			
-			RedButton btnBuy = new RedButton( Utils.format( TXT_BUY, price ) ) {
+			RedButton btnBuy = new RedButton( Messages.format( TXT_BUY, price ) ) {
 				@Override
 				protected void onClick() {
 					hide();
@@ -169,8 +170,8 @@ public class WndTradeItem extends Window {
 		IconTitle titlebar = new IconTitle();
 		titlebar.icon( new ItemSprite( item.image(), item.glowing() ) );
 		titlebar.label( forSale ? 
-			Utils.format( TXT_SALE, item.toString(), price( item ) ) : 
-			Utils.capitalize( item.toString() ) );
+			Messages.format( TXT_SALE, item.toString(), price( item ) ) :
+			Messages.capitalize( item.toString() ) );
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		

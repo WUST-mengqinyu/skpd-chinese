@@ -22,6 +22,7 @@ import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.quest.DwarfToken;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.RedButton;
@@ -32,11 +33,8 @@ import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndImp extends Window {
 	
-	private static final String TXT_MESSAGE	= 
-		"Oh yes! You are my hero!\n" +
-		"Regarding your reward, I don't have cash with me right now, but I have something better for you. " +
-		"This is my family heirloom ring: my granddad took it off a dead paladin's finger.";
-	private static final String TXT_REWARD		= "Take the ring";
+	private static final String TXT_MESSAGE	= Messages.get(WndImp.class,"1");
+	private static final String TXT_REWARD		= Messages.get(WndImp.class,"2");
 	
 	private static final int WIDTH		= 120;
 	private static final int BTN_HEIGHT	= 20;

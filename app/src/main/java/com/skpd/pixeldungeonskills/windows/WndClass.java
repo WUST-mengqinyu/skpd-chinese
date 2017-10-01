@@ -22,13 +22,14 @@ import com.skpd.noosa.Group;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndClass extends WndTabbed {
 	
-	private static final String TXT_MASTERY	= "Mastery";
+	private static final String TXT_MASTERY	= Messages.get(WndClass.class,"1");
 	
 	private static final int WIDTH			= 110;
 	

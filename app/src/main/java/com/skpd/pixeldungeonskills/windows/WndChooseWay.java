@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
 import com.skpd.pixeldungeonskills.items.TomeOfMastery;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.ui.RedButton;
@@ -36,12 +37,12 @@ public class WndChooseWay extends Window {
 		
 		super();
 		
-		final String TXT_MASTERY	= "Which way will you follow?";
-		final String TXT_CANCEL		= "I'll decide later";
+		final String TXT_MASTERY	= Messages.get(WndChooseWay.class,"1");
+		final String TXT_CANCEL		= Messages.get(WndChooseWay.class,"2");
 		
 		float bottom = createCommonStuff( tome, way1.desc() + "\n\n" + way2.desc() + "\n\n" + TXT_MASTERY );
 		
-		RedButton btnWay1 = new RedButton( Utils.capitalize( way1.title() ) ) {
+		RedButton btnWay1 = new RedButton( Messages.capitalize( way1.title() ) ) {
 			@Override
 			protected void onClick() {
 				hide();
@@ -51,7 +52,7 @@ public class WndChooseWay extends Window {
 		btnWay1.setRect( 0, bottom + GAP, (WIDTH - GAP) / 2, BTN_HEIGHT );
 		add( btnWay1 );
 		
-		RedButton btnWay2 = new RedButton( Utils.capitalize( way2.title() ) ) {
+		RedButton btnWay2 = new RedButton( Messages.capitalize( way2.title() ) ) {
 			@Override
 			protected void onClick() {
 				hide();
@@ -77,10 +78,10 @@ public class WndChooseWay extends Window {
 		
 		super();
 		
-		final String TXT_REMASTERY	= "Do you want to respec into %s?";
+		final String TXT_REMASTERY	= Messages.get(WndChooseWay.class,"3");
 		
-		final String TXT_OK		= "Yes, I want to respec";
-		final String TXT_CANCEL	= "Maybe later";
+		final String TXT_OK		= Messages.get(WndChooseWay.class,"4");
+		final String TXT_CANCEL	= Messages.get(WndChooseWay.class,"5");
 		
 		float bottom = createCommonStuff( tome, way.desc() + "\n\n" + Utils.format( TXT_REMASTERY, Utils.indefinite( way.title() ) ) );
 		

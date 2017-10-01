@@ -28,6 +28,7 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.Statistics;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
@@ -38,18 +39,18 @@ import java.util.Locale;
 
 public class WndHero extends WndTabbed {
 	
-	private static final String TXT_STATS	= "Stats";
-	private static final String TXT_BUFFS	= "Buffs";
+	private static final String TXT_STATS	= Messages.get(WndHero.class,"1");
+	private static final String TXT_BUFFS	= Messages.get(WndHero.class,"2");
 	
-	private static final String TXT_EXP		= "Experience";
-	private static final String TXT_STR		= "Strength";
-    private static final String TXT_MANA	= "Mana";
-	private static final String TXT_HEALTH	= "Health";
-	private static final String TXT_GOLD	= "Gold Collected";
-	private static final String TXT_DEPTH	= "Maximum Depth";
+	private static final String TXT_EXP		= Messages.get(WndHero.class,"3");
+	private static final String TXT_STR		= Messages.get(WndHero.class,"4");
+    private static final String TXT_MANA	= Messages.get(WndHero.class,"5");
+	private static final String TXT_HEALTH	= Messages.get(WndHero.class,"6");
+	private static final String TXT_GOLD	= Messages.get(WndHero.class,"7");
+	private static final String TXT_DEPTH	= Messages.get(WndHero.class,"8");
 
 
-    private static final String TXT_Difficulty		= "Difficulty";
+    private static final String TXT_Difficulty		= Messages.get(WndHero.class,"9");
 
 	private static final int WIDTH		= 100;
 	private static final int TAB_WIDTH	= 40;
@@ -96,9 +97,9 @@ public class WndHero extends WndTabbed {
 	
 	private class StatsTab extends Group {
 		
-		private static final String TXT_TITLE		= "Level %d %s";
-		private static final String TXT_CATALOGUS	= "Catalogus";
-		private static final String TXT_JOURNAL		= "Journal";
+		private final String TXT_TITLE		= Messages.get(WndHero.class,"0");
+		private final String TXT_CATALOGUS	= Messages.get(WndHero.class,"-");
+		private final String TXT_JOURNAL		= Messages.get(WndHero.class,"10");
 		
 		private static final int GAP = 5;
 		

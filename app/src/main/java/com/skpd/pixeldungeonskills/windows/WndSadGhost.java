@@ -21,6 +21,7 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Ghost;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class WndSadGhost extends WndQuest {
@@ -53,7 +54,7 @@ public class WndSadGhost extends WndQuest {
 			Dungeon.level.drop( reward, ghost.pos ).sprite.drop();
 		}
 		
-		ghost.yell( "Farewell, adventurer!" );
+		ghost.yell(Messages.get(this,"1"));
 		ghost.die( null );
 		
 		Ghost.Quest.complete();

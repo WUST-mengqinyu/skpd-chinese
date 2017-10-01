@@ -25,6 +25,7 @@ import com.skpd.pixeldungeonskills.Chrome;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Blacksmith;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.ItemSlot;
@@ -46,13 +47,9 @@ public class WndBlacksmith extends Window {
 	private ItemButton btnItem2;
 	private RedButton btnReforge;
 	
-	private static final String TXT_PROMPT =
-		"Ok, a deal is a deal, dat's what I can do for you: I can reforge " +
-		"2 items and turn them into one of a better quality.";
-	private static final String TXT_SELECT =
-		"Select an item to reforge";
-	private static final String TXT_REFORGE =
-		"Reforge them";
+	private static final String TXT_PROMPT = Messages.get(WndBlacksmith.class,"1");
+	private static final String TXT_SELECT = Messages.get(WndBlacksmith.class,"2");
+	private static final String TXT_REFORGE = Messages.get(WndBlacksmith.class,"3");
 	
 	public WndBlacksmith( Blacksmith troll, Hero hero ) {
 		
