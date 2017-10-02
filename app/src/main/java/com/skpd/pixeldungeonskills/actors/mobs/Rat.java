@@ -27,7 +27,7 @@ import com.skpd.utils.Random;
 public class Rat extends Mob {
 
 	{
-		name = Messages.get(this,"1");
+		name = Messages.get(this,"");
 		spriteClass = RatSprite.class;
 		
 		HP = HT = 8;

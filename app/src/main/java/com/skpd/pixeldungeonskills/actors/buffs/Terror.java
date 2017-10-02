@@ -18,6 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.utils.Bundle;
 
@@ -27,7 +28,7 @@ public class Terror extends FlavourBuff {
 	
 	public int object = 0;
 	
-	private static final String OBJECT	= "object";
+	private static final String OBJECT	= Messages.get(SnipersMark.class,"1");
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -49,7 +50,7 @@ public class Terror extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Terror";
+		return Messages.get(this,"");
 	}
 	
 	public static void recover( Char target ) {

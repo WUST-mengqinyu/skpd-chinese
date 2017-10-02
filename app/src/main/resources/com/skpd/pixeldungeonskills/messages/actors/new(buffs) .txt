@@ -1,0 +1,26 @@
+#new
+actors.buffs.hunger.1=You are hungry.
+actors.buffs.hunger.2=You are starving!
+actors.buffs.hunger.3=You starved to death...
+actors.buffs.hunger.4=Hungry
+actors.buffs.hunger.5=Starving
+actors.buffs.hunting.=Hunted... something...
+actors.buffs.invisibility.=Invisible
+actors.buffs.levitation.=Levitating
+actors.buffs.light.=Illuminated
+actors.buffs.mindvision.=Mind vision
+actors.buffs.ooze.1=%s killed you...
+actors.buffs.ooze.2=Caustic ooze
+actors.buffs.paralysis.=Paralysed
+actors.buffs.poison.1=left
+actors.buffs.poison.2=Poisoned
+actors.buffs.poison.3=You died from poison...
+actors.buffs.rage.=Blinded with rage
+actors.buffs.roots.=Rooted
+actors.buffs.shadows.=Shadowmelded
+actors.buffs.slow.=Slowed
+actors.buffs.snipersmark.1=object
+actors.buffs.snipersmark.2=Zeroed in
+actors.buffs.terror.=Terror
+actors.buffs.vertigo.=Vertigo
+actors.buffs.weakness.=Weakened

@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Rage extends FlavourBuff {
@@ -28,6 +29,6 @@ public class Rage extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Blinded with rage";
+		return Messages.get(this,"");
 	}
 }

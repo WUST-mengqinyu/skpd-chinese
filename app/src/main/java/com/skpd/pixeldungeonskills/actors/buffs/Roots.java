@@ -18,6 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Roots extends FlavourBuff {
@@ -45,6 +46,6 @@ public class Roots extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Rooted";
+		return Messages.get(this,"");
 	}
 }

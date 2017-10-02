@@ -21,6 +21,7 @@ import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.utils.Bundle;
 
@@ -28,7 +29,7 @@ public class Shadows extends Invisibility {
 	
 	protected float left;
 	
-	private static final String LEFT	= "left";
+	private static final String LEFT	= Messages.get(Poison.class,"1");
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -90,7 +91,7 @@ public class Shadows extends Invisibility {
 	
 	@Override
 	public String toString() {
-		return "Shadowmelded";
+		return Messages.get(this,"");
 	}
 	
 }

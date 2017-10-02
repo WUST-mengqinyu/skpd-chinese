@@ -18,6 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class MindVision extends FlavourBuff {
@@ -33,7 +34,7 @@ public class MindVision extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Mind vision";
+		return Messages.get(this,"");
 	}
 
 	@Override

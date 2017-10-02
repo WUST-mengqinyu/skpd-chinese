@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.ResultDescriptions;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.items.rings.RingOfSatiety;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -36,9 +37,9 @@ public class Hunger extends Buff implements Hero.Doom {
 	public static final float HUNGRY	= 260f;
 	public static final float STARVING	= 360f;
 	
-	private static final String TXT_HUNGRY		= "You are hungry.";
-	private static final String TXT_STARVING	= "You are starving!";
-	private static final String TXT_DEATH		= "You starved to death...";
+	private static final String TXT_HUNGRY		= Messages.get(Hunger.class,"1");
+	private static final String TXT_STARVING	= Messages.get(Hunger.class,"2");
+	private static final String TXT_DEATH		= Messages.get(Hunger.class,"3");
 	
 	private float level;
 
@@ -141,9 +142,9 @@ public class Hunger extends Buff implements Hero.Doom {
 	@Override
 	public String toString() {
 		if (level < STARVING) {
-			return "Hungry";
+			return Messages.get(Hunger.class,"4");
 		} else {
-			return "Starving";
+			return Messages.get(Hunger.class,"5");
 		}
 	}
 

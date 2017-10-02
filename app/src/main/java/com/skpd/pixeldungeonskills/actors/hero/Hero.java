@@ -21,10 +21,6 @@ package com.skpd.pixeldungeonskills.actors.hero;
 
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.audio.Sample;
@@ -42,6 +38,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Bleeding;
 import com.skpd.pixeldungeonskills.actors.buffs.Blindness;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Burning;
+import com.skpd.pixeldungeonskills.actors.buffs.Charm;
 import com.skpd.pixeldungeonskills.actors.buffs.Combo;
 import com.skpd.pixeldungeonskills.actors.buffs.Cripple;
 import com.skpd.pixeldungeonskills.actors.buffs.Fletching;
@@ -57,7 +54,6 @@ import com.skpd.pixeldungeonskills.actors.buffs.Paralysis;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.buffs.Regeneration;
 import com.skpd.pixeldungeonskills.actors.buffs.Roots;
-import com.skpd.pixeldungeonskills.actors.buffs.Charm;
 import com.skpd.pixeldungeonskills.actors.buffs.Sleep;
 import com.skpd.pixeldungeonskills.actors.buffs.SnipersMark;
 import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
@@ -67,8 +63,6 @@ import com.skpd.pixeldungeonskills.actors.mobs.ColdGirl;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.NPC;
-import com.skpd.pixeldungeonskills.skills.CurrentSkills;
-import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.effects.CheckedCell;
 import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Pushing;
@@ -84,9 +78,9 @@ import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.KindOfWeapon;
 import com.skpd.pixeldungeonskills.items.armor.Armor;
 import com.skpd.pixeldungeonskills.items.keys.GoldenKey;
+import com.skpd.pixeldungeonskills.items.keys.IronKey;
 import com.skpd.pixeldungeonskills.items.keys.Key;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.keys.IronKey;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMight;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
@@ -98,10 +92,10 @@ import com.skpd.pixeldungeonskills.items.rings.RingOfHaste;
 import com.skpd.pixeldungeonskills.items.rings.RingOfShadows;
 import com.skpd.pixeldungeonskills.items.rings.RingOfThorns;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
+import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfMagicMapping;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRecharging;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.wands.WandOfMagicCasting;
 import com.skpd.pixeldungeonskills.items.weapon.melee.MeleeWeapon;
@@ -112,10 +106,13 @@ import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.levels.features.AlchemyPot;
 import com.skpd.pixeldungeonskills.levels.features.Chasm;
 import com.skpd.pixeldungeonskills.levels.features.Sign;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Earthroot;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.scenes.SurfaceScene;
+import com.skpd.pixeldungeonskills.skills.CurrentSkills;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.ui.AttackIndicator;
@@ -130,24 +127,26 @@ import com.skpd.utils.Bundle;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
 public class Hero extends Char {
 	
-	private static final String TXT_LEAVE = "One does not simply leave Pixel Dungeon.";
+	private static final String TXT_LEAVE = Messages.get(Hero.class,"10");
 	
-	private static final String TXT_LEVEL_UP = "level up!";
-	private static final String TXT_NEW_LEVEL = 
-		"Welcome to level %d! Now you are healthier and more focused. " +
-		"It's easier for you to hit enemies and dodge their attacks.";
+	private static final String TXT_LEVEL_UP = Messages.get(Hero.class,"1");
+	private static final String TXT_NEW_LEVEL = Messages.get(Hero.class,"2");
 	
-	public static final String TXT_YOU_NOW_HAVE	= "You now have %s";
+	public static final String TXT_YOU_NOW_HAVE	= Messages.get(Hero.class,"3");
 	
-	private static final String TXT_SOMETHING_ELSE	= "There is something else here";
-	private static final String TXT_LOCKED_CHEST	= "This chest is locked and you don't have matching key";
-	private static final String TXT_LOCKED_DOOR		= "You don't have a matching key";
-	private static final String TXT_NOTICED_SMTH	= "You noticed something";
+	private static final String TXT_SOMETHING_ELSE	= Messages.get(Hero.class,"4");
+	private static final String TXT_LOCKED_CHEST	= Messages.get(Hero.class,"5");
+	private static final String TXT_LOCKED_DOOR		= Messages.get(Hero.class,"6");
+	private static final String TXT_NOTICED_SMTH	= Messages.get(Hero.class,"7");
 	
 	private static final String TXT_WAIT	= "...";
-	private static final String TXT_SEARCH	= "search";
+	private static final String TXT_SEARCH	= Messages.get(Hero.class,"8");
 	
 	public static final int STARTING_STR = 10;
 	
@@ -1286,7 +1285,7 @@ public class Hero extends Char {
             MP += 5;
             MMP += 5;
             Skill.availableSkill += 2;
-            GLog.p("Gained 2 skill points!");
+            GLog.p(Messages.get(this,"9"));
 			attackSkill++;
 			defenseSkill++;
 			
@@ -1344,33 +1343,34 @@ public class Hero extends Char {
 		
 		if (sprite != null) {
 			if (buff instanceof Burning) {
-				GLog.w( "You catch fire!" );
+				GLog.w( Messages.get(this,"a1") );
 				interrupt();
 			} else if (buff instanceof Paralysis) {
-				GLog.w( "You are paralysed!" );
+				GLog.w( Messages.get(this,"a2") );
 				interrupt();
 			} else if (buff instanceof Poison) {
-				GLog.w( "You are poisoned!" );
+				GLog.w( Messages.get(this,"a3") );
 				interrupt();
 			} else if (buff instanceof Ooze) {
-				GLog.w( "Caustic ooze eats your flesh. Wash away it!" );
+				GLog.w( Messages.get(this,"a4") );
 			} else if (buff instanceof Roots) {
-				GLog.w( "You can't move!" );
+				GLog.w( Messages.get(this,"a5") );
 			} else if (buff instanceof Weakness) {
-				GLog.w( "You feel weakened!" );
+				GLog.w( Messages.get(this,"a6") );
 			} else if (buff instanceof Blindness) {
-				GLog.w( "You are blinded!" );
+				GLog.w( Messages.get(this,"a7") );
 			} else if (buff instanceof Fury) {
-				GLog.w( "You become furious!" );
+				GLog.w( Messages.get(this,"a8") );
+				//// FIXME: 2017/10/2 
 				sprite.showStatus( CharSprite.POSITIVE, "furious" );
 			} else if (buff instanceof Charm) {
-				GLog.w( "You are charmed!" );
+				GLog.w( Messages.get(this,"a0") );
 			}  else if (buff instanceof Cripple) {
-				GLog.w( "You are crippled!" );
+				GLog.w( Messages.get(this,"a11") );
 			} else if (buff instanceof Bleeding) {
-				GLog.w( "You are bleeding!" );
+				GLog.w( Messages.get(this,"a12") );
 			} else if (buff instanceof Vertigo) {
-				GLog.w( "Everything is spinning around you!" );
+				GLog.w( Messages.get(this,"a13") );
 				interrupt();
 			}
 			
@@ -1432,7 +1432,7 @@ public class Hero extends Char {
 
             if(Dungeon.depth == ColdGirl.FROST_DEPTH)
             {
-                GLog.n("The girl saps away the power of your Ankh... no coming back");
+                GLog.n(Messages.get(this,"b1"));
                 reallyDie( cause );
             }
             else {

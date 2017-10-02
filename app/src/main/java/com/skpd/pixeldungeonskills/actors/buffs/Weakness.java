@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Weakness extends FlavourBuff {
@@ -33,7 +34,7 @@ public class Weakness extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Weakened";
+		return Messages.get(this,"");
 	}
 	
 	@Override

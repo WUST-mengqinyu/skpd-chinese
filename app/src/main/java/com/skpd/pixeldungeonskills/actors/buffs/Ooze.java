@@ -20,13 +20,14 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.ResultDescriptions;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class Ooze extends Buff {
 	
-	private static final String TXT_HERO_KILLED = "%s killed you...";
+	private static final String TXT_HERO_KILLED = Messages.get(Ooze.class,"1");
 	
 	public int damage	= 1;
 	
@@ -37,7 +38,7 @@ public class Ooze extends Buff {
 	
 	@Override
 	public String toString() {
-		return "Caustic ooze";
+		return Messages.get(this,"2");
 	}
 	
 	@Override

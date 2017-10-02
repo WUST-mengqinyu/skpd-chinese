@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Vertigo extends FlavourBuff {
@@ -32,7 +33,7 @@ public class Vertigo extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Vertigo";
+		return Messages.get(this,"");
 	}
 	
 	public static float duration( Char ch ) {

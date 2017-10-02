@@ -24,6 +24,7 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -33,7 +34,7 @@ public class Poison extends Buff implements Hero.Doom {
 	
 	protected float left;
 	
-	private static final String LEFT	= "left";
+	private static final String LEFT	= Messages.get(Poison.class,"1");
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -59,7 +60,7 @@ public class Poison extends Buff implements Hero.Doom {
 	
 	@Override
 	public String toString() {
-		return "Poisoned";
+		return Messages.get(this,"2");
 	}
 	
 	@Override
@@ -95,6 +96,6 @@ public class Poison extends Buff implements Hero.Doom {
 		Badges.validateDeathFromPoison();
 		
 		Dungeon.fail( Utils.format( ResultDescriptions.POISON, Dungeon.depth ) );
-		GLog.n( "You died from poison..." );
+		GLog.n(Messages.get(this,"3"));
 	}
 }

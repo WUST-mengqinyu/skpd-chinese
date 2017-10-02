@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Light extends FlavourBuff {
@@ -53,6 +54,6 @@ public class Light extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Illuminated";
+		return Messages.get(this,"");
 	}
 }

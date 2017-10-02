@@ -20,6 +20,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class Hunting extends Buff {
@@ -42,7 +43,7 @@ public class Hunting extends Buff {
             }
 
 
-                  GLog.p("Hunted... something...");
+                  GLog.p(Messages.get(this,""));
                   MysteryMeat steak = new MysteryMeat();
                   Dungeon.level.drop( steak, hero.pos ).sprite.drop();
 

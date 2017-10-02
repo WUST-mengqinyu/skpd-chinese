@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.actors.buffs;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.utils.Bundle;
 
@@ -24,7 +25,7 @@ public class SnipersMark extends FlavourBuff {
 	
 public int object = 0;
 	
-	private static final String OBJECT	= "object";
+	private static final String OBJECT	= Messages.get(SnipersMark.class,"1");
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -46,6 +47,6 @@ public int object = 0;
 	
 	@Override
 	public String toString() {
-		return "Zeroed in";
+		return Messages.get(this,"2");
 	}
 }

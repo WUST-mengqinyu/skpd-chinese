@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 
 public class Invisibility extends FlavourBuff {
@@ -48,7 +49,7 @@ public class Invisibility extends FlavourBuff {
 	
 	@Override
 	public String toString() {
-		return "Invisible";
+		return Messages.get(this,"");
 	}
 	
 	public static void dispel() {
