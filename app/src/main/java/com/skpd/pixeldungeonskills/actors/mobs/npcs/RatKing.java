@@ -21,12 +21,13 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.RatKingSprite;
 
 public class RatKing extends NPC {
 
 	{
-		name = "rat king";
+		name = Messages.get(this,"1");
 		spriteClass = RatKingSprite.class;
 		
 		state = SLEEPEING;
@@ -65,17 +66,15 @@ public class RatKing extends NPC {
 		sprite.turnTo( pos, Dungeon.hero.pos );
 		if (state == SLEEPEING) {
 			notice();
-			yell( "I'm not sleeping!" );
+			yell( Messages.get(this,"2") );
 			state = WANDERING;
 		} else {
-			yell( "What is it? I have no time for this nonsense. My kingdom won't rule itself!" );
+			yell( Messages.get(this,"3") );
 		}
 	}
 	
 	@Override
 	public String description() {
-		return 
-			"This rat is a little bigger than a regular marsupial rat " +
-			"and it's wearing a tiny crown on its head.";
+		return Messages.get(this,"4");
 	}
 }

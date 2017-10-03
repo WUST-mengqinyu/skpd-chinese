@@ -22,8 +22,8 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.SkeletonSprite;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
@@ -33,7 +33,7 @@ import java.util.HashSet;
 public class Skeleton extends NPC {
 	
 	{
-		name = "Summoned skeleton";
+		name = Messages.get(Skeleton.class,"1");
 		spriteClass = SkeletonSprite.class;
 		
 		viewDistance = 4;
@@ -118,7 +118,7 @@ public class Skeleton extends NPC {
 	@Override
 	public String description() {
 		return
-			"Summoned skeletons will protect their master mage.";
+				Messages.get(Skeleton.class,"2");
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class Skeleton extends NPC {
 		
 		@Override
 		public String status() {
-			return Utils.format( "This %s is wandering", name );
+			return Messages.format( Messages.get(Skeleton.class,"3"), name );
 		}
 	}
 }

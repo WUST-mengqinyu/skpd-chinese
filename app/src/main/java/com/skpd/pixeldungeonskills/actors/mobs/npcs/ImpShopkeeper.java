@@ -22,15 +22,16 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.particles.ElmoParticle;
 import com.skpd.pixeldungeonskills.items.Heap;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ImpSprite;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class ImpShopkeeper extends Shopkeeper {
 
-	private static final String TXT_GREETINGS = "Hello, friend!";
+	private static final String TXT_GREETINGS = Messages.get(ImpShopkeeper.class,"2");
 	
 	{
-		name = "ambitious imp";
+		name = Messages.get(ImpShopkeeper.class,"1");
 		spriteClass = ImpSprite.class;
 	}
 	
@@ -64,8 +65,6 @@ public class ImpShopkeeper extends Shopkeeper {
 	
 	@Override
 	public String description() {
-		return 
-			"Imps are lesser demons. They are notable for neither their strength nor their magic talent. " +
-			"But they are quite smart and sociable, and many of imps prefer to live and do business among non-demons.";
+		return Messages.get(ImpShopkeeper.class,"3");
 	}
 }

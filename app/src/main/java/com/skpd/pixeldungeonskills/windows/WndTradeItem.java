@@ -32,7 +32,6 @@ import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
-import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndTradeItem extends Window {
@@ -203,7 +202,6 @@ public class WndTradeItem extends Window {
 		int price = item.price();
 		
 		new Gold( price ).doPickUp( hero );
-		GLog.i( TXT_SOLD, item.name(), price );
 	}
 	
 	private void sellOne( Item item ) {
@@ -218,7 +216,6 @@ public class WndTradeItem extends Window {
 			int price = item.price();
 			
 			new Gold( price ).doPickUp( hero );
-			GLog.i( TXT_SOLD, item.name(), price );
 		}
 	}
 	
@@ -238,8 +235,6 @@ public class WndTradeItem extends Window {
 		
 		int price = price( item );
 		Dungeon.gold -= price;
-		
-		GLog.i( TXT_BOUGHT, item.name(), price );
 		
 		if (!item.doPickUp( hero )) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();

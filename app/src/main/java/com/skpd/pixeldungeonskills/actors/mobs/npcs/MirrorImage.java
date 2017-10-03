@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.blobs.ToxicGas;
@@ -26,15 +24,18 @@ import com.skpd.pixeldungeonskills.actors.buffs.Burning;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.MirrorSprite;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public class MirrorImage extends NPC {
 	
 	{
-		name = "mirror image";
+		name = Messages.get(this,"1");
 		spriteClass = MirrorSprite.class;
 		
 		state = HUNTING;
@@ -111,9 +112,7 @@ public class MirrorImage extends NPC {
 	
 	@Override
 	public String description() {
-		return
-			"This illusion bears a close resemblance to you, " +
-			"but it's paler and twitches a little.";
+		return Messages.get(this,"2");
 	}
 	
 	@Override

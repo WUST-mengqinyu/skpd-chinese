@@ -30,6 +30,7 @@ import com.skpd.pixeldungeonskills.items.quest.DwarfToken;
 import com.skpd.pixeldungeonskills.items.rings.Ring;
 import com.skpd.pixeldungeonskills.levels.CityLevel;
 import com.skpd.pixeldungeonskills.levels.Room;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ImpSprite;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -41,35 +42,24 @@ import com.skpd.utils.Random;
 public class Imp extends NPC {
 
 	{
-		name = "ambitious imp";
+		name = Messages.get(Imp.class,"name");
 		spriteClass = ImpSprite.class;
 	}
 	
 	private static final String TXT_GOLEMS1	=
-		"Are you an adventurer? I love adventurers! You can always rely on them " +
-		"if something needs to be killed. Am I right? For a bounty, of course ;)\n" +
-		"In my case this is _golems_ who need to be killed. You see, I'm going to start a " +
-		"little business here, but these stupid golems are bad for business! " +
-		"It's very hard to negotiate with wandering lumps of granite, damn them! " +
-		"So please, kill... let's say _6 of them_ and a reward is yours.";
+			Messages.get(Imp.class,"1");
 	
 	private static final String TXT_MONKS1	=
-		"Are you an adventurer? I love adventurers! You can always rely on them " +
-		"if something needs to be killed. Am I right? For a bounty, of course ;)\n" +
-		"In my case this is _monks_ who need to be killed. You see, I'm going to start a " +
-		"little business here, but these lunatics don't buy anything themselves and " +
-		"will scare away other customers. " +
-		"So please, kill... let's say _8 of them_ and a reward is yours.";
+			Messages.get(Imp.class,"2");
 	
 	private static final String TXT_GOLEMS2	=
-		"How is your golem safari going?";	
+			Messages.get(Imp.class,"3");
 	
 	private static final String TXT_MONKS2	=
-		"Oh, you are still alive! I knew that your kung-fu is stronger ;) " +
-		"Just don't forget to grab these monks' tokens.";	
+			Messages.get(Imp.class,"4");
 	
-	private static final String TXT_CYA	= "See you, %s!";
-	private static final String TXT_HEY	= "Psst, %s!";
+	private static final String TXT_CYA	= Messages.get(Imp.class,"5");
+	private static final String TXT_HEY	= Messages.get(Imp.class,"6");
 	
 	private boolean seenBefore = false;
 	
@@ -150,9 +140,7 @@ public class Imp extends NPC {
 	
 	@Override
 	public String description() {
-		return 
-			"Imps are lesser demons. They are notable for neither their strength nor their magic talent, " +
-			"but they are quite smart and sociable. Many imps prefer to live among non-demons.";
+		return Messages.get(Imp.class,"desc");
 	}
 	
 	public static class Quest {

@@ -1,13 +1,14 @@
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
 import com.skpd.pixeldungeonskills.actors.Char;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 /**
  * Created by Moussa on 22-Jan-17.
  */
 public class ShadowClone extends MirrorImage {
     {
-        name = "Shadow Clone";
+        name = Messages.get(this,"1");
     }
 
     int lifeSpan = 3;
@@ -25,8 +26,7 @@ public class ShadowClone extends MirrorImage {
 
     @Override
     public String description() {
-        return
-                "Shadow clones share your strength and cannot be attacked. \nThey will however disappear after dealing some punishment.";
+        return Messages.get(this,"2");
     }
 
 }

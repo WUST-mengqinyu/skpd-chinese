@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
-import java.util.HashSet;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.tweeners.AlphaTweener;
 import com.skpd.pixeldungeonskills.Assets;
@@ -45,6 +43,7 @@ import com.skpd.pixeldungeonskills.items.quest.RatSkull;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.MissileWeapon;
 import com.skpd.pixeldungeonskills.levels.SewerLevel;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.GhostSprite;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -53,10 +52,12 @@ import com.skpd.pixeldungeonskills.windows.WndSadGhost;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public class Ghost extends NPC {
 
 	{
-		name = "sad ghost";
+		name = Messages.get(Ghost.class,"name");
 		spriteClass = GhostSprite.class;
 		
 		flying = true;
@@ -113,9 +114,7 @@ public class Ghost extends NPC {
 	
 	@Override
 	public String description() {
-		return 
-			"The ghost is barely visible. It looks like a shapeless " +
-			"spot of faint light with a sorrowful face.";
+		return Messages.get(Ghost.class,"desc");
 	}
 	
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
@@ -353,18 +352,11 @@ public class Ghost extends NPC {
 	}
 	
 	private static final QuestHandler roseQuest = new QuestHandler() {
-		private static final String TXT_ROSE1	=
-			"Hello adventurer... Once I was like you - strong and confident... " +
-			"And now I'm dead... But I can't leave this place... Not until I have my _dried rose_... " +
-			"It's very important to me... Some monster stole it from my body...";
+		private final String TXT_ROSE1	= Messages.get(Ghost.class,"1");
 		
-		private static final String TXT_ROSE2	=
-			"Please... Help me... _Find the rose_...";
+		private final String TXT_ROSE2	= Messages.get(Ghost.class,"2");
 		
-		private static final String TXT_ROSE3	= 
-			"Yes! Yes!!! This is it! Please give it to me! " +
-			"And you can take one of these items, maybe they " +
-			"will be useful to you in your journey...";
+		private final String TXT_ROSE3	= Messages.get(Ghost.class,"3");
 
 		public void interact( Ghost ghost ) {
 			if (Quest.given) {
@@ -387,18 +379,11 @@ public class Ghost extends NPC {
 	};
 	
 	private static final QuestHandler ratQuest = new QuestHandler() {
-		private static final String TXT_RAT1	=
-			"Hello adventurer... Once I was like you - strong and confident... " +
-			"And now I'm dead... But I can't leave this place... Not until I have my revenge... " +
-			"Slay the _fetid rat_, that has taken my life...";
+		private final String TXT_RAT1	= Messages.get(Ghost.class,"4");
 			
-		private static final String TXT_RAT2	=
-			"Please... Help me... _Slay the abomination_...";
+		private final String TXT_RAT2	= Messages.get(Ghost.class,"5");
 		
-		private static final String TXT_RAT3	= 
-			"Yes! The ugly creature is slain and I can finally rest... " +
-			"Please take one of these items, maybe they " +
-			"will be useful to you in your journey...";
+		private final String TXT_RAT3	= Messages.get(Ghost.class,"6");
 		
 		public void interact( Ghost ghost ) {
 			if (Quest.given) {
@@ -421,17 +406,11 @@ public class Ghost extends NPC {
 	};
 	
 	private static final QuestHandler curseQuest = new QuestHandler() {
-		private static final String TXT_CURSE1 =
-			"Hello adventurer... Once I was like you - strong and confident... " +
-			"And now I'm dead... But I can't leave this place, as I am bound by a horrid curse... " +
-			"Please... Help me... _Destroy the curse_...";
-		private static final String TXT_CURSE2 =
-			"Thank you, %s! The curse is broken and I can finally rest... " +
-			"Please take one of these items, maybe they " +
-			"will be useful to you in your journey...";
+		private final String TXT_CURSE1 =Messages.get(Ghost.class,"7");
+		private final String TXT_CURSE2 =Messages.get(Ghost.class,"8");
 		
-		private static final String TXT_YES	= "Yes, I will do it for you";
-		private static final String TXT_NO	= "No, I can't help you";
+		private final String TXT_YES	= Messages.get(Ghost.class,"9");
+		private final String TXT_NO	= Messages.get(Ghost.class,"0");
 		
 		public void interact( final Ghost ghost ) {
 			if (Quest.given) {

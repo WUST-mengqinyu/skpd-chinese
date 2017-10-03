@@ -17,22 +17,23 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.BeeSprite;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public class Bee extends NPC {
 	
 	{
-		name = "golden bee";
+		name = Messages.get(this,"1");
 		spriteClass = BeeSprite.class;
 		
 		viewDistance = 4;
@@ -116,9 +117,7 @@ public class Bee extends NPC {
 	
 	@Override
 	public String description() {
-		return
-			"Despite their small size, golden bees tend " +
-			"to protect their master fiercely. They don't live long though.";
+		return Messages.get(this,"2");
 	}
 
 	@Override

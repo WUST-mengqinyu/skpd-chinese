@@ -17,38 +17,32 @@
  */
 package com.skpd.pixeldungeonskills.actors.hero;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Bundle;
 
 public enum HeroSubClass {
 
 	NONE( null, null ),
 	
-	GLADIATOR( "gladiator", 
-		"A successful attack with a melee weapon allows the _Gladiator_ to start a combo, " +
-		"in which every next successful hit inflicts more damage." ),
-	BERSERKER( "berserker", 
-		"When severely wounded, the _Berserker_ enters a state of wild fury " +
-		"significantly increasing his damage output." ),
+	GLADIATOR(Messages.get(HeroSubClass.class,"a1"),
+			Messages.get(HeroSubClass.class,"1") ),
+	BERSERKER( Messages.get(HeroSubClass.class,"a2"),
+			Messages.get(HeroSubClass.class,"2")),
 	
-	WARLOCK( "warlock", 
-		"After killing an enemy the _Warlock_ consumes its soul. " +
-		"It heals his wounds and satisfies his hunger." ),
-	BATTLEMAGE( "battlemage", 
-		"When fighting with a wand in his hands, the _Battlemage_ inflicts additional damage depending " +
-		"on the current number of charges. Every successful hit restores 1 charge to this wand." ),
+	WARLOCK( Messages.get(HeroSubClass.class,"b1"),
+			Messages.get(HeroSubClass.class,"3") ),
+	BATTLEMAGE( Messages.get(HeroSubClass.class,"b2"),
+			Messages.get(HeroSubClass.class,"4") ),
 	
-	ASSASSIN( "assassin", 
-		"When performing a surprise attack, the _Assassin_ inflicts additional damage to his target." ),
-	FREERUNNER( "freerunner", 
-		"The _Freerunner_ can move almost twice faster, than most of the monsters. When he " +
-		"is running, the Freerunner is much harder to hit. For that he must be unencumbered and not starving." ),
+	ASSASSIN( Messages.get(HeroSubClass.class,"c1"),
+			Messages.get(HeroSubClass.class,"5") ),
+	FREERUNNER( Messages.get(HeroSubClass.class,"c2"),
+			Messages.get(HeroSubClass.class,"6")),
 		
-	SNIPER( "sniper", 
-		"_Snipers_ are able to detect weak points in an enemy's armor, " +
-		"effectively ignoring it when using a missile weapon." ),
-	WARDEN( "warden", 
-		"Having a strong connection with forces of nature gives _Wardens_ an ability to gather dewdrops and " +
-		"seeds from plants. Also trampling a high grass grants them a temporary armor buff." );
+	SNIPER( Messages.get(HeroSubClass.class,"d1"),
+			Messages.get(HeroSubClass.class,"7") ),
+	WARDEN( Messages.get(HeroSubClass.class,"d2"),
+			Messages.get(HeroSubClass.class,"8") );
 	
 	private String title;
 	private String desc;

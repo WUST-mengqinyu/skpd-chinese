@@ -25,6 +25,7 @@ import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.Difficulties;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.buffs.Champ;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.ui.CheckBox;
 import com.skpd.pixeldungeonskills.ui.Icons;
@@ -45,12 +46,12 @@ public class WndRatKing extends WndTabbed {
 
 	private static final String TXT_PLUS = "+";
 	private static final String TXT_MINUS = "-";
-	private static final String TXT_CHAMPION_CHANCE = "Champions: %s";
+	private static final String TXT_CHAMPION_CHANCE = Messages.get(WndRatKing.class,"1");
 
 
 
 
-	private static final String TXT_TRUE_KING_TITLE	= "A King.. I Think";
+	private static final String TXT_TRUE_KING_TITLE	= Messages.get(WndRatKing.class,"2");
 
 
 	private static final int WIDTH		= 112;
@@ -80,10 +81,7 @@ public class WndRatKing extends WndTabbed {
             titlebar.setRect(0, 0, WIDTH, 0);
             add(titlebar);
 
-            String description = "I am the one true king... the chosen rodent.. the Rat K.. WHY ARE YOU LAUGHING?!\n \n"
-                    + "You question my command? I will prove to you my strength.\n \n"
-                    + "The inhabitants of this dungeon, all of them.. rodents or not so blessed... even you follow my command and can be molded by my will.\n"
-                    + "\n \nNow tell me what to do...";
+            String description = Messages.get(WndRatKing.class,"3");
             RenderedTextMultiline txtInfo = PixelScene.renderMultiline( description, 6 );
             txtInfo.maxWidth (WIDTH);
             txtInfo.setPos(titlebar.left(),titlebar.bottom() + GAP);

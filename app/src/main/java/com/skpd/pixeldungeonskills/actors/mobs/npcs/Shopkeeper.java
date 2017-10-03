@@ -23,6 +23,7 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.ElmoParticle;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ShopkeeperSprite;
 import com.skpd.pixeldungeonskills.windows.WndBag;
@@ -31,7 +32,7 @@ import com.skpd.pixeldungeonskills.windows.WndTradeItem;
 public class Shopkeeper extends NPC {
 
 	{
-		name = "shopkeeper";
+		name = Messages.get(this,"1");
 		spriteClass = ShopkeeperSprite.class;
 	}
 	
@@ -76,13 +77,11 @@ public class Shopkeeper extends NPC {
 	
 	@Override
 	public String description() {
-		return 
-			"This stout guy looks more appropriate for a trade district in some large city " +
-			"than for a dungeon. His prices explain why he prefers to do business here.";
+		return Messages.get(this,"2");
 	}
 	
 	public static WndBag sell() {
-		return GameScene.selectItem( itemSelector, WndBag.Mode.FOR_SALE, "Select an item to sell" );
+		return GameScene.selectItem( itemSelector, WndBag.Mode.FOR_SALE, Messages.get(Shopkeeper.class,"3") );
 	}
 	
 	private static WndBag.Listener itemSelector = new WndBag.Listener() {

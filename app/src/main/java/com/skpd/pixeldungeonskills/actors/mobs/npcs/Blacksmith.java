@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
-import java.util.Collection;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
@@ -34,6 +32,7 @@ import com.skpd.pixeldungeonskills.items.quest.Pickaxe;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
 import com.skpd.pixeldungeonskills.levels.Room;
 import com.skpd.pixeldungeonskills.levels.Room.Type;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.BlacksmithSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -42,33 +41,29 @@ import com.skpd.pixeldungeonskills.windows.WndQuest;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.Collection;
+
 public class Blacksmith extends NPC {
 
 	private static final String TXT_GOLD_1 =
-		"Hey human! Wanna be useful, eh? Take dis pickaxe and mine me some _dark gold ore_, _15 pieces_ should be enough. " +
-		"What do you mean, how am I gonna pay? You greedy...\n" +
-		"Ok, ok, I don't have money to pay, but I can do some smithin' for you. Consider yourself lucky, " +
-		"I'm the only blacksmith around.";
+			Messages.get(Blacksmith.class,"1");
 	private static final String TXT_BLOOD_1 =
-		"Hey human! Wanna be useful, eh? Take dis pickaxe and _kill a bat_ wit' it, I need its blood on the head. " +
-		"What do you mean, how am I gonna pay? You greedy...\n" +
-		"Ok, ok, I don't have money to pay, but I can do some smithin' for you. Consider yourself lucky, " +
-		"I'm the only blacksmith around.";
+			Messages.get(Blacksmith.class,"2");
 	private static final String TXT2 =
-		"Are you kiddin' me? Where is my pickaxe?!";
+			Messages.get(Blacksmith.class,"3");
 	private static final String TXT3 =
-		"Dark gold ore. 15 pieces. Seriously, is it dat hard?";
+			Messages.get(Blacksmith.class,"4");
 	private static final String TXT4 =
-		"I said I need bat blood on the pickaxe. Chop chop!";
+			Messages.get(Blacksmith.class,"5");
 	private static final String TXT_COMPLETED =
-		"Oh, you have returned... Better late dan never.";
+			Messages.get(Blacksmith.class,"6");
 	private static final String TXT_GET_LOST =
-		"I'm busy. Get lost!";
+			Messages.get(Blacksmith.class,"7");
 	
-	private static final String TXT_LOOKS_BETTER	= "your %s certainly looks better now";
+	private static final String TXT_LOOKS_BETTER	= Messages.get(Blacksmith.class,"8");
 	
 	{
-		name = "troll blacksmith";
+		name = Messages.get(this,"name");
 		spriteClass = BlacksmithSprite.class;
 	}
 	
@@ -164,27 +159,27 @@ public class Blacksmith extends NPC {
 	public static String verify( Item item1, Item item2 ) {
 		
 		if (item1 == item2) {
-			return "Select 2 different items, not the same item twice!";
+			return Messages.get(Blacksmith.class,"9");
 		}
 		
 		if (item1.getClass() != item2.getClass()) {
-			return "Select 2 items of the same type!";
+			return Messages.get(Blacksmith.class,"0");
 		}
 		
 		if (!item1.isIdentified() || !item2.isIdentified()) {
-			return "I need to know what I'm working with, identify them first!";
+			return Messages.get(Blacksmith.class,"a1");
 		}
 		
 		if (item1.cursed || item2.cursed) {
-			return "I don't work with cursed items!";
+			return Messages.get(Blacksmith.class,"a2");
 		}
 		
 		if (item1.level() < 0 || item2.level() < 0) {
-			return "It's a junk, the quality is too poor!";
+			return Messages.get(Blacksmith.class,"a3");
 		}
 		
 		if (!item1.isUpgradable() || !item2.isUpgradable()) {
-			return "I can't reforge these items!";
+			return Messages.get(Blacksmith.class,"a4");
 		}
 		
 		return null;
@@ -243,9 +238,8 @@ public class Blacksmith extends NPC {
 	
 	@Override
 	public String description() {
-		return 
-			"This troll blacksmith looks like all trolls look: he is tall and lean, and his skin resembles stone " +
-			"in both color and texture. The troll blacksmith is tinkering with unproportionally small tools.";
+		return
+				Messages.get(Blacksmith.class,"desc");
 	}
 
 	public static class Quest {

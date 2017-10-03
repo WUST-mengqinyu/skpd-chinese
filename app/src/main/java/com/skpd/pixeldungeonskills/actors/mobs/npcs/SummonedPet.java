@@ -6,13 +6,13 @@ import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.MissionScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.CrabSprite;
 import com.skpd.pixeldungeonskills.sprites.EyeSprite;
 import com.skpd.pixeldungeonskills.sprites.RatSprite;
 import com.skpd.pixeldungeonskills.sprites.SkeletonSprite;
-import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
@@ -73,14 +73,7 @@ public class SummonedPet extends NPC {
 
         public String getDescription()
         {
-            switch (this)
-            {
-                case RAT: return "Summoned rats will protect their master mage.";
-                case CRAB: return "Summoned crabs will protect their master mage.";
-                case SKELETON_ARCHER: return "Summoned skeleton archers will protect their master mage.";
-                case SKELETON: return "Summoned skeletons will protect their master mage.";
-            }
-            return "";
+            return Messages.format(Messages.get(this,"1"),name());
         }
 
         public Class<? extends CharSprite> getSprite()
@@ -350,7 +343,7 @@ public class SummonedPet extends NPC {
 
         @Override
         public String status() {
-            return Utils.format("This %s is wandering", name);
+            return Messages.format(Messages.get(Rat.class,"3"), name);
         }
     }
 

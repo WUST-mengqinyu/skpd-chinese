@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs.npcs;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.Journal;
 import com.skpd.pixeldungeonskills.actors.Actor;
@@ -36,13 +34,14 @@ import com.skpd.pixeldungeonskills.items.wands.WandOfDisintegration;
 import com.skpd.pixeldungeonskills.items.wands.WandOfFirebolt;
 import com.skpd.pixeldungeonskills.items.wands.WandOfLightning;
 import com.skpd.pixeldungeonskills.items.wands.WandOfPoison;
+import com.skpd.pixeldungeonskills.items.wands.WandOfReach;
 import com.skpd.pixeldungeonskills.items.wands.WandOfRegrowth;
 import com.skpd.pixeldungeonskills.items.wands.WandOfSlowness;
-import com.skpd.pixeldungeonskills.items.wands.WandOfReach;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.PrisonLevel;
 import com.skpd.pixeldungeonskills.levels.Room;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Rotberry;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.WandmakerSprite;
@@ -52,10 +51,12 @@ import com.skpd.pixeldungeonskills.windows.WndWandmaker;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class Wandmaker extends NPC {
 
 	{	
-		name = "old wandmaker";
+		name = Messages.get(Wandmaker.class,"1");
 		spriteClass = WandmakerSprite.class;
 	}
 	
@@ -72,7 +73,7 @@ public class Wandmaker extends NPC {
 	
 	@Override
 	public String defenseVerb() {
-		return "absorbed";
+		return Messages.get(Wandmaker.class,"2");
 	}
 	
 	@Override
@@ -100,9 +101,7 @@ public class Wandmaker extends NPC {
 	
 	@Override
 	public String description() {
-		return 
-			"This old but hale gentleman wears a slightly confused " +
-			"expression. He is protected by a magic shield.";
+		return Messages.get(Wandmaker.class,"3");
 	}
 	
 	public static class Quest {
@@ -292,13 +291,8 @@ public class Wandmaker extends NPC {
 	
 	private static final QuestHandler berryQuest = new QuestHandler() {
 		{
-			txtQuest1 = 
-				"Oh, what a pleasant surprise to meet a decent person in such place! I came here for a rare ingredient - " +
-				"a _Rotberry seed_. Being a magic user, I'm quite able to defend myself against local monsters, " +
-				"but I'm getting lost in no time, it's very embarrassing. Probably you could help me? I would be " +
-				"happy to pay for your service with one of my best wands.";
-			txtQuest2 = 
-				"Any luck with a _Rotberry seed_, %s? No? Don't worry, I'm not in a hurry.";
+			txtQuest1 = Messages.get(Wandmaker.class,"4");
+			txtQuest2 = Messages.get(Wandmaker.class,"5");
 		}
 
 		@Override
@@ -318,13 +312,8 @@ public class Wandmaker extends NPC {
 	
 	private static final QuestHandler dustQuest = new QuestHandler() {
 		{
-			txtQuest1 = 
-				"Oh, what a pleasant surprise to meet a decent person in such place! I came here for a rare ingredient - " +
-				"_corpse dust_. It can be gathered from skeletal remains and there is an ample number of them in the dungeon. " +
-				"Being a magic user, I'm quite able to defend myself against local monsters, but I'm getting lost in no time, " +
-				"it's very embarrassing. Probably you could help me? I would be happy to pay for your service with one of my best wands.";
-			txtQuest2 = 
-				"Any luck with _corpse dust_, %s? Bone piles are the most obvious places to look.";
+			txtQuest1 = Messages.get(Wandmaker.class,"6");
+			txtQuest2 = Messages.get(Wandmaker.class,"7");
 		}
 		
 		@Override
@@ -358,13 +347,9 @@ public class Wandmaker extends NPC {
 	
 	private static final QuestHandler fishQuest = new QuestHandler() {
 		{
-			txtQuest1 = 
-				"Oh, what a pleasant surprise to meet a decent person in such place! I came here for a rare ingredient: " +
-				"a _phantom fish_. You can catch it with your bare hands, but it's very hard to notice in the water. " +
-				"Being a magic user, I'm quite able to defend myself against local monsters, but I'm getting lost in no time, " +
-				"it's very embarrassing. Probably you could help me? I would be happy to pay for your service with one of my best wands.";
-			txtQuest2 = 
-				"Any luck with a _phantom fish_, %s? You may want to try searching for it in one of the local pools.";
+			txtQuest1 = Messages.get(Wandmaker.class,"8");
+
+			txtQuest2 = Messages.get(Wandmaker.class,"9");
 		}
 		
 		@Override
