@@ -25,13 +25,26 @@ public class SummonedPet extends NPC {
 
     public static enum PET_TYPES
     {
-        RAT("Rat"), CRAB("Crab"), SKELETON("Skeleton"), SKELETON_ARCHER("Skeleton Archer"), SPECIAL("Special");
+        RAT("Rat",Messages.get(SummonedPet.class,"rat")),
+        CRAB("Crab",Messages.get(SummonedPet.class,"crab")),
+        SKELETON("Skeleton",Messages.get(SummonedPet.class,"skeleton")),
+        SKELETON_ARCHER("Skeleton Archer",Messages.get(SummonedPet.class,"skeleton_archer")),
+        SPECIAL("Special",Messages.get(SummonedPet.class,"special"));
         public String type = "Rat";
-        PET_TYPES(String type) {this.type = type;}
+        public String name = "Rat";
+        PET_TYPES(String type,String name) {
+            this.type = type;
+            this.name = name;
+        }
+
+        public String trueName()
+        {
+            return name;
+        }
 
         public String getName()
         {
-            return "Summoned " + type;
+            return Messages.get(SummonedPet.class,"summon") + name;
         }
 
         public int getHealth(int level)
@@ -73,7 +86,7 @@ public class SummonedPet extends NPC {
 
         public String getDescription()
         {
-            return Messages.format(Messages.get(this,"1"),name());
+            return Messages.format(Messages.get(SummonedPet.class,"1"),trueName());
         }
 
         public Class<? extends CharSprite> getSprite()

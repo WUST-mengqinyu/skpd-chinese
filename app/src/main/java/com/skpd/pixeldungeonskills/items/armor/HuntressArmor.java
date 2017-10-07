@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.armor;
 
-import java.util.HashMap;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
@@ -26,20 +24,22 @@ import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Shuriken;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.sprites.MissileSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
+import java.util.HashMap;
+
 public class HuntressArmor extends ClassArmor {
 	
-	private static final String TXT_NO_ENEMIES 		= "No enemies in sight";
-	private static final String TXT_NOT_HUNTRESS	= "Only huntresses can use this armor!";
+	private static final String TXT_NO_ENEMIES 		= Messages.get(HuntressArmor.class,"1");
+	private static final String TXT_NOT_HUNTRESS	= Messages.get(HuntressArmor.class,"2");
 	
 	private static final String AC_SPECIAL = "SPECTRAL BLADES"; 
 	
 	{
-		name = "huntress cloak";
 		image = ItemSpriteSheet.ARMOR_HUNTRESS;
 	}
 	
@@ -96,12 +96,5 @@ public class HuntressArmor extends ClassArmor {
 			return false;
 		}
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"A huntress in such cloak can create a fan of spectral blades. Each of these blades " +
-			"will target a single enemy in the huntress's field of view, inflicting damage depending " +
-			"on her currently equipped melee weapon.";
-	}
+
 }

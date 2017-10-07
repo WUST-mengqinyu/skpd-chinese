@@ -17,15 +17,24 @@
  */
 package com.skpd.pixeldungeonskills.items.armor;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.EquipableItem;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.armor.glyphs.*;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Affection;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.AntiEntropy;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.AutoRepair;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Bounce;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Displacement;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Entanglement;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Metabolism;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Multiplicity;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Potential;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Stench;
+import com.skpd.pixeldungeonskills.items.armor.glyphs.Viscosity;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -34,19 +43,20 @@ import com.skpd.utils.Bundlable;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class Armor extends EquipableItem {
 	
 	private static final int HITS_TO_KNOW	= 10;
 	
-	private static final String TXT_EQUIP_CURSED	= "your %s constricts around you painfully";
+	private static final String TXT_EQUIP_CURSED = Messages.get(Armor.class,"1");
 		
-	private static final String TXT_IDENTIFY	= "you are now familiar enough with your %s to identify it. It is %s.";
+	private static final String TXT_IDENTIFY	 = Messages.get(Armor.class,"2");
 	
-	private static final String TXT_TO_STRING	= "%s :%d";
-	private static final String TXT_BROKEN		= "broken %s :%d";
+	private static final String TXT_TO_STRING	 = "%s :%d";
+	private static final String TXT_BROKEN		 = Messages.get(Armor.class,"3");
 	
-	private static final String TXT_INCOMPATIBLE = 
-		"Interaction of different types of magic has erased the glyph on this armor!";
+	private static final String TXT_INCOMPATIBLE = Messages.get(Armor.class,"4");
 	
 	public int tier;
 	public int STR;
@@ -162,7 +172,7 @@ public class Armor extends EquipableItem {
 			if (inscribe) {
 				inscribe();
 			}
-		};
+		}
 		
 		STR--;
 		
@@ -219,42 +229,35 @@ public class Armor extends EquipableItem {
 		StringBuilder info = new StringBuilder( desc() );
 		
 		if (levelKnown) {
-			info.append( 
-				"\n\nThis " + name + " provides damage absorption up to " +
-				"" + Math.max( DR(), 0 ) + " points per attack. " );
+			info.append( Messages.format( Messages.get(Armor.class,"5"),name,Math.max( DR(), 0 )));
 			
 			if (STR > Dungeon.hero.STR()) {
 				
 				if (isEquipped( Dungeon.hero )) {
-					info.append( 
-						"\n\nBecause of your inadequate strength your " +
-						"movement speed and defense skill is decreased. " );
+					info.append( Messages.get(Armor.class,"ex") );
 				} else {
-					info.append( 
-						"\n\nBecause of your inadequate strength wearing this armor " +
-						"will decrease your movement speed and defense skill. " );
+					info.append( Messages.get(Armor.class,"lack") );
 				}
 				
 			}
 		} else {
-			info.append( 
-				"\n\nTypical " + name + " provides damage absorption up to " + typicalDR() + " points per attack " +
-				" and requires " + typicalSTR() + " points of strength. " );
+			info.append(Messages.format(Messages.get(Armor.class,"6"),name,typicalDR(),typicalSTR()));
 			if (typicalSTR() > Dungeon.hero.STR()) {
-				info.append( "Probably this armor is too heavy for you. " );
+				info.append( Messages.get(Armor.class,"7") );
 			}
 		}
 		
 		if (glyph != null) {
-			info.append( "It is enchanted." );
+			info.append( Messages.get(Armor.class,"a1") );
 		}
 		
 		if (isEquipped( Dungeon.hero )) {
-			info.append( "\n\nYou are wearing the " + name + 
-				(cursed ? ", and because it is cursed, you are powerless to remove it." : ".") ); 
+			String a = Messages.get(Armor.class,"9");
+			info.append( a + name +
+				(cursed ? Messages.get(Armor.class,"0") : Messages.get(Armor.class,"dot")) );
 		} else {
 			if (cursedKnown && cursed) {
-				info.append( "\n\nYou can feel a malevolent magic lurking within the " + name + "." );
+				info.append( Messages.get(Armor.class,"cursed") + name + Messages.get(Armor.class,"dot") );
 			}
 		}
 		

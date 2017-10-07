@@ -30,6 +30,7 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.CellSelector;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -37,13 +38,12 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class RogueArmor extends ClassArmor {
 	
-	private static final String TXT_FOV 		= "You can only jump to an empty location in your field of view";
-	private static final String TXT_NOT_ROGUE	= "Only rogues can use this armor!";
+	private static final String TXT_FOV 		= Messages.get(RogueArmor.class,"1");
+	private static final String TXT_NOT_ROGUE	= Messages.get(RogueArmor.class,"2");
 	
 	private static final String AC_SPECIAL = "SMOKE BOMB"; 
 	
 	{
-		name = "rogue garb";
 		image = ItemSpriteSheet.ARMOR_ROGUE;
 	}
 	
@@ -66,14 +66,7 @@ public class RogueArmor extends ClassArmor {
 			return false;
 		}
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"Wearing this dark garb, a rogue can perform a trick, that is called \"smoke bomb\" " +
-			"(though no real explosives are used): he blinds enemies who could see him and jumps aside.";
-	}
-	
+
 	protected static CellSelector.Listener teleporter = new  CellSelector.Listener() {
 		
 		@Override
@@ -110,7 +103,7 @@ public class RogueArmor extends ClassArmor {
 		
 		@Override
 		public String prompt() {
-			return "Choose a location to jump to";
+			return Messages.get(RogueArmor.class,"3");
 		}
 	};
 }

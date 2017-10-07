@@ -17,10 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
@@ -42,6 +38,7 @@ import com.skpd.pixeldungeonskills.items.weapon.melee.MeleeWeapon;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Arrow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.MissileWeapon;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.CellSelector;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
@@ -55,8 +52,15 @@ import com.skpd.utils.Bundle;
 import com.skpd.utils.Callback;
 import com.skpd.utils.PointF;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Item implements Bundlable {
 
+	{
+		name = Messages.get(this,"");
+	}
 	private static final String TXT_PACK_FULL	= "Your pack is too full for the %s";
 	
 	private static final String TXT_BROKEN		= "Because of frequent use, your %s has broken.";
@@ -80,7 +84,7 @@ public class Item implements Bundlable {
 
 	public String defaultAction;
 	
-	protected String name = "smth";
+	protected String name;
 	protected int image = 0;
 	
 
@@ -480,7 +484,7 @@ public class Item implements Bundlable {
 	}
 	
 	public String desc() {
-		return "";
+		return Messages.get(this,"desc");
 	}
 	
 	public int quantity() {

@@ -17,16 +17,17 @@
  */
 package com.skpd.pixeldungeonskills.items.armor;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Bundle;
 
+import java.util.ArrayList;
+
 abstract public class ClassArmor extends Armor {
 	
-	private static final String TXT_LOW_HEALTH		= "Your health is too low!";
-	private static final String TXT_NOT_EQUIPPED	= "You need to be wearing this armor to use its special power!";
+	private static final String TXT_LOW_HEALTH		= Messages.get(ClassArmor.class,"1");
+	private static final String TXT_NOT_EQUIPPED	= Messages.get(ClassArmor.class,"2");
 	
 	private int DR;
 	
@@ -136,6 +137,6 @@ abstract public class ClassArmor extends Armor {
 	
 	@Override
 	public String desc() {
-		return "The thing looks awesome!";
+		return Messages.get(ClassArmor.class,"3");
 	}
 }

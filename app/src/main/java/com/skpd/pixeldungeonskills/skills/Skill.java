@@ -144,13 +144,13 @@ public class Skill{
 
     public String info() {
         if (Messages.lang()== Languages.ENGLISH) {
-            a = name + " is at level " + level + ".\n"
+            a = "\n" + name + " is at level " + level + ".\n"
                     + (level < Skill.MAX_LEVEL ? "It costs " + upgradeCost() + " skill points to advance in " + name + "." : name + " is maxed out.")
                     + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana.\n" : "\n");
         }else {
-            a = name + "技能现在" + level +"级。\n"
-                    + (level<MAX_LEVEL ? "它需要" + upgradeCost() + "个技能点来升级。\n": name + "已经升至满级。\n")
-                    + (level>0 &&mana>0 ? "使用" + name + "将会花费"+ getManaCost() +"点法力值\n": "\n" );
+            a = "\n" + name + "技能现在 _" + level +"_ 级。\n"
+                    + (level<MAX_LEVEL ? "它需要&nbsp;_" + upgradeCost() + "_ 个技能点来升级。\n": name + "已经升至满级。\n")
+                    + (level>0 &&mana>0 ? "使用" + name + "将会花费 _"+ getManaCost() +"_ 点法力值\n": "\n" );
         }
         return get(this,"1") + a;
     }
