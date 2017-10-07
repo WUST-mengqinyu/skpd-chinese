@@ -9,7 +9,6 @@ public class Bandit extends PassiveSkillA1{
 
 
     {
-        name = "Bandit";
         image = 49;
         tier = 1;
     }
@@ -26,12 +25,4 @@ public class Bandit extends PassiveSkillA1{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "10% more gold per level.\n"
-                + "Becomes immune to Mimic gold steal.\n"
-                + costUpgradeInfo();
-    }
 }

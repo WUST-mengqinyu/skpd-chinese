@@ -42,7 +42,7 @@ public class WndJournal extends Window {
 	
 	private static final String TXT_TITLE	= Messages.get(WndHero.class,"10");
 	
-	private BitmapText txtTitle;
+	private RenderedText txtTitle;
 	private ScrollPane list;
 	
 	public WndJournal() {
@@ -50,9 +50,8 @@ public class WndJournal extends Window {
 		super();
 		resize( WIDTH, PixelDungeon.landscape() ? HEIGHT_L : HEIGHT_P );
 		
-		txtTitle = PixelScene.createText( TXT_TITLE, 9 );
+		txtTitle = PixelScene.renderText( TXT_TITLE, 9 );
 		txtTitle.hardlight( Window.TITLE_COLOR );
-		txtTitle.measure();
 		txtTitle.x = PixelScene.align( PixelScene.uiCamera, (WIDTH - txtTitle.width()) / 2 );
 		add( txtTitle );
 		

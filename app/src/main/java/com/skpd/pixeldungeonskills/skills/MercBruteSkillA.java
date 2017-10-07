@@ -14,10 +14,4 @@ public class MercBruteSkillA extends Toughness {
         return false;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Take less damage from enemy attacks.\n";
-    }
 }

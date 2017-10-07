@@ -35,10 +35,4 @@ public class MercThiefSkillA extends Venom {
             Dungeon.hero.hiredMerc.sprite.showStatus(CharSprite.NEUTRAL, castText);
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Chance to poison target.\n";
-    }
 }

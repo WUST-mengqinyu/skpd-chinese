@@ -11,8 +11,6 @@ public class TripleShot extends ActiveSkill2{
 
 
     {
-        name = "Triple Shot";
-        castText = "Catch Sweetie";
         image = 92;
         tier = 2;
         mana = 5;
@@ -54,11 +52,4 @@ public class TripleShot extends ActiveSkill2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Shoots three arrows at the same time.\n"
-                + costUpgradeInfo();
-    }
 }

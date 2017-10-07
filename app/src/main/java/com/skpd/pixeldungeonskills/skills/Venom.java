@@ -9,8 +9,6 @@ public class Venom extends PassiveSkillB1{
 
 
     {
-        name = "Venom";
-        castText = "Poison is my specialty";
         image = 57;
         tier = 1;
     }
@@ -31,11 +29,4 @@ public class Venom extends PassiveSkillB1{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Chance to poison target.\n"
-                + costUpgradeInfo();
-    }
 }

@@ -13,7 +13,6 @@ public class HuntressActive extends BranchSkill{
 
 
     {
-        name = "Archery";
         image = 88;
         level = 0;
     }
@@ -31,14 +30,6 @@ public class HuntressActive extends BranchSkill{
     public void execute( Hero hero, String action ) {
         if(action == Skill.AC_ADVANCE)
             hero.heroSkills.advance(CurrentSkills.BRANCHES.ACTIVE);
-    }
-
-    @Override
-    public String info()
-    {
-        return "Huntresses experts in archery.\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
     @Override

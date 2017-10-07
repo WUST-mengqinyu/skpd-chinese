@@ -10,6 +10,7 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.ElmoParticle;
 import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.MirrorSprite;
 import com.skpd.pixeldungeonskills.ui.StatusPane;
@@ -24,8 +25,6 @@ public class Echo extends ActiveSkill3{
 
 
     {
-        name = "Echo";
-        castText = "The past will haunt me forever";
         tier = 3;
         image = 121;
         mana = 3;
@@ -58,7 +57,7 @@ public class Echo extends ActiveSkill3{
                 int index = Random.index(respawnPoints);
 
                 SummonedPet minion = new SummonedPet(MirrorSprite.class);
-                minion.name = "Hatsune's Echo";
+                minion.name = Messages.get(this,"2");
                 minion.screams = false;
                 minion.HT = 50;
                 minion.HP = 50;
@@ -92,14 +91,6 @@ public class Echo extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "An echo of a memory you should not have survived.\n"
-                + costUpgradeInfo();
     }
 
 }

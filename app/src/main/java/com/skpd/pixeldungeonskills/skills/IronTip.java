@@ -9,8 +9,6 @@ public class IronTip extends PassiveSkillB3{
 
 
     {
-        name = "Iron Tip";
-        castText = "Don't forget to share...";
         image = 83;
         tier = 3;
     }
@@ -38,11 +36,4 @@ public class IronTip extends PassiveSkillB3{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Uses iron arrow tips allowing some arrows to path through their targets and continue their path.\n"
-                + costUpgradeInfo();
-    }
 }

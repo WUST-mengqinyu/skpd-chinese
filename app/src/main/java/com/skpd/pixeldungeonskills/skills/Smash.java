@@ -12,8 +12,6 @@ public class Smash extends ActiveSkill1{
 
 
     {
-        name = "Smash";
-        castText = "Smash!";
         tier = 1;
         image = 17;
         mana = 3;
@@ -55,13 +53,6 @@ public class Smash extends ActiveSkill1{
             StatusPane.manaDropping += getManaCost();
             return 1f + 0.1f * level;
         }
-    }
-
-    @Override
-    public String info()
-    {
-        return "Hits target for more damage.\n"
-                + costUpgradeInfo();
     }
 
 }

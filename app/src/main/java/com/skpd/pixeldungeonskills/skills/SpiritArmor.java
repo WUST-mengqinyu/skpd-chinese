@@ -2,6 +2,7 @@ package com.skpd.pixeldungeonskills.skills;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ public class SpiritArmor extends PassiveSkillA3{
 
 
     {
-        name = "Spirit Armor";
         tier = 3;
         image = 27;
         level = 0;
@@ -66,16 +66,9 @@ public class SpiritArmor extends PassiveSkillA3{
         }
 
         if(maxReduction != 0)
-            GLog.p(" (Spirit Armor absorbed " + maxReduction + " damage) ");
+            GLog.p( Messages.format(Messages.get(this,"2"),maxReduction ));
 
         return maxReduction;
-    }
-
-    @Override
-    public String info()
-    {
-        return "When activated, 10% of damage per level is taken from mana when possible.\n"
-                + costUpgradeInfo();
     }
 
     private int damageReduction()

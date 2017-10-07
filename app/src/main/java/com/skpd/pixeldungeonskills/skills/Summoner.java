@@ -8,7 +8,6 @@ public class Summoner extends PassiveSkillB3{
 
 
     {
-        name = "Summoner";
         tier = 3;
         image = 35;
     }
@@ -25,10 +24,4 @@ public class Summoner extends PassiveSkillB3{
         return true;
     }
 
-    @Override
-    public String info()
-    {
-        return "Summoning limit increases by 1 per level.\n"
-                + costUpgradeInfo();
-    }
 }

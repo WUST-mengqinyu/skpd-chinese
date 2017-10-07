@@ -25,6 +25,7 @@ import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.rings.RingOfHaggler;
+import com.skpd.pixeldungeonskills.messages.Languages;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
@@ -32,6 +33,7 @@ import com.skpd.pixeldungeonskills.ui.ItemSlot;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.RenderedTextMultiline;
 import com.skpd.pixeldungeonskills.ui.Window;
+import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndTradeItem extends Window {
@@ -202,6 +204,10 @@ public class WndTradeItem extends Window {
 		int price = item.price();
 		
 		new Gold( price ).doPickUp( hero );
+		if (Messages.lang()== Languages.CHINESE)
+			GLog.i( TXT_SOLD, price , item.name());
+		else
+			GLog.i( TXT_SOLD, item.name(), price );
 	}
 	
 	private void sellOne( Item item ) {
@@ -214,8 +220,11 @@ public class WndTradeItem extends Window {
 			
 			item = item.detach( hero.belongings.backpack );
 			int price = item.price();
-			
 			new Gold( price ).doPickUp( hero );
+			if (Messages.lang()== Languages.CHINESE)
+				GLog.i( TXT_SOLD, price , item.name());
+			else
+				GLog.i( TXT_SOLD, item.name(), price );
 		}
 	}
 	
@@ -235,6 +244,11 @@ public class WndTradeItem extends Window {
 		
 		int price = price( item );
 		Dungeon.gold -= price;
+
+		if (Messages.lang()== Languages.CHINESE)
+			GLog.i( TXT_BOUGHT, price , item.name());
+		else
+			GLog.i( TXT_BOUGHT, item.name(), price );
 		
 		if (!item.doPickUp( hero )) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();

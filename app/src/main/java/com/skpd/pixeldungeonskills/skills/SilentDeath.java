@@ -1,6 +1,7 @@
 package com.skpd.pixeldungeonskills.skills;
 
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Random;
 
 /**
@@ -10,8 +11,6 @@ public class SilentDeath extends PassiveSkillB3{
 
 
     {
-        name = "Silent Death";
-        castText = "Eternal Slumber";
         tier = 3;
         image = 59;
     }
@@ -21,11 +20,11 @@ public class SilentDeath extends PassiveSkillB3{
 
         if(Random.Int(100) < 10 * level)
         {
-            castText = "Eternal Slumber";
+            castText = Messages.get(this,"2");
             castTextYell();
             return true;
         }
-        castText = "Almost had him...";
+        castText = Messages.get(this,"3");
         castTextYell();
         return false;
     }
@@ -36,10 +35,4 @@ public class SilentDeath extends PassiveSkillB3{
         return true;
     }
 
-    @Override
-    public String info()
-    {
-        return "10% per level chance to instantly kill a sleeping enemy.\n"
-                + costUpgradeInfo();
-    }
 }

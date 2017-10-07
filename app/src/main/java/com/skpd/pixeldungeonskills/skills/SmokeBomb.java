@@ -18,8 +18,6 @@ public class SmokeBomb extends ActiveSkill1{
 
 
     {
-        name = "Smoke Bomb";
-        castText = "Now you see me..";
         tier = 1;
         image = 65;
         mana = 6;
@@ -59,14 +57,6 @@ public class SmokeBomb extends ActiveSkill1{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "You become invisible.\n"
-                + costUpgradeInfo();
     }
 
 }

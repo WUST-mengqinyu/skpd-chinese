@@ -7,7 +7,6 @@ public class Meditation extends PassiveSkillA2{
 
 
     {
-        name = "Meditation";
         image = 26;
         tier = 2;
     }
@@ -22,10 +21,4 @@ public class Meditation extends PassiveSkillA2{
     @Override
     public int manaRegenerationBonus() {return level;}
 
-    @Override
-    public String info()
-    {
-        return "Increased mana regeneration.\n"
-                + costUpgradeInfo();
-    }
 }

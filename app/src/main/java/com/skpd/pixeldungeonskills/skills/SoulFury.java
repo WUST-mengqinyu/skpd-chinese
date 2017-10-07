@@ -2,6 +2,7 @@ package com.skpd.pixeldungeonskills.skills;
 
 
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 import java.util.ArrayList;
 
@@ -12,8 +13,6 @@ public class SoulFury extends ActiveSkill3{
 
 
     {
-        name = "Soul Fury";
-        castText = "Forgive me girls";
         tier = 3;
         image = 123;
         mana = 3;
@@ -57,8 +56,7 @@ public class SoulFury extends ActiveSkill3{
     @Override
     public String info()
     {
-        return "Sets spiritual energy ablaze unlocking god-like powers.\n"
-                + "No one ever survived Soul Fury...\n";
+        return Messages.get(this,"1");
     }
 
 }

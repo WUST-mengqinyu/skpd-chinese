@@ -2,6 +2,7 @@ package com.skpd.pixeldungeonskills.skills;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,6 @@ public class MageActive extends BranchSkill{
 
 
     {
-        name = "Summoning";
         image = 40;
     }
 
@@ -35,10 +35,10 @@ public class MageActive extends BranchSkill{
     @Override
     public String info()
     {
-        return "Mages rely on summoned creatures to do their bidding.\n"
-                + "Limited to 3  (+" + Dungeon.hero.heroSkills.passiveB3.summoningLimitBonus() + " bonus from the Summoner skill) active summons\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
+        String a= Messages.get(this,"1");
+        String b= Messages.format(a,Dungeon.hero.heroSkills.passiveB3.summoningLimitBonus(),totalSpent());
+        String c= Messages.get(this,"2");
+        return b + (canUpgrade() ? Messages.format(c,nextUpgradeCost()) : Messages.get(this,"3"));
     }
 
     @Override

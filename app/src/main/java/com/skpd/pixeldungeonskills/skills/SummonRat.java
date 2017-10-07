@@ -21,8 +21,6 @@ public class SummonRat extends ActiveSkill1{
 
 
     {
-        name = "Summon Rat";
-        castText = "Rise Rodent!";
         tier = 1;
         image = 41;
         mana = 3;
@@ -91,14 +89,6 @@ public class SummonRat extends ActiveSkill1{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Summons rats for your service.\n"
-                + costUpgradeInfo();
     }
 
 }

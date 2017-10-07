@@ -7,7 +7,6 @@ public class Fletching extends PassiveSkillA1{
 
 
     {
-        name = "Fletching";
         image = 73;
         tier = 1;
     }
@@ -21,11 +20,4 @@ public class Fletching extends PassiveSkillA1{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Creates arrows with time.\n"
-                + costUpgradeInfo();
-    }
 }

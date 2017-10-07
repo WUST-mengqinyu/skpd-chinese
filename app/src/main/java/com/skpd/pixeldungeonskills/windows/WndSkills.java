@@ -19,25 +19,26 @@ package com.skpd.pixeldungeonskills.windows;
 
 import android.graphics.RectF;
 
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.ColorBlock;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.PixelDungeon;
-import com.skpd.pixeldungeonskills.skills.BranchSkill;
-import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.items.bags.Bag;
 import com.skpd.pixeldungeonskills.items.bags.Keyring;
 import com.skpd.pixeldungeonskills.items.bags.ScrollHolder;
 import com.skpd.pixeldungeonskills.items.bags.SeedPouch;
 import com.skpd.pixeldungeonskills.items.bags.WandHolster;
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.skills.BranchSkill;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.ui.Icons;
 import com.skpd.pixeldungeonskills.ui.SkillSlot;
-import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class WndSkills extends WndTabbed {
 
@@ -51,6 +52,8 @@ public class WndSkills extends WndTabbed {
 	protected static final int TAB_WIDTH	= 25;
 
 	protected static final int TITLE_HEIGHT	= 12;
+
+	private RenderedText txtTitle;
 
 	private Listener listener;
 	private String title;
@@ -66,9 +69,9 @@ public class WndSkills extends WndTabbed {
     public boolean noDegrade = PixelDungeon.itemDeg();
 
 	public WndSkills(Listener listener, String title) {
-		
+
 		super();
-		
+
 		this.listener = listener;
 		this.title = title;
 		
@@ -78,17 +81,19 @@ public class WndSkills extends WndTabbed {
 		
 		int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
 		int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
-		
-		BitmapText txtTitle = PixelScene.createText( title != null ? title : Utils.capitalize( "Skills" + (Skill.availableSkill > 0 ? " (" + Skill.availableSkill + " points)" :"" )), 9 );
+
+		if (Messages.lang()== Languages.ENGLISH) {
+			txtTitle = PixelScene.renderText(title != null ? title : Messages.capitalize("Skills" + (Skill.availableSkill > 0 ? " (" + Skill.availableSkill + " points)" : "")), 9);
+		}else {
+			txtTitle = PixelScene.renderText(title != null ? title : Messages.capitalize("技能" + (Skill.availableSkill > 0 ? " (剩余" + Skill.availableSkill + " 个技能点)" : "")), 9);
+		}
 		txtTitle.hardlight( TITLE_COLOR );
-		txtTitle.measure();
 		txtTitle.x = (int)(slotsWidth - txtTitle.width()) / 2;
 		txtTitle.y = (int)(TITLE_HEIGHT - txtTitle.height()) / 2;
 		add( txtTitle );
 		
 		placeSkills();
 
-		
 		resize( slotsWidth, slotsHeight + TITLE_HEIGHT );
 	}
 	

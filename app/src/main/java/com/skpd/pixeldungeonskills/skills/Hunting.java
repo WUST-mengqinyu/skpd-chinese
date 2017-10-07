@@ -7,7 +7,6 @@ public class Hunting extends PassiveSkillA2{
 
 
     {
-        name = "Hunting";
         image = 74;
         tier = 2;
     }
@@ -21,11 +20,4 @@ public class Hunting extends PassiveSkillA2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Creates food with time.\n"
-                + costUpgradeInfo();
-    }
 }

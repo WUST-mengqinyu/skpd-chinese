@@ -21,8 +21,6 @@ public class SummonSkeletonArcher extends ActiveSkill3{
 
 
     {
-        name = "Summon Skeleton Archer";
-        castText = "The dead shall obey!";
         tier = 3;
         image = 44;
         mana = 3;
@@ -92,14 +90,6 @@ public class SummonSkeletonArcher extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Summons Skeletons for your service.\n"
-                + costUpgradeInfo();
     }
 
 }

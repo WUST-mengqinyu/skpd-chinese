@@ -10,8 +10,6 @@ public class KOArrow extends PassiveSkillB2{
 
 
     {
-        name = "KO Arrow";
-        castText = "Go to sleep";
         tier = 2;
         image = 60;
     }
@@ -33,14 +31,6 @@ public class KOArrow extends PassiveSkillB2{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "A chance to knock out a target with a arrow attacks.\n"
-                + costUpgradeInfo();
     }
 
 }

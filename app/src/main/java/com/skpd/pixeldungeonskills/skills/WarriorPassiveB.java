@@ -13,7 +13,6 @@ public class WarriorPassiveB extends BranchSkill{
 
 
     {
-        name = "Melee";
         image = 8;
         level = 0;
     }
@@ -31,14 +30,6 @@ public class WarriorPassiveB extends BranchSkill{
     public void execute( Hero hero, String action ) {
         if(action == Skill.AC_ADVANCE)
             hero.heroSkills.advance(CurrentSkills.BRANCHES.PASSIVEB);
-    }
-
-    @Override
-    public String info()
-    {
-        return "Warriors excel in melee combat.\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
     @Override

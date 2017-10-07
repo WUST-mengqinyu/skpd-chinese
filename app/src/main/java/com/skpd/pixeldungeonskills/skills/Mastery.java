@@ -8,7 +8,6 @@ public class Mastery extends PassiveSkillB3{
 
 
     {
-        name = "Mastery";
         tier = 3;
         image = 11;
     }
@@ -25,11 +24,4 @@ public class Mastery extends PassiveSkillB3{
         return level;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Melee weapons receive bonus to level.\n"
-                + costUpgradeInfo();
-    }
 }

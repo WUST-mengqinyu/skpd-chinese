@@ -8,7 +8,6 @@ public class Toughness extends PassiveSkillA3{
 
 
     {
-        name = "Toughness";
         tier = 3;
         image = 3;
     }
@@ -25,10 +24,4 @@ public class Toughness extends PassiveSkillA3{
         return 1f - level * 0.1f;
     }
 
-    @Override
-    public String info()
-    {
-        return "Take less damage from enemy attacks.\n"
-                + costUpgradeInfo();
-    }
 }

@@ -1,5 +1,6 @@
 package com.skpd.pixeldungeonskills.skills;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Random;
 
 /**
@@ -9,8 +10,6 @@ public class LockSmith extends PassiveSkillA3{
 
 
     {
-        name = "Lock Smith";
-
         tier = 3;
         image = 51;
     }
@@ -20,11 +19,13 @@ public class LockSmith extends PassiveSkillA3{
     {
         if(Random.Int(100) < 33 * level)
         {
-            castText = "Woah!!";
+            castText = Messages.get(this,"2");
             castTextYell();
             return true;
         }
-        castText = "Need to train in " + name + " more...";
+        //// FIXME: 2017/10/6
+        String a = Messages.get(this,"3");
+        castText = Messages.format(a,name);
         castTextYell();
         return false;
     }
@@ -35,11 +36,4 @@ public class LockSmith extends PassiveSkillA3{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "33% per level chance to disable traps.\n"
-                + costUpgradeInfo();
-    }
 }

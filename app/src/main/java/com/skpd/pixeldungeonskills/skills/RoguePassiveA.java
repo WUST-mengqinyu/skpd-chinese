@@ -13,7 +13,6 @@ public class RoguePassiveA extends BranchSkill{
 
 
     {
-        name = "Rogue";
         image = 48;
         level = 0;
     }
@@ -31,14 +30,6 @@ public class RoguePassiveA extends BranchSkill{
     public void execute( Hero hero, String action ) {
         if(action == Skill.AC_ADVANCE)
             hero.heroSkills.advance(CurrentSkills.BRANCHES.PASSIVEA);
-    }
-
-    @Override
-    public String info()
-    {
-        return "Rogues rely on stealth and quickness in combat.\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
     @Override

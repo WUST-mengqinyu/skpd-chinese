@@ -13,7 +13,6 @@ public class HuntressPassiveB extends BranchSkill{
 
 
     {
-        name = "Ranged";
         image = 80;
         level = 0;
     }
@@ -31,14 +30,6 @@ public class HuntressPassiveB extends BranchSkill{
     public void execute( Hero hero, String action ) {
         if(action == Skill.AC_ADVANCE)
             hero.heroSkills.advance(CurrentSkills.BRANCHES.PASSIVEB);
-    }
-
-    @Override
-    public String info()
-    {
-        return "Huntresses excel at ranged combat.\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
     @Override

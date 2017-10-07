@@ -9,10 +9,7 @@ import com.skpd.pixeldungeonskills.ui.StatusPane;
  */
 public class DoubleShot extends ActiveSkill2{
 
-
     {
-        name = "Double Shot";
-        castText = "Two for one";
         image = 90;
         tier = 2;
         mana = 5;
@@ -52,11 +49,4 @@ public class DoubleShot extends ActiveSkill2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Shoots two arrows at the same time.\n"
-                + costUpgradeInfo();
-    }
 }

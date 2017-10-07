@@ -7,7 +7,6 @@ public class Scorpion extends PassiveSkillB2{
 
 
     {
-        name = "Scorpion";
         image = 58;
         tier = 2;
     }
@@ -21,11 +20,4 @@ public class Scorpion extends PassiveSkillB2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Poison does more damage to enemies.\n"
-                + costUpgradeInfo();
-    }
 }

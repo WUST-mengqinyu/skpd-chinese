@@ -15,8 +15,6 @@ public class SoulSpark extends ActiveSkill3{
 
 
     {
-        name = "Soul Spark";
-        castText = "I exist for others";
         tier = 3;
         image = 122;
         mana = 3;
@@ -58,16 +56,6 @@ public class SoulSpark extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Hatsune's pride...\n"
-                + "Sacrifices spiritual energy to heal others.\n"
-
-                + costUpgradeInfo();
     }
 
 }

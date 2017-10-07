@@ -11,8 +11,6 @@ public class Bombvoyage extends ActiveSkill3{
 
 
     {
-        name = "Bombvoyage";
-        castText = "Bombvoyage";
         image = 91;
         tier = 3;
         mana = 15;
@@ -53,11 +51,4 @@ public class Bombvoyage extends ActiveSkill3{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Attaches a bomb to a standard arrow.\n"
-                + costUpgradeInfo();
-    }
 }

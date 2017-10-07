@@ -13,7 +13,6 @@ public class WarriorActive extends BranchSkill{
 
 
     {
-        name = "Skills";
         image = 16;
         level = 0;
     }
@@ -31,14 +30,6 @@ public class WarriorActive extends BranchSkill{
     public void execute( Hero hero, String action ) {
         if(action == Skill.AC_ADVANCE)
             hero.heroSkills.advance(CurrentSkills.BRANCHES.ACTIVE);
-    }
-
-    @Override
-    public String info()
-    {
-        return "Warriors use brute strength to deliver great punishment.\n"
-                + "You have invested a total of " + totalSpent() + " points in this branch.\n"
-                + (canUpgrade() ? "Next advancement will cost you " + nextUpgradeCost() + " skill point.\n" : "You can no longer advance in this line");
     }
 
     @Override

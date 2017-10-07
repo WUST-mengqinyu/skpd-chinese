@@ -7,8 +7,6 @@ public class KeenEye extends PassiveSkillB3{
 
 
     {
-        name = "Keen Eye";
-        castText = "Gotcha!";
         image = 106;
         tier = 3;
     }
@@ -20,11 +18,4 @@ public class KeenEye extends PassiveSkillB3{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Arrows pass through friendly units without harming them.\n"
-                + costUpgradeInfo();
-    }
 }

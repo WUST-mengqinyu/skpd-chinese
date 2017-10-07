@@ -7,7 +7,6 @@ public class FirmHand extends PassiveSkillB1{
 
 
     {
-        name = "Firm Hand";
         image = 10;
         tier = 1;
     }
@@ -25,10 +24,4 @@ public class FirmHand extends PassiveSkillB1{
         return  level * 2;
     }
 
-    @Override
-    public String info()
-    {
-        return "Increased chance of hitting target when using melee weapons.\n"
-                + costUpgradeInfo();
-    }
 }

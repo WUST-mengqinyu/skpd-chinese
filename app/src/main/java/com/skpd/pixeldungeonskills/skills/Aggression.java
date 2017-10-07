@@ -7,7 +7,6 @@ public class Aggression extends PassiveSkillB2{
 
 
     {
-        name = "Aggression";
         image = 9;
         tier = 2;
     }
@@ -24,10 +23,4 @@ public class Aggression extends PassiveSkillB2{
         return 1f + 0.1f * level;
     }
 
-    @Override
-    public String info()
-    {
-        return "Do more damage while using melee weapons.\n"
-                + costUpgradeInfo();
-    }
 }

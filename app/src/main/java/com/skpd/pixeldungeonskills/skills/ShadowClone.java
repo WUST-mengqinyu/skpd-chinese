@@ -21,8 +21,6 @@ public class ShadowClone extends ActiveSkill3{
 
 
     {
-        name = "Shadow Clone";
-        castText = "Wait till you the harem version...";
         tier = 3;
         image = 67;
         mana = 3;
@@ -84,14 +82,6 @@ public class ShadowClone extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Creates clones to fight for you.\n"
-                + costUpgradeInfo();
     }
 
 }

@@ -7,7 +7,6 @@ public class Sorcerer extends PassiveSkillB2{
 
 
     {
-        name = "Sorcerer";
         image = 34;
         tier = 2;
     }
@@ -25,10 +24,4 @@ public class Sorcerer extends PassiveSkillB2{
         return 1f + 0.1f * level;
     }
 
-    @Override
-    public String info()
-    {
-        return "Wands do more damage.\n"
-                + costUpgradeInfo();
-    }
 }

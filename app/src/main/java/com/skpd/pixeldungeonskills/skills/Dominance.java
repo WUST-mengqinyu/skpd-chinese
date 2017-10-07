@@ -15,8 +15,6 @@ public class Dominance extends ActiveSkill3{
 
 
     {
-        name = "Dominance";
-        castText = "You forced me!";
         tier = 3;
         image = 115;
         mana = 3;
@@ -59,13 +57,6 @@ public class Dominance extends ActiveSkill3{
     public float getAlpha()
     {
         return 1f;
-    }
-
-    @Override
-    public String info()
-    {
-        return "The target is no more than a slave to your will.\n"
-                + costUpgradeInfo();
     }
 
 }

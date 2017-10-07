@@ -12,8 +12,6 @@ public class Smite extends Smash{
 
 
     {
-        name = "Smite";
-        castText = "Smite!";
         tier = 1;
         image = 20;
         mana = 3;
@@ -55,13 +53,6 @@ public class Smite extends Smash{
             StatusPane.manaDropping += getManaCost();
             return 1f + 0.2f * level;
         }
-    }
-
-    @Override
-    public String info()
-    {
-        return "Hits target for even more damage.\n"
-                + costUpgradeInfo();
     }
 
 }

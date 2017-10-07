@@ -8,7 +8,6 @@ import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
 import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.levels.Level;
-import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -19,19 +18,22 @@ import java.util.ArrayList;
 /**
  * Created by Moussa on 20-Jan-17.
  */
-public class Negotiations extends BranchSkill{ // Not actually a skill but best way to do it
+
+
+//// FIXME: 2017/10/6
+public class Negotiations extends BranchSkill { // Not actually a skill but best way to do it
 
 
 
-    public static final String TXT_HIRE_BRUTE = Messages.get(Negotiations.class,"2");
-    public static final String TXT_HIRE_THIEF = Messages.get(Negotiations.class,"3");
-    public static final String TXT_HIRE_WIZARD = Messages.get(Negotiations.class,"4");
-    public static final String TXT_HIRE_ARCHER = Messages.get(Negotiations.class,"5");
-    public static final String TXT_HIRE_ARCHER_MAIDEN = Messages.get(Negotiations.class,"6");
+    public static final String TXT_HIRE_BRUTE = "Brute";
+    public static final String TXT_HIRE_THIEF = "Thief";
+    public static final String TXT_HIRE_WIZARD = "Wizard";
+    public static final String TXT_HIRE_ARCHER = "Archer";
+    public static final String TXT_HIRE_ARCHER_MAIDEN = "Archer-Maiden";
 
 
     {
-        name = Messages.get(this,"1");
+        name = "Hire A Mercenary";
         image = 96;
     }
 
@@ -62,7 +64,7 @@ public class Negotiations extends BranchSkill{ // Not actually a skill but best 
         {
             if(Dungeon.gold < getGoldCost())
             {
-                GLog.n(Messages.get(this,"7"));
+                GLog.n("You cannot afford a merc.");
                 return;
             }
 
@@ -100,7 +102,7 @@ public class Negotiations extends BranchSkill{ // Not actually a skill but best 
 
             if(spawned == true) {
                 Dungeon.gold -= getGoldCost();
-                GLog.p(" " + action + Messages.get(this,"8") + getGoldCost() + Messages.get(this,"9"));
+                GLog.p(" " + action + " hired for " + getGoldCost() + " gold! ");
             }
         }
     }
@@ -111,19 +113,19 @@ public class Negotiations extends BranchSkill{ // Not actually a skill but best 
         {
             int newPos = hero.pos;
 
-                if (newPos != -1) {
-                    HiredMerc tmp = new HiredMerc(hero.hiredMerc.mercType);
-                    tmp.spawn(Dungeon.hero.lvl);
-                    tmp.pos = newPos;
-                    GameScene.add(tmp);
-                    Actor.addDelayed(new Pushing(tmp, hero.pos, newPos), -1);
-                    tmp.sprite.alpha(0);
-                    tmp.sprite.parent.add(new AlphaTweener(tmp.sprite, 1, 0.15f));
-                    tmp.weapon = hero.hiredMerc.weapon;
-                    tmp.armor = hero.hiredMerc.armor;
-                    ((MercSprite) tmp.sprite).updateArmor();
+            if (newPos != -1) {
+                HiredMerc tmp = new HiredMerc(hero.hiredMerc.mercType);
+                tmp.spawn(Dungeon.hero.lvl);
+                tmp.pos = newPos;
+                GameScene.add(tmp);
+                Actor.addDelayed(new Pushing(tmp, hero.pos, newPos), -1);
+                tmp.sprite.alpha(0);
+                tmp.sprite.parent.add(new AlphaTweener(tmp.sprite, 1, 0.15f));
+                tmp.weapon = hero.hiredMerc.weapon;
+                tmp.armor = hero.hiredMerc.armor;
+                ((MercSprite) tmp.sprite).updateArmor();
 
-                    hero.hiredMerc = tmp;
+                hero.hiredMerc = tmp;
 
             }
         }
@@ -136,7 +138,7 @@ public class Negotiations extends BranchSkill{ // Not actually a skill but best 
 
     public String getHireText()
     {
-        return Messages.get(this,"10") + Dungeon.hero.lvl + Messages.get(this,"11") + getGoldCost() + Messages.get(this,"12");
+        return "\nHiring a level " + Dungeon.hero.lvl + " merc costs " + getGoldCost() + " gold.";
     }
 
     @Override

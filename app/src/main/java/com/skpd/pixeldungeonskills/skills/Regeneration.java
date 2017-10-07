@@ -8,7 +8,6 @@ public class Regeneration extends PassiveSkillA2{
 
 
     {
-        name = "Regeneration";
         tier = 2;
         image = 2;
     }
@@ -24,13 +23,6 @@ public class Regeneration extends PassiveSkillA2{
     protected boolean upgrade()
     {
         return true;
-    }
-
-    @Override
-    public String info()
-    {
-        return "Regenerate health faster.\n"
-                + costUpgradeInfo();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.skpd.pixeldungeonskills.skills;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
+
 /**
  * Created by Moussa on 20-Jan-17.
  */
@@ -8,7 +10,6 @@ public class LegendPassiveA extends BranchSkill{
 
 
     {
-        name = "Hatsune";
         image = 112;
         level = 0;
     }
@@ -16,6 +17,6 @@ public class LegendPassiveA extends BranchSkill{
     @Override
     public String info()
     {
-        return "Hatsune as with her ancestors overflow with spiritual energy.";
+        return Messages.get(this,"1");
     }
 }

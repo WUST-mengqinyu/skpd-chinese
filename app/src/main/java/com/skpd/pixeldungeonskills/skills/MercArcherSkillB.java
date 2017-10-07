@@ -14,10 +14,4 @@ public class MercArcherSkillB extends KeenEye {
         return false;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Arrows pass through friendly units without harming them.\n";
-    }
 }

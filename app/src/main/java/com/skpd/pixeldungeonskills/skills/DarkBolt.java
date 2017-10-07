@@ -15,8 +15,6 @@ public class DarkBolt extends ActiveSkill3{
 
 
     {
-        name = "Dark Bolt";
-        castText = "I must";
         tier = 3;
         image = 113;
         mana = 5;
@@ -58,15 +56,6 @@ public class DarkBolt extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Hurls concentrated dark energy into a target shredding their essence to pieces.\n What's left is a fate worse than death.\n"
-
-                + costUpgradeInfo();
     }
 
 }

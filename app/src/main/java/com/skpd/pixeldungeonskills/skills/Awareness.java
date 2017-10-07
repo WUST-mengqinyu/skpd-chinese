@@ -1,5 +1,6 @@
 package com.skpd.pixeldungeonskills.skills;
 
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Random;
 
 /**
@@ -9,7 +10,6 @@ public class Awareness extends PassiveSkillA3{
 
 
     {
-        name = "Awareness";
         image = 75;
         tier = 3;
     }
@@ -19,11 +19,11 @@ public class Awareness extends PassiveSkillA3{
     {
         if(Random.Int(100) < 10 * level)
         {
-            castText = "Too easy..";
+            castText = Messages.get(this,"2");
             castTextYell();
             return true;
         }
-        castText = "I am losing my touch...";
+        castText = Messages.get(this,"3");
         castTextYell();
         return false;
     }
@@ -34,11 +34,4 @@ public class Awareness extends PassiveSkillA3{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "10% chance per level to dodge a hostile ranged attack.\n"
-                + costUpgradeInfo();
-    }
 }

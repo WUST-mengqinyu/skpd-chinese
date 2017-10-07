@@ -7,7 +7,6 @@ public class Stealth extends PassiveSkillA2{
 
 
     {
-        name = "Stealth";
         image = 50;
         tier = 2;
     }
@@ -21,11 +20,4 @@ public class Stealth extends PassiveSkillA2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Harder to detect.\n"
-                + costUpgradeInfo();
-    }
 }

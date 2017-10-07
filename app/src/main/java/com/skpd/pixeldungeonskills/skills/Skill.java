@@ -3,26 +3,34 @@ package com.skpd.pixeldungeonskills.skills;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.windows.WndStory;
 import com.skpd.utils.Bundle;
 
 import java.util.ArrayList;
 
+import static com.skpd.pixeldungeonskills.messages.Messages.get;
+
 /**
  * Created by Moussa on 20-Jan-17.
  */
 public class Skill{
+    {
+        name = get(this, "");
+        castText = Messages.get(this,"ct");
+    }
 
-    public static final String AC_ADVANCE = "Advance";
-    public static final String AC_ACTIVATE = "Activate";
-    public static final String AC_DEACTIVATE = "Deactivate";
+    public static final String AC_ADVANCE = get(Skill.class,"1");
+    public static final String AC_ACTIVATE = get(Skill.class,"2");
+    public static final String AC_DEACTIVATE = get(Skill.class,"3");
 
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_CAST = "Cast";
+    public static final String AC_SUMMON = get(Skill.class,"4");
+    public static final String AC_CAST = get(Skill.class,"5");
 
-    public static final String FAIL_ADVANCE = "You do not have enough skill points to advance in this branch.";
-
+    public static final String FAIL_ADVANCE = get(Skill.class,"6");
+//Override
     public static final String SKILL_LEVEL = "LEVEL";
 
     public String tag = "";
@@ -35,7 +43,8 @@ public class Skill{
 
     public static final float TIME_TO_USE = 1f;
 
-    public String name = "Skill";
+    private String a;
+    public String name;
     public String castText = "";
     public int level = 0;
     public int tier = 1;
@@ -133,7 +142,18 @@ public class Skill{
         return image;
     }
 
-    public String info() {return "";}
+    public String info() {
+        if (Messages.lang()== Languages.ENGLISH) {
+            a = name + " is at level " + level + ".\n"
+                    + (level < Skill.MAX_LEVEL ? "It costs " + upgradeCost() + " skill points to advance in " + name + "." : name + " is maxed out.")
+                    + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana.\n" : "\n");
+        }else {
+            a = name + "技能现在" + level +"级。\n"
+                    + (level<MAX_LEVEL ? "它需要" + upgradeCost() + "个技能点来升级。\n": name + "已经升至满级。\n")
+                    + (level>0 &&mana>0 ? "使用" + name + "将会花费"+ getManaCost() +"点法力值\n": "\n" );
+        }
+        return get(this,"1") + a;
+    }
 
     public ArrayList<String> actions( Hero hero ) {
         ArrayList<String> actions = new ArrayList<String>();
@@ -164,13 +184,6 @@ public class Skill{
     protected boolean canUpgrade()
     {
         return false;
-    }
-
-    public String costUpgradeInfo()
-    {
-        return name + " is at level " + level + ".\n"
-                + (level < Skill.MAX_LEVEL ? "It costs " + upgradeCost() + " skill points to advance in " + name + ".": name + " is maxed out.")
-                + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana.": "");
     }
 
     public int getManaCost()

@@ -12,8 +12,6 @@ public class KnockBack extends ActiveSkill2{
 
 
     {
-        name = "KnockBack";
-        castText = "KnockBack!";
         tier = 2;
         image = 18;
         mana = 5;
@@ -66,13 +64,6 @@ public class KnockBack extends ActiveSkill2{
     public int getManaCost()
     {
         return (int)Math.ceil(mana * (1 + 0.55 * level));
-    }
-
-    @Override
-    public String info()
-    {
-        return "Hits harder and knocks back target.\n"
-                + costUpgradeInfo();
     }
 
 }

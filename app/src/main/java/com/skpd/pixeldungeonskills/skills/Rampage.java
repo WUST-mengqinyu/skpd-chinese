@@ -12,8 +12,6 @@ public class Rampage extends ActiveSkill3{
 
 
     {
-        name = "Rampage";
-        castText = "Rampage!";
         tier = 3;
         image = 19;
         mana = 5;
@@ -65,14 +63,6 @@ public class Rampage extends ActiveSkill3{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Less damage but hits all enemies around you.\n"
-                + costUpgradeInfo();
     }
 
 }

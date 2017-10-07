@@ -76,10 +76,4 @@ public class MercWizardSkillA extends SummonRat {
             Dungeon.hero.hiredMerc.sprite.showStatus(CharSprite.NEUTRAL, castText);
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Summons rats for your service.\n";
-    }
 }

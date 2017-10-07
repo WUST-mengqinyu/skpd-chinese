@@ -21,8 +21,6 @@ public class SummonCrab extends ActiveSkill2{
 
 
     {
-        name = "Summon Crab";
-        castText = "Fight for me!";
         tier = 2;
         image = 42;
         mana = 3;
@@ -91,14 +89,6 @@ public class SummonCrab extends ActiveSkill2{
     protected boolean upgrade()
     {
         return true;
-    }
-
-
-    @Override
-    public String info()
-    {
-        return "Summons Crabs for your service.\n"
-                + costUpgradeInfo();
     }
 
 }

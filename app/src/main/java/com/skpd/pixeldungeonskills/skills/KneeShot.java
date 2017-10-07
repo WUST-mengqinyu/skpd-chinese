@@ -9,8 +9,6 @@ public class KneeShot extends PassiveSkillB2{
 
 
     {
-        name = "Knee Shot";
-        castText = "Easy Target";
         image = 82;
         tier = 2;
     }
@@ -32,11 +30,4 @@ public class KneeShot extends PassiveSkillB2{
         return true;
     }
 
-
-    @Override
-    public String info()
-    {
-        return "Aims for weak spots crippling targets.\n"
-                + costUpgradeInfo();
-    }
 }

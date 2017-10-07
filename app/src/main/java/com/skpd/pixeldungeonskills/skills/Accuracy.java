@@ -7,7 +7,6 @@ public class Accuracy extends PassiveSkillB1{
 
 
     {
-        name = "Accuracy";
         image = 81;
         tier = 1;
     }
@@ -21,10 +20,4 @@ public class Accuracy extends PassiveSkillB1{
     @Override
     public float toHitModifier(){return 1f + 0.1f * level;}
 
-    @Override
-    public String info()
-    {
-        return "Increases chance to hit when using a ranged weapon.\n"
-                + costUpgradeInfo();
-    }
 }
