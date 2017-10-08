@@ -149,7 +149,7 @@ public class Skill{
                     + (level > 0 && mana > 0 ? "\nUsing " + name + " costs " + getManaCost() + " mana.\n" : "\n");
         }else {
             a = "\n" + name + "技能现在 _" + level +"_ 级。\n"
-                    + (level<MAX_LEVEL ? "它需要&nbsp;_" + upgradeCost() + "_ 个技能点来升级。\n": name + "已经升至满级。\n")
+                    + (level<MAX_LEVEL ? "它需要 _" + upgradeCost() + "_ 个技能点来升级。\n": name + "已经升至满级。\n")
                     + (level>0 &&mana>0 ? "使用" + name + "将会花费 _"+ getManaCost() +"_ 点法力值\n": "\n" );
         }
         return get(this,"1") + a;
