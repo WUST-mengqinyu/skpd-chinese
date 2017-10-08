@@ -257,7 +257,7 @@ public class Armor extends EquipableItem {
 				(cursed ? Messages.get(Armor.class,"0") : Messages.get(Armor.class,"dot")) );
 		} else {
 			if (cursedKnown && cursed) {
-				info.append( Messages.get(Armor.class,"cursed") + name + Messages.get(Armor.class,"dot") );
+				info.append( Messages.format(Messages.get(Armor.class,"cursed"),name) + Messages.get(Armor.class,"dot") );
 			}
 		}
 		

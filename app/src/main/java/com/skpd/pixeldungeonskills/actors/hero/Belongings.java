@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.actors.hero;
 
-import java.util.Iterator;
-
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.items.Item;
@@ -31,8 +29,11 @@ import com.skpd.pixeldungeonskills.items.rings.Ring;
 import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRemoveCurse;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
+
+import java.util.Iterator;
 
 public class Belongings implements Iterable<Item> {
 
@@ -53,7 +54,7 @@ public class Belongings implements Iterable<Item> {
 		this.owner = owner;
 		
 		backpack = new Bag() {{
-			name = "backpack";
+			name = Messages.get(Bag.class,"backpack");
 			size = BACKPACK_SIZE;
 		}};
 		backpack.owner = owner;

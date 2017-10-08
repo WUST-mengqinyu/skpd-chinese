@@ -19,14 +19,6 @@ package com.skpd.pixeldungeonskills;
 
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-
 import com.skpd.noosa.Game;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
@@ -38,10 +30,9 @@ import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.hero.Legend;
 import com.skpd.pixeldungeonskills.actors.mobs.ColdGirl;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Blacksmith;
-import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Ghost;
+import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Wandmaker;
-import com.skpd.pixeldungeonskills.skills.CurrentSkills;
 import com.skpd.pixeldungeonskills.items.Ankh;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
@@ -66,6 +57,7 @@ import com.skpd.pixeldungeonskills.levels.SewerBossLevel;
 import com.skpd.pixeldungeonskills.levels.SewerLevel;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.StartScene;
+import com.skpd.pixeldungeonskills.skills.CurrentSkills;
 import com.skpd.pixeldungeonskills.ui.QuickSlot;
 import com.skpd.pixeldungeonskills.utils.BArray;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -75,6 +67,14 @@ import com.skpd.utils.Bundle;
 import com.skpd.utils.PathFinder;
 import com.skpd.utils.Random;
 import com.skpd.utils.SparseArray;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 
 public class Dungeon {
 
@@ -87,6 +87,11 @@ public class Dungeon {
 
 	public static Hero hero;
 	public static Level level;
+
+
+	public static boolean changename = true;
+	public static String name = "";
+	public static int color = 0xFFFFFF;
 
 	public static int depth;
 	public static int gold;
@@ -420,6 +425,9 @@ public class Dungeon {
 	private static final String CHAPTERS	= "chapters";
 	private static final String QUESTS		= "quests";
 	private static final String BADGES		= "badges";
+	private static final String NAME		= "name";
+	private static final String CHANGENAME  = "change name";
+	private static final String COLOR		= "name color";
 
 	public static String gameFile( HeroClass cl ) {
 		switch (cl) {
@@ -447,6 +455,17 @@ public class Dungeon {
 		}
 	}
 
+	public static void saveNameDetails (String fileName) throws IOException {
+		Bundle bundle = new Bundle();
+		bundle.put(NAME, name);
+		bundle.put(CHANGENAME, changename);
+		bundle.put(COLOR, color);
+
+		OutputStream output = Game.instance.openFileOutput( fileName, Game.MODE_PRIVATE );
+		Bundle.write( bundle, output );
+		output.close();
+	}
+
 	public static void saveGame( String fileName ) throws IOException {
 		try {
 			Bundle bundle = new Bundle();
@@ -456,6 +475,8 @@ public class Dungeon {
 			bundle.put( HERO, hero );
 			bundle.put( GOLD, gold );
 			bundle.put( DEPTH, depth );
+			loadName("Name");
+			saveName();
 
 			for (int d : droppedItems.keyArray()) {
 				bundle.put( String.format( DROPPED, d ), droppedItems.get( d ) );
@@ -532,6 +553,17 @@ public class Dungeon {
 		}
 	}
 
+	public static void saveName() throws IOException {
+		saveNameDetails("Name");
+	}
+
+	public static void loadName(String fileName) throws IOException {
+		Bundle bundle = gameBundle(fileName);
+		Dungeon.name = bundle.getString(NAME);
+		Dungeon.changename = bundle.getBoolean(CHANGENAME);
+		Dungeon.color = bundle.getInt(COLOR);
+	}
+
 	public static void loadGame( HeroClass cl ) throws IOException {
 		loadGame( gameFile( cl ), true );
 	}
@@ -548,6 +580,7 @@ public class Dungeon {
 
 		Dungeon.level = null;
 		Dungeon.depth = -1;
+		name = bundle.getString(NAME);
 
 		if (fullLoad) {
 			PathFinder.setMapSize( Level.WIDTH, Level.HEIGHT );
@@ -608,6 +641,8 @@ public class Dungeon {
 
 		gold = bundle.getInt( GOLD );
 		depth = bundle.getInt( DEPTH );
+		name       = bundle.getString(NAME);
+		changename = bundle.getBoolean(CHANGENAME);
 
 		Statistics.restoreFromBundle( bundle );
 		Journal.restoreFromBundle( bundle );

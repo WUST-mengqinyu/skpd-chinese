@@ -17,7 +17,11 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.opengl.GLES20;
+import android.text.InputType;
+import android.widget.EditText;
 
 import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
@@ -28,6 +32,7 @@ import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.ui.Button;
 import com.skpd.pixeldungeonskills.Assets;
+import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.VersionNewsInfo;
 import com.skpd.pixeldungeonskills.effects.BannerSprites;
@@ -36,7 +41,10 @@ import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.Archs;
 import com.skpd.pixeldungeonskills.ui.ExitButton;
 import com.skpd.pixeldungeonskills.ui.PrefsButton;
+import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.windows.LanguageButton;
+
+import java.io.IOException;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -47,7 +55,11 @@ public class TitleScene extends PixelScene {
 	public void create() {
 		
 		super.create();
-		
+
+		if(Dungeon.changename == true){
+			goStore();
+		}
+
 		Music.INSTANCE.play( Assets.THEME, true );
 		Music.INSTANCE.volume( 1f );
 		
@@ -141,6 +153,27 @@ public class TitleScene extends PixelScene {
         version.x = w - version.width();
         version.y = h - version.height() - 9;
         add( version );
+//// FIXME: 2017/10/8
+		RedButton test = new RedButton("Change your name") {
+			@Override
+			protected void onClick() {
+				goStore();
+			}
+		};		
+		test.setRect(0 , version.y-7, 66, 15);
+		add(test);
+		try {
+			Dungeon.loadName("Name");
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		RenderedText str = new RenderedText(Dungeon.name,9);
+		str.hardlight(Dungeon.color);
+		str.x = title.x ;
+		str.y = 100 ;
+		add(str);
 
         BitmapText versionPD = new BitmapText( Game.version , font1x );
         versionPD.measure();
@@ -227,5 +260,72 @@ public class TitleScene extends PixelScene {
 		protected void onTouchUp() {
 			image.resetColor();
 		}
+	}
+
+
+	public static void goStore(){
+
+		PixelDungeon.instance.runOnUiThread( new Runnable(){
+			@Override
+			public void run(){
+				final EditText input = new EditText(PixelDungeon.instance);
+				AlertDialog.Builder builder = new AlertDialog.Builder(PixelDungeon.instance);
+				builder.setTitle("输入你的名字（最多12字符）");
+
+				// Set up the input
+
+				input.setInputType(InputType.TYPE_CLASS_TEXT);
+				builder.setView(input);
+
+				// Set up the buttons
+				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String name = input.getText().toString().replaceAll("[^\\x00-\\x7F]", "");
+						if(name.length() < 13){
+							Dungeon.name = name;
+							Dungeon.changename = false;
+							try {
+								Dungeon.saveName();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							Game.resetScene();
+						} else{
+							dialog.cancel();
+							retry();
+						}
+					}
+				});
+				builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+
+				builder.show();
+			}
+		});
+	}
+
+	public static void retry(){
+		AlertDialog.Builder retry = new AlertDialog.Builder(PixelDungeon.instance);
+		retry.setTitle("请重试");
+		retry.setPositiveButton("重试", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				goStore();
+				dialog.cancel();
+
+			}
+		});
+		retry.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		retry.show();
 	}
 }

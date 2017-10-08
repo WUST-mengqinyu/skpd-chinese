@@ -8,6 +8,7 @@ import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
 import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.MercSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -33,7 +34,7 @@ public class Negotiations extends BranchSkill { // Not actually a skill but best
 
 
     {
-        name = "Hire A Mercenary";
+        name = Messages.get(Negotiations.class,"1");
         image = 96;
     }
 

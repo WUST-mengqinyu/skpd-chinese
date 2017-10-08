@@ -19,12 +19,12 @@ package com.skpd.pixeldungeonskills.items.bags;
 
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 
 public class WandHolster extends Bag {
 
 	{
-		name = "wand holster";
 		image = ItemSpriteSheet.HOLSTER;
 		
 		size = 12;
@@ -60,11 +60,9 @@ public class WandHolster extends Bag {
 	public int price() {
 		return 50;
 	}
-	
+
 	@Override
 	public String info() {
-		return
-			"This slim holder is made of leather of some exotic animal. " +
-			"It allows to compactly carry up to " + size + " wands.";
+		return Messages.format(Messages.get(WandHolster.class,"desc",size));
 	}
 }
