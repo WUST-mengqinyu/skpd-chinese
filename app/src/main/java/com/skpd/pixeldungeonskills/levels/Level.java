@@ -58,9 +58,9 @@ import com.skpd.pixeldungeonskills.items.bags.SeedPouch;
 import com.skpd.pixeldungeonskills.items.food.Food;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Arrow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.BombArrow;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.CupidArrow;
@@ -181,11 +181,11 @@ public abstract class Level implements Bundlable {
 				Dungeon.potionOfStrength++;
 			}
 			if (Dungeon.souNeeded()) {
-				addItemToSpawn( new ScrollOfUpgrade() );
+				addItemToSpawn( new S() );
 				Dungeon.scrollsOfUpgrade++;
 			}
 			if (Dungeon.soeNeeded()) {
-				addItemToSpawn( new ScrollOfEnchantment() );
+				addItemToSpawn( new D() );
 				Dungeon.scrollsOfEnchantment++;
 			}
 			
@@ -636,7 +636,7 @@ public abstract class Level implements Bundlable {
 			item = new Gold( item.price() );
 		} else
 		if (Dungeon.isChallenged( Challenges.NO_SCROLLS ) && (item instanceof Scroll || item instanceof ScrollHolder)) {
-			if (item instanceof ScrollOfUpgrade) {
+			if (item instanceof S) {
 				// These scrolls still can be found
 			} else {
 				item = new Gold( item.price() );

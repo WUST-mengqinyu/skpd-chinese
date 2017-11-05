@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills.items;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -35,9 +36,7 @@ public class BombTriggerBeacon extends Item {
 
 	
 	{
-		name = "bomb trigger beacon";
 		image = ItemSpriteSheet.BEACON;
-		
 		unique = true;
 	}
 
@@ -46,9 +45,9 @@ public class BombTriggerBeacon extends Item {
     public ArrayList<String> actions( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
         actions.remove( AC_THROW );
-
-            if(actions.contains("Detonate") == false)
-                actions.add("Detonate");
+//// FIXME: 2017/10/10 
+            if(actions.contains(Messages.get(BombTriggerBeacon.class,"1")) == false)
+                actions.add(Messages.get(BombTriggerBeacon.class,"1"));
 
         return actions;
     }
@@ -56,9 +55,9 @@ public class BombTriggerBeacon extends Item {
 	@Override
 	public void execute( Hero hero, String action ) {
 
-        if (action == "Detonate")
+        if (action == Messages.get(BombTriggerBeacon.class,"1"))
         {
-            GLog.i("Beacon sends out a signal...");
+            GLog.i(Messages.get(BombTriggerBeacon.class,"2"));
             int key = 0;
             for(int i = 0; i < Dungeon.level.heaps.size(); i++) {
                 key = Dungeon.level.heaps.keyAt(i);
@@ -103,10 +102,5 @@ public class BombTriggerBeacon extends Item {
 	}
 	
 	private static final Glowing WHITE = new Glowing( 0xFFFFFF );
-	
 
-	@Override
-	public String info() {
-		return "A remote trigger that can detonate thrown remote bombs. It looks a bit worn out... its signal might not reach all the bombs from the first attempt." ;
-	}
 }

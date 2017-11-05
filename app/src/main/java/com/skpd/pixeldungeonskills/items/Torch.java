@@ -17,23 +17,23 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.particles.Emitter;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Light;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.particles.FlameParticle;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
+
+import java.util.ArrayList;
 
 public class Torch extends Item {
 
-	public static final String AC_LIGHT	= "LIGHT";
+	public static final String AC_LIGHT	= Messages.get(Torch.class,"1");
 	
 	public static final float TIME_TO_LIGHT = 1;
 	
 	{
-		name = "torch";
 		image = ItemSpriteSheet.TORCH;
 		
 		stackable = true;
@@ -85,10 +85,5 @@ public class Torch extends Item {
 	public int price() {
 		return 10 * quantity;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"It's an indispensable item in The Demon Halls, which are notorious for their poor ambient lighting.";
-	}
+
 }

@@ -109,7 +109,7 @@ public enum CurrentSkills{
                 passiveA3 = new Awareness();
                 branchPB = new HuntressPassiveB();
                 passiveB1 = new Accuracy();
-                passiveB2 = new KneeShot();
+                passiveB2 = new KeenShot();
                 passiveB3 = new IronTip();
                 branchA = new HuntressActive();
                 active1 = new SpiritArrow();

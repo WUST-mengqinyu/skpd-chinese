@@ -22,7 +22,7 @@ import java.util.HashSet;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.items.Generator;
 import com.skpd.pixeldungeonskills.items.Item;
@@ -82,7 +82,7 @@ public class Skeleton extends Mob {
 		}
 		
 		if (heroKilled) {
-			Dungeon.fail( Utils.format( ResultDescriptions.MOB, Utils.indefinite( name ), Dungeon.depth ) );
+			Dungeon.fail( Utils.format( Res.MOB, Utils.indefinite( name ), Dungeon.depth ) );
 			GLog.n( TXT_HERO_KILLED );
 		}
 	}

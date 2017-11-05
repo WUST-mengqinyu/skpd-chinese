@@ -33,7 +33,7 @@ import com.skpd.pixeldungeonskills.effects.BlobEmitter;
 import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Wound;
 import com.skpd.pixeldungeonskills.effects.particles.SacrificialParticle;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfWipeOut;
+import com.skpd.pixeldungeonskills.items.scrolls.T;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
@@ -117,7 +117,7 @@ public class SacrificialFire extends Blob {
 					
 					GLog.w( TXT_REWARD );
 					GameScene.effect( new Flare( 7, 32 ).color( 0x66FFFF, true ).show( ch.sprite.parent, DungeonTilemap.tileCenterToWorld( fire.pos ), 2f ) );
-					Dungeon.level.drop( new ScrollOfWipeOut(), fire.pos ).sprite.drop();
+					Dungeon.level.drop( new T(), fire.pos ).sprite.drop();
 				}
 			} else {
 				
@@ -129,7 +129,7 @@ public class SacrificialFire extends Blob {
 	
 	@Override
 	public String tileDesc() {
-		return Messages.get(this,"4");
+		return Messages.get(SacrificialFire.class,"4");
 	}
 	
 	public static class Marked extends FlavourBuff {
@@ -143,7 +143,7 @@ public class SacrificialFire extends Blob {
 		
 		@Override
 		public String toString() {
-			return Messages.get(this,"5");
+			return Messages.get(SacrificialFire.class,"5");
 		}
 		
 		@Override

@@ -19,10 +19,11 @@ package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 
 public class Instability extends Weapon.Enchantment {
 
-	private static final String TXT_UNSTABLE	= "unstable %s";
+	private static final String TXT_UNSTABLE	= Messages.get(Instability.class,"");
 	
 	@Override
 	public boolean proc( Weapon weapon, Char attacker, Char defender, int damage ) {
@@ -31,7 +32,7 @@ public class Instability extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_UNSTABLE, weaponName );
+		return Messages.format( TXT_UNSTABLE, weaponName );
 	}
 
 }

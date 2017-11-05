@@ -24,6 +24,7 @@ import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.SummonedPet;
 import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -36,7 +37,6 @@ import java.util.ArrayList;
 public class SoulCrystalFilled extends Item {
 
 	{
-		name = "soul crystal";
 		image = ItemSpriteSheet.CRYSTAL_FULL;
         stackable = false;
         quantity = 1;
@@ -137,8 +137,8 @@ public class SoulCrystalFilled extends Item {
 
 	@Override
 	public String desc() {
-		return 
-			"A soul crystal holding the essence of a " + captured + ".\nThrow it to summon the spirit into your service.";
+		return
+                Messages.capitalize(Messages.get(SoulCrystalFilled.class,"desc",captured));
 	}
 
     @Override

@@ -21,6 +21,7 @@ import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -36,16 +37,15 @@ import java.util.ArrayList;
 
 public class Weightstone extends Item {
 	
-	private static final String TXT_SELECT_WEAPON	= "Select a weapon to balance";
-	private static final String TXT_FAST			= "you balanced your %s to make it faster";
-	private static final String TXT_ACCURATE		= "you balanced your %s to make it more accurate";
+	private static final String TXT_SELECT_WEAPON	= Messages.get(Weightstone.class,"1");
+	private static final String TXT_FAST			= Messages.get(Weightstone.class,"2");
+	private static final String TXT_ACCURATE		= Messages.get(Weightstone.class,"3");
 	
 	private static final float TIME_TO_APPLY = 2;
 	
-	private static final String AC_APPLY = "APPLY";
+	private static final String AC_APPLY = Messages.get(Weightstone.class,"4");
 	
 	{
-		name = "weightstone";
 		image = ItemSpriteSheet.WEIGHT;
 		
 		stackable = true;
@@ -107,12 +107,6 @@ public class Weightstone extends Item {
 		return 40 * quantity;
 	}
 	
-	@Override
-	public String info() {
-		return
-			"Using a weightstone, you can balance your melee weapon to increase its speed or accuracy.";
-	}
-	
 	private final WndBag.Listener itemSelector = new WndBag.Listener() {
 		@Override
 		public void onSelect( Item item ) {
@@ -124,11 +118,11 @@ public class Weightstone extends Item {
 	
 	public class WndBalance extends Window {
 
-		private static final String TXT_CHOICE = "How would you like to balance your %s?";
+		private final String TXT_CHOICE = Messages.get(Weightstone.class,"5");
 		
-		private static final String TXT_SPEED		= "For speed";
-		private static final String TXT_ACCURACY	= "For accuracy";
-		private static final String TXT_CANCEL		= "Never mind";
+		private final String TXT_SPEED		= Messages.get(Weightstone.class,"6");
+		private final String TXT_ACCURACY	= Messages.get(Weightstone.class,"7");
+		private final String TXT_CANCEL		= Messages.get(Weightstone.class,"8");
 		
 		private static final int WIDTH			= 120;
 		private static final int MARGIN 		= 2;

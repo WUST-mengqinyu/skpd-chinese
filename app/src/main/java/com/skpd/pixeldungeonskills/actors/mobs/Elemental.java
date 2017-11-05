@@ -26,7 +26,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Burning;
 import com.skpd.pixeldungeonskills.actors.buffs.Frost;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfLiquidFlame;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.wands.WandOfFirebolt;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Fire;
 import com.skpd.pixeldungeonskills.sprites.ElementalSprite;
@@ -107,7 +107,7 @@ public class Elemental extends Mob {
 		IMMUNITIES.add( Burning.class );
 		IMMUNITIES.add( Fire.class );
 		IMMUNITIES.add( WandOfFirebolt.class );
-		IMMUNITIES.add( ScrollOfPsionicBlast.class );
+		IMMUNITIES.add( K.class );
 	}
 	
 	@Override

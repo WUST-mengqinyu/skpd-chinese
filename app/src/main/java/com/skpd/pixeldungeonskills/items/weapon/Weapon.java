@@ -28,6 +28,7 @@ import com.skpd.pixeldungeonskills.items.KindOfWeapon;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.*;
 import com.skpd.pixeldungeonskills.items.weapon.melee.MeleeWeapon;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.MissileWeapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -39,13 +40,13 @@ abstract public class Weapon extends KindOfWeapon {
 
 	private static final int HITS_TO_KNOW	= 20;
 	
-	private static final String TXT_IDENTIFY		= 
-		"You are now familiar enough with your %s to identify it. It is %s.";
-	private static final String TXT_INCOMPATIBLE	= 
-		"Interaction of different types of magic has negated the enchantment on this weapon!";
+	private static final String TXT_IDENTIFY		=
+			Messages.get(Weapon.class,"1");
+	private static final String TXT_INCOMPATIBLE	=
+			Messages.get(Weapon.class,"2");
 	
 	private static final String TXT_TO_STRING	= "%s :%d";
-	private static final String TXT_BROKEN		= "broken %s :%d";
+	private static final String TXT_BROKEN		= Messages.get(Weapon.class,"3");
 	
 	public int		STR	= 10;
 	public float	ACU	= 1;

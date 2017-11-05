@@ -25,6 +25,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.buffs.Roots;
 import com.skpd.pixeldungeonskills.actors.buffs.Slow;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Random;
@@ -32,10 +33,9 @@ import com.skpd.utils.Random;
 public class MysteryMeat extends Food {
 
 	{
-		name = "mystery meat";
 		image = ItemSpriteSheet.MEAT;
 		energy = Hunger.STARVING - Hunger.HUNGRY;
-		message = "That food tasted... strange.";
+		message = Messages.get(MysteryMeat.class,"1");
 	}
 	
 	@Override
@@ -47,28 +47,23 @@ public class MysteryMeat extends Food {
 			
 			switch (Random.Int( 5 )) {
 			case 0:
-				GLog.w( "Oh it's hot!" );
+				GLog.w(  Messages.get(MysteryMeat.class,"2") );
 				Buff.affect( hero, Burning.class ).reignite( hero );
 				break;
 			case 1:
-				GLog.w( "You can't feel your legs!" );
+				GLog.w(  Messages.get(MysteryMeat.class,"3") );
 				Buff.prolong( hero, Roots.class, Paralysis.duration( hero ) );
 				break;
 			case 2:
-				GLog.w( "You are not feeling well." );
+				GLog.w(  Messages.get(MysteryMeat.class,"4") );
 				Buff.affect( hero, Poison.class ).set( Poison.durationFactor( hero ) * hero.HT / 5 );
 				break;
 			case 3:
-				GLog.w( "You are stuffed." );
+				GLog.w(  Messages.get(MysteryMeat.class,"5") );
 				Buff.prolong( hero, Slow.class, Slow.duration( hero ) );
 				break;
 			}
 		}
-	}
-	
-	@Override
-	public String info() {
-		return "Eat at your own risk!";
 	}
 	
 	public int price() {

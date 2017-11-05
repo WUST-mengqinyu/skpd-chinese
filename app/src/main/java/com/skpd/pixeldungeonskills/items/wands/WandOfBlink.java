@@ -30,10 +30,6 @@ import com.skpd.utils.Callback;
 
 public class WandOfBlink extends Wand {
 
-	{
-		name = "Wand of Blink";
-	}
-	
 	@Override
 	protected void onZap( int cell ) {
 
@@ -72,11 +68,5 @@ public class WandOfBlink extends Wand {
 		ch.sprite.emitter().start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
 		Sample.INSTANCE.play( Assets.SND_TELEPORT );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This wand will allow you to teleport in the chosen direction. " +
-			"Creatures and inanimate obstructions will block the teleportation.";
-	}
+
 }

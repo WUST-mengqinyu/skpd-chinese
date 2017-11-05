@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.ui.Component;
 import com.skpd.pixeldungeonskills.PixelDungeon;
@@ -149,7 +148,7 @@ public class WndCatalogus extends WndTabbed {
 		private boolean identified;
 		
 		private ItemSprite sprite;
-		private BitmapText label;
+		private RenderedText label;
 		
 		public ListItem( Class<? extends Item> cl ) {
 			super();
@@ -174,7 +173,7 @@ public class WndCatalogus extends WndTabbed {
 			sprite = new ItemSprite();
 			add( sprite );
 			
-			label = PixelScene.createText( 8 );
+			label = PixelScene.renderText( 8 );
 			add( label );
 		}
 		

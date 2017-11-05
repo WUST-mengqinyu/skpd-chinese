@@ -22,13 +22,14 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.utils.Random;
 
 public class Death extends Weapon.Enchantment {
 
-	private static final String TXT_GRIM	= "grim %s";
+	private static final String TXT_GRIM	= Messages.get(Death.class,"");
 	
 	private static ItemSprite.Glowing BLACK = new ItemSprite.Glowing( 0x000000 );
 	
@@ -64,7 +65,7 @@ public class Death extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_GRIM, weaponName );
+		return Messages.format( TXT_GRIM, weaponName );
 	}
 
 }

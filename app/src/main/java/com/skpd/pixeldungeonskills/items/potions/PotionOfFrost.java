@@ -29,11 +29,7 @@ import com.skpd.utils.PathFinder;
 public class PotionOfFrost extends Potion {
 	
 	private static final int DISTANCE	= 2;
-	
-	{
-		name = "Potion of Frost";
-	}
-	
+
 	@Override
 	public void shatter( int cell ) {
 		
@@ -55,14 +51,7 @@ public class PotionOfFrost extends Potion {
 			setKnown();
 		}
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"Upon exposure to open air, this chemical will evaporate into a freezing cloud, causing " +
-			"any creature that contacts it to be frozen in place, unable to act and move.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 50 * quantity : super.price();

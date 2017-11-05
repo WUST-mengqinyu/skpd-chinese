@@ -19,6 +19,7 @@ package com.skpd.pixeldungeonskills;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -28,6 +29,12 @@ import com.skpd.noosa.Game;
 import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Music;
 import com.skpd.noosa.audio.Sample;
+import com.skpd.pixeldungeonskills.items.rings.C;
+import com.skpd.pixeldungeonskills.items.rings.H;
+import com.skpd.pixeldungeonskills.items.rings.I;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.messages.Languages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
@@ -41,13 +48,13 @@ public class PixelDungeon extends Game {
 		super( TitleScene.class );
 		
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade.class,
+			S.class,
 			"com.watabou.pixeldungeon.items.scrolls.ScrollOfEnhancement" );
 		com.skpd.utils.Bundle.addAlias(
 			com.skpd.pixeldungeonskills.actors.blobs.WaterOfHealth.class,
 			"com.watabou.pixeldungeon.actors.blobs.Light" );
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.rings.RingOfMending.class,
+			H.class,
 			"com.watabou.pixeldungeon.items.rings.RingOfRejuvenation" );
 		com.skpd.utils.Bundle.addAlias(
 			com.skpd.pixeldungeonskills.items.wands.WandOfReach.class,
@@ -59,7 +66,7 @@ public class PixelDungeon extends Game {
 			com.skpd.pixeldungeonskills.actors.buffs.Shadows.class,
 			"com.watabou.pixeldungeon.actors.buffs.Rejuvenation" );
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast.class,
+			K.class,
 			"com.watabou.pixeldungeon.items.scrolls.ScrollOfNuclearBlast" );
 		com.skpd.utils.Bundle.addAlias(
 			com.skpd.pixeldungeonskills.actors.hero.Hero.class,
@@ -73,19 +80,19 @@ public class PixelDungeon extends Game {
 			"com.watabou.pixeldungeon.items.DriedRose" );
 		com.skpd.utils.Bundle.addAlias(
 			com.skpd.pixeldungeonskills.actors.mobs.npcs.MirrorImage.class,
-			"com.watabou.pixeldungeon.items.scrolls.ScrollOfMirrorImage$MirrorImage" );
+			"com.watabou.pixeldungeon.items.scrolls.J$MirrorImage" );
 		// 1.6.4
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.rings.RingOfElements.class,
+			C.class,
 			"com.watabou.pixeldungeon.items.rings.RingOfCleansing" );
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.rings.RingOfElements.class,
+			C.class,
 			"com.watabou.pixeldungeon.items.rings.RingOfResistance" );
 		com.skpd.utils.Bundle.addAlias(
 			com.skpd.pixeldungeonskills.items.weapon.missiles.Boomerang.class,
 			"com.watabou.pixeldungeon.items.weapon.missiles.RangersBoomerang" );
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.rings.RingOfPower.class,
+			I.class,
 			"com.watabou.pixeldungeon.items.rings.RingOfEnergy" );
 		// 1.7.2
 		com.skpd.utils.Bundle.addAlias(
@@ -102,11 +109,11 @@ public class PixelDungeon extends Game {
 			com.skpd.pixeldungeonskills.items.weapon.enchantments.Shock.class,
 			"com.watabou.pixeldungeon.items.weapon.enchantments.Swing" );
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment.class,
+			D.class,
 			"com.watabou.pixeldungeon.items.scrolls.ScrollOfWeaponUpgrade" );
 		// 1.7.5
 		com.skpd.utils.Bundle.addAlias(
-			com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment.class,
+			D.class,
 			"com.watabou.pixeldungeon.items.Stylus" );
 		// 1.8.0
 		com.skpd.utils.Bundle.addAlias(
@@ -242,12 +249,19 @@ public class PixelDungeon extends Game {
 	/*
 	 * ---> Prefernces
 	 */
-	
+
 	public static void landscape( boolean value ) {
-		Game.instance.setRequestedOrientation( value ?
-			ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :
-			ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
+		if (android.os.Build.VERSION.SDK_INT >= 9) {
+			Game.instance.setRequestedOrientation(value ?
+					ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE :
+					ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+		} else {
+			Game.instance.setRequestedOrientation(value ?
+					ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :
+					ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}
 		Preferences.INSTANCE.put( Preferences.KEY_LANDSCAPE, value );
+		((PixelDungeon)instance).updateDisplaySize();
 	}
 	
 	public static boolean landscape() {
@@ -274,11 +288,14 @@ public class PixelDungeon extends Game {
 			}
 		} );
 	}
-	
+
 	@Override
 	public void onSurfaceChanged( GL10 gl, int width, int height ) {
+
 		super.onSurfaceChanged( gl, width, height );
-		
+
+		updateDisplaySize();
+
 		if (immersiveModeChanged) {
 			requestedReset = true;
 			immersiveModeChanged = false;
@@ -306,7 +323,7 @@ public class PixelDungeon extends Game {
 			}
 		}
 	}
-	
+
 	public static boolean immersed() {
 		return Preferences.INSTANCE.getBoolean( Preferences.KEY_IMMERSIVE, false );
 	}
@@ -315,16 +332,6 @@ public class PixelDungeon extends Game {
 
 	public static int scale() {
 		return Preferences.INSTANCE.getInt(Preferences.KEY_SCALE, 0);
-	}
-
-
-	public static void scaleUp( boolean value ) {
-		Preferences.INSTANCE.put( Preferences.KEY_SCALE_UP, value );
-		switchScene( TitleScene.class );
-	}
-	
-	public static boolean scaleUp() {
-		return Preferences.INSTANCE.getBoolean( Preferences.KEY_SCALE_UP, true );
 	}
 
 	public static void zoom( int value ) {
@@ -423,7 +430,24 @@ public class PixelDungeon extends Game {
 	/*
 	 * <--- Preferences
 	 */
-	
+	private void updateDisplaySize(){
+		DisplayMetrics m = new DisplayMetrics();
+		if (immersed() && Build.VERSION.SDK_INT >= 19)
+			getWindowManager().getDefaultDisplay().getRealMetrics( m );
+		else
+			getWindowManager().getDefaultDisplay().getMetrics( m );
+		dispHeight = m.heightPixels;
+		dispWidth = m.widthPixels;
+
+		runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					view.getHolder().setSizeFromLayout();
+				}
+			});
+
+	}
+
 	public static void reportException( Throwable tr ) {
 		Log.e( "PD", Log.getStackTraceString( tr ) ); 
 	}

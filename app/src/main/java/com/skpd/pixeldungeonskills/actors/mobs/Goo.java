@@ -29,7 +29,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Ooze;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.LloydsBeacon;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.SewerBossLevel;
@@ -227,7 +227,7 @@ public class Goo extends Mob {
 	static {
 		RESISTANCES.add( ToxicGas.class );
 		RESISTANCES.add( Death.class );
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 	}
 	
 	@Override

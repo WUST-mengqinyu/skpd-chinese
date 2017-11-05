@@ -19,33 +19,23 @@ package com.skpd.pixeldungeonskills.items.potions;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class PotionOfStrength extends Potion {
 
-	{
-		name = "Potion of Strength";
-	}
-	
 	@Override
 	protected void apply( Hero hero ) {
 		setKnown();
 		
 		hero.STR++;
-		hero.sprite.showStatus( CharSprite.POSITIVE, "+1 str" );
-		GLog.p( "Newfound strength surges through your body." );
+		hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(PotionOfStrength.class,"1"));
+		GLog.p( Messages.get(PotionOfStrength.class,"2") );
 		
 		Badges.validateStrengthAttained();
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This powerful liquid will course through your muscles, " +
-			"permanently increasing your strength by one point.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 100 * quantity : super.price();

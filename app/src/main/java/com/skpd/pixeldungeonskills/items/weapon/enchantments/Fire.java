@@ -22,13 +22,14 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Burning;
 import com.skpd.pixeldungeonskills.effects.particles.FlameParticle;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.utils.Random;
 
 public class Fire extends Weapon.Enchantment {
 
-	private static final String TXT_BLAZING	= "blazing %s";
+	private static final String TXT_BLAZING	= Messages.get(Fire.class,"");
 	
 	private static ItemSprite.Glowing ORANGE = new ItemSprite.Glowing( 0xFF4400 );
 	
@@ -64,7 +65,7 @@ public class Fire extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName ) {
-		return String.format( TXT_BLAZING, weaponName );
+		return Messages.format( TXT_BLAZING, weaponName );
 	}
 
 }

@@ -23,7 +23,7 @@ import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Cripple;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
@@ -96,7 +96,7 @@ public class Chasm {
 			public void onDeath() {
 				Badges.validateDeathFromFalling();
 				
-				Dungeon.fail( Utils.format( ResultDescriptions.FALL, Dungeon.depth ) );
+				Dungeon.fail( Utils.format( Res.FALL, Dungeon.depth ) );
 				GLog.n( "You fell to death..." );
 			}
 		} );

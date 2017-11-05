@@ -25,7 +25,6 @@ import com.skpd.utils.Random;
 public class RemoteBomb extends Item {
 	
 	{
-		name = "remote bomb";
 		image = ItemSpriteSheet.RemoteBomb;
 		defaultAction = AC_THROW;
 		stackable = true;
@@ -71,10 +70,5 @@ public class RemoteBomb extends Item {
 	public int price() {
 		return 10 * quantity;
 	}
-	
-	@Override
-	public String info() {
-		return
-                "After being thrown, this bomb will explode once it receives a signal from a trigger beacon.";
-	}
+
 }

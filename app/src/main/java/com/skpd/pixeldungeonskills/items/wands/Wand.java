@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.wands;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
@@ -34,8 +32,9 @@ import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.ItemStatusHandler;
 import com.skpd.pixeldungeonskills.items.KindOfWeapon;
 import com.skpd.pixeldungeonskills.items.bags.Bag;
-import com.skpd.pixeldungeonskills.items.rings.RingOfPower.Power;
+import com.skpd.pixeldungeonskills.items.rings.I.Power;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.CellSelector;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -45,20 +44,22 @@ import com.skpd.utils.Bundle;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public abstract class Wand extends KindOfWeapon {
 
 	private static final int USAGES_TO_KNOW	= 40;
 	
-	public static final String AC_ZAP	= "ZAP";
+	public static final String AC_ZAP	= Messages.get(Wand.class,"1");
 	
-	private static final String TXT_WOOD	= "This thin %s wand is warm to the touch. Who knows what it will do when used?";
-	private static final String TXT_DAMAGE	= "When this wand is used as a melee weapon, its average damage is %d points per hit.";
-	private static final String TXT_WEAPON	= "You can use this wand as a melee weapon.";
+	private static final String TXT_WOOD	= Messages.get(Wand.class,"2");
+	private static final String TXT_DAMAGE	= Messages.get(Wand.class,"3");
+	private static final String TXT_WEAPON	= Messages.get(Wand.class,"4");
 			
-	private static final String TXT_FIZZLES		= "your wand fizzles; it must be out of charges for now";
-	private static final String TXT_SELF_TARGET	= "You can't target yourself";
+	private static final String TXT_FIZZLES		= Messages.get(Wand.class,"5");
+	private static final String TXT_SELF_TARGET	= Messages.get(Wand.class,"6");
 	
-	private static final String TXT_IDENTIFY	= "You are now familiar enough with your %s.";
+	private static final String TXT_IDENTIFY	= Messages.get(Wand.class,"7");
 	
 	private static final float TIME_TO_ZAP	= 1f;
 	
@@ -252,7 +253,7 @@ public abstract class Wand extends KindOfWeapon {
 		}
 		
 		if (isBroken()) {
-			sb.insert( 0, "broken " );
+			sb.insert( 0, Messages.get(Wand.class,"8"));
 		}
 		
 		return sb.toString();
@@ -260,7 +261,7 @@ public abstract class Wand extends KindOfWeapon {
 	
 	@Override
 	public String name() {
-		return isKnown() ? name : wood + " wand";
+		return isKnown() ? name : wood + Messages.get(Wand.class,"9");
 	}
 	
 	@Override
@@ -456,7 +457,7 @@ public abstract class Wand extends KindOfWeapon {
 		
 		@Override
 		public String prompt() {
-			return "Choose direction to zap";
+			return Messages.get(Wand.class,"0");
 		}
 	};
 	

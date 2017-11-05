@@ -21,6 +21,7 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Burning;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -29,7 +30,6 @@ import com.skpd.utils.Random;
 public class FlameBow extends Bow {
 
 	{
-		name = "flame bow";
 		image = ItemSpriteSheet.FlameBow;
 
 
@@ -45,13 +45,6 @@ public class FlameBow extends Bow {
 	public FlameBow(int number) {
 		super();
 		quantity = number;
-	}
-
-
-	@Override
-	public String desc() {
-		return 
-			"A magically imbued bow that has a chance to set targets on fire.";
 	}
 	
 	@Override
@@ -75,9 +68,9 @@ public class FlameBow extends Bow {
             if (Random.Int(2) == 1)
             {
                 Buff.affect(target, Burning.class).reignite(target);
-                GLog.p("Target catches fire!");
+                GLog.p(Messages.get(FlameBow.class,"1"));
 
-                target.sprite.showStatus( CharSprite.NEUTRAL, "Hot!" );
+                target.sprite.showStatus( CharSprite.NEUTRAL, Messages.get(FlameBow.class,"2"));
             }
         }
         catch (Exception ex)

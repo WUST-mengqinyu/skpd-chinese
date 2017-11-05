@@ -61,10 +61,10 @@ public class Item implements Bundlable {
 	{
 		name = Messages.get(this,"");
 	}
-	private static final String TXT_PACK_FULL	= "Your pack is too full for the %s";
+	private static final String TXT_PACK_FULL	= Messages.get(Item.class,"1");
 	
-	private static final String TXT_BROKEN		= "Because of frequent use, your %s has broken.";
-	private static final String TXT_GONNA_BREAK	= "Because of frequent use, your %s is going to break soon.";
+	private static final String TXT_BROKEN		= Messages.get(Item.class,"2");
+	private static final String TXT_GONNA_BREAK	= Messages.get(Item.class,"3");
 	
 	private static final String TXT_TO_STRING		= "%s";
 	private static final String TXT_TO_STRING_X		= "%s x%d";
@@ -77,10 +77,10 @@ public class Item implements Bundlable {
 	protected static final float TIME_TO_PICK_UP	= 1.0f;
 	protected static final float TIME_TO_DROP		= 0.5f;
 	
-	public static final String AC_DROP		= "DROP";
-	public static final String AC_THROW		= "THROW";
-    public static final String AC_STORE		= "STORE";
-    public static final String AC_STORE_TAKE		= "STORETAKE";
+	public static final String AC_DROP		= Messages.get(Item.class,"4");
+	public static final String AC_THROW		= Messages.get(Item.class,"5");
+    public static final String AC_STORE		= Messages.get(Item.class,"6");
+    public static final String AC_STORE_TAKE		= Messages.get(Item.class,"7");
 
 	public String defaultAction;
 	
@@ -736,7 +736,7 @@ public class Item implements Bundlable {
 		}
 		@Override
 		public String prompt() {
-			return "Choose direction of throw";
+			return Messages.get(Item.class,"8");
 		}
 	};
 }

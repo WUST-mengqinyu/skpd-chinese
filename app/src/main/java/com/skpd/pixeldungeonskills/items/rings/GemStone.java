@@ -30,11 +30,6 @@ import java.util.ArrayList;
 
 public class GemStone extends Ring {
 
-	{
-		name = "Gemstone";
-	}
-	
-
 	public int charge = 0;
 
     public void ChargeUp()

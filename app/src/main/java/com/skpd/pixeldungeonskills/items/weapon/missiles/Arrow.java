@@ -43,7 +43,6 @@ public class Arrow extends MissileWeapon {
 
 
 	{
-		name = "arrow";
 		image = ItemSpriteSheet.Arrow;
 
         stackable = true;
@@ -156,12 +155,6 @@ public class Arrow extends MissileWeapon {
     {
 
     }
-
-	@Override
-	public String desc() {
-		return 
-			"Arrows are more powerful and accurate than darts, but they require an equipped bow.";
-	}
 	
 	@Override
 	public Item random() {
@@ -194,14 +187,5 @@ public class Arrow extends MissileWeapon {
 
     @Override
     public int max(){return 5;}
-
-    @Override
-    public String info() {
-
-        StringBuilder info = new StringBuilder( desc() );
-
-
-        return info.toString();
-    }
 
 }

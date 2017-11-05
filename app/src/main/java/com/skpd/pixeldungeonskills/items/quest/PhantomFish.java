@@ -17,25 +17,25 @@
  */
 package com.skpd.pixeldungeonskills.items.quest;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Invisibility;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
+import java.util.ArrayList;
+
 public class PhantomFish extends Item {
 	
-	private static final String AC_EAT	= "EAT";
+	private static final String AC_EAT	= Messages.get(PhantomFish.class,"1");
 	
 	private static final float TIME_TO_EAT	= 2f;
 	
 	{
-		name = "phantom fish";
 		image = ItemSpriteSheet.PHANTOM;
 
 		unique = true;
@@ -59,7 +59,7 @@ public class PhantomFish extends Item {
 			Sample.INSTANCE.play( Assets.SND_EAT );
 			Sample.INSTANCE.play( Assets.SND_MELD );
 			
-			GLog.i( "You see your hands turn invisible!" );
+			GLog.i( Messages.get(PhantomFish.class,"2") );
 			Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
 			
 			hero.spend( TIME_TO_EAT );
@@ -80,11 +80,5 @@ public class PhantomFish extends Item {
 	public boolean isIdentified() {
 		return true;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"You can barely see this tiny translucent fish in the air. " +
-			"In the water it becomes effectively invisible.";
-	}
+
 }

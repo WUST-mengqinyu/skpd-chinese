@@ -30,8 +30,8 @@ import com.skpd.pixeldungeonskills.items.bags.SeedPouch;
 import com.skpd.pixeldungeonskills.items.bags.WandHolster;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.rings.Ring;
-import com.skpd.pixeldungeonskills.items.rings.RingOfHaggler;
-import com.skpd.pixeldungeonskills.items.rings.RingOfThorns;
+import com.skpd.pixeldungeonskills.items.rings.E;
+import com.skpd.pixeldungeonskills.items.rings.L;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
@@ -153,7 +153,7 @@ public class Badges {
 		public int image;
 		
 		private Badge( String description, int image ) {
-			this( description, image, false );
+			this( description, image, true );
 		}
 		
 		private Badge( String description, int image, boolean meta ) {
@@ -400,7 +400,7 @@ public class Badges {
 		
 		// This method should be called:
 		// 1) When an item gets obtained (Item.collect)
-		// 2) When an item gets upgraded (ScrollOfUpgrade, ScrollOfWeaponUpgrade, ShortSword, WandOfMagicMissile)
+		// 2) When an item gets upgraded (S, ScrollOfWeaponUpgrade, ShortSword, WandOfMagicMissile)
 		// 3) When an item gets identified
 		if (!item.levelKnown) {
 			return;
@@ -714,7 +714,7 @@ public class Badges {
 	}
 	
 	public static void validateRingOfHaggler() {
-		if (!local.contains( Badge.RING_OF_HAGGLER ) && new RingOfHaggler().isKnown()) {
+		if (!local.contains( Badge.RING_OF_HAGGLER ) && new E().isKnown()) {
 			Badge badge = Badge.RING_OF_HAGGLER;
 			local.add( badge );
 			displayBadge( badge );
@@ -722,7 +722,7 @@ public class Badges {
 	}
 	
 	public static void validateRingOfThorns() {
-		if (!local.contains( Badge.RING_OF_THORNS ) && new RingOfThorns().isKnown()) {
+		if (!local.contains( Badge.RING_OF_THORNS ) && new L().isKnown()) {
 			Badge badge = Badge.RING_OF_THORNS;
 			local.add( badge );
 			displayBadge( badge );
@@ -820,8 +820,7 @@ public class Badges {
 	
 	public static void validateSupporter() {
 
-		global.add( Badge.SUPPORTER );
-		saveNeeded = true;
+		local.add( Badge.SUPPORTER );
 		
 		PixelScene.showBadge( Badge.SUPPORTER );
 	}

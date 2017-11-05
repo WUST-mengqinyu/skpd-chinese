@@ -17,13 +17,14 @@
 
 package com.skpd.input;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.view.MotionEvent;
 
+import com.skpd.noosa.Game;
 import com.skpd.utils.PointF;
 import com.skpd.utils.Signal;
 
-import android.view.MotionEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Touchscreen {
 	
@@ -92,7 +93,10 @@ public class Touchscreen {
 			
 			float x = e.getX( index );
 			float y = e.getY( index );
-			
+
+			x /= (Game.dispWidth / (float)Game.width);
+			y /= (Game.dispHeight / (float)Game.height);
+
 			start = new PointF( x, y );
 			current = new PointF( x, y );
 			
@@ -100,7 +104,13 @@ public class Touchscreen {
 		}
 		
 		public void update( MotionEvent e, int index ) {
-			current.set( e.getX( index ), e.getY( index ) );
+			float x = e.getX( index );
+			float y = e.getY( index );
+
+			x /= (Game.dispWidth / (float)Game.width);
+			y /= (Game.dispHeight / (float)Game.height);
+
+			current.set( x, y );
 		}
 		
 		public Touch up() {

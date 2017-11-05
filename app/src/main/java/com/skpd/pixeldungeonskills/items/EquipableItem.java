@@ -22,14 +22,15 @@ import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public abstract class EquipableItem extends Item {
 
-	private static final String TXT_UNEQUIP_CURSED	= "You can't remove cursed %s!";
+	private static final String TXT_UNEQUIP_CURSED	= Messages.get(EquipableItem.class,"1");
 	
-	public static final String AC_EQUIP		= "EQUIP";
-	public static final String AC_UNEQUIP	= "UNEQUIP";
+	public static final String AC_EQUIP		= Messages.get(EquipableItem.class,"2");
+	public static final String AC_UNEQUIP	= Messages.get(EquipableItem.class,"3");
 	
 	@Override
 	public void execute( Hero hero, String action ) {

@@ -23,7 +23,6 @@ import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 public class RatSkull extends Item {
 	
 	{
-		name = "giant rat skull";
 		image = ItemSpriteSheet.SKULL;
 		
 		unique = true;
@@ -37,12 +36,6 @@ public class RatSkull extends Item {
 	@Override
 	public boolean isIdentified() {
 		return true;
-	}
-	
-	@Override
-	public String info() {
-		return
-			"It could be a nice hunting trophy, but it smells too bad to place it on a wall.";
 	}
 	
 	@Override

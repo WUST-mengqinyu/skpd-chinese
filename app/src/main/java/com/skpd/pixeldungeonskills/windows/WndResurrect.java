@@ -79,7 +79,7 @@ public class WndResurrect extends Window {
 			@Override
 			protected void onClick() {
 				hide();
-				
+
 				Rankings.INSTANCE.submit( false );
 				Hero.reallyDie( WndResurrect.causeOfDeath );
 			}

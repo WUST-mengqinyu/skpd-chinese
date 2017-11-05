@@ -33,7 +33,6 @@ import com.skpd.utils.Random;
 public class IncendiaryDart extends MissileWeapon {
 
 	{
-		name = "incendiary dart";
 		image = ItemSpriteSheet.INCENDIARY_DART;
 		
 		STR = 12;
@@ -79,14 +78,7 @@ public class IncendiaryDart extends MissileWeapon {
 		Buff.affect( defender, Burning.class ).reignite( defender );
 		super.proc( attacker, defender, damage );
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"The spike on each of these darts is designed to pin it to its target " +
-			"while the unstable compounds strapped to its length burst into brilliant flames.";
-	}
-	
+
 	@Override
 	public Item random() {
 		quantity = Random.Int( 3, 6 );

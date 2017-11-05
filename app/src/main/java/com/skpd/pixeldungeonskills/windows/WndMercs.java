@@ -83,7 +83,7 @@ public class WndMercs extends WndTabbed {
 
     protected static final int TAB_WIDTH	= 25;
 
-    private static final String TXT_TITLE =  Messages.get(Negotiations.class,"1");
+    private static final String TXT_TITLE = Messages.get(WndMercs.class,"");
 
     private static final String TXT_MERCENARIES_DETAIL = Messages.get(WndMercs.class,"1");
 

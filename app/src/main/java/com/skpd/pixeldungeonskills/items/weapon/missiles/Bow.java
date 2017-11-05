@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.weapon.missiles;
 
-import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 public class Bow extends MissileWeapon {
 
 	{
-		name = "bow";
 		image = ItemSpriteSheet.Bow;
 
 
@@ -82,16 +80,9 @@ public class Bow extends MissileWeapon {
 	}
 
 	public Bow(int number) {
-		super();
-		quantity = number;
-	}
-
-
-	@Override
-	public String desc() {
-		return 
-			"A basic bow used to fire arrows and bomb arrows.";
-	}
+        super();
+        quantity = number;
+    }
 	
 	@Override
 	public Item random() {
@@ -121,7 +112,7 @@ public class Bow extends MissileWeapon {
         ArrayList<String> actions = super.actions( hero );
         actions.remove( AC_THROW );
         actions.remove( AC_EQUIP );
-        if(Dungeon.hero.belongings.bow != this) {
+        if(hero.belongings.bow != this) {
             if(actions.contains(AC_EQUIP) == false)
                 actions.add(AC_EQUIP);
         }
@@ -145,15 +136,6 @@ public class Bow extends MissileWeapon {
 
     @Override
     public int max(){return 0;}
-
-    @Override
-    public String info() {
-
-        StringBuilder info = new StringBuilder( desc() );
-
-
-        return info.toString();
-    }
 
     public void bowSpecial(Char target)
     {

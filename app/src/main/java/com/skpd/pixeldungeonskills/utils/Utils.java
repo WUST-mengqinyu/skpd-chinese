@@ -17,6 +17,9 @@
  */
 package com.skpd.pixeldungeonskills.utils;
 
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
+
 import java.util.Locale;
 
 public class Utils {
@@ -32,10 +35,16 @@ public class Utils {
 	public static String VOWELS	= "aoeiu";
 	
 	public static String indefinite( String noun ) {
-		if (noun.length() == 0) {
-			return "a";
-		} else {
-			return (VOWELS.indexOf( Character.toLowerCase( noun.charAt( 0 ) ) ) != -1 ? "an " : "a ") + noun;
+		if(Messages.lang()== Languages.ENGLISH) {
+			if (noun.length() == 0) {
+				return "a";
+			} else {
+				return (VOWELS.indexOf(Character.toLowerCase(noun.charAt(0))) != -1 ? "an " : "a ") + noun;
+
+			}
+		}else
+		{
+			return "一个"+noun;
 		}
 	}
 }

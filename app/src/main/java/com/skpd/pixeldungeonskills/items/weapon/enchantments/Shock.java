@@ -17,9 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.effects.Lightning;
@@ -27,11 +24,15 @@ import com.skpd.pixeldungeonskills.effects.particles.SparkParticle;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.traps.LightningTrap;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.utils.Random;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Shock extends Weapon.Enchantment {
 
-	private static final String TXT_SHOCKING	= "shocking %s";
+	private static final String TXT_SHOCKING	= Messages.get(Shock.class,"");
 	
 	@Override
 	public boolean proc( Weapon weapon, Char attacker, Char defender, int damage ) {
@@ -63,7 +64,7 @@ public class Shock extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName ) {
-		return String.format( TXT_SHOCKING, weaponName );
+		return Messages.format( TXT_SHOCKING, weaponName );
 	}
 
 	private ArrayList<Char> affected = new ArrayList<Char>();

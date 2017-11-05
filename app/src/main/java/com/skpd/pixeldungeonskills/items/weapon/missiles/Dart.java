@@ -24,7 +24,6 @@ import com.skpd.utils.Random;
 public class Dart extends MissileWeapon {
 
 	{
-		name = "dart";
 		image = ItemSpriteSheet.DART;
 	}
 	
@@ -46,14 +45,7 @@ public class Dart extends MissileWeapon {
 	public int max() {
 		return 4;
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"These simple metal spikes are weighted to fly true and " +
-			"sting their prey with a flick of the wrist.";
-	}
-	
+
 	@Override
 	public Item random() {
 		quantity = Random.Int( 5, 15 );

@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.wands;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.DungeonTilemap;
 import com.skpd.pixeldungeonskills.actors.Actor;
@@ -33,10 +31,11 @@ import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class WandOfDisintegration extends Wand {
 
 	{
-		name = "Wand of Disintegration";
 		hitChars = false;
 	}
 	
@@ -105,11 +104,5 @@ public class WandOfDisintegration extends Wand {
 		curUser.sprite.parent.add( new DeathRay( curUser.sprite.center(), DungeonTilemap.tileCenterToWorld( cell ) ) );		
 		callback.call();
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This wand emits a beam of destructive energy, which pierces all creatures in its way. " +
-			"The more targets it hits, the more damage it inflicts to each of them.";
-	}
+
 }

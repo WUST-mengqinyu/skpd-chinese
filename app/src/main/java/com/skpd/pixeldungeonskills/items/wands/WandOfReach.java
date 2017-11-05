@@ -30,22 +30,22 @@ import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMight;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfReach extends Wand {
 
-	private static final String TXT_YOU_NOW_HAVE	= "You have magically transported %s into your backpack"; 
+	private static final String TXT_YOU_NOW_HAVE	= Messages.get(WandOfReach.class,"1");
 	
 	{
-		name = "Wand of Reach";
 		hitChars = false;
 	}
 	
@@ -108,7 +108,7 @@ public class WandOfReach extends Wand {
 			if (item instanceof Dewdrop) {
 				// Do nothing
 			} else {
-				if (((item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll)item).isKnown()) ||
+				if (((item instanceof S || item instanceof D) && ((Scroll)item).isKnown()) ||
 					((item instanceof PotionOfStrength || item instanceof PotionOfMight) && ((Potion)item).isKnown())) {
 					GLog.p( TXT_YOU_NOW_HAVE, item.name() );
 				} else {
@@ -125,12 +125,5 @@ public class WandOfReach extends Wand {
 		MagicMissile.force( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This utility wand can be used to grab objects from a distance and to switch places with enemies. " +
-			"Waves of magic force radiated from it will affect all cells on their way triggering traps, " +
-			"trampling high vegetation, opening closed doors and closing open ones.";
-	}
+
 }

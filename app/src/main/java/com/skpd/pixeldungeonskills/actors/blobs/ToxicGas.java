@@ -19,7 +19,7 @@ package com.skpd.pixeldungeonskills.actors.blobs;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
@@ -89,7 +89,7 @@ public class ToxicGas extends Blob implements Hero.Doom {
 		
 		Badges.validateDeathFromGas();
 		
-		Dungeon.fail( Utils.format( ResultDescriptions.GAS, Dungeon.depth ) );
+		Dungeon.fail( Utils.format( Res.GAS, Dungeon.depth ) );
 		GLog.n( Messages.get(this,"2") );
 	}
 }

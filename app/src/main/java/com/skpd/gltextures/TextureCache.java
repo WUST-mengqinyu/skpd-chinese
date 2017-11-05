@@ -17,17 +17,13 @@
 
 package com.skpd.gltextures;
 
-import java.util.HashMap;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader.TileMode;
 
 import com.skpd.glwrap.Texture;
+
+import java.util.HashMap;
 
 public class TextureCache {
 
@@ -61,28 +57,30 @@ public class TextureCache {
 			return tx;
 		}
 	}
-	
-	public static SmartTexture createGradient( int width, int height, int... colors ) {
-		
-		final String key = "" + width + "x" + height + ":" + colors;
-		
+
+	public static SmartTexture createGradient( int... colors ) {
+
+		final String key = "" + colors;
+
 		if (all.containsKey( key )) {
-			
+
 			return all.get( key );
-			
+
 		} else {
-		
-			Bitmap bmp = Bitmap.createBitmap( width, height, Bitmap.Config.ARGB_8888 );
-			Canvas canvas = new Canvas( bmp );
-			Paint paint = new Paint();
-			paint.setShader( new LinearGradient( 0, 0, 0, height, colors, null, TileMode.CLAMP ) );
-			canvas.drawPaint( paint );
-			
+
+			Bitmap bmp = Bitmap.createBitmap( colors.length, 1, Bitmap.Config.ARGB_8888 );
+			for (int i=0; i < colors.length; i++) {
+				bmp.setPixel( i, 0, colors[i] );
+			}
 			SmartTexture tx = new SmartTexture( bmp );
+
+			tx.filter( Texture.LINEAR, Texture.LINEAR );
+			tx.wrap( Texture.CLAMP, Texture.CLAMP );
+
 			all.put( key, tx );
 			return tx;
 		}
-		
+
 	}
 	
 	public static void add( Object key, SmartTexture tx ) {

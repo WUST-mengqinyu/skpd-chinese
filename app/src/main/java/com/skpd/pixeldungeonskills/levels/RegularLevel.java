@@ -32,7 +32,7 @@ import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.items.Generator;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.levels.Room.Type;
 import com.skpd.pixeldungeonskills.levels.painters.*;
 import com.skpd.utils.Bundlable;
@@ -616,7 +616,7 @@ public abstract class RegularLevel extends Level {
 
 		for (Item item : itemsToSpawn) {
 			int cell = randomDropCell();
-			if (item instanceof ScrollOfUpgrade) {
+			if (item instanceof S) {
 				while (map[cell] == Terrain.FIRE_TRAP || map[cell] == Terrain.SECRET_FIRE_TRAP) {
 					cell = randomDropCell();
 				}

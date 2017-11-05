@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.food;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
@@ -28,22 +26,24 @@ import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.SpellSprite;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRecharging;
+import com.skpd.pixeldungeonskills.items.scrolls.M;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
+
+import java.util.ArrayList;
 
 public class Food extends Item {
 
 	private static final float TIME_TO_EAT	= 3f;
 	
-	public static final String AC_EAT	= "EAT";
+	public static final String AC_EAT	= Messages.get(Food.class,"2");
 	
 	public float energy = Hunger.HUNGRY;
-	public String message = "That food tasted delicious!";
+	public String message = Messages.get(Food.class,"1");
 	
 	{
 		stackable = true;
-		name = "ration of food";
 		image = ItemSpriteSheet.RATION;
 	}
 	
@@ -72,7 +72,7 @@ public class Food extends Item {
 				break;
 			case MAGE:
 				hero.belongings.charge( false );
-				ScrollOfRecharging.charge( hero );
+				M.charge( hero );
 				break;
 			case ROGUE:
 			case HUNTRESS:
@@ -94,13 +94,6 @@ public class Food extends Item {
 			super.execute( hero, action );
 			
 		}
-	}
-	
-	@Override
-	public String info() {
-		return 
-			"Nothing fancy here: dried meat, " +
-			"some biscuits - things like that.";
 	}
 	
 	@Override

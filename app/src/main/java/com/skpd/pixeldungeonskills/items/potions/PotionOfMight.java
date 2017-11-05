@@ -19,14 +19,11 @@ package com.skpd.pixeldungeonskills.items.potions;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class PotionOfMight extends PotionOfStrength {
-
-	{
-		name = "Potion of Might";
-	}
 	
 	@Override
 	protected void apply( Hero hero ) {
@@ -35,19 +32,12 @@ public class PotionOfMight extends PotionOfStrength {
 		hero.STR++;
 		hero.HT += 5;
 		hero.HP += 5;
-		hero.sprite.showStatus( CharSprite.POSITIVE, "+1 str, +5 ht" );
-		GLog.p( "Newfound strength surges through your body." );
+		hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(PotionOfMight.class,"1") );
+		GLog.p(Messages.get(PotionOfMight.class,"2"));
 		
 		Badges.validateStrengthAttained();
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This powerful liquid will course through your muscles, permanently " +
-			"increasing your strength by one point and health by five points.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 200 * quantity : super.price();

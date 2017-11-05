@@ -29,21 +29,18 @@ import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.BArray;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.PathFinder;
 
 public class PotionOfPurity extends Potion {
 
-	private static final String TXT_FRESHNESS	= "You feel uncommon freshness in the air.";
-	private static final String TXT_NO_SMELL	= "You've stopped sensing any smells!";
+	private static final String TXT_FRESHNESS	= Messages.get(PotionOfPurity.class,"1");
+	private static final String TXT_NO_SMELL	=  Messages.get(PotionOfPurity.class,"2");
 	
 	private static final int DISTANCE	= 2;
-	
-	{
-		name = "Potion of Purification";
-	}
-	
+
 	@Override
 	public void shatter( int cell ) {
 		
@@ -115,14 +112,7 @@ public class PotionOfPurity extends Potion {
 		Buff.prolong( hero, GasesImmunity.class, GasesImmunity.DURATION );
 		setKnown();
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"This reagent will quickly neutralize all harmful gases in the area of effect. " +
-			"Drinking it will give you a temporary immunity to such gases.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 50 * quantity : super.price();

@@ -26,16 +26,13 @@ import com.skpd.pixeldungeonskills.effects.MagicMissile;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfRegrowth extends Wand {
 
-	{
-		name = "Wand of Regrowth";
-	}
-	
 	@Override
 	protected void onZap( int cell ) {
 		
@@ -66,7 +63,7 @@ public class WandOfRegrowth extends Wand {
 			
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i(Messages.get(WandOfMagicCasting.class,"4"));
 			
 		}
 	}
@@ -74,11 +71,5 @@ public class WandOfRegrowth extends Wand {
 	protected void fx( int cell, Callback callback ) {
 		MagicMissile.foliage( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
-	}
-	
-	@Override
-	public String desc() {
-		return
-			"\"When life ceases new life always begins to grow... The eternal cycle always remains!\"";
 	}
 }

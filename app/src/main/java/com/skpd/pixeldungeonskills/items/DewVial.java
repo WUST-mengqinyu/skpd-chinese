@@ -17,13 +17,12 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.particles.ShaftParticle;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -31,24 +30,25 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 
+import java.util.ArrayList;
+
 public class DewVial extends Item {
 
 	private static final int MAX_VOLUME	= 10;
 	
-	private static final String AC_DRINK	= "DRINK";
+	private static final String AC_DRINK	= Messages.get(DewVial.class,"1");
 	
 	private static final float TIME_TO_DRINK = 1f;
 	
-	private static final String TXT_VALUE	= "%+dHP";
+	private static final String TXT_VALUE	= Messages.get(DewVial.class,"2");
 	private static final String TXT_STATUS	= "%d/%d";
 	
-	private static final String TXT_AUTO_DRINK	= "The dew vial was emptied to heal your wounds.";
-	private static final String TXT_COLLECTED	= "You collected a dewdrop into your dew vial.";
-	private static final String TXT_FULL		= "Your dew vial is full!";
-	private static final String TXT_EMPTY		= "Your dew vial is empty!";
+	private static final String TXT_AUTO_DRINK	= Messages.get(DewVial.class,"3");
+	private static final String TXT_COLLECTED	= Messages.get(DewVial.class,"4");
+	private static final String TXT_FULL		= Messages.get(DewVial.class,"5");
+	private static final String TXT_EMPTY		= Messages.get(DewVial.class,"6");
 	
 	{
-		name = "dew vial";
 		image = ItemSpriteSheet.VIAL;
 		
 		defaultAction = AC_DRINK;
@@ -170,14 +170,6 @@ public class DewVial extends Item {
 	@Override
 	public String status() {
 		return Utils.format( TXT_STATUS, volume, MAX_VOLUME );
-	}
-	
-	@Override
-	public String info() {
-		return 
-			"You can store excess dew in this tiny vessel for drinking it later. " +
-			"If the vial is full, in a moment of deadly peril the dew will be " +
-			"consumed automatically.";
 	}
 	
 	@Override

@@ -20,13 +20,14 @@ package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.utils.Random;
 
 public class Paralysis extends Weapon.Enchantment {
 
-	private static final String TXT_STUNNING = "stunning %s";
+	private static final String TXT_STUNNING = Messages.get(Paralysis.class,"");
 	
 	private static ItemSprite.Glowing YELLOW = new ItemSprite.Glowing( 0xCCAA44 );
 	
@@ -55,7 +56,7 @@ public class Paralysis extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_STUNNING, weaponName );
+		return Messages.format( TXT_STUNNING, weaponName );
 	}
 
 }

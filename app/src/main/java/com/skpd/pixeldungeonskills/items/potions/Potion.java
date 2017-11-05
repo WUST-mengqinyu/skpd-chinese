@@ -17,9 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */package com.skpd.pixeldungeonskills.items.potions;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
@@ -30,6 +27,7 @@ import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.ItemStatusHandler;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -37,18 +35,19 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.windows.WndOptions;
 import com.skpd.utils.Bundle;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class Potion extends Item {
 	
-	public static final String AC_DRINK	= "DRINK";
+	public static final String AC_DRINK	= Messages.get(Potion.class,"1");
 	
-	private static final String TXT_HARMFUL		= "Harmful potion!";
-	private static final String TXT_BENEFICIAL	= "Beneficial potion";
-	private static final String TXT_YES			= "Yes, I know what I'm doing";
-	private static final String TXT_NO			= "No, I changed my mind";
-	private static final String TXT_R_U_SURE_DRINK = 
-		"Are you sure you want to drink it? In most cases you should throw such potions at your enemies.";
-	private static final String TXT_R_U_SURE_THROW = 
-		"Are you sure you want to throw it? In most cases it makes sense to drink it.";
+	private static final String TXT_HARMFUL		= Messages.get(Potion.class,"2");
+	private static final String TXT_BENEFICIAL	= Messages.get(Potion.class,"3");
+	private static final String TXT_YES			= Messages.get(Potion.class,"4");
+	private static final String TXT_NO			= Messages.get(Potion.class,"5");
+	private static final String TXT_R_U_SURE_DRINK = Messages.get(Potion.class,"6");
+	private static final String TXT_R_U_SURE_THROW = Messages.get(Potion.class,"7");
 	
 	private static final float TIME_TO_DRINK = 1f;
 	
@@ -68,8 +67,19 @@ public class Potion extends Item {
         PotionOfMana.class
 	};
 	private static final String[] colors = {
-		"turquoise", "crimson", "azure", "jade", "golden", "magenta", 
-		"charcoal", "ivory", "amber", "bistre", "indigo", "silver", ""};
+			Messages.get(Potion.class,"8"),
+			Messages.get(Potion.class,"9"),
+			Messages.get(Potion.class,"0"),
+			Messages.get(Potion.class,"a1"),
+			Messages.get(Potion.class,"a2"),
+			Messages.get(Potion.class,"a3"),
+			Messages.get(Potion.class,"a4"),
+			Messages.get(Potion.class,"a5"),
+			Messages.get(Potion.class,"a6"),
+			Messages.get(Potion.class,"a7"),
+			Messages.get(Potion.class,"a8"),
+			Messages.get(Potion.class,"a9"),
+			""};
 	private static final Integer[] images = {
 		ItemSpriteSheet.POTION_TURQUOISE, 
 		ItemSpriteSheet.POTION_CRIMSON, 
@@ -102,7 +112,11 @@ public class Potion extends Item {
 	public static void save( Bundle bundle ) {
 		handler.save( bundle );
 	}
-	
+
+	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
+		handler.saveSelectively( bundle, items );
+	}
+
 	@SuppressWarnings("unchecked")
 	public static void restore( Bundle bundle ) {
 		handler = new ItemStatusHandler<Potion>( (Class<? extends Potion>[])potions, colors, images, bundle );
@@ -216,7 +230,7 @@ public class Potion extends Item {
 	
 	public void shatter( int cell ) {
 		if (Dungeon.visible[cell]) {
-			GLog.i( "The flask shatters and " + color() + " liquid splashes harmlessly" );
+			GLog.i( Messages.format(Messages.get(Potion.class,"a0"),color) );
 			Sample.INSTANCE.play( Assets.SND_SHATTER );
 			splash( cell );
 		}
@@ -246,15 +260,13 @@ public class Potion extends Item {
 	
 	@Override
 	public String name() {
-		return isKnown() ? name : color + " potion";
+		return isKnown() ? name : color + Messages.get(Potion.class,"b1");
 	}
 	
 	@Override
 	public String info() {
 		return isKnown() ?
-			desc() :
-			"This flask contains a swirling " + color + " liquid. " +
-			"Who knows what it will do when drunk or thrown?";
+			desc() : Messages.format(Messages.get(Potion.class,"b2"),color);
 	}
 	
 	@Override

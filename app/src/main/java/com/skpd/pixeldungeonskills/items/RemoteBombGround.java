@@ -30,6 +30,7 @@ import com.skpd.pixeldungeonskills.effects.particles.BlastParticle;
 import com.skpd.pixeldungeonskills.effects.particles.SmokeParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -39,7 +40,6 @@ import com.skpd.utils.Random;
 public class RemoteBombGround extends Item {
 	
 	{
-		name = "remote bomb";
 		image = ItemSpriteSheet.RemoteBomb;
 		defaultAction = AC_THROW;
 		stackable = true;
@@ -72,7 +72,7 @@ public class RemoteBombGround extends Item {
 
     @Override
     public boolean doPickUp( Hero hero ) {
-        GLog.i("Cannot be retrieved anymore...");
+        GLog.i(Messages.get(RemoteBombGround.class,"1"));
         return false;
     }
 
@@ -97,12 +97,6 @@ public class RemoteBombGround extends Item {
 	@Override
 	public int price() {
 		return 10 * quantity;
-	}
-	
-	@Override
-	public String info() {
-		return
-			"This small bomb will explode as soon as a signal is sent from a trigger beacon.";
 	}
 
     public void explode()

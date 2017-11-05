@@ -17,13 +17,14 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
+import com.skpd.utils.Bundle;
+import com.skpd.utils.Random;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import com.skpd.utils.Bundle;
-import com.skpd.utils.Random;
+import java.util.List;
 
 public class ItemStatusHandler<T extends Item> {
 
@@ -116,7 +117,21 @@ public class ItemStatusHandler<T extends Item> {
 			bundle.put( itemName + PFX_KNOWN, known.contains( items[i] ) );
 		}
 	}
-	
+
+
+	public void saveSelectively( Bundle bundle, ArrayList<Item> itemsToSave ){
+		List<Class<? extends T>> items = Arrays.asList(this.items);
+		for (Item item : itemsToSave){
+			if (items.contains(item.getClass())){
+				Class<? extends T> cls = items.get(items.indexOf(item.getClass()));
+				String itemName = cls.toString();
+				bundle.put( itemName + PFX_LABEL, labels.get( cls ) );
+				bundle.put( itemName + PFX_KNOWN, known.contains( cls ) );
+			}
+		}
+	}
+
+
 	private void restore( Bundle bundle, String[] allLabels, Integer[] allImages ) {
 		
 		ArrayList<String> labelsLeft = new ArrayList<String>( Arrays.asList( allLabels ) );

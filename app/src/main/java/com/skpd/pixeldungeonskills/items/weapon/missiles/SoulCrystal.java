@@ -30,6 +30,7 @@ import com.skpd.pixeldungeonskills.actors.mobs.npcs.SummonedPet;
 import com.skpd.pixeldungeonskills.effects.Splash;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.items.SoulCrystalFilled;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Random;
@@ -37,7 +38,6 @@ import com.skpd.utils.Random;
 public class SoulCrystal extends MissileWeapon {
 
 	{
-		name = "soul crystal";
 		image = ItemSpriteSheet.CRYSTAL_EMPTY;
         stackable = true;
 	}
@@ -60,12 +60,6 @@ public class SoulCrystal extends MissileWeapon {
 	public int max() {
 		return 4;
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"A magical crystal capable of capturing soul essence. Throw this at a weak or weakened foe and capture his spirit.";
-	}
 
     @Override
     public String info() {
@@ -83,14 +77,14 @@ public class SoulCrystal extends MissileWeapon {
         {
             Actor.findChar(cell).sprite.emitter().burst(ShadowParticle.CURSE, 6);
             Sample.INSTANCE.play( Assets.SND_CURSED );
-            GLog.p("Captured " + Actor.findChar(cell).name + "!");
+            GLog.p(Messages.format(Messages.get(SoulCrystal.class,"1"),Actor.findChar(cell).name));
             SoulCrystalFilled crystal = new SoulCrystalFilled(((Mob) Actor.findChar(cell)).spriteClass,  Actor.findChar(cell).HT, ((Mob) Actor.findChar(cell)).defenseSkill, Actor.findChar(cell).name);
             Dungeon.level.drop( crystal, cell ).sprite.drop();
             Actor.findChar(cell).damage(Actor.findChar(cell).HP, Dungeon.hero);
 
         }
         else if (Dungeon.visible[cell]) {
-                GLog.i("The " + name + " shatters");
+                GLog.i(Messages.get(SoulCrystal.class,"2"));
                 Sample.INSTANCE.play( Assets.SND_SHATTER );
                 Splash.at(cell, Color.parseColor("#50FFFFFF"), 5);
             }

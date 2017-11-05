@@ -19,7 +19,7 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.blobs.Blob;
 import com.skpd.pixeldungeonskills.actors.blobs.Fire;
@@ -30,7 +30,7 @@ import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.food.ChargrilledMeat;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
-import com.skpd.pixeldungeonskills.items.rings.RingOfElements.Resistance;
+import com.skpd.pixeldungeonskills.items.rings.C.Resistance;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.messages.Messages;
@@ -149,7 +149,7 @@ public class Burning extends Buff implements Hero.Doom {
 		
 		Badges.validateDeathFromFire();
 		
-		Dungeon.fail( Utils.format( ResultDescriptions.BURNING, Dungeon.depth ) );
+		Dungeon.fail( Utils.format( Res.BURNING, Dungeon.depth ) );
 		GLog.n( TXT_BURNED_TO_DEATH );
 	}
 }

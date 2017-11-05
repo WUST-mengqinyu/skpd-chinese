@@ -26,6 +26,7 @@ import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -36,12 +37,11 @@ import java.util.ArrayList;
 
 public class NecroBlade extends MeleeWeapon {
 
-    public static final String AC_HEAL = "Heal";
-    public static final String AC_SUMMON = "Summon";
-    public static final String AC_UPGRADE = "Consume";
+    public static final String AC_HEAL = Messages.get(NecroBlade.class,"1");
+    public static final String AC_SUMMON = Messages.get(NecroBlade.class,"2");
+    public static final String AC_UPGRADE = Messages.get(NecroBlade.class,"3");
 
     {
-		name = "necroblade";
 		image = ItemSpriteSheet.NecroBlade5;
 	}
 
@@ -63,6 +63,9 @@ public class NecroBlade extends MeleeWeapon {
         return actions;
     }
 
+    private int getCharge8(){
+        return (int)(charge/8);
+    }
 
     @Override
     public void execute( Hero hero, String action ) {
@@ -71,7 +74,7 @@ public class NecroBlade extends MeleeWeapon {
             hero.HP += hero.HT * 0.35;
             if(hero.HP > hero.HT)
                 hero.HP = hero.HT;
-            GLog.p("NecroBlade heals " + ((int) (hero.HT * 0.35)) + " HP");
+            GLog.p(Messages.format(Messages.get(this,"4"),(int) (hero.HT * 0.35)));
             updateCharge(-25);
 
          CellEmitter.center(hero.pos).burst(Speck.factory(Speck.HEALING), 1);
@@ -112,17 +115,17 @@ public class NecroBlade extends MeleeWeapon {
                 skel.sprite.alpha(0);
                 skel.sprite.parent.add(new AlphaTweener(skel.sprite, 1, 0.15f));
                 CellEmitter.center(newPos).burst(ShadowParticle.UP, Random.IntRange(3, 5));
-                GLog.p("NecroBlade summoned a skeleton");
+                GLog.p(Messages.get(NecroBlade.class,"5"));
             }
             else
             {
-                GLog.i("No place to summon");
+                GLog.i(Messages.get(NecroBlade.class,"6"));
             }
 
         }else if (action.equals( AC_UPGRADE )) {
             updateCharge(-100);
             this.upgrade(1);
-            GLog.p("NecroBlade consumed the souls within. It looks much better now.");
+            GLog.p(Messages.get(NecroBlade.class,"7"));
         }
         else
         {
@@ -178,8 +181,6 @@ public class NecroBlade extends MeleeWeapon {
 
     @Override
 	public String desc() {
-		return "A blade forged from dark magic. NecroBlades consume the souls of those who perish by them. The more they consume, the stronger they become.\n" +
-                "NecroBlade energy at " + charge + "/100\n"
-                + "The energy stored within increases damage by 0 - " + ((int) (charge / 8)) + ".";
+		return Messages.format(Messages.get(this,"desc"),charge,getCharge8());
 	}
 }

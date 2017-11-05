@@ -17,19 +17,19 @@
  */
 package com.skpd.pixeldungeonskills;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import com.skpd.noosa.Game;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundlable;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.SystemTime;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public enum Rankings {
 	
@@ -53,7 +53,8 @@ public enum Rankings {
 		load();
 		
 		Record rec = new Record();
-		
+
+		rec.depth 	= Dungeon.depth;
 		rec.info	= Dungeon.resultDescription;
 		rec.win		= win;
 		rec.heroClass	= Dungeon.hero.heroClass;
@@ -171,6 +172,7 @@ public enum Rankings {
 		
 		public String info;
 		public boolean win;
+		public int depth;
 		
 		public HeroClass heroClass;
 		public int armorTier;

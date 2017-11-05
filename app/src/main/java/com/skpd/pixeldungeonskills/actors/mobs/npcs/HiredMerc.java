@@ -413,7 +413,7 @@ public class HiredMerc extends NPC {
             if(skill.venomousAttack()) // <--- Venom when present
                 Buff.affect(enemy, Poison.class).set(Poison.durationFactor(enemy));
 
-            if(skill.cripple()) // <-- KneeShot
+            if(skill.cripple()) // <-- KeenShot
                 Buff.affect(enemy, Cripple.class);
         }
         catch (Exception ex)

@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.tweeners.AlphaTweener;
 import com.skpd.pixeldungeonskills.Assets;
@@ -29,16 +27,18 @@ import com.skpd.pixeldungeonskills.actors.mobs.npcs.Bee;
 import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.effects.Splash;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class Honeypot extends Item {
 	
-	public static final String AC_SHATTER	= "SHATTER";
+	public static final String AC_SHATTER	= Messages.get(Honeypot.class,"1");
 	
 	{
-		name = "honeypot";
 		image = ItemSpriteSheet.HONEYPOT;
 		defaultAction = AC_THROW;
 		stackable = true;
@@ -127,10 +127,5 @@ public class Honeypot extends Item {
 	public int price() {
 		return 50 * quantity;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"There is not much honey in this small honeypot, but there is a golden bee there and it doesn't want to leave it.";
-	}
+
 }

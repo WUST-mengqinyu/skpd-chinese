@@ -17,10 +17,8 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs;
 
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Light;
@@ -37,6 +35,8 @@ import com.skpd.pixeldungeonskills.sprites.EyeSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Random;
+
+import java.util.HashSet;
 
 public class Eye extends Mob {
 	
@@ -136,7 +136,7 @@ public class Eye extends Mob {
 				}
 				
 				if (!ch.isAlive() && ch == Dungeon.hero) {
-					Dungeon.fail( Utils.format( ResultDescriptions.MOB, Utils.indefinite( name ), Dungeon.depth ) );
+					Dungeon.fail( Utils.format( Res.MOB, Utils.indefinite( name ), Dungeon.depth ) );
 					GLog.n( TXT_DEATHGAZE_KILLED, name );
 				}
 			} else {

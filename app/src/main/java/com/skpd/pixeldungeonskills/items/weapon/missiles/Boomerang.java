@@ -27,7 +27,6 @@ import com.skpd.pixeldungeonskills.sprites.MissileSprite;
 public class Boomerang extends MissileWeapon {
 
 	{
-		name = "boomerang";
 		image = ItemSpriteSheet.BOOMERANG;
 		
 		STR = 10;
@@ -103,10 +102,5 @@ public class Boomerang extends MissileWeapon {
 		throwEquiped = isEquipped( user );
 		super.cast( user, dst );
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"Thrown to the enemy this flat curved wooden missile will return to the hands of its thrower.";
-	}
+
 }

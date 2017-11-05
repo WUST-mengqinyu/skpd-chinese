@@ -30,7 +30,7 @@ import com.skpd.pixeldungeonskills.Bones;
 import com.skpd.pixeldungeonskills.Difficulties;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.GamesInProgress;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Barkskin;
@@ -84,18 +84,17 @@ import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
 import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMight;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
-import com.skpd.pixeldungeonskills.items.rings.RingOfAccuracy;
-import com.skpd.pixeldungeonskills.items.rings.RingOfDetection;
-import com.skpd.pixeldungeonskills.items.rings.RingOfElements;
-import com.skpd.pixeldungeonskills.items.rings.RingOfEvasion;
-import com.skpd.pixeldungeonskills.items.rings.RingOfHaste;
-import com.skpd.pixeldungeonskills.items.rings.RingOfShadows;
-import com.skpd.pixeldungeonskills.items.rings.RingOfThorns;
+import com.skpd.pixeldungeonskills.items.rings.A;
+import com.skpd.pixeldungeonskills.items.rings.B;
+import com.skpd.pixeldungeonskills.items.rings.C;
+import com.skpd.pixeldungeonskills.items.rings.F;
+import com.skpd.pixeldungeonskills.items.rings.K;
+import com.skpd.pixeldungeonskills.items.rings.L;
+import com.skpd.pixeldungeonskills.items.scrolls.I;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfMagicMapping;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRecharging;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
+import com.skpd.pixeldungeonskills.items.scrolls.M;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.wands.WandOfMagicCasting;
 import com.skpd.pixeldungeonskills.items.weapon.melee.MeleeWeapon;
@@ -147,8 +146,9 @@ public class Hero extends Char {
 	
 	private static final String TXT_WAIT	= "...";
 	private static final String TXT_SEARCH	= Messages.get(Hero.class,"8");
-	
-	public static final int STARTING_STR = 10;
+
+	//// FIXME: 2017/10/10
+	public static final int STARTING_STR = 15;
 	
 	private static final float TIME_TO_REST		= 1f;
 	private static final float TIME_TO_SEARCH	= 2f;
@@ -198,7 +198,7 @@ public class Hero extends Char {
 
 	public Hero() {
 		super();
-		name = "you";
+		name = Messages.get(Hero.class,"o");
 		
 		HP = HT = 20;
 		STR = STARTING_STR;
@@ -377,8 +377,8 @@ public class Hero extends Char {
 	public int attackSkill( Char target ) {
 		
 		int bonus = 0;
-		for (Buff buff : buffs( RingOfAccuracy.Accuracy.class )) {
-			bonus += ((RingOfAccuracy.Accuracy)buff).level;
+		for (Buff buff : buffs( A.Accuracy.class )) {
+			bonus += ((A.Accuracy)buff).level;
 		}
 		float accuracy = (bonus == 0) ? 1 : (float)Math.pow( 1.4, bonus );
 		if (rangedWeapon != null && Level.distance( pos, target.pos ) == 1) {
@@ -406,8 +406,8 @@ public class Hero extends Char {
 	public int defenseSkill( Char enemy ) {
 		
 		int bonus = 0;
-		for (Buff buff : buffs( RingOfEvasion.Evasion.class )) {
-			bonus += ((RingOfEvasion.Evasion)buff).level;
+		for (Buff buff : buffs( com.skpd.pixeldungeonskills.items.rings.D.Evasion.class )) {
+			bonus += ((com.skpd.pixeldungeonskills.items.rings.D.Evasion)buff).level;
 		}
 		float evasion = bonus == 0 ? 1 : (float)Math.pow( 1.2, bonus );
 		if (paralysed) {
@@ -485,8 +485,8 @@ public class Hero extends Char {
 	@Override
 	public void spend( float time ) {
 		int hasteLevel = 0;
-		for (Buff buff : buffs( RingOfHaste.Haste.class )) {
-			hasteLevel += ((RingOfHaste.Haste)buff).level;
+		for (Buff buff : buffs( F.Haste.class )) {
+			hasteLevel += ((F.Haste)buff).level;
 		}
 		super.spend( hasteLevel == 0 ? time : (float)(time * Math.pow( 1.1, -hasteLevel )) );
 	};
@@ -745,7 +745,7 @@ public class Hero extends Char {
 						// Do nothing
 					} else {
 						boolean important = 
-							((item instanceof ScrollOfUpgrade || item instanceof ScrollOfEnchantment) && ((Scroll)item).isKnown()) ||
+							((item instanceof S || item instanceof D) && ((Scroll)item).isKnown()) ||
 							((item instanceof PotionOfStrength || item instanceof PotionOfMight) && ((Potion)item).isKnown());
 						if (important) {
 							GLog.p( TXT_YOU_NOW_HAVE, item.name() );
@@ -923,7 +923,7 @@ public class Hero extends Char {
 					GameScene.show( new WndMessage( TXT_LEAVE ) );
 					ready();
 				} else {
-					Dungeon.win( ResultDescriptions.WIN );
+					Dungeon.win(Messages.format( Res.WIN ,Dungeon.depth));
 					Dungeon.deleteGame( Dungeon.hero.heroClass, true );
 					Game.switchScene( SurfaceScene.class );
 				}
@@ -1041,7 +1041,7 @@ public class Hero extends Char {
 						wand.curCharges++;
 						wand.updateQuickslot();
 						
-						ScrollOfRecharging.charge( this );
+						M.charge( this );
 					}
 					damage += wand.curCharges;
 				}
@@ -1092,7 +1092,7 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 		
-		RingOfThorns.Thorns thorns = buff( RingOfThorns.Thorns.class ); 
+		L.Thorns thorns = buff( L.Thorns.class );
 		if (thorns != null) {
 			int dmg = Random.IntRange( 0, damage );
 			if (dmg > 0) {
@@ -1396,8 +1396,8 @@ public class Hero extends Char {
 	@Override
 	public int stealth() {
 		int stealth = super.stealth();
-		for (Buff buff : buffs( RingOfShadows.Shadows.class )) {
-			stealth += ((RingOfShadows.Shadows)buff).level;
+		for (Buff buff : buffs( K.Shadows.class )) {
+			stealth += ((K.Shadows)buff).level;
 		}
 
         stealth += heroSkills.passiveA2.stealthBonus(); // <--- Rogue Stealth when present
@@ -1599,8 +1599,8 @@ public class Hero extends Char {
 		
 		int positive = 0;
 		int negative = 0;
-		for (Buff buff : buffs( RingOfDetection.Detection.class )) {
-			int bonus = ((RingOfDetection.Detection)buff).level;
+		for (Buff buff : buffs( B.Detection.class )) {
+			int bonus = ((B.Detection)buff).level;
 			if (bonus > positive) {
 				positive = bonus;
 			} else if (bonus < 0) {
@@ -1653,7 +1653,7 @@ public class Hero extends Char {
 						
 						GameScene.updateMap( p );
 						
-						ScrollOfMagicMapping.discover( p );
+						I.discover( p );
 						
 						smthFound = true;
 					}
@@ -1703,7 +1703,7 @@ public class Hero extends Char {
 	
 	@Override
 	public HashSet<Class<?>> resistances() {
-		RingOfElements.Resistance r = buff( RingOfElements.Resistance.class );
+		C.Resistance r = buff( C.Resistance.class );
 		return r == null ? super.resistances() : r.resistances();
 	}
 	

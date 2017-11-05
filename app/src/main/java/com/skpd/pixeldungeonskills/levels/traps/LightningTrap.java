@@ -19,7 +19,7 @@ package com.skpd.pixeldungeonskills.levels.traps;
 
 import com.skpd.noosa.Camera;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.CellEmitter;
@@ -45,7 +45,7 @@ public class LightningTrap {
 				Camera.main.shake( 2, 0.3f );
 				
 				if (!ch.isAlive()) {
-					Dungeon.fail( Utils.format( ResultDescriptions.TRAP, name, Dungeon.depth ) );
+					Dungeon.fail( Utils.format( Res.TRAP, name, Dungeon.depth ) );
 					GLog.n( "You were killed by a discharge of a lightning trap..." );
 				} else {
 					((Hero)ch).belongings.charge( false );

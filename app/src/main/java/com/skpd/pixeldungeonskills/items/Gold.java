@@ -17,14 +17,13 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.Statistics;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -32,16 +31,17 @@ import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class Gold extends Item {
 
-	private static final String TXT_COLLECT	= "Collect gold coins to spend them later in a shop.";
-	private static final String TXT_INFO	= "A pile of %d gold coins. " + TXT_COLLECT;
-	private static final String TXT_INFO_1	= "One gold coin. " + TXT_COLLECT;
+	private static final String TXT_COLLECT	= Messages.get(Gold.class,"1");
+	private static final String TXT_INFO	= Messages.get(Gold.class,"2") + TXT_COLLECT;
+	private static final String TXT_INFO_1	= Messages.get(Gold.class,"3") + TXT_COLLECT;
 	private static final String TXT_VALUE	= "%+d";
-    private static final String TXT_VALUE_LOOT	= "%+d (%+d loot!)";
+    private static final String TXT_VALUE_LOOT	= Messages.get(Gold.class,"4");
 	
 	{
-		name = "gold";
 		image = ItemSpriteSheet.GOLD;
 		stackable = true;
 	}

@@ -17,18 +17,19 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.HiredMerc;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.QuickSlot;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 abstract public class KindOfWeapon extends EquipableItem {
 
-	private static final String TXT_EQUIP_CURSED	= "you wince as your grip involuntarily tightens around your %s";
+	private static final String TXT_EQUIP_CURSED	= Messages.get(KindOfWeapon.class,"1");
 	
 	protected static final float TIME_TO_EQUIP = 1f;
 	

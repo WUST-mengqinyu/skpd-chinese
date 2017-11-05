@@ -18,7 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
@@ -46,7 +46,7 @@ public class Ooze extends Buff {
 		if (target.isAlive()) {
 			target.damage( damage, this );
 			if (!target.isAlive() && target == Dungeon.hero) {
-				Dungeon.fail( Utils.format( ResultDescriptions.OOZE, Dungeon.depth ) );
+				Dungeon.fail( Utils.format( Res.OOZE, Dungeon.depth ) );
 				GLog.n( TXT_HERO_KILLED, toString() );
 			}
 			spend( TICK );

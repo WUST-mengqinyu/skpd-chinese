@@ -19,10 +19,10 @@ package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
-import com.skpd.pixeldungeonskills.items.rings.RingOfSatiety;
+import com.skpd.pixeldungeonskills.items.rings.J;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -74,8 +74,8 @@ public class Hunger extends Buff implements Hero.Doom {
 			} else {	
 				
 				int bonus = 0;
-				for (Buff buff : target.buffs( RingOfSatiety.Satiety.class )) {
-					bonus += ((RingOfSatiety.Satiety)buff).level;
+				for (Buff buff : target.buffs( J.Satiety.class )) {
+					bonus += ((J.Satiety)buff).level;
 				}
 				
 				float newLevel = level + STEP - bonus;
@@ -153,7 +153,7 @@ public class Hunger extends Buff implements Hero.Doom {
 		
 		Badges.validateDeathFromHunger();
 		
-		Dungeon.fail( Utils.format( ResultDescriptions.HUNGER, Dungeon.depth ) );
+		Dungeon.fail( Utils.format( Res.HUNGER, Dungeon.depth ) );
 		GLog.n( TXT_DEATH );
 	}
 }

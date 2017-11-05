@@ -26,14 +26,11 @@ import com.skpd.pixeldungeonskills.actors.buffs.Amok;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.effects.MagicMissile;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfAmok extends Wand {
-
-	{
-		name = "Wand of Amok";
-	}
 
 	@Override
 	protected void onZap( int cell ) {
@@ -48,7 +45,7 @@ public class WandOfAmok extends Wand {
 
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i(Messages.get(WandOfAmok.class,"1"));
 			
 		}
 	}
@@ -57,11 +54,5 @@ public class WandOfAmok extends Wand {
 		MagicMissile.purpleLight( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"The purple light from this wand will make the target run amok " +
-			"attacking random creatures in its vicinity.";
-	}
+
 }

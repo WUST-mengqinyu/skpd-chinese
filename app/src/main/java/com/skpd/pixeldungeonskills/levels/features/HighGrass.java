@@ -28,7 +28,7 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.LeafParticle;
 import com.skpd.pixeldungeonskills.items.Dewdrop;
 import com.skpd.pixeldungeonskills.items.Generator;
-import com.skpd.pixeldungeonskills.items.rings.RingOfHerbalism.Herbalism;
+import com.skpd.pixeldungeonskills.items.rings.G.Herbalism;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.scenes.GameScene;

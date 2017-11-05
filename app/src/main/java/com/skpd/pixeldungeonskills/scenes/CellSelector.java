@@ -52,7 +52,16 @@ public class CellSelector extends TouchArea {
 				(int)touch.current.y ) );
 		}
 	}
-	
+
+	private float zoom( float value ) {
+
+		value = GameMath.gate( PixelScene.minZoom, value, PixelScene.maxZoom );
+		PixelDungeon.zoom((int) (value - PixelScene.defaultZoom));
+		camera.zoom( value );
+
+		return value;
+	}
+
 	public void select( int cell ) {
 		if (enabled && listener != null && cell != -1) {
 			
@@ -91,16 +100,14 @@ public class CellSelector extends TouchArea {
 			dragging = false;
 		}
 	}
-	
+
 	@Override
 	protected void onTouchUp( Touch t ) {
 		if (pinching && (t == touch || t == another)) {
 
 			pinching = false;
-			
-			int zoom = Math.round( camera.zoom );
-			camera.zoom( zoom );
-			PixelDungeon.zoom( (int)(zoom - PixelScene.defaultZoom) );
+
+			zoom(Math.round( camera.zoom ));
 
 			dragging = true;
 			if (t == touch) {
@@ -109,7 +116,7 @@ public class CellSelector extends TouchArea {
 			another = null;
 			lastPos.set( touch.current );
 		}
-	}	
+	}
 
 	private boolean dragging = false;
 	private PointF lastPos = new PointF();

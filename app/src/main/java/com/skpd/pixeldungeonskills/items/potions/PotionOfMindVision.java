@@ -21,14 +21,11 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.MindVision;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class PotionOfMindVision extends Potion {
 
-	{
-		name = "Potion of Mind Vision";
-	}
-	
 	@Override
 	protected void apply( Hero hero ) {
 		setKnown();
@@ -36,20 +33,12 @@ public class PotionOfMindVision extends Potion {
 		Dungeon.observe();
 		
 		if (Dungeon.level.mobs.size() > 0) {
-			GLog.i( "You can somehow feel the presence of other creatures' minds!" );
+			GLog.i(Messages.get(PotionOfMindVision.class,"1"));
 		} else {
-			GLog.i( "You can somehow tell that you are alone on this level at the moment." );
+			GLog.i( Messages.get(PotionOfMindVision.class,"2") );
 		}
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"After drinking this, your mind will become attuned to the psychic signature " +
-			"of distant creatures, enabling you to sense biological presences through walls. " +
-			"Also this potion will permit you to see through nearby walls and doors.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 35 * quantity : super.price();

@@ -26,7 +26,7 @@ import com.skpd.pixeldungeonskills.items.bags.Bag;
 import com.skpd.pixeldungeonskills.items.keys.IronKey;
 import com.skpd.pixeldungeonskills.items.keys.Key;
 import com.skpd.pixeldungeonskills.items.rings.Ring;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRemoveCurse;
+import com.skpd.pixeldungeonskills.items.scrolls.N;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
 import com.skpd.pixeldungeonskills.messages.Messages;
@@ -185,7 +185,7 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	public void uncurseEquipped() {
-		ScrollOfRemoveCurse.uncurse( owner, armor, weapon, ring1, ring2 );
+		N.uncurse( owner, armor, weapon, ring1, ring2 );
 	}
 	
 	public Item randomUnequipped() {

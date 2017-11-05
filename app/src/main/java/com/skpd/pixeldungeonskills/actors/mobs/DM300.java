@@ -35,8 +35,8 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.particles.ElmoParticle;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.rings.RingOfThorns;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.rings.L;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
@@ -55,7 +55,7 @@ public class DM300 extends Mob {
 		EXP = 30;
 		defenseSkill = 18;
 		
-		loot = new RingOfThorns().random();
+		loot = new L().random();
 		lootChance = 0.333f;
 
         name = Dungeon.currentDifficulty.mobPrefix() + name;
@@ -156,7 +156,7 @@ public class DM300 extends Mob {
 	private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 	static {
 		RESISTANCES.add( Death.class );
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 	}
 	
 	@Override

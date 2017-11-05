@@ -37,7 +37,7 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 public class WaterOfHealth extends WellWater {
 
 	private static final String TXT_PROCCED =
-			Messages.get(WaterOfAwareness.class,"1");
+			Messages.get(WaterOfHealth.class,"1");
 	
 	@Override
 	protected boolean affectHero( Hero hero ) {

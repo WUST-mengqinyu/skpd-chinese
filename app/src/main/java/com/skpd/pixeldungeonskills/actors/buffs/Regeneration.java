@@ -18,7 +18,7 @@
 package com.skpd.pixeldungeonskills.actors.buffs;
 
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
-import com.skpd.pixeldungeonskills.items.rings.RingOfMending;
+import com.skpd.pixeldungeonskills.items.rings.H;
 
 public class Regeneration extends Buff {
 	
@@ -33,8 +33,8 @@ public class Regeneration extends Buff {
 			}
 			
 			int bonus = 0;
-			for (Buff buff : target.buffs( RingOfMending.Rejuvenation.class )) {
-				bonus += ((RingOfMending.Rejuvenation)buff).level;
+			for (Buff buff : target.buffs( H.Rejuvenation.class )) {
+				bonus += ((H.Rejuvenation)buff).level;
 			}
 
             bonus += ((Hero)target).heroSkills.passiveA2.healthRegenerationBonus(); // <-- Warrior regeneration if present

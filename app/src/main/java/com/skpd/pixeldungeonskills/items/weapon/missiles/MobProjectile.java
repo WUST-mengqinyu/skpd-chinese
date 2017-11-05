@@ -24,7 +24,6 @@ import com.skpd.utils.Random;
 public class MobProjectile extends MissileWeapon {
 
 	{
-		name = "projectile";
 		image = ItemSpriteSheet.MOB_PROJECTILE;
 	}
 
@@ -45,13 +44,6 @@ public class MobProjectile extends MissileWeapon {
 	@Override
 	public int max() {
 		return 4;
-	}
-
-	@Override
-	public String desc() {
-		return
-			"These simple metal spikes are weighted to fly true and " +
-			"sting their prey with a flick of the wrist.";
 	}
 
 	@Override

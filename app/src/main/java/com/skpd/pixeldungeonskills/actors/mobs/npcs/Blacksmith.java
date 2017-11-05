@@ -29,7 +29,7 @@ import com.skpd.pixeldungeonskills.items.EquipableItem;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.quest.DarkGold;
 import com.skpd.pixeldungeonskills.items.quest.Pickaxe;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.levels.Room;
 import com.skpd.pixeldungeonskills.levels.Room.Type;
 import com.skpd.pixeldungeonskills.messages.Messages;
@@ -197,7 +197,7 @@ public class Blacksmith extends NPC {
 		}
 
 		Sample.INSTANCE.play( Assets.SND_EVOKE );
-		ScrollOfUpgrade.upgrade( Dungeon.hero );
+		S.upgrade( Dungeon.hero );
 		Item.evoke( Dungeon.hero );
 
 		if (first.isEquipped( Dungeon.hero )) {

@@ -23,7 +23,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Terror;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.rings.RingOfHaggler;
+import com.skpd.pixeldungeonskills.items.rings.E;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ThiefSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -48,7 +48,7 @@ public class Thief extends Mob {
 		EXP = 5;
 		maxLvl = 10;
 		
-		loot = RingOfHaggler.class;
+		loot = E.class;
 		lootChance = 0.01f;
 		
 		FLEEING = new Fleeing();

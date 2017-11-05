@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.Game;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
@@ -27,6 +25,7 @@ import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.InterlevelScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -34,33 +33,34 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Bundle;
 
+import java.util.ArrayList;
+
 public class LloydsBeacon extends Item {
 
-	private static final String TXT_PREVENTING = 
-		"Strong magic aura of this place prevents you from using the lloyd's beacon!";
+	private static final String TXT_PREVENTING =
+			Messages.get(LloydsBeacon.class,"1");
+
+	private static final String TXT_CREATURES =
+			Messages.get(LloydsBeacon.class,"2");
 	
-	private static final String TXT_CREATURES = 
-		"Psychic aura of neighbouring creatures doesn't allow you to use the lloyd's beacon at this moment.";
-	
-	private static final String TXT_RETURN = 
-		"The lloyd's beacon is successfully set at your current location, now you can return here anytime.";
+	private static final String TXT_RETURN =
+			Messages.get(LloydsBeacon.class,"3");
 			
 	private static final String TXT_INFO =
-		"Lloyd's beacon is an intricate magic device, that allows you to return to a place you have already been.";
+			Messages.get(LloydsBeacon.class,"4");
 	
-	private static final String TXT_SET = 
-		"\n\nThis beacon was set somewhere on the level %d of Pixel Dungeon.";
+	private static final String TXT_SET =
+			Messages.get(LloydsBeacon.class,"5");
 	
 	public static final float TIME_TO_USE = 1;
 	
-	public static final String AC_SET		= "SET";
-	public static final String AC_RETURN	= "RETURN";
+	public static final String AC_SET		= Messages.get(LloydsBeacon.class,"6");
+	public static final String AC_RETURN	= Messages.get(LloydsBeacon.class,"7");
 	
 	private int returnDepth	= -1;
 	private int returnPos;
 	
 	{
-		name = "lloyd's beacon";
 		image = ItemSpriteSheet.BEACON;
 		
 		unique = true;

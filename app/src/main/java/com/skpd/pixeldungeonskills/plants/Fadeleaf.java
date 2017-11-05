@@ -24,7 +24,7 @@ import com.skpd.pixeldungeonskills.actors.mobs.Mob;
 import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMindVision;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfTeleportation;
+import com.skpd.pixeldungeonskills.items.scrolls.Q;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 
 public class Fadeleaf extends Plant {
@@ -44,7 +44,7 @@ public class Fadeleaf extends Plant {
 		
 		if (ch instanceof Hero) {
 			
-			ScrollOfTeleportation.teleportHero( (Hero)ch );
+			Q.teleportHero( (Hero)ch );
 			((Hero)ch).curAction = null;
 			
 		} else if (ch instanceof Mob) {

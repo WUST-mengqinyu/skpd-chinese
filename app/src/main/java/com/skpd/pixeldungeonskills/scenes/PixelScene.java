@@ -83,19 +83,16 @@ public class PixelScene extends Scene {
 
 		maxDefaultZoom = (int) Math.min(Game.width / minWidth, Game.height / minHeight);
 		maxScreenZoom = (int) Math.min(Game.dispWidth / minWidth, Game.dispHeight / minHeight);
-
-		maxDefaultZoom = (int) Math.min(Game.width / minWidth, Game.height / minHeight);
 		defaultZoom = PixelDungeon.scale();
+
 		if (defaultZoom < Math.ceil(Game.density * 2) || defaultZoom > maxDefaultZoom) {
 			defaultZoom = (int) Math.ceil(Game.density * 2.5);
 			while ((
 					Game.width / defaultZoom < minWidth ||
 							Game.height / defaultZoom < minHeight
-									&& defaultZoom > 1)) {
-
+			) && defaultZoom > 1) {
 				defaultZoom--;
 			}
-			PixelDungeon.scale(defaultZoom);
 		}
 
 		minZoom = 1;

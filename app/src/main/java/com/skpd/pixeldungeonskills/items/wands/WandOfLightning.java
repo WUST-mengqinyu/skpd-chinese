@@ -17,12 +17,9 @@
  */
 package com.skpd.pixeldungeonskills.items.wands;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.skpd.noosa.Camera;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.mobs.Mob;
@@ -31,17 +28,17 @@ import com.skpd.pixeldungeonskills.effects.Lightning;
 import com.skpd.pixeldungeonskills.effects.particles.SparkParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.traps.LightningTrap;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class WandOfLightning extends Wand {
 
-	{
-		name = "Wand of Lightning";
-	}
-	
 	private ArrayList<Char> affected = new ArrayList<Char>();
 	
 	private int[] points = new int[20];
@@ -51,8 +48,8 @@ public class WandOfLightning extends Wand {
 	protected void onZap( int cell ) {
 		// Everything is processed in fx() method
 		if (!curUser.isAlive()) {
-			Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
-			GLog.n( "You killed yourself with your own Wand of Lightning..." );
+			Dungeon.fail( Utils.format( Res.WAND, name, Dungeon.depth ) );
+			GLog.n(Messages.get(WandOfLightning.class,"1"));
 		}
 	}
 	
@@ -93,30 +90,23 @@ public class WandOfLightning extends Wand {
 	
 	@Override
 	protected void fx( int cell, Callback callback ) {
-		
+
 		nPoints = 0;
 		points[nPoints++] = Dungeon.hero.pos;
-		
-		Char ch = Actor.findChar( cell );
+
+		Char ch = Actor.findChar(cell);
 		if (ch != null) {
-			
+
 			affected.clear();
 			int lvl = power();
-			hit( ch, Random.Int( 5 + lvl / 2, 10 + lvl ) );
+			hit(ch, Random.Int(5 + lvl / 2, 10 + lvl));
 
 		} else {
-			
+
 			points[nPoints++] = cell;
-			CellEmitter.center( cell ).burst( SparkParticle.FACTORY, 3 );
-			
+			CellEmitter.center(cell).burst(SparkParticle.FACTORY, 3);
+
 		}
-		curUser.sprite.parent.add( new Lightning( points, nPoints, callback ) );
-	}
-	
-	@Override
-	public String desc() {
-		return
-			"This wand conjures forth deadly arcs of electricity, which deal damage " +
-			"to several creatures standing close to each other.";
+		curUser.sprite.parent.add(new Lightning(points, nPoints, callback));
 	}
 }

@@ -32,7 +32,7 @@ import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.MimicSprite;
@@ -183,7 +183,7 @@ public class Mimic extends Mob {
 	
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 	static {
-		IMMUNITIES.add( ScrollOfPsionicBlast.class );
+		IMMUNITIES.add( K.class );
 	}
 	
 	@Override

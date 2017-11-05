@@ -19,12 +19,13 @@ package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 
 public class Luck extends Weapon.Enchantment {
 
-	private static final String TXT_LUCKY	= "lucky %s";
+	private static final String TXT_LUCKY	= Messages.get(Luck.class,"");
 	
 	private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( 0x00FF00 );
 	
@@ -47,7 +48,7 @@ public class Luck extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_LUCKY, weaponName );
+		return Messages.format( TXT_LUCKY, weaponName );
 	}
 
 	@Override

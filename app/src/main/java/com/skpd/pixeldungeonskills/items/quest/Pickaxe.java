@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.quest;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
@@ -31,26 +29,28 @@ import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
-import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
+import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.ui.BuffIndicator;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Callback;
 
+import java.util.ArrayList;
+
 public class Pickaxe extends Weapon {
 	
-	public static final String AC_MINE	= "MINE";
+	public static final String AC_MINE	= Messages.get(Pickaxe.class,"1");
 	
 	public static final float TIME_TO_MINE = 2;
 	
-	private static final String TXT_NO_VEIN = "There is no dark gold vein near you to mine";
+	private static final String TXT_NO_VEIN = Messages.get(Pickaxe.class,"2");
 	
 	private static final Glowing BLOODY = new Glowing( 0x550000 );
 	
 	{
-		name = "pickaxe";
 		image = ItemSpriteSheet.PICKAXE;
 		
 		unique = true;
@@ -176,10 +176,5 @@ public class Pickaxe extends Weapon {
 	public Glowing glowing() {
 		return bloodStained ? BLOODY : null;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"This is a large and sturdy tool for breaking rocks. Probably it can be used as a weapon.";
-	}
+
 }

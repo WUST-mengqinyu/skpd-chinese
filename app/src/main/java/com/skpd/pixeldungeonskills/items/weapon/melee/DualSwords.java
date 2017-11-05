@@ -24,7 +24,6 @@ public class DualSwords extends MeleeWeapon {
     public boolean secondHit = false;
 
 	{
-		name = "dualswords";
 		image = ItemSpriteSheet.DualSwords;
 	}
 
@@ -32,8 +31,4 @@ public class DualSwords extends MeleeWeapon {
 		super( 1, 0.6f, 1f );
 	}
 	
-	@Override
-	public String desc() {
-		return "Two razor sharp blades for more damage.";
-	}
 }

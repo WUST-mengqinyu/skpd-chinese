@@ -23,15 +23,13 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.effects.MagicMissile;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfTeleportation;
+import com.skpd.pixeldungeonskills.items.scrolls.Q;
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfTeleportation extends Wand {
-
-	{
-		name = "Wand of Teleportation";
-	}
 
 	@Override
 	protected void onZap( int cell ) {
@@ -41,7 +39,7 @@ public class WandOfTeleportation extends Wand {
 		if (ch == curUser) {
 			
 			setKnown();
-			ScrollOfTeleportation.teleportHero( curUser );
+			Q.teleportHero( curUser );
 			
 		} else if (ch != null) {
 			
@@ -56,20 +54,23 @@ public class WandOfTeleportation extends Wand {
 			
 			if (pos == -1) {
 				
-				GLog.w( ScrollOfTeleportation.TXT_NO_TELEPORT );
+				GLog.w( Q.TXT_NO_TELEPORT );
 				
 			} else {
 			
 				ch.pos = pos;
 				ch.sprite.place( ch.pos );
 				ch.sprite.visible = Dungeon.visible[pos];
-				GLog.i( curUser.name + " teleported " + ch.name + " to somewhere" );
-				
+				if(Messages.lang()== Languages.ENGLISH)
+					GLog.i( curUser.name + " teleported " + ch.name + " to somewhere" );
+				else
+					GLog.i(curUser.name+"将"+ch.name+"传送到了某处。");
+
 			}
 
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i(Messages.get(WandOfMagicCasting.class,"4"));
 			
 		}
 	}
@@ -78,11 +79,5 @@ public class WandOfTeleportation extends Wand {
 		MagicMissile.coldLight( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"A blast from this wand will teleport a creature against " +
-			"its will to a random place on the current level.";
-	}
+
 }

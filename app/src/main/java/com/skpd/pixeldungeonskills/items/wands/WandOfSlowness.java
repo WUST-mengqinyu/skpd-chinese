@@ -25,14 +25,11 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Slow;
 import com.skpd.pixeldungeonskills.effects.MagicMissile;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfSlowness extends Wand {
-
-	{
-		name = "Wand of Slowness";
-	}
 
 	@Override
 	protected void onZap( int cell ) {
@@ -43,7 +40,7 @@ public class WandOfSlowness extends Wand {
 
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i(Messages.get(WandOfMagicCasting.class,"4"));
 			
 		}
 	}
@@ -52,11 +49,5 @@ public class WandOfSlowness extends Wand {
 		MagicMissile.slowness( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"This wand will cause a creature to move and attack " +
-			"at half its ordinary speed until the effect ends";
-	}
+
 }

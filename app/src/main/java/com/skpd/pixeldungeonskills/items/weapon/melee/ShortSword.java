@@ -17,37 +17,37 @@
  */
 package com.skpd.pixeldungeonskills.items.weapon.melee;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Boomerang;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.windows.WndBag;
 
+import java.util.ArrayList;
+
 public class ShortSword extends MeleeWeapon {
 	
-	public static final String AC_REFORGE	= "REFORGE";
+	public static final String AC_REFORGE	= Messages.get(ShortSword.class,"1");
 	
-	private static final String TXT_SELECT_WEAPON	= "Select a weapon to upgrade";
+	private static final String TXT_SELECT_WEAPON	=  Messages.get(ShortSword.class,"2");
 	
-	private static final String TXT_REFORGED = 
-		"you reforged the short sword to upgrade your %s";
-	private static final String TXT_NOT_BOOMERANG = 
-		"you can't upgrade a boomerang this way";
+	private static final String TXT_REFORGED =
+			Messages.get(ShortSword.class,"3");
+	private static final String TXT_NOT_BOOMERANG =
+			Messages.get(ShortSword.class,"4");
 	
 	private static final float TIME_TO_REFORGE	= 2f;
 	
 	private boolean  equipped;
 	
 	{
-		name = "short sword";
 		image = ItemSpriteSheet.SHORT_SWORD;
 	}
 	
@@ -93,20 +93,14 @@ public class ShortSword extends MeleeWeapon {
 			
 		}
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"It is indeed quite short, just a few inches longer, than a dagger.";
-	}
-	
+
 	private final WndBag.Listener itemSelector = new WndBag.Listener() {
 		@Override
 		public void onSelect( Item item ) {
 			if (item != null && !(item instanceof Boomerang)) {
 				
 				Sample.INSTANCE.play( Assets.SND_EVOKE );
-				ScrollOfUpgrade.upgrade( curUser );
+				S.upgrade( curUser );
 				evoke( curUser );
 				
 				GLog.w( TXT_REFORGED, item.name() );

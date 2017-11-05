@@ -20,13 +20,14 @@ package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.utils.Random;
 
 public class Poison extends Weapon.Enchantment {
 
-	private static final String TXT_VENOMOUS	= "venomous %s";
+	private static final String TXT_VENOMOUS	= Messages.get(Poison.class,"");
 	
 	private static ItemSprite.Glowing PURPLE = new ItemSprite.Glowing( 0x4400AA );
 	
@@ -55,7 +56,7 @@ public class Poison extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_VENOMOUS, weaponName );
+		return Messages.format( TXT_VENOMOUS, weaponName );
 	}
 
 }

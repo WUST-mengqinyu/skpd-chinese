@@ -28,6 +28,7 @@ import com.skpd.pixeldungeonskills.effects.MagicMissile;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.SheepSprite;
 import com.skpd.pixeldungeonskills.utils.BArray;
@@ -37,10 +38,6 @@ import com.skpd.utils.Random;
 
 public class WandOfFlock extends Wand {
 
-	{
-		name = "Wand of Flock";
-	}
-	
 	@Override
 	protected void onZap( int cell ) {
 		
@@ -97,19 +94,13 @@ public class WandOfFlock extends Wand {
 		MagicMissile.wool( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return 
-			"A flick of this wand summons a flock of magic sheep, creating temporary impenetrable obstacle.";
-	}
-	
+
 	public static class Sheep extends NPC {
 		
 		private static final String[] QUOTES = {"Baa!", "Baa?", "Baa.", "Baa..."};
 		
 		{
-			name = "sheep";
+			name = Messages.get(WandOfFlock.class,"2");
 			spriteClass = SheepSprite.class;
 		}
 		
@@ -138,9 +129,7 @@ public class WandOfFlock extends Wand {
 		
 		@Override
 		public String description() {
-			return 
-				"This is a magic sheep. What's so magical about it? You can't kill it. " +
-				"It will stand there until it magcially fades away, all the while chewing cud with a blank stare.";
+			return Messages.get(WandOfFlock.class,"1");
 		}
 
 		@Override

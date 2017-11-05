@@ -21,7 +21,7 @@ import com.skpd.noosa.Camera;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
@@ -32,6 +32,7 @@ import com.skpd.pixeldungeonskills.effects.MagicMissile;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.utils.BArray;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -43,7 +44,6 @@ import com.skpd.utils.Random;
 public class WandOfAvalanche extends Wand {
 
 	{
-		name = "Wand of Avalanche";
 		hitChars = false;
 	}
 
@@ -103,8 +103,8 @@ public class WandOfAvalanche extends Wand {
 		}
 
 		if (!curUser.isAlive()) {
-			Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
-			GLog.n( "You killed yourself with your own Wand of Avalanche..." );
+			Dungeon.fail( Utils.format( Res.WAND, name, Dungeon.depth ) );
+			GLog.n(Messages.get(WandOfAvalanche.class,"1"));
 		}
 	}
 
@@ -113,10 +113,4 @@ public class WandOfAvalanche extends Wand {
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
 
-	@Override
-	public String desc() {
-		return
-				"When a discharge of this wand hits a wall (or any other solid obstacle) it causes " +
-						"an avalanche of stones, damaging and stunning all creatures in the affected area.";
-	}
 }

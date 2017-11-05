@@ -20,7 +20,7 @@ package com.skpd.pixeldungeonskills.items;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
@@ -29,6 +29,7 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.particles.BlastParticle;
 import com.skpd.pixeldungeonskills.effects.particles.SmokeParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -38,7 +39,6 @@ import com.skpd.utils.Random;
 public class Bomb extends Item {
 	
 	{
-		name = "bomb";
 		image = ItemSpriteSheet.BOMB;
 		defaultAction = AC_THROW;
 		stackable = true;
@@ -77,8 +77,8 @@ public class Bomb extends Item {
 							if (ch.isAlive()) {
 								Buff.prolong( ch, Paralysis.class, 2 );
 							} else if (ch == Dungeon.hero) {
-								Dungeon.fail( Utils.format( ResultDescriptions.BOMB, Dungeon.depth ) );
-								GLog.n( "You killed yourself with a bomb..." );
+								Dungeon.fail( Utils.format( Res.BOMB, Dungeon.depth ) );
+								GLog.n(Messages.get(Bomb.class,"1"));
 							}
 						}
 					}
@@ -111,10 +111,5 @@ public class Bomb extends Item {
 	public int price() {
 		return 10 * quantity;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"This is a relatively small bomb, filled with black powder. Conveniently, its fuse is lit automatically when the bomb is thrown.";
-	}
+
 }

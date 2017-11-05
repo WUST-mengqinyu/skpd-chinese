@@ -29,10 +29,6 @@ import com.skpd.pixeldungeonskills.ui.StatusPane;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class PotionOfHealing extends Potion {
-
-	{
-		name = "Potion of Healing";
-	}
 	
 	@Override
 	protected void apply( Hero hero ) {
@@ -66,12 +62,6 @@ public class PotionOfHealing extends Potion {
 
         hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
     }
-	
-	@Override
-	public String desc() {
-		return
-			"An elixir that will instantly return you to full health and cure poison.";
-	}
 	
 	@Override
 	public int price() {

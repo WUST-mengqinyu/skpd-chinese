@@ -23,7 +23,6 @@ import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 public class CorpseDust extends Item {
 	
 	{
-		name = "corpse dust";
 		image = ItemSpriteSheet.DUST;
 		
 		cursed = true;
@@ -41,11 +40,5 @@ public class CorpseDust extends Item {
 	public boolean isIdentified() {
 		return true;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"The ball of corpse dust doesn't differ outwardly from a regular dust ball. However, " +
-			"you know somehow that it's better to get rid of it as soon as possible.";
-	}
+
 }

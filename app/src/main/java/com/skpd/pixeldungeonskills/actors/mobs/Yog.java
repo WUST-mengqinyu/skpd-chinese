@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.Statistics;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
@@ -40,7 +40,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.effects.Pushing;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
@@ -178,7 +178,7 @@ public class Yog extends Mob {
 		IMMUNITIES.add( Sleep.class );
 		IMMUNITIES.add( Burning.class );
 		IMMUNITIES.add( ToxicGas.class );
-		IMMUNITIES.add( ScrollOfPsionicBlast.class );
+		IMMUNITIES.add( K.class );
 	}
 	
 	@Override
@@ -259,7 +259,7 @@ public class Yog extends Mob {
 		static {
 			RESISTANCES.add( ToxicGas.class );
 			RESISTANCES.add( Death.class );
-			RESISTANCES.add( ScrollOfPsionicBlast.class );
+			RESISTANCES.add( K.class );
 		}
 		
 		@Override
@@ -342,7 +342,7 @@ public class Yog extends Mob {
 					enemy.sprite.flash();
 					
 					if (!enemy.isAlive() && enemy == Dungeon.hero) {
-						Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.depth ) );
+						Dungeon.fail( Utils.format( Res.BOSS, name, Dungeon.depth ) );
 						GLog.n( TXT_KILL, name );
 					}
 					return true;
@@ -376,7 +376,7 @@ public class Yog extends Mob {
 		static {
 			RESISTANCES.add( ToxicGas.class );
 			RESISTANCES.add( Death.class );
-			RESISTANCES.add( ScrollOfPsionicBlast.class );
+			RESISTANCES.add( K.class );
 		}
 		
 		@Override

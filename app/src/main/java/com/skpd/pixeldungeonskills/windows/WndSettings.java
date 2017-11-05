@@ -18,6 +18,7 @@
 package com.skpd.pixeldungeonskills.windows;
 
 import com.skpd.noosa.Camera;
+import com.skpd.noosa.Game;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
@@ -25,7 +26,9 @@ import com.skpd.pixeldungeonskills.PixelDungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Legend;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
+import com.skpd.pixeldungeonskills.scenes.StartScene;
 import com.skpd.pixeldungeonskills.ui.CheckBox;
+import com.skpd.pixeldungeonskills.ui.OptionSlider;
 import com.skpd.pixeldungeonskills.ui.RedButton;
 import com.skpd.pixeldungeonskills.ui.Toolbar;
 import com.skpd.pixeldungeonskills.ui.Window;
@@ -51,13 +54,14 @@ public class WndSettings extends Window {
 	private static final String TXT_SWITCH_LAND	= Messages.get(WndSettings.class,"9");
 	
 	private static final int WIDTH		= 112;
+	private static final int SLIDER_HEIGHT	= 25;
 	private static final int BTN_HEIGHT	= 20;
 	private static final int GAP 		= 2;
 	
 	private RedButton btnZoomOut;
 	private RedButton btnZoomIn;
 	
-	public WndSettings( boolean inGame ) {
+	public WndSettings(final boolean inGame ) {
 		super();
 		
 		CheckBox btnImmersive = null;
@@ -92,17 +96,45 @@ public class WndSettings extends Window {
 			
 		} else {
 			
-			CheckBox btnScaleUp = new CheckBox( TXT_SCALE_UP ) {
+		//	CheckBox btnScaleUp = new CheckBox( TXT_SCALE_UP ) {
+		//		@Override
+		//		protected void onClick() {
+		//			super.onClick();
+		//			PixelDungeon.scaleUp( checked() );
+		//		}
+		//	};
+		//	btnScaleUp.setRect( 0, 0, WIDTH, BTN_HEIGHT );btnScaleUp.bottom() + GAP
+		//	btnScaleUp.checked( PixelDungeon.scaleUp() );
+		//	add( btnScaleUp );
+
+			OptionSlider scale = new OptionSlider(Messages.get(WndSettings.class, "2"),
+					(int)Math.ceil(2* Game.density)+ "X",
+					PixelScene.maxDefaultZoom + "X",
+					(int)Math.ceil(2* Game.density),
+					PixelScene.maxDefaultZoom ) {
 				@Override
-				protected void onClick() {
-					super.onClick();
-					PixelDungeon.scaleUp( checked() );
+				protected void onChange() {
+					if (getSelectedValue() != PixelDungeon.scale()) {
+						PixelDungeon.scale(getSelectedValue());
+						PixelDungeon.switchNoFade((Class<? extends PixelScene>) PixelDungeon.scene().getClass(), new Game.SceneChangeCallback() {
+							@Override
+							public void beforeCreate() {
+								//do nothing
+							}
+
+							@Override
+							public void afterCreate() {
+								Game.scene().add(new WndSettings(false));
+							}
+						});
+					}
 				}
 			};
-			btnScaleUp.setRect( 0, 0, WIDTH, BTN_HEIGHT );
-			btnScaleUp.checked( PixelDungeon.scaleUp() );
-			add( btnScaleUp );
-			
+			scale.setSelectedValue(PixelScene.defaultZoom);
+			scale.setRect(0, 0, WIDTH, SLIDER_HEIGHT);
+			if ((int)Math.ceil(2* Game.density) < PixelScene.maxDefaultZoom)
+				add(scale);
+
 			btnImmersive = new CheckBox( TXT_IMMERSIVE ) {
 				@Override
 				protected void onClick() {
@@ -110,7 +142,7 @@ public class WndSettings extends Window {
 					PixelDungeon.immerse( checked() );
 				}
 			};
-			btnImmersive.setRect( 0, btnScaleUp.bottom() + GAP, WIDTH, BTN_HEIGHT );
+			btnImmersive.setRect( 0, scale.bottom() + GAP, WIDTH, BTN_HEIGHT );
 			btnImmersive.checked( PixelDungeon.immersed() );
 			btnImmersive.enable( android.os.Build.VERSION.SDK_INT >= 19 );
 			add( btnImmersive );
@@ -181,31 +213,18 @@ public class WndSettings extends Window {
 
             } else {
 
-                RedButton btnOrientation = new RedButton(orientationText()) {
-                    @Override
-                    protected void onClick() {
-                        PixelDungeon.landscape(!PixelDungeon.landscape());
-                    }
-                };
-                btnOrientation.setRect(0, btnSound.bottom() + GAP, WIDTH, BTN_HEIGHT);
-                add(btnOrientation);
-
-                resize(WIDTH, (int) btnOrientation.bottom());
-
-            }
-        }
-        else
-        {
-            resize(WIDTH, (int) btnSound.bottom());
-            if (!inGame) {
-                RedButton btnOrientation = new RedButton(orientationText()) {
-                    @Override
-                    protected void onClick() {
-                        PixelDungeon.landscape(!PixelDungeon.landscape());
-                    }
-                };
-                btnOrientation.setRect(0, btnSound.bottom() + GAP, WIDTH, BTN_HEIGHT);
-                add(btnOrientation);
+				RedButton btnOrientation = new RedButton( PixelDungeon.landscape() ?
+						TXT_SWITCH_PORT
+						: TXT_SWITCH_LAND ) {
+					@Override
+					protected void onClick() {
+						PixelDungeon.landscape(!PixelDungeon.landscape());
+						Game.switchScene(StartScene.class);
+						Game.resetScene();
+					}
+				};
+				btnOrientation.setRect(0, btnMusic.bottom() + GAP, WIDTH, BTN_HEIGHT);
+				add( btnOrientation );
 
 
                 resize(WIDTH, (int) btnOrientation.bottom());
@@ -225,9 +244,5 @@ public class WndSettings extends Window {
 		float zoom = Camera.main.zoom;
 		btnZoomIn.enable( zoom < PixelScene.maxZoom );
 		btnZoomOut.enable( zoom > PixelScene.minZoom );
-	}
-	
-	private String orientationText() {
-		return PixelDungeon.landscape() ? TXT_SWITCH_PORT : TXT_SWITCH_LAND;
 	}
 }

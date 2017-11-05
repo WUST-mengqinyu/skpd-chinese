@@ -17,9 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.tweeners.AlphaTweener;
 import com.skpd.pixeldungeonskills.Assets;
@@ -42,6 +39,7 @@ import com.skpd.pixeldungeonskills.items.food.ChargrilledMeat;
 import com.skpd.pixeldungeonskills.items.food.FrozenCarpaccio;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.plants.Plant.Seed;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
@@ -50,9 +48,12 @@ import com.skpd.utils.Bundlable;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 public class Heap implements Bundlable {
 
-	private static final String TXT_MIMIC = "This is a mimic!";
+	private static final String TXT_MIMIC = Messages.get(Heap.class,"1");
 	
 	private static final int SEEDS_TO_POTION = 3;
 	

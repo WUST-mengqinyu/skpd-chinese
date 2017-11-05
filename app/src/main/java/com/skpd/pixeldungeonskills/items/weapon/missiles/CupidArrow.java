@@ -33,7 +33,6 @@ import java.util.ArrayList;
 public class CupidArrow extends Arrow {
 
 	{
-		name = "cupid arrow";
 		image = ItemSpriteSheet.CupidArrow;
 
         stackable = true;
@@ -63,13 +62,6 @@ public class CupidArrow extends Arrow {
         Buff.affect( defender, Charm.class, Charm.durationFactor( defender ) * duration ).object = attacker.id();
         defender.sprite.centerEmitter().start( Speck.factory(Speck.HEART), 0.2f, 5 );
     }
-
-	@Override
-	public String desc() {
-		return 
-			"An arrow believed to belong to cupid. Careful who you aim at.";
-	}
-	
 
 	@Override
 	public int price() {

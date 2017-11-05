@@ -17,11 +17,9 @@
  */
 package com.skpd.pixeldungeonskills.actors.mobs;
 
-import java.util.HashSet;
-
 import com.skpd.noosa.Camera;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.effects.particles.SparkParticle;
 import com.skpd.pixeldungeonskills.items.Generator;
@@ -34,6 +32,8 @@ import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
+
+import java.util.HashSet;
 
 public class Shaman extends Mob implements Callback {
 
@@ -110,7 +110,7 @@ public class Shaman extends Mob implements Callback {
 					Camera.main.shake( 2, 0.3f );
 					
 					if (!enemy.isAlive()) {
-						Dungeon.fail( Utils.format( ResultDescriptions.MOB, 
+						Dungeon.fail( Utils.format( Res.MOB,
 							Utils.indefinite( name ), Dungeon.depth ) );
 						GLog.n( TXT_LIGHTNING_KILLED, name );
 					}

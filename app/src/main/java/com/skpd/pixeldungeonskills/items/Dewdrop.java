@@ -23,15 +23,15 @@ import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.effects.Speck;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 
 public class Dewdrop extends Item {
 
-	private static final String TXT_VALUE	= "%+dHP";
+	private static final String TXT_VALUE	= Messages.get(Dewdrop.class,"1");
 	
 	{
-		name = "dewdrop";
 		image = ItemSpriteSheet.DEWDROP;
 		
 		stackable = true;
@@ -67,9 +67,5 @@ public class Dewdrop extends Item {
 		
 		return true;
 	}
-	
-	@Override
-	public String info() {
-		return "A crystal clear dewdrop.";
-	}
+
 }

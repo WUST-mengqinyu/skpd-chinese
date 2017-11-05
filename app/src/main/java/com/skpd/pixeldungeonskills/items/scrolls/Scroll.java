@@ -17,46 +17,48 @@
  */
 package com.skpd.pixeldungeonskills.items.scrolls;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.actors.buffs.Blindness;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.ItemStatusHandler;
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Bundle;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public abstract class Scroll extends Item {
 
-	private static final String TXT_BLINDED	= "You can't read a scroll while blinded";
+	private static final String TXT_BLINDED	= Messages.get(Scroll.class,"1");
 	
-	public static final String AC_READ	= "READ";
+	public static final String AC_READ	= Messages.get(Scroll.class,"2");
 	
 	protected static final float TIME_TO_READ	= 1f;
 	
 	private static final Class<?>[] scrolls = {
-		ScrollOfIdentify.class, 
-		ScrollOfMagicMapping.class, 
-		ScrollOfRecharging.class, 
-		ScrollOfRemoveCurse.class, 
-		ScrollOfTeleportation.class, 
-		ScrollOfChallenge.class,
-		ScrollOfTerror.class,
-		ScrollOfLullaby.class,
-		ScrollOfPsionicBlast.class,
-		ScrollOfMirrorImage.class,
-		ScrollOfUpgrade.class,
-		ScrollOfEnchantment.class,
-            ScrollOfHome.class,
-            ScrollOfSacrifice.class,
-            ScrollOfBloodyRitual.class,
-            ScrollOfSkill.class,
-            ScrollOfFrostLevel.class,
-            ScrollOfWipeOut.class
+		G.class,
+		I.class,
+		M.class,
+		N.class,
+		Q.class,
+		C.class,
+		com.skpd.pixeldungeonskills.items.scrolls.R.class,
+		H.class,
+		K.class,
+		J.class,
+		S.class,
+		D.class,
+            F.class,
+            O.class,
+            B.class,
+            P.class,
+            E.class,
+            T.class
 
     };
 	private static final String[] runes = 
@@ -99,7 +101,12 @@ public abstract class Scroll extends Item {
 	public static void save( Bundle bundle ) {
 		handler.save( bundle );
 	}
-	
+
+
+	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
+		handler.saveSelectively( bundle, items );
+	}
+
 	@SuppressWarnings("unchecked")
 	public static void restore( Bundle bundle ) {
 		handler = new ItemStatusHandler<Scroll>( (Class<? extends Scroll>[])scrolls, runes, images, bundle );
@@ -165,15 +172,15 @@ public abstract class Scroll extends Item {
 	
 	@Override
 	public String name() {
+		if(Messages.lang()== Languages.ENGLISH)
 		return isKnown() ? name : "scroll \"" + rune + "\"";
+		else return isKnown() ? name : "\"" + rune + "\"卷轴";
 	}
 	
 	@Override
 	public String info() {
 		return isKnown() ?
-			desc() :
-			"This parchment is covered with indecipherable writing, and bears a title " +
-			"of rune " + rune + ". Who knows what it will do when read aloud?";
+			desc() : Messages.format(Messages.get(Scroll.class,"3"),rune );
 	}
 	
 	@Override

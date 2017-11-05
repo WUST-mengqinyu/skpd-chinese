@@ -17,7 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.windows;
 
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.ColorBlock;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Group;
@@ -47,7 +46,7 @@ import java.util.Locale;
 
 public class WndRanking extends WndTabbed {
 	
-	private static final String TXT_ERROR		= Messages.get(WndRanking.class,"13");
+	private static final String TXT_ERROR	= Messages.get(WndRanking.class,"13");
 	
 	private static final String TXT_STATS	= Messages.get(WndRanking.class,"14");
 	private static final String TXT_ITEMS	= Messages.get(WndRanking.class,"15");
@@ -67,7 +66,7 @@ public class WndRanking extends WndTabbed {
 		
 		super();
 		resize( WIDTH, HEIGHT );
-		
+
 		thread = new Thread() {
 			@Override
 			public void run() {
@@ -413,7 +412,7 @@ public class WndRanking extends WndTabbed {
 	}
 
 	private class LabelledItemButton extends ItemButton {
-		private BitmapText name;
+		private RenderedText name;
 		
 		public LabelledItemButton( Item item ) {
 			super( item );
@@ -423,7 +422,7 @@ public class WndRanking extends WndTabbed {
 		protected void createChildren() {	
 			super.createChildren();
 			
-			name = PixelScene.createText( "?", 7 );
+			name = PixelScene.renderText( "?", 7 );
 			add( name );
 		}
 		
@@ -437,12 +436,10 @@ public class WndRanking extends WndTabbed {
 			
 			String str = Utils.capitalize( item.name() );
 			name.text( str );
-			name.measure();
 			if (name.width() > width - name.x) {
 				do {
 					str = str.substring( 0, str.length() - 1 );
 					name.text( str + "..." );
-					name.measure();
 				} while (name.width() > width - name.x);
 			}
 		}

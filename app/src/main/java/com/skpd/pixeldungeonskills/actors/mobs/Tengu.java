@@ -34,9 +34,9 @@ import com.skpd.pixeldungeonskills.effects.CellEmitter;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.TomeOfMastery;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfFrostLevel;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfMagicMapping;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.E;
+import com.skpd.pixeldungeonskills.items.scrolls.I;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
@@ -101,7 +101,7 @@ public class Tengu extends Mob {
 			Dungeon.level.drop( new TomeOfMastery(), pos ).sprite.drop();
 		}
 
-        Dungeon.level.drop( new ScrollOfFrostLevel(), pos ).sprite.drop();
+        Dungeon.level.drop( new E(), pos ).sprite.drop();
 		GameScene.bossSlain();
 		Dungeon.level.drop( new SkeletonKey(), pos ).sprite.drop();
 		super.die( cause );
@@ -149,7 +149,7 @@ public class Tengu extends Mob {
 			if (Dungeon.level.map[trapPos] == Terrain.INACTIVE_TRAP) {
 				Level.set( trapPos, Terrain.POISON_TRAP );
 				GameScene.updateMap( trapPos );
-				ScrollOfMagicMapping.discover( trapPos );
+				I.discover( trapPos );
 			}
 		}
 		
@@ -191,7 +191,7 @@ public class Tengu extends Mob {
 		RESISTANCES.add( ToxicGas.class );
 		RESISTANCES.add( Poison.class );
 		RESISTANCES.add( Death.class );
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ import com.skpd.noosa.Game;
 import com.skpd.noosa.Image;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.messages.Messages;
@@ -58,7 +58,7 @@ public class AmuletScene extends PixelScene {
 		RedButton btnExit = new RedButton(Messages.get(this,"a")) {
 			@Override
 			protected void onClick() {
-				Dungeon.win( ResultDescriptions.WIN );
+				Dungeon.win(Messages.format( Res.WIN ,Dungeon.depth));
 				Dungeon.deleteGame( Dungeon.hero.heroClass, true );
 				Game.switchScene( noText ? TitleScene.class : RankingsScene.class );
 			}

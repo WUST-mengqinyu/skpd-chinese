@@ -19,17 +19,17 @@ package com.skpd.pixeldungeonskills.items.keys;
 
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.items.bags.Bag;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.Utils;
 
 public class IronKey extends Key {
 
-	private static final String TXT_FROM_DEPTH = "iron key from depth %d";
+	private static final String TXT_FROM_DEPTH = Messages.get(IronKey.class,"1");
 
 	public static int curDepthQuantity = 0;
 	
 	{
-		name = "iron key";
 		image = ItemSpriteSheet.IRON_KEY;
 	}
 	
@@ -53,11 +53,5 @@ public class IronKey extends Key {
 	public String toString() {
 		return Utils.format( TXT_FROM_DEPTH, depth );
 	}
-	
-	@Override
-	public String info() {
-		return 
-			"The notches on this ancient iron key are well worn; its leather lanyard " +
-			"is battered by age. What door might it open?";
-	}
+
 }

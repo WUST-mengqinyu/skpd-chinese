@@ -18,30 +18,19 @@
 package com.skpd.pixeldungeonskills.items.potions;
 
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.ui.StatusPane;
 import com.skpd.pixeldungeonskills.utils.GLog;
 
 public class PotionOfMana extends Potion {
 
-	{
-		name = "Potion of Mana";
-	}
-	
 	@Override
 	protected void apply( Hero hero ) {
 		setKnown();
 
-        GLog.p( "You feel your spiritual energy being replenished." );
+        GLog.p(Messages.get(PotionOfMana.class,"1"));
         hero.MP = hero.MMP;
         StatusPane.manaDropping = 0;
-	}
-	
-
-	
-	@Override
-	public String desc() {
-		return
-			"An elixir that will instantly replenish your spiritual energy.";
 	}
 	
 	@Override

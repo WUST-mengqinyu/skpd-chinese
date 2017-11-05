@@ -17,6 +17,7 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.opengl.GLES20;
@@ -48,6 +49,8 @@ import java.io.IOException;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import static com.skpd.pixeldungeonskills.Dungeon.name;
+
 
 public class TitleScene extends PixelScene {
 
@@ -56,7 +59,7 @@ public class TitleScene extends PixelScene {
 		
 		super.create();
 
-		if(Dungeon.changename == true){
+		if(name == null){
 			goStore();
 		}
 
@@ -74,12 +77,17 @@ public class TitleScene extends PixelScene {
 		
 		Image title = BannerSprites.get( BannerSprites.Type.PIXEL_DUNGEON );
 		add( title );
-		
-		float height = title.height + 
+
+		float height = title.height +
 			(PixelDungeon.landscape() ? DashboardItem.SIZE : DashboardItem.SIZE * 2);
-		
+
+		float topRegion = Math.max(95f, h*0.45f);
+
 		title.x = (w - title.width()) / 2;
-		title.y = (h - height) / 2;
+		if (PixelDungeon.landscape())
+			title.y = (topRegion - title.height()) / 2f;
+		else
+			title.y = 16 + (topRegion - title.height() - 16) / 2f;
 		
 		placeTorch( title.x + 18, title.y + 20 );
 		placeTorch( title.x + title.width - 18, title.y + 20 );
@@ -133,19 +141,18 @@ public class TitleScene extends PixelScene {
 			}
 		};
 		add( btnHighscores );
-		
+
 		if (PixelDungeon.landscape()) {
 			float y = (h + height) / 2 - DashboardItem.SIZE;
-			btnHighscores	.setPos( w / 2 - btnHighscores.width(), y );
-			btnBadges		.setPos( w / 2, y );
-			btnPlay			.setPos( btnHighscores.left() - btnPlay.width(), y );
-			btnAbout		.setPos( btnBadges.right(), y );
+			btnHighscores	.setPos( w / 2 - btnHighscores.width(), topRegion );
+			btnBadges		.setPos( w / 2, topRegion );
+			btnPlay			.setPos( btnHighscores.left() - btnPlay.width(), topRegion );
+			btnAbout		.setPos( btnBadges.right(), topRegion );
 		} else {
-			btnBadges.setPos( w / 2 - btnBadges.width(), (h + height) / 2 - DashboardItem.SIZE );
-			btnAbout.setPos( w / 2, (h + height) / 2 - DashboardItem.SIZE );
-			btnPlay.setPos( w / 2 - btnPlay.width(), btnAbout.top() - DashboardItem.SIZE );
+			btnPlay.setPos( w / 2 - btnPlay.width(), topRegion );
 			btnHighscores.setPos( w / 2, btnPlay.top() );
-		}
+			btnBadges.setPos( w / 2 - btnBadges.width(), btnPlay.top() + DashboardItem.SIZE );
+			btnAbout.setPos( w / 2, btnBadges.top() );		}
 
         BitmapText version = new BitmapText( "ForChinese", font1x );
         version.measure();
@@ -154,7 +161,7 @@ public class TitleScene extends PixelScene {
         version.y = h - version.height() - 9;
         add( version );
 //// FIXME: 2017/10/8
-		RedButton test = new RedButton("Change your name") {
+		RedButton test = new RedButton("更改你的账户") {
 			@Override
 			protected void onClick() {
 				goStore();
@@ -169,11 +176,18 @@ public class TitleScene extends PixelScene {
 			e.printStackTrace();
 		}
 
-		RenderedText str = new RenderedText(Dungeon.name,9);
-		str.hardlight(Dungeon.color);
-		str.x = title.x ;
-		str.y = 100 ;
+		RenderedText str = PixelScene.renderText( "id:"+Messages.capitalize(name),9);
+		str.x= w/2;
+		str.y= 0 ;
 		add(str);
+
+		RedButton logcat = new RedButton("logcat"){
+			@Override
+			protected void onClick(){
+				Game.logcat();}
+		};
+		logcat.setRect(4,100,20,15);
+		add(logcat);
 
         BitmapText versionPD = new BitmapText( Game.version , font1x );
         versionPD.measure();
@@ -270,19 +284,79 @@ public class TitleScene extends PixelScene {
 			public void run(){
 				final EditText input = new EditText(PixelDungeon.instance);
 				AlertDialog.Builder builder = new AlertDialog.Builder(PixelDungeon.instance);
-				builder.setTitle("输入你的名字（最多12字符）");
+				builder.setTitle("输入你的内测码（最多12字符）");
 
 				// Set up the input
 
-				input.setInputType(InputType.TYPE_CLASS_TEXT);
+				input.setInputType(InputType.TYPE_CLASS_NUMBER);
 				builder.setView(input);
 
 				// Set up the buttons
 				builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						String name = input.getText().toString().replaceAll("[^\\x00-\\x7F]", "");
-						if(name.length() < 13){
+						//// FIXME: 2017/10/8
+						int a1=50806387;
+						int a2=1771999446;
+						int a3=131460;
+						int a4=1361791669;
+						int a5=1050574395;
+						int a6=1234567890;
+						int a7=0;
+						int a8=159357;
+						int a9=0;
+						int b1=65358979;
+						int b2=123456;
+						int b3=1260578152;
+						int b4=123456789;
+						int b5=698110;
+						int b6=0;
+						int b7=123017472;
+						int b8=1185528245;
+						int b9=0;
+						int b0=449667466;
+						int p0=952223482;
+						String name = input.getText().toString();
+						int num = Integer.parseInt(name);
+						if ( num==a1|| num==a2|| num==a3|| num==a4|| num==a5|| num==a6||  num==a8||  num==b1|| num==b2|| num==b3|| num==b4|| num==b5||num==b7||num==b8||num==b9||num==b0) {
+							if (num == a1){
+								name = "雷霆";}
+							if (num == a2){
+								name ="翻身的咸鱼";}
+							if (num == a3){
+								name ="彦";}
+							if (num == a4){
+								name ="Midens";}
+							if (num == a5){
+								name ="魔术师ξ";}
+							if (num == a6){
+								name ="疯掉的村民";}
+							if (num == a7){
+								name =null;}
+							if (num == a8){
+								name ="Wildwolf";}
+							if (num == a9){
+								name =null;}
+							if (num == b1){
+								name ="Moonfair";}
+							if (num == b2){
+								name ="faye";}
+							if (num == b3){
+								name ="Morinaga";}
+							if (num == b4){
+								name ="随吾";}
+							if (num == b5){
+								name ="kiki";}
+							if (num == b6){
+								name =null;}
+							if (num == b7){
+								name ="灵枫";}
+							if (num == b8){
+								name ="912567";}
+							if (num == b9){
+								name =null;}
+							if (num == b0) {
+								name = "Kandfo";}
 							Dungeon.name = name;
 							Dungeon.changename = false;
 							try {
@@ -291,7 +365,18 @@ public class TitleScene extends PixelScene {
 								e.printStackTrace();
 							}
 							Game.resetScene();
-						} else{
+						}
+						else if (num == p0 ){
+							name = "访客型账户";
+							Dungeon.name= name;
+							try {
+								Dungeon.saveName();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							Game.resetScene();
+						}
+						else{
 							dialog.cancel();
 							retry();
 						}
@@ -311,7 +396,7 @@ public class TitleScene extends PixelScene {
 
 	public static void retry(){
 		AlertDialog.Builder retry = new AlertDialog.Builder(PixelDungeon.instance);
-		retry.setTitle("请重试");
+		retry.setTitle("内测码错误请重试");
 		retry.setPositiveButton("重试", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -328,4 +413,5 @@ public class TitleScene extends PixelScene {
 		});
 		retry.show();
 	}
+
 }

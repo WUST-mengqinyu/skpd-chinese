@@ -20,7 +20,7 @@ package com.skpd.pixeldungeonskills.actors.mobs;
 import java.util.HashSet;
 
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Weakness;
@@ -110,7 +110,7 @@ public class Warlock extends Mob implements Callback {
 			enemy.damage( dmg, this );
 			
 			if (!enemy.isAlive() && enemy == Dungeon.hero) {
-				Dungeon.fail( Utils.format( ResultDescriptions.MOB, 
+				Dungeon.fail( Utils.format( Res.MOB,
 					Utils.indefinite( name ), Dungeon.depth ) );
 				GLog.n( TXT_SHADOWBOLT_KILLED, name );
 			}

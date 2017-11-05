@@ -31,6 +31,7 @@ import com.skpd.pixeldungeonskills.effects.MagicMissile;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.effects.particles.ShadowParticle;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.CellSelector;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.scenes.MissionScene;
@@ -40,10 +41,6 @@ import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
 public class WandOfMagicCasting extends Wand {
-
-	{
-		name = "Wand of Hax";
-	}
 
     public void castSpell(CAST_TYPES casting)
     {
@@ -113,7 +110,7 @@ public class WandOfMagicCasting extends Wand {
 
         @Override
         public String prompt() {
-            return "Choose direction to cast";
+            return Messages.get(WandOfMagicCasting.class,"1");
         }
     };
 
@@ -128,7 +125,7 @@ public class WandOfMagicCasting extends Wand {
                 ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
                 Sample.INSTANCE.play(Assets.SND_CURSED);
                 SummonedPet minion = new SummonedPet(WraithSprite.class);
-                minion.name = "Consumed Soul";
+                minion.name = Messages.get(WandOfMagicCasting.class,"2");
                 minion.screams = false;
                 minion.HT = ch.HT;
                 minion.HP = minion.HT;
@@ -145,7 +142,7 @@ public class WandOfMagicCasting extends Wand {
                 ch.sprite.emitter().burst(ShadowParticle.CURSE, 6);
                 Sample.INSTANCE.play(Assets.SND_CURSED);
                 SummonedPet minion = new SummonedPet(ch.sprite.getClass());
-                minion.name = "Enslaved " + ch.name;
+                minion.name = Messages.get(WandOfMagicCasting.class,"3") + ch.name;
                 minion.screams = false;
                 minion.HT = ch.HT;
                 minion.HP = minion.HT;
@@ -169,7 +166,7 @@ public class WandOfMagicCasting extends Wand {
 			
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i( Messages.get(WandOfMagicCasting.class,"4") );
 			
 		}
 	}
@@ -186,13 +183,5 @@ public class WandOfMagicCasting extends Wand {
 
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"The vile blast of this twisted bit of wood will imbue its target " +
-			"with a deadly venom. A creature that is poisoned will suffer periodic " +
-			"damage until the effect ends. The duration of the effect increases " +
-			"with the level of the staff.";
-	}
+
 }

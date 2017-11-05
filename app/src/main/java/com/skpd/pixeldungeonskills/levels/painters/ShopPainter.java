@@ -36,9 +36,9 @@ import com.skpd.pixeldungeonskills.items.bags.SeedPouch;
 import com.skpd.pixeldungeonskills.items.bags.WandHolster;
 import com.skpd.pixeldungeonskills.items.food.OverpricedRation;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfIdentify;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfMagicMapping;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfRemoveCurse;
+import com.skpd.pixeldungeonskills.items.scrolls.G;
+import com.skpd.pixeldungeonskills.items.scrolls.I;
+import com.skpd.pixeldungeonskills.items.scrolls.N;
 import com.skpd.pixeldungeonskills.items.weapon.melee.*;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.SoulCrystal;
 import com.skpd.pixeldungeonskills.levels.LastShopLevel;
@@ -155,9 +155,9 @@ public class ShopPainter extends Painter {
 		}
 
         items.add( new SoulCrystal() );
-		items.add( new ScrollOfIdentify() );
-		items.add( new ScrollOfRemoveCurse() );
-		items.add( new ScrollOfMagicMapping() );
+		items.add( new G() );
+		items.add( new N() );
+		items.add( new I() );
 		items.add( Generator.random( Generator.Category.SCROLL ) );
 		
 		items.add( new OverpricedRation() );

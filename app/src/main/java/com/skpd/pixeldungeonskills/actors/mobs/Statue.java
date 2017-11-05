@@ -25,7 +25,7 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.blobs.ToxicGas;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.items.Generator;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Leech;
@@ -154,7 +154,7 @@ public class Statue extends Mob {
 		RESISTANCES.add( ToxicGas.class );
 		RESISTANCES.add( Poison.class );
 		RESISTANCES.add( Death.class );
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 		IMMUNITIES.add( Leech.class );
 	}
 	

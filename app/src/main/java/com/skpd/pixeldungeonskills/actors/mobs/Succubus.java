@@ -28,7 +28,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Charm;
 import com.skpd.pixeldungeonskills.actors.buffs.Light;
 import com.skpd.pixeldungeonskills.actors.buffs.Sleep;
 import com.skpd.pixeldungeonskills.effects.Speck;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfLullaby;
+import com.skpd.pixeldungeonskills.items.scrolls.H;
 import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Leech;
 import com.skpd.pixeldungeonskills.levels.Level;
@@ -53,7 +53,7 @@ public class Succubus extends Mob {
 		EXP = 12;
 		maxLvl = 25;
 		
-		loot = new ScrollOfLullaby();
+		loot = new H();
 		lootChance = 0.05f;
 	}
 	

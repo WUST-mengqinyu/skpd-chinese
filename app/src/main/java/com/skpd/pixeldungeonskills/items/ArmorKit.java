@@ -17,33 +17,32 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.armor.Armor;
 import com.skpd.pixeldungeonskills.items.armor.ClassArmor;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.HeroSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.windows.WndBag;
 
+import java.util.ArrayList;
+
 public class ArmorKit extends Item {
-	
-	private static final String TXT_SELECT_ARMOR	= "Select an armor to upgrade";
-	private static final String TXT_UPGRADED		= "you applied the armor kit to upgrade your %s";
+
+	private static final String TXT_SELECT_ARMOR	= Messages.get(ArmorKit.class,"1");
+	private static final String TXT_UPGRADED		= Messages.get(ArmorKit.class,"2");
 	
 	private static final float TIME_TO_UPGRADE = 2;
 	
-	private static final String AC_APPLY = "APPLY";
+	private static final String AC_APPLY = Messages.get(ArmorKit.class,"3");
 	
 	{
-		name = "armor kit";
 		image = ItemSpriteSheet.KIT;
-		
 		unique = true;
 	}
 	
@@ -103,14 +102,6 @@ public class ArmorKit extends Item {
 		
 		curUser.sprite.operate( curUser.pos );
 		Sample.INSTANCE.play( Assets.SND_EVOKE );
-	}
-	
-	@Override
-	public String info() {
-		return
-			"Using this kit of small tools and materials anybody can transform any armor into an \"epic armor\", " +
-			"which will keep all properties of the original armor, but will also provide its wearer a special ability " +
-			"depending on his class. No skills in tailoring, leatherworking or blacksmithing are required.";
 	}
 	
 	private final WndBag.Listener itemSelector = new WndBag.Listener() {

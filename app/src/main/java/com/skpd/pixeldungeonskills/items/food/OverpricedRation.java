@@ -18,22 +18,17 @@
 package com.skpd.pixeldungeonskills.items.food;
 
 import com.skpd.pixeldungeonskills.actors.buffs.Hunger;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 
 public class OverpricedRation extends Food {
 
 	{
-		name = "overpriced food ration";
 		image = ItemSpriteSheet.OVERPRICED;
 		energy = Hunger.STARVING - Hunger.HUNGRY;
-		message = "That food tasted ok.";
+		message = Messages.get(OverpricedRation.class,"1");
 	}
-	
-	@Override
-	public String info() {
-		return "It looks exactly like a standard ration of food but smaller.";
-	}
-	
+
 	@Override
 	public int price() {
 		return 20 * quantity;

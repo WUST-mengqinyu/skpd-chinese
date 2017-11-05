@@ -27,6 +27,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.actors.buffs.Weakness;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.effects.Speck;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Random;
@@ -34,7 +35,6 @@ import com.skpd.utils.Random;
 public class FrozenCarpaccio extends Food {
 
 	{
-		name = "frozen carpaccio";
 		image = ItemSpriteSheet.CARPACCIO;
 		energy = Hunger.STARVING - Hunger.HUNGRY;
 	}
@@ -48,22 +48,22 @@ public class FrozenCarpaccio extends Food {
 			
 			switch (Random.Int( 5 )) {
 			case 0:
-				GLog.i( "You see your hands turn invisible!" );
+				GLog.i( Messages.get(FrozenCarpaccio.class,"1") );
 				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
 				break;
 			case 1:
-				GLog.i( "You feel your skin hardens!" );
+				GLog.i( Messages.get(FrozenCarpaccio.class,"2") );
 				Buff.affect( hero, Barkskin.class ).level( hero.HT / 4 );
 				break;
 			case 2:
-				GLog.i( "Refreshing!" );
+				GLog.i( Messages.get(FrozenCarpaccio.class,"3") );
 				Buff.detach( hero, Poison.class );
 				Buff.detach( hero, Cripple.class );
 				Buff.detach( hero, Weakness.class );
 				Buff.detach( hero, Bleeding.class );
 				break;
 			case 3:
-				GLog.i( "You feel better!" );
+				GLog.i(Messages.get(FrozenCarpaccio.class,"4"));
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min( hero.HP + hero.HT / 4, hero.HT );
 					hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
@@ -71,13 +71,6 @@ public class FrozenCarpaccio extends Food {
 				break;
 			}
 		}
-	}
-	
-	@Override
-	public String info() {
-		return 
-			"It's a piece of frozen raw meat. The only way to eat it is " +
-			"by cutting thin slices of it. And this way it's suprisingly good.";
 	}
 	
 	public int price() {

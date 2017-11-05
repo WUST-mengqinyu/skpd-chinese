@@ -21,6 +21,7 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Frost;
 import com.skpd.pixeldungeonskills.items.Item;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -29,7 +30,6 @@ import com.skpd.utils.Random;
 public class FrostBow extends Bow {
 
 	{
-		name = "frost bow";
 		image = ItemSpriteSheet.ForstBow;
 
 
@@ -45,13 +45,6 @@ public class FrostBow extends Bow {
 	public FrostBow(int number) {
 		super();
 		quantity = number;
-	}
-
-
-	@Override
-	public String desc() {
-		return 
-			"A magically imbued bow that has a chance to freeze targets.";
 	}
 	
 	@Override
@@ -73,9 +66,9 @@ public class FrostBow extends Bow {
         try {
             if (Random.Int(5) == 1) {
                 Buff.prolong(target, Frost.class, Frost.duration(target) * Random.Float(1f, 2f));
-                GLog.p("Target frozen!");
+                GLog.p(Messages.get(FrostBow.class,"1"));
 
-                target.sprite.showStatus(CharSprite.NEUTRAL, "Brrrr...");
+                target.sprite.showStatus(CharSprite.NEUTRAL, Messages.get(FrostBow.class,"2"));
             } else
                 Buff.affect(target, Frost.class);
         }

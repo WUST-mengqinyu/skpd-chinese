@@ -25,7 +25,7 @@ import com.skpd.pixeldungeonskills.actors.buffs.Amok;
 import com.skpd.pixeldungeonskills.actors.buffs.Sleep;
 import com.skpd.pixeldungeonskills.actors.buffs.Terror;
 import com.skpd.pixeldungeonskills.actors.mobs.npcs.Imp;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.sprites.GolemSprite;
 import com.skpd.utils.Random;
 
@@ -94,7 +94,7 @@ public class Golem extends Mob {
 	
 	private static final HashSet<Class<?>> RESISTANCES = new HashSet<Class<?>>();
 	static {
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 	}
 	
 	@Override

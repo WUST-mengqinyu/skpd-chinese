@@ -34,7 +34,7 @@ import com.skpd.pixeldungeonskills.effects.Flare;
 import com.skpd.pixeldungeonskills.effects.Speck;
 import com.skpd.pixeldungeonskills.items.ArmorKit;
 import com.skpd.pixeldungeonskills.items.keys.SkeletonKey;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfPsionicBlast;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
 import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
 import com.skpd.pixeldungeonskills.items.wands.WandOfDisintegration;
 import com.skpd.pixeldungeonskills.items.weapon.enchantments.Death;
@@ -218,7 +218,7 @@ public class King extends Mob {
 	static {
 		RESISTANCES.add( ToxicGas.class );
 		RESISTANCES.add( Death.class );
-		RESISTANCES.add( ScrollOfPsionicBlast.class );
+		RESISTANCES.add( K.class );
 		RESISTANCES.add( WandOfDisintegration.class );
 	}
 	

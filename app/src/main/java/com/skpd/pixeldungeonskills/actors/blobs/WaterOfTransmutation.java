@@ -28,9 +28,9 @@ import com.skpd.pixeldungeonskills.items.potions.Potion;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMight;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
 import com.skpd.pixeldungeonskills.items.rings.Ring;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
 import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfEnchantment;
 import com.skpd.pixeldungeonskills.items.wands.Wand;
 import com.skpd.pixeldungeonskills.items.weapon.melee.*;
 import com.skpd.pixeldungeonskills.messages.Messages;
@@ -180,13 +180,13 @@ public class WaterOfTransmutation extends WellWater {
 	}
 	
 	private Scroll changeScroll( Scroll s ) {
-		if (s instanceof ScrollOfUpgrade) {
+		if (s instanceof S) {
 			
-			return new ScrollOfEnchantment();
+			return new D();
 			
-		} else if (s instanceof ScrollOfEnchantment) {
+		} else if (s instanceof D) {
 			
-			return new ScrollOfUpgrade();
+			return new S();
 			
 		} else {
 			

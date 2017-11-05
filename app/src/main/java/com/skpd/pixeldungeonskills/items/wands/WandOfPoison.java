@@ -25,15 +25,12 @@ import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
 import com.skpd.pixeldungeonskills.effects.MagicMissile;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.utils.Callback;
 
 public class WandOfPoison extends Wand {
 
-	{
-		name = "Wand of Poison";
-	}
-	
 	@Override
 	protected void onZap( int cell ) {
 		Char ch = Actor.findChar( cell );
@@ -43,7 +40,7 @@ public class WandOfPoison extends Wand {
 			
 		} else {
 			
-			GLog.i( "nothing happened" );
+			GLog.i(Messages.get(WandOfMagicCasting.class,"4"));
 			
 		}
 	}
@@ -52,13 +49,5 @@ public class WandOfPoison extends Wand {
 		MagicMissile.poison( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"The vile blast of this twisted bit of wood will imbue its target " +
-			"with a deadly venom. A creature that is poisoned will suffer periodic " +
-			"damage until the effect ends. The duration of the effect increases " +
-			"with the level of the staff.";
-	}
+
 }

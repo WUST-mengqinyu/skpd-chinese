@@ -23,13 +23,14 @@ import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Terror;
 import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 import com.skpd.utils.Random;
 
 public class Horror extends Weapon.Enchantment {
 
-	private static final String TXT_ELDRITCH	= "eldritch %s";
+	private static final String TXT_ELDRITCH	= Messages.get(Fire.class,"");
 	
 	private static ItemSprite.Glowing GREY = new ItemSprite.Glowing( 0x222222 );
 	
@@ -61,7 +62,7 @@ public class Horror extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_ELDRITCH, weaponName );
+		return Messages.format( TXT_ELDRITCH, weaponName );
 	}
 
 }

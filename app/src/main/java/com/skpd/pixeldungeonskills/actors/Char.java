@@ -17,34 +17,32 @@
  */
 package com.skpd.pixeldungeonskills.actors;
 
-import java.util.HashSet;
-
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.buffs.Amok;
 import com.skpd.pixeldungeonskills.actors.buffs.Bleeding;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.actors.buffs.Burning;
 import com.skpd.pixeldungeonskills.actors.buffs.Champ;
 import com.skpd.pixeldungeonskills.actors.buffs.Charm;
-import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.actors.buffs.Cripple;
 import com.skpd.pixeldungeonskills.actors.buffs.Frost;
 import com.skpd.pixeldungeonskills.actors.buffs.Invisibility;
-import com.skpd.pixeldungeonskills.actors.buffs.Light;
-import com.skpd.pixeldungeonskills.actors.buffs.Roots;
-import com.skpd.pixeldungeonskills.actors.buffs.Shadows;
-import com.skpd.pixeldungeonskills.actors.buffs.Sleep;
-import com.skpd.pixeldungeonskills.actors.buffs.Speed;
 import com.skpd.pixeldungeonskills.actors.buffs.Levitation;
+import com.skpd.pixeldungeonskills.actors.buffs.Light;
 import com.skpd.pixeldungeonskills.actors.buffs.MindVision;
 import com.skpd.pixeldungeonskills.actors.buffs.Paralysis;
 import com.skpd.pixeldungeonskills.actors.buffs.Poison;
+import com.skpd.pixeldungeonskills.actors.buffs.Roots;
+import com.skpd.pixeldungeonskills.actors.buffs.Shadows;
+import com.skpd.pixeldungeonskills.actors.buffs.Sleep;
 import com.skpd.pixeldungeonskills.actors.buffs.Slow;
+import com.skpd.pixeldungeonskills.actors.buffs.Speed;
 import com.skpd.pixeldungeonskills.actors.buffs.Terror;
+import com.skpd.pixeldungeonskills.actors.buffs.Vertigo;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroSubClass;
 import com.skpd.pixeldungeonskills.actors.mobs.Bestiary;
@@ -66,6 +64,7 @@ import com.skpd.pixeldungeonskills.items.weapon.missiles.Shuriken;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.levels.Terrain;
 import com.skpd.pixeldungeonskills.levels.features.Door;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.CharSprite;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -74,56 +73,58 @@ import com.skpd.utils.Bundle;
 import com.skpd.utils.GameMath;
 import com.skpd.utils.Random;
 
+import java.util.HashSet;
+
 public abstract class Char extends Actor {
 
-	protected static final String TXT_HIT		= "%s hit %s";
-	protected static final String TXT_KILL		= "%s killed you...";
-	protected static final String TXT_DEFEAT	= "%s defeated %s";
+	protected static final String TXT_HIT		= Messages.get(Char.class,"1");
+	protected static final String TXT_KILL		= Messages.get(Char.class,"2");
+	protected static final String TXT_DEFEAT	= Messages.get(Char.class,"3");
 	
-	private static final String TXT_YOU_MISSED	= "%s %s your attack";
-	private static final String TXT_SMB_MISSED	= "%s %s %s's attack";
+	private static final String TXT_YOU_MISSED	= Messages.get(Char.class,"4");
+	private static final String TXT_SMB_MISSED	= Messages.get(Char.class,"5");
 	
-	private static final String TXT_OUT_OF_PARALYSIS	= "The pain snapped %s out of paralysis";
+	private static final String TXT_OUT_OF_PARALYSIS	= Messages.get(Char.class,"6");
 
     public boolean screams = true;
 
     private String[] MOB_DEATH_SCREAMS =  {
             "...",
-            "I will haunt your dreams...",
-            "Too strong...",
-            "C'est impossible!",
-            "Sacre bleu!",
-            "Mommy...",
-            "I will be avenged..."
+			Messages.get(Char.class,"7"),
+			Messages.get(Char.class,"8"),
+			Messages.get(Char.class,"9"),
+			Messages.get(Char.class,"0"),
+			Messages.get(Char.class,"a1"),
+			Messages.get(Char.class,"a2")
     };
 
     private String[] RAT_DEATH_SCREAMS = {
-            "The Rat King will be victorious!",
-            "The Rat King will avenge me!",
-            "The Rat King shall prevail!",
+			Messages.get(Char.class,"a3"),
+			Messages.get(Char.class,"a4"),
+			Messages.get(Char.class,"a5"),
             //"The Rat King is your father...", too harsh?
-            "Forgive me my lord...",
-            "You know nothing...",
-            "The world is ours... all of its cheese too..."
+			Messages.get(Char.class,"a6"),
+			Messages.get(Char.class,"a7"),
+			Messages.get(Char.class,"a8")
     };
 
     private String[] HERO_DEATH_SCREAM = {
-            "Ouch!",
-            "My face...",
-            "I have failed",
-            "This game blows...",
-            "Nerf it..."
+			Messages.get(Char.class,"a9"),
+			Messages.get(Char.class,"a0"),
+			Messages.get(Char.class,"b1"),
+			Messages.get(Char.class,"b2"),
+			Messages.get(Char.class,"b3")
     };
 
     private String[] PET_FAREWELL = {
-            "Farewell...",
-            "I have failed you...",
-            "I just wanted some love..."
+			Messages.get(Char.class,"b4"),
+			Messages.get(Char.class,"b5"),
+			Messages.get(Char.class,"b6")
     };
 
     private String[] MERC_FAREWELL = {
-            "I didn't sign up for this...",
-            "I want a raise..."
+			Messages.get(Char.class,"b7"),
+			Messages.get(Char.class,"b8")
     };
 
 	public int pos = 0;
@@ -311,40 +312,40 @@ public abstract class Char extends Actor {
                 if (enemy.isAlive() == false)
                 {
                     ((NecroBlade)Dungeon.hero.belongings.weapon).updateCharge(enemy.HT > 22 ? (int)Math.floor(enemy.HT / 22) : 1);
-                    GLog.p("NecroBlade absored a portion of " + enemy.name + "'s life energy.");
+                    GLog.p(Messages.format(Messages.get(Char.class,"b9"),enemy.name));
 
                 }
             }
 
 			if (!enemy.isAlive() && visibleFight) {
 				if (enemy == Dungeon.hero) {
-					
+
 					if (Dungeon.hero.killerGlyph != null) {
-						
+
 					// FIXME
-					//	Dungeon.fail( Utils.format( ResultDescriptions.GLYPH, Dungeon.hero.killerGlyph.name(), Dungeon.depth ) );
+					//	Dungeon.fail( Utils.format( Res.GLYPH, Dungeon.hero.killerGlyph.name(), Dungeon.depth ) );
 					//	GLog.n( TXT_KILL, Dungeon.hero.killerGlyph.name() );
-						
+
 					} else {
 						if (Bestiary.isBoss( this )) {
-							Dungeon.fail( Utils.format( ResultDescriptions.BOSS, name, Dungeon.depth ) );
+							Dungeon.fail( Utils.format( Res.BOSS, name, Dungeon.depth ) );
 						} else {
-							Dungeon.fail( Utils.format( ResultDescriptions.MOB, 
+							Dungeon.fail( Utils.format( Res.MOB,
 								Utils.indefinite( name ), Dungeon.depth ) );
 						}
-						
+
 						GLog.n( TXT_KILL, name );
 					}
-					
+
 				} else {
 					GLog.i( TXT_DEFEAT, name, enemy.name );
 				}
 			}
-			
+
 			return true;
-			
+
 		} else {
-			
+
 			if (visibleFight) {
 				String defense = enemy.defenseVerb();
 				enemy.sprite.showStatus( CharSprite.NEUTRAL, defense );
@@ -353,12 +354,12 @@ public abstract class Char extends Actor {
 				} else {
 					GLog.i( TXT_SMB_MISSED, enemy.name, defense, name );
 				}
-				
+
 				Sample.INSTANCE.play(Assets.SND_MISS);
 			}
-			
+
 			return false;
-			
+
 		}
 	}
 	
@@ -381,7 +382,7 @@ public abstract class Char extends Actor {
 	}
 	
 	public String defenseVerb() {
-		return "dodged";
+		return Messages.get(Char.class,"b0");
 	}
 	
 	public int dr() {
@@ -536,45 +537,44 @@ public abstract class Char extends Actor {
 			if (buff instanceof Poison) {
 				
 				CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 5 );
-				sprite.showStatus( CharSprite.NEGATIVE, "poisoned" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c1") );
 				
 			} else if (buff instanceof Amok) {
 				
-				sprite.showStatus( CharSprite.NEGATIVE, "amok" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c2") );
 
 			} else if (buff instanceof Slow) {
 
-				sprite.showStatus( CharSprite.NEGATIVE, "slowed" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c3") );
 				
 			} else if (buff instanceof MindVision) {
 				
-				sprite.showStatus( CharSprite.POSITIVE, "mind" );
-				sprite.showStatus( CharSprite.POSITIVE, "vision" );
+				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Char.class,"c5") );
 				
 			} else if (buff instanceof Paralysis) {
 
 				sprite.add( CharSprite.State.PARALYSED );
-				sprite.showStatus( CharSprite.NEGATIVE, "paralysed" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c6") );
 				
 			} else if (buff instanceof Terror) {
 				
-				sprite.showStatus( CharSprite.NEGATIVE, "frightened" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c7") );
 				
 			} else if (buff instanceof Roots) {
 				
-				sprite.showStatus( CharSprite.NEGATIVE, "rooted" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c8") );
 				
 			} else if (buff instanceof Cripple) {
 
-				sprite.showStatus( CharSprite.NEGATIVE, "crippled" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c9") );
 				
 			} else if (buff instanceof Bleeding) {
 
-				sprite.showStatus( CharSprite.NEGATIVE, "bleeding" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c0") );
 				
 			} else if (buff instanceof Vertigo) {
 
-				sprite.showStatus( CharSprite.NEGATIVE, "dizzy" );
+				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(Char.class,"c11") );
 				
 			} else if (buff instanceof Sleep) {
 				sprite.idle();
@@ -599,7 +599,7 @@ public abstract class Char extends Actor {
                 }
             } else if (buff instanceof Invisibility) {
 				if (!(buff instanceof Shadows)) {
-					sprite.showStatus( CharSprite.POSITIVE, "invisible" );
+					sprite.showStatus( CharSprite.POSITIVE, Messages.get(Char.class,"c12") );
 				}
 				sprite.add( CharSprite.State.INVISIBLE );
 			}

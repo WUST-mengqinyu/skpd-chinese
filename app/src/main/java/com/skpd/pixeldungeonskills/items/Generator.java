@@ -17,24 +17,101 @@
  */
 package com.skpd.pixeldungeonskills.items;
 
-import java.util.HashMap;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
-import com.skpd.pixeldungeonskills.items.armor.*;
+import com.skpd.pixeldungeonskills.items.armor.Armor;
+import com.skpd.pixeldungeonskills.items.armor.ClothArmor;
+import com.skpd.pixeldungeonskills.items.armor.LeatherArmor;
+import com.skpd.pixeldungeonskills.items.armor.MailArmor;
+import com.skpd.pixeldungeonskills.items.armor.PlateArmor;
+import com.skpd.pixeldungeonskills.items.armor.ScaleArmor;
 import com.skpd.pixeldungeonskills.items.bags.Bag;
 import com.skpd.pixeldungeonskills.items.food.Food;
 import com.skpd.pixeldungeonskills.items.food.MysteryMeat;
 import com.skpd.pixeldungeonskills.items.food.Pasty;
-import com.skpd.pixeldungeonskills.items.potions.*;
-import com.skpd.pixeldungeonskills.items.rings.*;
-import com.skpd.pixeldungeonskills.items.scrolls.*;
-import com.skpd.pixeldungeonskills.items.wands.*;
-import com.skpd.pixeldungeonskills.items.weapon.*;
-import com.skpd.pixeldungeonskills.items.weapon.melee.*;
-import com.skpd.pixeldungeonskills.items.weapon.missiles.*;
-import com.skpd.pixeldungeonskills.plants.*;
+import com.skpd.pixeldungeonskills.items.potions.Potion;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfExperience;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfFrost;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfInvisibility;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfLevitation;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfLiquidFlame;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfMana;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfMight;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfMindVision;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfParalyticGas;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfPurity;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
+import com.skpd.pixeldungeonskills.items.potions.PotionOfToxicGas;
+import com.skpd.pixeldungeonskills.items.rings.Ring;
+import com.skpd.pixeldungeonskills.items.scrolls.B;
+import com.skpd.pixeldungeonskills.items.scrolls.C;
+import com.skpd.pixeldungeonskills.items.scrolls.D;
+import com.skpd.pixeldungeonskills.items.scrolls.F;
+import com.skpd.pixeldungeonskills.items.scrolls.G;
+import com.skpd.pixeldungeonskills.items.scrolls.H;
+import com.skpd.pixeldungeonskills.items.scrolls.I;
+import com.skpd.pixeldungeonskills.items.scrolls.J;
+import com.skpd.pixeldungeonskills.items.scrolls.K;
+import com.skpd.pixeldungeonskills.items.scrolls.M;
+import com.skpd.pixeldungeonskills.items.scrolls.N;
+import com.skpd.pixeldungeonskills.items.scrolls.O;
+import com.skpd.pixeldungeonskills.items.scrolls.P;
+import com.skpd.pixeldungeonskills.items.scrolls.Q;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
+import com.skpd.pixeldungeonskills.items.scrolls.Scroll;
+import com.skpd.pixeldungeonskills.items.wands.Wand;
+import com.skpd.pixeldungeonskills.items.wands.WandOfAmok;
+import com.skpd.pixeldungeonskills.items.wands.WandOfAvalanche;
+import com.skpd.pixeldungeonskills.items.wands.WandOfBlink;
+import com.skpd.pixeldungeonskills.items.wands.WandOfDisintegration;
+import com.skpd.pixeldungeonskills.items.wands.WandOfFirebolt;
+import com.skpd.pixeldungeonskills.items.wands.WandOfFlock;
+import com.skpd.pixeldungeonskills.items.wands.WandOfLightning;
+import com.skpd.pixeldungeonskills.items.wands.WandOfMagicMissile;
+import com.skpd.pixeldungeonskills.items.wands.WandOfPoison;
+import com.skpd.pixeldungeonskills.items.wands.WandOfReach;
+import com.skpd.pixeldungeonskills.items.wands.WandOfRegrowth;
+import com.skpd.pixeldungeonskills.items.wands.WandOfSlowness;
+import com.skpd.pixeldungeonskills.items.wands.WandOfTeleportation;
+import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.items.weapon.melee.BattleAxe;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Dagger;
+import com.skpd.pixeldungeonskills.items.weapon.melee.DualSwords;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Glaive;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Knuckles;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Longsword;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Mace;
+import com.skpd.pixeldungeonskills.items.weapon.melee.NecroBlade;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Quarterstaff;
+import com.skpd.pixeldungeonskills.items.weapon.melee.ShortSword;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Spear;
+import com.skpd.pixeldungeonskills.items.weapon.melee.Sword;
+import com.skpd.pixeldungeonskills.items.weapon.melee.WarHammer;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Arrow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.BombArrow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Boomerang;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Bow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.CurareDart;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Dart;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.FlameBow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.FrostBow;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.IncendiaryDart;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Javelin;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Shuriken;
+import com.skpd.pixeldungeonskills.items.weapon.missiles.Tomahawk;
+import com.skpd.pixeldungeonskills.plants.Dreamweed;
+import com.skpd.pixeldungeonskills.plants.Earthroot;
+import com.skpd.pixeldungeonskills.plants.Fadeleaf;
+import com.skpd.pixeldungeonskills.plants.Firebloom;
+import com.skpd.pixeldungeonskills.plants.Icecap;
+import com.skpd.pixeldungeonskills.plants.Plant;
+import com.skpd.pixeldungeonskills.plants.Rotberry;
+import com.skpd.pixeldungeonskills.plants.Sorrowmoss;
+import com.skpd.pixeldungeonskills.plants.Sungrass;
 import com.skpd.utils.Random;
+
+import java.util.HashMap;
 
 public class Generator {
 
@@ -81,22 +158,22 @@ public class Generator {
 		Category.GOLD.probs = new float[]{ 1 };
 		
 		Category.SCROLL.classes = new Class<?>[]{ 
-			ScrollOfIdentify.class, 
-			ScrollOfTeleportation.class, 
-			ScrollOfRemoveCurse.class, 
-			ScrollOfRecharging.class,
-			ScrollOfMagicMapping.class,
-			ScrollOfChallenge.class,
-			ScrollOfTerror.class,
-			ScrollOfLullaby.class,
-			ScrollOfPsionicBlast.class,
-			ScrollOfMirrorImage.class,
-			ScrollOfUpgrade.class,
-			ScrollOfEnchantment.class,
-                ScrollOfHome.class,
-                ScrollOfSacrifice.class,
-                ScrollOfBloodyRitual.class,
-                ScrollOfSkill.class};
+			G.class,
+			Q.class,
+			N.class,
+			M.class,
+			I.class,
+			C.class,
+			com.skpd.pixeldungeonskills.items.scrolls.R.class,
+			H.class,
+			K.class,
+			J.class,
+			S.class,
+			D.class,
+                F.class,
+                O.class,
+                B.class,
+                P.class};
 		Category.SCROLL.probs = new float[]{ 30, 10, 15, 10, 15, 12, 8, 8, 4, 6, 0, 1, 10, 1, 5, 10 };
 		
 		Category.POTION.classes = new Class<?>[]{ 
@@ -149,7 +226,7 @@ public class Generator {
 			CurareDart.class,
 			Shuriken.class,
 			Boomerang.class,
-			Tamahawk.class,
+			Tomahawk.class,
                 Bow.class,
                 FrostBow.class,
                 FlameBow.class,
@@ -175,18 +252,18 @@ public class Generator {
 		Category.FOOD.probs = new float[]{ 4, 1, 0 };
 			
 		Category.RING.classes = new Class<?>[]{ 
-			RingOfMending.class,
-			RingOfDetection.class,
-			RingOfShadows.class,
-			RingOfPower.class,
-			RingOfHerbalism.class,
-			RingOfAccuracy.class,
-			RingOfEvasion.class,
-			RingOfSatiety.class,
-			RingOfHaste.class,
-			RingOfElements.class,
-			RingOfHaggler.class,
-			RingOfThorns.class };
+			com.skpd.pixeldungeonskills.items.rings.H.class,
+			com.skpd.pixeldungeonskills.items.rings.B.class,
+			com.skpd.pixeldungeonskills.items.rings.K.class,
+			com.skpd.pixeldungeonskills.items.rings.I.class,
+			com.skpd.pixeldungeonskills.items.rings.G.class,
+            com.skpd.pixeldungeonskills.items.rings.A.class,
+			com.skpd.pixeldungeonskills.items.rings.D.class,
+			com.skpd.pixeldungeonskills.items.rings.J.class,
+			com.skpd.pixeldungeonskills.items.rings.F.class,
+			com.skpd.pixeldungeonskills.items.rings.C.class,
+            com.skpd.pixeldungeonskills.items.rings.E.class,
+            com.skpd.pixeldungeonskills.items.rings.L.class };
 		Category.RING.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 };
 		
 		Category.SEED.classes = new Class<?>[]{ 

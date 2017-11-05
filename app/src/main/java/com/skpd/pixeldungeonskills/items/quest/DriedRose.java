@@ -23,7 +23,6 @@ import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 public class DriedRose extends Item {
 	
 	{
-		name = "dried rose";
 		image = ItemSpriteSheet.ROSE;
 		
 		unique = true;
@@ -38,10 +37,5 @@ public class DriedRose extends Item {
 	public boolean isIdentified() {
 		return true;
 	}
-	
-	@Override
-	public String info() {
-		return
-			"The rose has dried long ago, but it has kept all its petals somehow.";
-	}
+
 }

@@ -24,7 +24,7 @@ import com.skpd.pixeldungeonskills.items.EquipableItem;
 import com.skpd.pixeldungeonskills.items.Gold;
 import com.skpd.pixeldungeonskills.items.Heap;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.rings.RingOfHaggler;
+import com.skpd.pixeldungeonskills.items.rings.E;
 import com.skpd.pixeldungeonskills.messages.Languages;
 import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.PixelScene;
@@ -231,7 +231,7 @@ public class WndTradeItem extends Window {
 	private int price( Item item ) {
 
 		int price = item.price() * 5 * (Dungeon.depth / 5 + 1);
-		if (Dungeon.hero.buff( RingOfHaggler.Haggling.class ) != null && price >= 2) {
+		if (Dungeon.hero.buff( E.Haggling.class ) != null && price >= 2) {
 			price /= 2;
 		}
 		return price;

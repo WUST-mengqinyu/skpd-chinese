@@ -26,10 +26,6 @@ import com.skpd.pixeldungeonskills.scenes.GameScene;
 
 public class PotionOfParalyticGas extends Potion {
 
-	{
-		name = "Potion of Paralytic Gas";
-	}
-	
 	@Override
 	public void shatter( int cell ) {
 		if (Dungeon.visible[cell]) {
@@ -41,16 +37,7 @@ public class PotionOfParalyticGas extends Potion {
 		
 		GameScene.add( Blob.seed( cell, 1000, ParalyticGas.class ) );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"Upon exposure to open air, the liquid in this flask will vaporize " +
-			"into a numbing yellow haze. Anyone who inhales the cloud will be paralyzed " +
-			"instantly, unable to move for some time after the cloud dissipates. This " +
-			"item can be thrown at distant enemies to catch them within the effect of the gas.";
-	}
-	
+
 	@Override
 	public int price() {
 		return isKnown() ? 40 * quantity : super.price();

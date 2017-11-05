@@ -20,7 +20,7 @@ package com.skpd.pixeldungeonskills.items.wands;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.blobs.Blob;
@@ -31,6 +31,7 @@ import com.skpd.pixeldungeonskills.effects.MagicMissile;
 import com.skpd.pixeldungeonskills.effects.particles.FlameParticle;
 import com.skpd.pixeldungeonskills.levels.Level;
 import com.skpd.pixeldungeonskills.mechanics.Ballistica;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -38,10 +39,6 @@ import com.skpd.utils.Callback;
 import com.skpd.utils.Random;
 
 public class WandOfFirebolt extends Wand {
-
-	{
-		name = "Wand of Firebolt";
-	}
 	
 	@Override
 	protected void onZap( int cell ) {
@@ -66,8 +63,8 @@ public class WandOfFirebolt extends Wand {
 			ch.sprite.emitter().burst( FlameParticle.FACTORY, 5 );
 			
 			if (ch == curUser && !ch.isAlive()) {
-				Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
-				GLog.n( "You killed yourself with your own Wand of Firebolt..." );
+				Dungeon.fail( Utils.format( Res.WAND, name, Dungeon.depth ) );
+				GLog.n(Messages.get(WandOfFirebolt.class,"1"));
 			}
 		}
 	}
@@ -76,11 +73,5 @@ public class WandOfFirebolt extends Wand {
 		MagicMissile.fire( curUser.sprite.parent, curUser.pos, cell, callback );
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
-	
-	@Override
-	public String desc() {
-		return
-			"This wand unleashes bursts of magical fire. It will ignite " +
-			"flammable terrain, and will damage and burn a creature it hits.";
-	}
+
 }

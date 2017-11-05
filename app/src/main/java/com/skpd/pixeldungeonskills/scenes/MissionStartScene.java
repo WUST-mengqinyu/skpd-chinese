@@ -17,11 +17,11 @@
  */
 package com.skpd.pixeldungeonskills.scenes;
 
-import com.skpd.noosa.BitmapText;
 import com.skpd.noosa.Camera;
 import com.skpd.noosa.Game;
 import com.skpd.noosa.Group;
 import com.skpd.noosa.Image;
+import com.skpd.noosa.RenderedText;
 import com.skpd.noosa.audio.Sample;
 import com.skpd.noosa.particles.BitmaskEmitter;
 import com.skpd.noosa.particles.Emitter;
@@ -324,7 +324,7 @@ public class MissionStartScene extends PixelScene {
 		private static final int SECONDARY_COLOR_N	= 0xCACFC2;
 		private static final int SECONDARY_COLOR_H	= 0xFFFF88;
 
-		private BitmapText secondary;
+		private RenderedText secondary;
 
 		public GameButton( String primary ) {
 			super( primary );
@@ -336,7 +336,7 @@ public class MissionStartScene extends PixelScene {
 		protected void createChildren() {
 			super.createChildren();
 
-			secondary = createText( 6 );
+			secondary = renderText( 6 );
 			add( secondary );
 		}
 
@@ -356,7 +356,6 @@ public class MissionStartScene extends PixelScene {
 
 		public void secondary( String text, boolean highlighted ) {
 			secondary.text( text );
-			secondary.measure();
 
 			secondary.hardlight( highlighted ? SECONDARY_COLOR_H : SECONDARY_COLOR_N );
 		}
@@ -376,7 +375,7 @@ public class MissionStartScene extends PixelScene {
 		private HeroClass cl;
 
 		private Image avatar;
-		private BitmapText name;
+		private RenderedText name;
 		private Emitter emitter;
 
 		private float brightness;
@@ -398,7 +397,6 @@ public class MissionStartScene extends PixelScene {
 
 
 			name.text( cl.name() );
-			name.measure();
 			name.hardlight( normal );
 
 			brightness = MIN_BRIGHTNESS;
@@ -413,7 +411,7 @@ public class MissionStartScene extends PixelScene {
 			avatar = new Image( Assets.AVATARS_MISSION );
 			add( avatar );
 
-			name = PixelScene.createText( 9 );
+			name = PixelScene.renderText( 9 );
 			add( name );
 
 			emitter = new BitmaskEmitter( avatar );

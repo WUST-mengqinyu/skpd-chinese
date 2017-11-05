@@ -6,7 +6,7 @@ import com.skpd.pixeldungeonskills.sprites.CharSprite;
 /**
  * Created by Moussa on 25-Jan-17.
  */
-public class MercArcherSkillA extends KneeShot {
+public class MercArcherSkillA extends KeenShot {
     {
         tag = "mercA";
     }

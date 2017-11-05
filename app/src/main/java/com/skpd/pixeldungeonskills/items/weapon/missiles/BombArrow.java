@@ -40,7 +40,6 @@ import java.util.ArrayList;
 public class BombArrow extends Arrow {
 
 	{
-		name = "bomb arrow";
 		image = ItemSpriteSheet.BombArrow;
 
         stackable = true;
@@ -60,13 +59,6 @@ public class BombArrow extends Arrow {
         quantity = Random.Int(1, 3);
         return this;
     }
-
-	@Override
-	public String desc() {
-		return 
-			"An arrow with an attached bomb. Keep your distance..";
-	}
-	
 
 	@Override
 	public int price() {

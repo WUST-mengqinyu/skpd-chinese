@@ -19,7 +19,7 @@ package com.skpd.pixeldungeonskills.items.armor.glyphs;
 
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.buffs.Buff;
 import com.skpd.pixeldungeonskills.items.armor.Armor;
@@ -126,7 +126,7 @@ public class Viscosity extends Glyph {
 				target.damage( 1, this );
 				if (target == Dungeon.hero && !target.isAlive()) {
 					// FIXME
-					Dungeon.fail( Utils.format( ResultDescriptions.GLYPH, "enchantment of viscosity", Dungeon.depth ) );
+					Dungeon.fail( Utils.format( Res.GLYPH, "enchantment of viscosity", Dungeon.depth ) );
 					GLog.n( "The enchantment of viscosity killed you..." );
 					
 					Badges.validateDeathFromGlyph();

@@ -20,8 +20,6 @@ package com.skpd.pixeldungeonskills.actors.hero;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.skills.CurrentSkills;
-import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.items.SoulCrystalFilled;
 import com.skpd.pixeldungeonskills.items.TomeOfMastery;
 import com.skpd.pixeldungeonskills.items.armor.ClothArmor;
@@ -30,14 +28,14 @@ import com.skpd.pixeldungeonskills.items.food.Food;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfHealing;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfMana;
 import com.skpd.pixeldungeonskills.items.potions.PotionOfStrength;
-import com.skpd.pixeldungeonskills.items.rings.RingOfShadows;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfBloodyRitual;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfFrostLevel;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfHome;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfIdentify;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfMagicMapping;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfSacrifice;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfSkill;
+import com.skpd.pixeldungeonskills.items.rings.K;
+import com.skpd.pixeldungeonskills.items.scrolls.B;
+import com.skpd.pixeldungeonskills.items.scrolls.E;
+import com.skpd.pixeldungeonskills.items.scrolls.F;
+import com.skpd.pixeldungeonskills.items.scrolls.G;
+import com.skpd.pixeldungeonskills.items.scrolls.I;
+import com.skpd.pixeldungeonskills.items.scrolls.O;
+import com.skpd.pixeldungeonskills.items.scrolls.P;
 import com.skpd.pixeldungeonskills.items.wands.WandOfMagicMissile;
 import com.skpd.pixeldungeonskills.items.weapon.melee.Dagger;
 import com.skpd.pixeldungeonskills.items.weapon.melee.DualSwords;
@@ -51,6 +49,8 @@ import com.skpd.pixeldungeonskills.items.weapon.missiles.Dart;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.Shuriken;
 import com.skpd.pixeldungeonskills.items.weapon.missiles.SoulCrystal;
 import com.skpd.pixeldungeonskills.messages.Messages;
+import com.skpd.pixeldungeonskills.skills.CurrentSkills;
+import com.skpd.pixeldungeonskills.skills.Skill;
 import com.skpd.pixeldungeonskills.sprites.EyeSprite;
 import com.skpd.pixeldungeonskills.ui.QuickSlot;
 import com.skpd.utils.Bundle;
@@ -117,19 +117,17 @@ public enum HeroClass {
         new Arrow(15).collect();
         new CupidArrow(5).collect();
 
-        new ScrollOfHome().setKnown();
-        new ScrollOfSacrifice().setKnown();
-        new ScrollOfBloodyRitual().setKnown();
-        new ScrollOfSkill().setKnown();
-        new ScrollOfFrostLevel().setKnown();
-
-
-        new ScrollOfHome().collect();
-       // new ScrollOfSacrifice().collect();
-       // new ScrollOfBloodyRitual().collect();
-        new ScrollOfSkill().collect();
-       // new ScrollOfMagicMapping().identify().collect();
-       // new ScrollOfFrostLevel().collect();
+        new F().setKnown();
+        new O().setKnown();
+        new B().setKnown();
+        new P().setKnown();
+        new E().setKnown();
+        new F().collect();
+       // new O().collect();
+       // new B().collect();
+        new P().collect();
+       // new I().identify().collect();
+       // new E().collect();
 
        // new Ankh().collect();
         new PotionOfHealing().setKnown();
@@ -139,7 +137,7 @@ public enum HeroClass {
         new PotionOfMana().collect();
         new PotionOfMana().collect();
 
-       // new ScrollOfEnchantment().identify().collect();
+       // new D().identify().collect();
 
         new SoulCrystal(3).collect();
 		// FIXME: 2017/9/11
@@ -187,7 +185,7 @@ public enum HeroClass {
 		
 		QuickSlot.primaryValue = wand;
 		
-		new ScrollOfIdentify().setKnown();
+		new G().setKnown();
 
         hero.heroSkills = CurrentSkills.MAGE;
         hero.heroSkills.init();
@@ -197,14 +195,14 @@ public enum HeroClass {
         hero.MP = hero.MMP = 30;
 		//(hero.belongings.weapon = new Dagger()).identify();
         (hero.belongings.weapon = new DualSwords()).identify();
-		(hero.belongings.ring1 = new RingOfShadows()).upgrade().identify();
+		(hero.belongings.ring1 = new K()).upgrade().identify();
 		new Dart( 8 ).identify().collect();
 		new Shuriken(10).identify().collect();
 		hero.belongings.ring1.activate( hero );
 		
 		QuickSlot.primaryValue = Dart.class;
 		
-		new ScrollOfMagicMapping().setKnown();
+		new I().setKnown();
 
         hero.heroSkills = CurrentSkills.ROGUE;
         hero.heroSkills.init();

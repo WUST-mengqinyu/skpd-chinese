@@ -17,18 +17,17 @@
  */
 package com.skpd.pixeldungeonskills.items.wands;
 
-import java.util.ArrayList;
-
 import com.skpd.noosa.audio.Sample;
 import com.skpd.pixeldungeonskills.Assets;
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
-import com.skpd.pixeldungeonskills.ResultDescriptions;
+import com.skpd.pixeldungeonskills.Res;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.items.Item;
-import com.skpd.pixeldungeonskills.items.scrolls.ScrollOfUpgrade;
+import com.skpd.pixeldungeonskills.items.scrolls.S;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
@@ -36,21 +35,21 @@ import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.pixeldungeonskills.windows.WndBag;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class WandOfMagicMissile extends Wand {
 
-	public static final String AC_DISENCHANT	= "DISENCHANT";
+	public static final String AC_DISENCHANT	= Messages.get(WandOfMagicMissile.class,"1");
 	
-	private static final String TXT_SELECT_WAND	= "Select a wand to upgrade";
+	private static final String TXT_SELECT_WAND	= Messages.get(WandOfMagicMissile.class,"2");
 	
-	private static final String TXT_DISENCHANTED = 
-		"you disenchanted the Wand of Magic Missile and used its essence to upgrade your %s";
+	private static final String TXT_DISENCHANTED = Messages.get(WandOfMagicMissile.class,"3");
 	
 	private static final float TIME_TO_DISENCHANT	= 2f;
 	
 	private boolean disenchantEquipped;
 	
 	{
-		name = "Wand of Magic Missile";
 		image = ItemSpriteSheet.WAND_MAGIC_MISSILE;
 	}
 	
@@ -75,8 +74,8 @@ public class WandOfMagicMissile extends Wand {
 			ch.sprite.burst( 0xFF99CCFF, level / 2 + 2 );
 			
 			if (ch == curUser && !ch.isAlive()) {
-				Dungeon.fail( Utils.format( ResultDescriptions.WAND, name, Dungeon.depth ) );
-				GLog.n( "You killed yourself with your own Wand of Magic Missile..." );
+				Dungeon.fail( Utils.format( Res.WAND, name, Dungeon.depth ) );
+				GLog.n( Messages.get(WandOfMagicMissile.class,"4"));
 			}
 		}
 	}
@@ -117,19 +116,13 @@ public class WandOfMagicMissile extends Wand {
 		return 3;
 	}
 	
-	@Override
-	public String desc() {
-		return
-			"This wand launches missiles of pure magical energy, dealing moderate damage to a target creature.";
-	}
-	
 	private final WndBag.Listener itemSelector = new WndBag.Listener() {
 		@Override
 		public void onSelect( Item item ) {
 			if (item != null) {
 				
 				Sample.INSTANCE.play( Assets.SND_EVOKE );
-				ScrollOfUpgrade.upgrade( curUser );
+				S.upgrade( curUser );
 				evoke( curUser );
 				
 				GLog.w( TXT_DISENCHANTED, item.name() );

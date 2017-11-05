@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.weapon.missiles;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.actors.Actor;
 import com.skpd.pixeldungeonskills.actors.Char;
@@ -26,23 +24,26 @@ import com.skpd.pixeldungeonskills.actors.hero.Hero;
 import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.scenes.GameScene;
 import com.skpd.pixeldungeonskills.windows.WndOptions;
 
+import java.util.ArrayList;
+
 abstract public class MissileWeapon extends Weapon {
 
-	private static final String TXT_MISSILES	= "Missile weapon";
-	private static final String TXT_YES			= "Yes, I know what I'm doing";
-	private static final String TXT_NO			= "No, I changed my mind";
-	private static final String TXT_R_U_SURE	= 
-		"Do you really want to equip it as a melee weapon?";
-	
+	private static final String TXT_MISSILES	= Messages.get(MissileWeapon.class,"1");
+	private static final String TXT_YES			= Messages.get(MissileWeapon.class,"2");
+	private static final String TXT_NO			= Messages.get(MissileWeapon.class,"3");
+	private static final String TXT_R_U_SURE	= Messages.get(MissileWeapon.class,"4");
+
 	{
 		stackable = true;
 		levelKnown = true;
+
 		defaultAction = AC_THROW;
 	}
-	
+
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
@@ -64,16 +65,16 @@ abstract public class MissileWeapon extends Weapon {
 			}
 		}
 	}
-	
+
 	protected void miss( int cell ) {
 		super.onThrow( cell );
 	}
-	
+
 	@Override
 	public void proc( Char attacker, Char defender, int damage ) {
-		
+
 		super.proc( attacker, defender, damage );
-		
+
 		Hero hero = (Hero)attacker;
 		if (hero.rangedWeapon == null && stackable) {
 			if (quantity == 1) {
@@ -83,64 +84,61 @@ abstract public class MissileWeapon extends Weapon {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean doEquip( final Hero hero ) {
-		GameScene.show( 
-			new WndOptions( TXT_MISSILES, TXT_R_U_SURE, TXT_YES, TXT_NO ) {
-				@Override
-				protected void onSelect(int index) {
-					if (index == 0) {
-						MissileWeapon.super.doEquip( hero );
-					}
-				};
-			}
+		GameScene.show(
+				new WndOptions( TXT_MISSILES, TXT_R_U_SURE, TXT_YES, TXT_NO ) {
+					@Override
+					protected void onSelect(int index) {
+						if (index == 0) {
+							MissileWeapon.super.doEquip( hero );
+						}
+					};
+				}
 		);
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public Item random() {
 		return this;
 	}
-	
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return true;
 	}
-	
+
 	@Override
 	public String info() {
-		
+
 		StringBuilder info = new StringBuilder( desc() );
-		
+
 		int min = min();
 		int max = max();
-		info.append( "\n\nAverage damage of this weapon equals to " + (min + (max - min) / 2) + " points per hit. " );
-		
+		int a=min + (max - min) / 2;
+		info.append( Messages.format(Messages.get(MissileWeapon.class,"5"),a) );
+
 		if (Dungeon.hero.belongings.backpack.items.contains( this )) {
 			if (STR > Dungeon.hero.STR()) {
-				info.append( 
-					"Because of your inadequate strength the accuracy and speed " +
-					"of your attack with this " + name + " is decreased." );
+				info.append( Messages.format(Messages.get(MissileWeapon.class,"6"),name) );
 			}
 			if (STR < Dungeon.hero.STR()) {
-				info.append( 
-					"Because of your excess strength the damage " +
-					"of your attack with this " + name + " is increased." );
+				info.append( Messages.format(Messages.get(MissileWeapon.class,"7"),name) );
 			}
 		}
-		
+
 		if (isEquipped( Dungeon.hero )) {
-			info.append( "\n\nYou hold the " + name + " at the ready." ); 
+			info.append(Messages.format(Messages.get(MissileWeapon.class,"8"),name));
 		}
-		
+
 		return info.toString();
 	}
 }

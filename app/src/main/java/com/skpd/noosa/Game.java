@@ -26,6 +26,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -41,6 +42,9 @@ import com.skpd.noosa.audio.Sample;
 import com.skpd.utils.BitmapCache;
 import com.skpd.utils.SystemTime;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -253,11 +257,45 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 			scene = null;
 		}
 		
-		instance = null;
+		//instance = null;
 	}
 	
 	public static void resetScene() {
 		switchScene( instance.sceneClass );
+	}
+
+	public static void logcat(){
+		try {
+			java.lang.Process p = Runtime.getRuntime().exec("logcat");
+			final InputStream is = p.getInputStream();
+			new Thread() {
+				@Override
+				public void run() {
+					FileOutputStream os = null;
+					try {
+						os = new FileOutputStream("/sdcard/writelog.txt");
+						int len = 0;
+						byte[] buf = new byte[1024];
+						while (-1 != (len = is.read(buf))) {
+							os.write(buf, 0, len);
+							os.flush();
+						}
+					} catch (Exception e) {
+						Log.d("writelog", "read logcat process failed. message: " + e.getMessage());
+					} finally {
+						if (null != os) {
+							try {
+								os.close(); os = null;
+							} catch (IOException e) {
+								// Do nothing
+							}
+						}
+					}
+				}
+			}.start();
+		} catch (Exception e) {
+			Log.d("writelog", "open logcat process failed. message: " + e.getMessage());
+		}
 	}
 
 	protected void switchScene() {
@@ -278,9 +316,8 @@ public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTou
 		Game.timeTotal = 0f;
 	}
 
-	public static void switchScene( Class<? extends Scene> c ) {
-		instance.sceneClass = c;
-		instance.requestedReset = true;
+	public static void switchScene(Class<? extends Scene> c) {
+		switchScene(c, null);
 	}
 
 	public static void switchScene(Class<? extends Scene> c, SceneChangeCallback callback) {

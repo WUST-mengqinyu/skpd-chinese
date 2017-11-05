@@ -17,8 +17,6 @@
  */
 package com.skpd.pixeldungeonskills.items.rings;
 
-import java.util.ArrayList;
-
 import com.skpd.pixeldungeonskills.Badges;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.PixelDungeon;
@@ -29,6 +27,7 @@ import com.skpd.pixeldungeonskills.actors.hero.HeroClass;
 import com.skpd.pixeldungeonskills.items.EquipableItem;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.ItemStatusHandler;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSpriteSheet;
 import com.skpd.pixeldungeonskills.utils.GLog;
 import com.skpd.pixeldungeonskills.utils.Utils;
@@ -36,38 +35,48 @@ import com.skpd.pixeldungeonskills.windows.WndOptions;
 import com.skpd.utils.Bundle;
 import com.skpd.utils.Random;
 
+import java.util.ArrayList;
+
 public class Ring extends EquipableItem {
 
 	private static final int TICKS_TO_KNOW	= 200;
 	
 	private static final float TIME_TO_EQUIP = 1f;
 	
-	private static final String TXT_IDENTIFY = 
-		"you are now familiar enough with your %s to identify it. It is %s.";
+	private static final String TXT_IDENTIFY 		=	Messages.get(Ring.class,"1");
 	
-	private static final String TXT_UNEQUIP_TITLE = "Unequip one ring";
-	private static final String TXT_UNEQUIP_MESSAGE = 
-		"You can only wear two rings at a time. " +
-		"Unequip one of your equipped rings.";
+	private static final String TXT_UNEQUIP_TITLE 	= 	Messages.get(Ring.class,"2");
+	private static final String TXT_UNEQUIP_MESSAGE = 	Messages.get(Ring.class,"3");
 	
 	protected Buff buff;
 	
 	private static final Class<?>[] rings = { 
-		RingOfMending.class, 
-		RingOfDetection.class, 
-		RingOfShadows.class,
-		RingOfPower.class,
-		RingOfHerbalism.class,
-		RingOfAccuracy.class,
-		RingOfEvasion.class,
-		RingOfSatiety.class,
-		RingOfHaste.class,
-		RingOfHaggler.class,
-		RingOfElements.class,
-		RingOfThorns.class
+		H.class,
+		B.class,
+		K.class,
+		I.class,
+		G.class,
+		A.class,
+		D.class,
+		J.class,
+		F.class,
+		E.class,
+		C.class,
+		L.class
 	};
 	private static final String[] gems = 
-		{"diamond", "opal", "garnet", "ruby", "amethyst", "topaz", "onyx", "tourmaline", "emerald", "sapphire", "quartz", "agate"};
+		{Messages.get(Ring.class,"4"),
+				Messages.get(Ring.class,"5"),
+				Messages.get(Ring.class,"6"),
+				Messages.get(Ring.class,"7"),
+				Messages.get(Ring.class,"8"),
+				Messages.get(Ring.class,"9"),
+				Messages.get(Ring.class,"0"),
+				Messages.get(Ring.class,"a1"),
+				Messages.get(Ring.class,"a2"),
+				Messages.get(Ring.class,"a3"),
+				Messages.get(Ring.class,"a4"),
+				Messages.get(Ring.class,"a5")};
 	private static final Integer[] images = {
 		ItemSpriteSheet.RING_DIAMOND, 
 		ItemSpriteSheet.RING_OPAL, 
@@ -96,7 +105,11 @@ public class Ring extends EquipableItem {
 	public static void save( Bundle bundle ) {
 		handler.save( bundle );
 	}
-	
+
+	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
+		handler.saveSelectively( bundle, items );
+	}
+
 	@SuppressWarnings("unchecked")
 	public static void restore( Bundle bundle ) {
 		handler = new ItemStatusHandler<Ring>( (Class<? extends Ring>[])rings, gems, images, bundle );
@@ -163,7 +176,7 @@ public class Ring extends EquipableItem {
 			cursedKnown = true;
 			if (cursed) {
 				equipCursed( hero );
-				GLog.n( "your " + this + " tightens around your finger painfully" );
+				GLog.n(Messages.get(Ring.class,"a6"));
 			}
 			
 			hero.spendAndNext( TIME_TO_EQUIP );
@@ -257,38 +270,29 @@ public class Ring extends EquipableItem {
 	public String toString() {
 		return 
 			levelKnown && isBroken() ? 
-				"broken " + super.toString() : 
+				Messages.get(Ring.class,"a7") + super.toString() :
 				super.toString();
 	}
 	
 	@Override
 	public String name() {
-		return isKnown() ? name : gem + " ring";
-	}
-	
-	@Override
-	public String desc() {
-		return 
-			"This metal band is adorned with a large " + gem + " gem " +
-			"that glitters in the darkness. Who knows what effect it has when worn?";
+		return isKnown() ? name : gem + Messages.get(Ring.class,"a8");
 	}
 	
 	@Override
 	public String info() {
+		String desc=isKnown()?desc():Messages.format(Messages.get(Ring.class,"a9"),gem);
 		if (isEquipped( Dungeon.hero )) {
 			
-			return desc() + "\n\n" + "The " + name() + " is on your finger" + 
-				(cursed ? ", and because it is cursed, you are powerless to remove it." : "." );
+			desc += "\n\n" + Messages.format(Messages.get(Ring.class,"a0"),name())+
+				(cursed ? Messages.get(Ring.class,"b1") : "" );
 			
 		} else if (cursed && cursedKnown) {
 			
-			return desc() + "\n\nYou can feel a malevolent magic lurking within the " + name() + ".";
-			
-		} else {
-			
-			return desc();
+			desc += "\n\n" + Messages.get(Ring.class,"b2") + name();
 			
 		}
+		return desc;
 	}
 	
 	@Override
@@ -345,7 +349,7 @@ public class Ring extends EquipableItem {
 	
 	public class RingBuff extends Buff {
 		
-		private static final String TXT_KNOWN = "This is a %s"; 
+		private final String TXT_KNOWN = Messages.get(Ring.class,"b3");
 		
 		public int level;
 		public RingBuff() {

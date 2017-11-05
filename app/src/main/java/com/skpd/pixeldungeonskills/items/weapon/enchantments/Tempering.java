@@ -19,12 +19,13 @@ package com.skpd.pixeldungeonskills.items.weapon.enchantments;
 
 import com.skpd.pixeldungeonskills.actors.Char;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite;
 import com.skpd.pixeldungeonskills.sprites.ItemSprite.Glowing;
 
 public class Tempering extends Weapon.Enchantment {
 
-	private static final String TXT_TEMPERED	= "tempered %s";
+	private static final String TXT_TEMPERED	= Messages.get(Tempering.class,"");
 	
 	private static ItemSprite.Glowing GRAY = new ItemSprite.Glowing( 0xCC8888 );
 	
@@ -41,7 +42,7 @@ public class Tempering extends Weapon.Enchantment {
 	
 	@Override
 	public String name( String weaponName) {
-		return String.format( TXT_TEMPERED, weaponName );
+		return Messages.format( TXT_TEMPERED, weaponName );
 	}
 
 }

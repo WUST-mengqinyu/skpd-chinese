@@ -20,11 +20,13 @@ package com.skpd.pixeldungeonskills.items.weapon.melee;
 import com.skpd.pixeldungeonskills.Dungeon;
 import com.skpd.pixeldungeonskills.items.Item;
 import com.skpd.pixeldungeonskills.items.weapon.Weapon;
+import com.skpd.pixeldungeonskills.messages.Languages;
+import com.skpd.pixeldungeonskills.messages.Messages;
 import com.skpd.pixeldungeonskills.utils.Utils;
 import com.skpd.utils.Random;
 
 public class MeleeWeapon extends Weapon {
-	
+	String a;
 	private int tier;
 	
 	public MeleeWeapon( int tier, float acu, float dly ) {
@@ -88,83 +90,104 @@ public class MeleeWeapon extends Weapon {
 		StringBuilder info = new StringBuilder( desc() );
 		
 		int lvl = visiblyUpgraded();
-		String quality = lvl != 0 ? 
-			(lvl > 0 ? 
-				(isBroken() ? "broken" : "upgraded") : 
-				"degraded") : 
+		String quality = lvl != 0 ?
+			(lvl > 0 ?
+				(isBroken() ? Messages.get(MeleeWeapon.class,"1") : Messages.get(MeleeWeapon.class,"2")) :
+				Messages.get(MeleeWeapon.class,"3")) :
 			"";
 		info.append( p );
-		info.append( "This " + name + " is " + Utils.indefinite( quality ) );
-		info.append( " tier-" + tier + " melee weapon. " );
+		if (Messages.lang()==Languages.ENGLISH)
+			info.append( Messages.format(Messages.get(MeleeWeapon.class,"4"),name) + Utils.indefinite( quality ) );
+		else
+			info.append( Messages.format(Messages.get(MeleeWeapon.class,"4"),name) + quality );
+		info.append( Messages.format(Messages.get(MeleeWeapon.class,"5"),tier) );
 		
 		if (levelKnown) {
 			int min = min();
 			int max = max();
-			info.append( "Its average damage is " + (min + (max - min) / 2) + " points per hit. " );
+			int desc = min + (max - min) / 2;
+			info.append( Messages.format(Messages.get(MeleeWeapon.class,"6"),desc) );
 		} else {
 			int min = min0();
 			int max = max0();
+			int desc =min + (max - min) / 2;
 			info.append( 
-				"Its typical average damage is " + (min + (max - min) / 2) + " points per hit " +
-				"and usually it requires " + typicalSTR() + " points of strength. " );
+				Messages.format(Messages.get(MeleeWeapon.class,"7"),desc,typicalSTR()));
 			if (typicalSTR() > Dungeon.hero.STR()) {
-				info.append( "Probably this weapon is too heavy for you. " );
+				info.append( Messages.get(MeleeWeapon.class,"8") );
 			}
 		}
 		
 		if (DLY != 1f) {
-			info.append( "This is a rather " + (DLY < 1f ? "fast" : "slow") );
+			if (Messages.lang()== Languages.ENGLISH)
+				info.append( "This is a rather " + (DLY < 1f ? "fast" : "slow") );
+			else
+				info.append( "这是一件相当" + (DLY < 1f ? "快速" : "缓慢") );
 			if (ACU != 1f) {
 				if ((ACU > 1f) == (DLY < 1f)) {
-					info.append( " and ");
+					if (Messages.lang()== Languages.ENGLISH)
+						info.append( " and ");
+					else
+						info.append( "而且");
 				} else {
-					info.append( " but ");
+					if (Messages.lang()== Languages.ENGLISH)
+						info.append( " but ");
+					else
+						info.append( "但是");
 				}
-				info.append( ACU > 1f ? "accurate" : "inaccurate" );
+				if (Messages.lang()== Languages.ENGLISH)
+					info.append( ACU > 1f ? "accurate" : "inaccurate" );
+				else
+					info.append( ACU > 1f ? "精准的" : "不精准的" );
 			}
-			info.append( " weapon. ");
+			if (Messages.lang()== Languages.ENGLISH)
+				info.append( " weapon. ");
+			else
+				info.append( "武器。");
 		} else if (ACU != 1f) {
-			info.append( "This is a rather " + (ACU > 1f ? "accurate" : "inaccurate") + " weapon. " );
+			if (Messages.lang()== Languages.ENGLISH)
+				info.append( "This is a rather " + (ACU > 1f ? "accurate" : "inaccurate") + " weapon. " );
+			else
+				info.append( "这是一件相当" + (ACU > 1f ? "精准的" : "不精准的") + "武器。" );
 		}
 		switch (imbue) {
 		case SPEED:
-			info.append( "It was balanced to make it faster. " );
+			info.append( Messages.get(MeleeWeapon.class,"9") );
 			break;
 		case ACCURACY:
-			info.append( "It was balanced to make it more accurate. " );
+			info.append( Messages.get(MeleeWeapon.class,"0") );
 			break;
 		case NONE:
 		}
 		
 		if (enchantment != null) {
-			info.append( "It is enchanted." );
+			info.append( Messages.get(MeleeWeapon.class,"a1") );
 		}
 		
 		if (levelKnown && Dungeon.hero.belongings.backpack.items.contains( this )) {
 			if (STR() > Dungeon.hero.STR()) {
 				info.append( p );
-				info.append( 
-					"Because of your inadequate strength the accuracy and speed " +
-					"of your attack with this " + name + " is decreased." );
+				info.append( Messages.format(Messages.get(MeleeWeapon.class,"a2"),name));
 			}
 			if (STR() < Dungeon.hero.STR()) {
 				info.append( p );
-				info.append( 
-					"Because of your excess strength the damage " +
-					"of your attack with this " + name + " is increased." );
+				info.append( Messages.format(Messages.get(MeleeWeapon.class,"a3"),name) );
 			}
 		}
-		
+
+		if (Messages.lang()==Languages.ENGLISH)
+			a= "You hold the " + name + " at the ready" + (cursed ? ", and because it is cursed, you are powerless to let go." : ".");
+		else
+			a="你紧紧地握住了" + name + "" + (cursed ? "，由于它被诅咒了你不能将它取下。" : "。");
 		if (isEquipped( Dungeon.hero )) {
 			info.append( p );
             if(this instanceof MeleeWeapon &&  Dungeon.hero.heroSkills.passiveA1 != null && Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() > 0) // <--- Warrior Mastery if present
-                info.append( "Your mastery of melee weapons makes it easier to use this weapon (+ " + Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus() + " levels)\n" );
-			info.append( "You hold the " + name + " at the ready" + 
-				(cursed ? ", and because it is cursed, you are powerless to let go." : ".") ); 
+                info.append( Messages.format(Messages.get(MeleeWeapon.class,"a4"), Dungeon.hero.heroSkills.passiveB3.weaponLevelBonus()) );
+			info.append( a );
 		} else {
 			if (cursedKnown && cursed) {
 				info.append( p );
-				info.append( "You can feel a malevolent magic lurking within " + name +"." );
+				info.append( Messages.format(Messages.get(MeleeWeapon.class,"a5"),name) );
 			}
 		}
 		
