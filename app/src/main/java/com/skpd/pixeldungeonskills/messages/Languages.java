@@ -1,7 +1,7 @@
 package com.skpd.pixeldungeonskills.messages;
 
 public enum Languages {
-    ENGLISH("english",      "",  null),
+    ENGLISH("english", "", new String[]{"a"}),
 
     //RUSSIAN("русский",      "ru", Status.REVIEWED, new String[]{"ConsideredHamster", "Inevielle", "yarikonline"}, new String[]{"AttHawk46", "HerrGotlieb", "Shamahan", "Un_logic"}),
     //KOREAN("한국어",         "ko", Status.REVIEWED, new String[]{"Flameblast12"}, new String[]{"Ddojin0115", "Eeeei", "Lsiebnie", "Linterpreteur", "WondarRabb1t"}),
